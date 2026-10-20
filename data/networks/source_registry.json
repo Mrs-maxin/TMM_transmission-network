@@ -1,0 +1,45 @@
+{
+  "study_id": "restart-v1",
+  "source_data_newly_fetched": true,
+  "AC_solve_performed": false,
+  "networks": [
+    {
+      "network_id": "ieee39",
+      "repository": "MATPOWER/matpower",
+      "path": "data/case39.m",
+      "commit": "1a828c7af590714499284e36ee9c81273388c594",
+      "git_blob_sha": "5a0836cdcc08d5ffe5b5a2bf0bf4fb0c267ea144",
+      "source_sha256": "440833f998d1d8768c620477dacb6afd4e03f25f394bb0d200524513ad3fdc3c",
+      "conversion": "literal numeric MATPOWER matrices only; no power-flow computation; external bus identifiers retained",
+      "json_path": "data/networks/ieee39/network.json",
+      "json_sha256": "4eb39257806abc34470e84fffcd573cf0fc9eb8b034047171858c9b6b677e05c",
+      "rows": {
+        "bus": 39,
+        "gen": 10,
+        "branch": 46
+      },
+      "source_gen_columns": 21,
+      "backend_padding": "If backend requires 21 generator columns, append zero optional columns after PMIN; preserve 10 required physical columns and original file.",
+      "local_source_path": "data/networks/ieee39/case39.m"
+    },
+    {
+      "network_id": "pglib118",
+      "repository": "power-grid-lib/pglib-opf",
+      "path": "pglib_opf_case118_ieee.m",
+      "commit": "dc6be4b2f85ca0e776952ec22cbd4c22396ea5a3",
+      "git_blob_sha": "59f5b27205f8aff56339d9aa666460ce056e6482",
+      "source_sha256": "b1af0833849040c04babc3700631cff0d9afa66b79c5d3e13ae79bdf516cec78",
+      "conversion": "literal numeric MATPOWER matrices only; no power-flow computation; external bus identifiers retained",
+      "json_path": "data/networks/pglib118/network.json",
+      "json_sha256": "4d7a29296d02ae2209ba63bea677995f616c16174b6a35f54fde0a5941354305",
+      "rows": {
+        "bus": 118,
+        "gen": 54,
+        "branch": 186
+      },
+      "source_gen_columns": 10,
+      "backend_padding": "If backend requires 21 generator columns, append zero optional columns after PMIN; preserve 10 required physical columns and original file.",
+      "local_source_path": "data/networks/pglib118/pglib_opf_case118_ieee.m"
+    }
+  ]
+}

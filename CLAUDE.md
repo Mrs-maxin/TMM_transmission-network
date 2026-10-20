@@ -1,34 +1,15 @@
 # CLAUDE.md
 
-## Project Rules
+# Shared project agent rules
 
-Before editing code, documentation, comments, generated prose, or template
-structure in this repository, read and follow:
+Read .cursor/rules/05-project-scope-and-cloud-execution.mdc first, then 00, 03, 04 and lexicon.md. Read 01 only for actual MATLAB work; 02 does not create an optimization requirement.
 
-- @.cursor/rules/00-lightweight-research-coding.mdc
-- @.cursor/rules/01-matlab-code-style.mdc
-- @.cursor/rules/02-local-optimizer-first.mdc
-- @.cursor/rules/03-public-note-and-paper-skill-bridge.mdc
-- @.cursor/rules/04-case-figure-and-metric-plan.mdc
-- @.cursor/rules/lexicon.md
+The current study is restart-v1. Old recovery is stopped; new numerical evidence is zero. Source and compute status are recorded truthfully. Cloud Python is authorized, user-Mac research is prohibited.
 
-Treat the imported files as repository policy for Claude Code work in this
-template. `AGENTS.md` is the shared coding-agent source of truth. PowerLit
-handoff contracts live under `.cursor/contracts/`; do not create root-level
-`.codex/` or `contracts/` directories for AI policy.
+Before edits load TMM_Transmission_note.md, 01_IDEA/story.md, the affected protocol/config files, and 02_PAPER/config/paper-profile.yaml. Keep purpose, claims, note and changelog synchronized.
 
-## Sync Policy
+Project organization follows project-template-lite with a Python override. Original template examples live in 03_REFERENCE/template_snapshot, not as new numerical implementation. Copying the project must not start MATLAB or research calculations.
 
-Commit and push `.cursor/`, `AGENTS.md`, `GEMINI.md`, and `CLAUDE.md` changes
-together with template changes. Keep these files as shared repository policy,
-rather than editor-only local state.
+Use actual source/inputs/models/results and frozen seeds. Do not treat a registered test, checker, template, planning file or old record as new passed evidence. Source data and code need independent physical validation.
 
-## Validation
-
-This template intentionally ships without a default executable test runner.
-Do not launch MATLAB automatically when copying or deploying the template.
-Run only the project-specific checks explicitly selected by the author.
-
-## User-confirmed project override
-
-Read `.cursor/rules/05-project-scope-and-cloud-execution.mdc` before applying the generic rules. Cloud Python and plots are authorized; research computations on the user's Mac are not. MATLAB files in this migration are template examples. Original research files remain pending recovery.
+Commit AGENTS.md, GEMINI.md, CLAUDE.md and .cursor changes together. User already authorized routine work and GitHub saving in this repository; preserve concurrent user edits. No numerical use of GitHub CI as a substitute for OpenAI-hosted execution.

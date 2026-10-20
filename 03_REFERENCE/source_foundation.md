@@ -1,9 +1,9 @@
-# 方法基础与原文件边界
+# 新研究来源
 
-源库：wuhanichina/AQPPF_TMM，固定提交0d5c999db4cbee2ea7055844d31b729d9694d747。用户提供的协议确认其原前向实现限制为非参考PQ、仅参考发电，已有普通t分支和局部条件积分，默认分支为multiple-scaled-t。
+方法基础为用户授权参考的AQPPF_TMM，固定提交0d5c999db4cbee2ea7055844d31b729d9694d747。普通多元t/elliptical分支已由用户确认；默认多尺度t不进入本轮。
 
-本项目采用普通多元t/elliptical。PV电压平方方程、完整导纳输出以及普通t条件性质不重新认领为首次。
+本轮未恢复旧实现，也未声称已复用具体私有源码。后续可通过授权连接只读核查并实现适配，不向源库推送。正式TMM论文题录仍待登记。
 
-本次迁移没有重新读取或上传私有源库代码。先前报告称曾取九个源文件并检查blob SHA，但相关原文件和核查清单未恢复，因此此处不虚构具体复用代码清单。正式方法论文题录待登记，不能由仓库名推定发表元数据。
+IEEE39来自MATPOWER8.1提交1a828c7af590714499284e36ee9c81273388c594；PGLib118来自提交dc6be4b2f85ca0e776952ec22cbd4c22396ea5a3。来源SHA和转换说明在data/networks/source_registry.json。原始网络均保存原文和参考注释，未称实际运行MATPOWER求解器。
 
-原扩展说明03_REFERENCE/aqppf_tmm_transmission_extension_20261019.md、旧预审报告和完整研究笔记历史章节尚未取得；没有用本次新写说明替代后称其为恢复原件。
+MATPOWER_LICENSE.txt明确其BSD软件许可不自动覆盖case数据；case39来源按原文件注释保留。PGLib数据采用源文件声明的CC BY 4.0，PGLIB_LICENSE.txt保留原许可。未以基准额定值冒充真实设备铭牌。

@@ -3,485 +3,489 @@
   "commit": "861ad6f573aa64605dee9b9970b4fe3dcc0bc314",
   "tree": "571dcfeeec838074fd4b055a8a0e1946c6508f95",
   "version": "2026.08.15",
-  "all_68_template_source_files_fetched": true,
-  "raw_snapshot_root": "03_REFERENCE/template_snapshot",
-  "renaming_rule": "ProjectName -> TMM_Transmission in adapted file paths and text; demo root entries and demo result READMEs moved under 03_REFERENCE/template_examples; project-facing docs and policies adapted.",
+  "snapshot_root": "03_REFERENCE/template_snapshot",
   "files": [
     {
       "source_path": ".cursor/contracts/project-template-handoff.schema.yaml",
       "source_git_blob_sha": "70f842ab2dcb3beeed5a0cad217caced3332a01f",
-      "source_file_size_bytes": 3238,
       "source_sha256": "9369c14128315156c15cbd7452428ee1bd1c751529a0b7b124eac0ce124cf64e",
-      "adapted_path": ".cursor/contracts/project-template-handoff.schema.yaml"
+      "source_file_size_bytes": 3238,
+      "snapshot_path": "03_REFERENCE/template_snapshot/.cursor/contracts/project-template-handoff.schema.yaml"
     },
     {
       "source_path": ".cursor/rules/00-lightweight-research-coding.mdc",
       "source_git_blob_sha": "1d732e0fa337ef418ca6e267b7fee3af0193ecf1",
-      "source_file_size_bytes": 11522,
       "source_sha256": "676204f4e7f1b2f38b7c1acf9d5753753f8b6300a6dfede2686ca7fb517a7dbf",
-      "adapted_path": ".cursor/rules/00-lightweight-research-coding.mdc"
+      "source_file_size_bytes": 11522,
+      "snapshot_path": "03_REFERENCE/template_snapshot/.cursor/rules/00-lightweight-research-coding.mdc"
     },
     {
       "source_path": ".cursor/rules/01-matlab-code-style.mdc",
       "source_git_blob_sha": "7632d5b2f74c98ac1cb3e3b63285de8ec534d3f1",
-      "source_file_size_bytes": 12182,
       "source_sha256": "ae52848588d88c0151b548594a79d734d09ca04b141104f5be60ebb11ea723e8",
-      "adapted_path": ".cursor/rules/01-matlab-code-style.mdc"
+      "source_file_size_bytes": 12182,
+      "snapshot_path": "03_REFERENCE/template_snapshot/.cursor/rules/01-matlab-code-style.mdc"
     },
     {
       "source_path": ".cursor/rules/02-local-optimizer-first.mdc",
       "source_git_blob_sha": "b20723c5f3155a565eda8c2322145bc166da8a8d",
-      "source_file_size_bytes": 3317,
       "source_sha256": "1affeb35b6f50ea2caffc68edf8e94bc4be254464c2332167e5314ba301cfa23",
-      "adapted_path": ".cursor/rules/02-local-optimizer-first.mdc"
+      "source_file_size_bytes": 3317,
+      "snapshot_path": "03_REFERENCE/template_snapshot/.cursor/rules/02-local-optimizer-first.mdc"
     },
     {
       "source_path": ".cursor/rules/03-public-note-and-paper-skill-bridge.mdc",
       "source_git_blob_sha": "b2928c9caa2de28f241a459525750b3bcca37e5b",
-      "source_file_size_bytes": 22557,
       "source_sha256": "7772dad04c59122ac3ab324de96befb36d6b2eec46abe1971bc54e2b40dbf626",
-      "adapted_path": ".cursor/rules/03-public-note-and-paper-skill-bridge.mdc"
+      "source_file_size_bytes": 22557,
+      "snapshot_path": "03_REFERENCE/template_snapshot/.cursor/rules/03-public-note-and-paper-skill-bridge.mdc"
     },
     {
       "source_path": ".cursor/rules/04-case-figure-and-metric-plan.mdc",
       "source_git_blob_sha": "67652b9fbe159648942c996475a3ee95c0feb405",
-      "source_file_size_bytes": 9262,
       "source_sha256": "6ffe8f221ff568600416ddc7ccb36628563e0c868fb09463efcc9ce680403a09",
-      "adapted_path": ".cursor/rules/04-case-figure-and-metric-plan.mdc"
+      "source_file_size_bytes": 9262,
+      "snapshot_path": "03_REFERENCE/template_snapshot/.cursor/rules/04-case-figure-and-metric-plan.mdc"
     },
     {
       "source_path": ".cursor/rules/lexicon.md",
       "source_git_blob_sha": "d76ca59c458cb3ae7ef35bfe224afd733754711a",
-      "source_file_size_bytes": 6056,
       "source_sha256": "950212f7d1b2f0d9872f53b0f41807e6c727480a91452a6aacb19051c74c3c6a",
-      "adapted_path": ".cursor/rules/lexicon.md"
+      "source_file_size_bytes": 6056,
+      "snapshot_path": "03_REFERENCE/template_snapshot/.cursor/rules/lexicon.md"
     },
     {
       "source_path": ".gitattributes",
       "source_git_blob_sha": "4857246f7983c89ce086b8f8f766e5b0b6b2518c",
-      "source_file_size_bytes": 283,
       "source_sha256": "de1ee372f0266da26b0b99311c9936e37dbaf3e559d64914cb51c606be345019",
-      "adapted_path": ".gitattributes"
+      "source_file_size_bytes": 283,
+      "snapshot_path": "03_REFERENCE/template_snapshot/.gitattributes"
     },
     {
       "source_path": ".gitignore",
       "source_git_blob_sha": "428a6654d6363e0b32546aa01579ea1ae8b21956",
-      "source_file_size_bytes": 337,
       "source_sha256": "2aa546c75ae1494a386303516e84322b53d00bf09e64755a9c2bb6b467a85e4e",
-      "adapted_path": ".gitignore"
+      "source_file_size_bytes": 337,
+      "snapshot_path": "03_REFERENCE/template_snapshot/.gitignore"
     },
     {
       "source_path": "02_PAPER/config/paper-profile.example.yaml",
       "source_git_blob_sha": "cb29824908f7c52d92de93f355c1aecbe593d221",
-      "source_file_size_bytes": 1325,
       "source_sha256": "066be1d72b68de3be82ffe84934bc815ecab48fbb05ffcd8eac41cf5d119e5bf",
-      "adapted_path": "02_PAPER/config/paper-profile.example.yaml"
+      "source_file_size_bytes": 1325,
+      "snapshot_path": "03_REFERENCE/template_snapshot/02_PAPER/config/paper-profile.example.yaml"
     },
     {
       "source_path": "AGENTS.md",
       "source_git_blob_sha": "eeef00838587989b1ad8da76b9228010e8c501fe",
-      "source_file_size_bytes": 1341,
       "source_sha256": "d4fff5ff0237ead18b16fe5752bcb42703e80d91529cccd88c665c5c3d4396b2",
-      "adapted_path": "AGENTS.md"
+      "source_file_size_bytes": 1341,
+      "snapshot_path": "03_REFERENCE/template_snapshot/AGENTS.md"
     },
     {
       "source_path": "README.md",
       "source_git_blob_sha": "78eb37ccb40830e1c8ba6cf0b9be64c31797179c",
-      "source_file_size_bytes": 49782,
       "source_sha256": "9d8ee6a94fb6fcff162d4bcd867a4a4f5ceb785ae484701cac7a839b2ff16cf3",
-      "adapted_path": "README.md"
+      "source_file_size_bytes": 49782,
+      "snapshot_path": "03_REFERENCE/template_snapshot/README.md"
     },
     {
       "source_path": "+ProjectName_core/+methods/run_proposed_case.m",
       "source_git_blob_sha": "3bbb1c020a8850688d7ab68093a219855feb36bc",
-      "source_file_size_bytes": 495,
       "source_sha256": "b1e3497be85904e0c514482361538d3a97fb4fb253e7d52b211cdccca241cdb0",
-      "adapted_path": "+TMM_Transmission_core/+methods/run_proposed_case.m"
+      "source_file_size_bytes": 495,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_core/+methods/run_proposed_case.m"
     },
     {
       "source_path": "+ProjectName_core/+metrics/evaluate_case_metrics.m",
       "source_git_blob_sha": "a0e172fb6b8931c4f53d5288b44189da1045b689",
-      "source_file_size_bytes": 526,
       "source_sha256": "5fbf365086c60b09b5989ffdf7f8331e4d9fa6c16649b779665d5ef4b456e59f",
-      "adapted_path": "+TMM_Transmission_core/+metrics/evaluate_case_metrics.m"
+      "source_file_size_bytes": 526,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_core/+metrics/evaluate_case_metrics.m"
     },
     {
       "source_path": "+ProjectName_core/README.md",
       "source_git_blob_sha": "77a2c33a9301de048bab1cc3c1300d03472ea1f9",
-      "source_file_size_bytes": 873,
       "source_sha256": "98c0d2b4db725e2f01aa5eb129ab4a6beac0b1a4dfc4bcbcb14398dd81620727",
-      "adapted_path": "+TMM_Transmission_core/README.md"
+      "source_file_size_bytes": 873,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_core/README.md"
     },
     {
       "source_path": "+ProjectName_sota/+baselines/run_case_baselines.m",
       "source_git_blob_sha": "6761df9cb891260657d405e8377060bafd483ea9",
-      "source_file_size_bytes": 596,
       "source_sha256": "27b456130138a739abb1ff0fe7d751726da137e8b3a11f2791e0d1d7f9bb9608",
-      "adapted_path": "+TMM_Transmission_sota/+baselines/run_case_baselines.m"
+      "source_file_size_bytes": 596,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_sota/+baselines/run_case_baselines.m"
     },
     {
       "source_path": "+ProjectName_sota/README.md",
       "source_git_blob_sha": "68f40a5995210633812a5f28dc68d14d6f6b1e57",
-      "source_file_size_bytes": 573,
       "source_sha256": "e2dd6d509c31371bedbb1557535da802e827f6dd7adb633b31fcb03de3d94e9a",
-      "adapted_path": "+TMM_Transmission_sota/README.md"
+      "source_file_size_bytes": 573,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_sota/README.md"
     },
     {
       "source_path": "+ProjectName_utils/+io/ensure_dir.m",
       "source_git_blob_sha": "8f03b567c957d24ff7b5d3006f0bbba7fb36a944",
-      "source_file_size_bytes": 276,
       "source_sha256": "0f7e0d2043a7e0abce36e2ff2cc58c3d0d37169bff6caa5c756768d4429fdc92",
-      "adapted_path": "+TMM_Transmission_utils/+io/ensure_dir.m"
+      "source_file_size_bytes": 276,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_utils/+io/ensure_dir.m"
     },
     {
       "source_path": "+ProjectName_utils/+io/load_case_inputs.m",
       "source_git_blob_sha": "1ba39e4bebeb6849cf8c33d7b9b0c1d3d1f2bee2",
-      "source_file_size_bytes": 9541,
       "source_sha256": "4bf8d92c6e0be1c54293cd65bb9a5ce58a09d9799458965790faa7cf740f125f",
-      "adapted_path": "+TMM_Transmission_utils/+io/load_case_inputs.m"
+      "source_file_size_bytes": 9541,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_utils/+io/load_case_inputs.m"
     },
     {
       "source_path": "+ProjectName_utils/+io/write_case_outputs.m",
       "source_git_blob_sha": "fe9a5aaf89c7b503fad76a57bf3d149337632dc9",
-      "source_file_size_bytes": 1280,
       "source_sha256": "3885cce411f0d8ae5c47c8b9f9c9383d5cee829f075de8799ec9d0d46fe2cfe0",
-      "adapted_path": "+TMM_Transmission_utils/+io/write_case_outputs.m"
+      "source_file_size_bytes": 1280,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_utils/+io/write_case_outputs.m"
     },
     {
       "source_path": "+ProjectName_utils/+io/write_summary.m",
       "source_git_blob_sha": "740c4bc71b5a24f161e3902b2c7230c54cb9db35",
-      "source_file_size_bytes": 1025,
       "source_sha256": "f4e233cf66f6a82fb630bdbe454e8fbc8138517f98def16629efc7cd4e9782be",
-      "adapted_path": "+TMM_Transmission_utils/+io/write_summary.m"
+      "source_file_size_bytes": 1025,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_utils/+io/write_summary.m"
     },
     {
       "source_path": "+ProjectName_utils/+mc/init_seed.m",
       "source_git_blob_sha": "8309953b523ba9457e3c55a529b404cd1b70e9e7",
-      "source_file_size_bytes": 206,
       "source_sha256": "726a245d9a09139b6cfd00afe4399c4e28849600600f6913e158de67259a5ce8",
-      "adapted_path": "+TMM_Transmission_utils/+mc/init_seed.m"
+      "source_file_size_bytes": 206,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_utils/+mc/init_seed.m"
     },
     {
       "source_path": "+ProjectName_utils/+plotting/apply_figure_profile.m",
       "source_git_blob_sha": "7c816857b360ffdc90f14cdb282d8d2105044244",
-      "source_file_size_bytes": 3759,
       "source_sha256": "62be417c88f2552d5e2dc5d773545d43d48097af04f221670927b4e7e894e5f7",
-      "adapted_path": "+TMM_Transmission_utils/+plotting/apply_figure_profile.m"
+      "source_file_size_bytes": 3759,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_utils/+plotting/apply_figure_profile.m"
     },
     {
       "source_path": "+ProjectName_utils/+plotting/create_figure.m",
       "source_git_blob_sha": "252413451265903964e31ce21083ebcf80140151",
-      "source_file_size_bytes": 984,
       "source_sha256": "440b58adeeb87178de7ec7b6c43f0b4e1975798a805cdab75acdf28b1cfdef44",
-      "adapted_path": "+TMM_Transmission_utils/+plotting/create_figure.m"
+      "source_file_size_bytes": 984,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_utils/+plotting/create_figure.m"
     },
     {
       "source_path": "+ProjectName_utils/+plotting/export_case_figures.m",
       "source_git_blob_sha": "e9fef99c24962464f972e7e9cf50e07a3331d6a5",
-      "source_file_size_bytes": 531,
       "source_sha256": "61c614015c50ba3b3655601228517a06ac524194148e4ec6947208477c4b0c3d",
-      "adapted_path": "+TMM_Transmission_utils/+plotting/export_case_figures.m"
+      "source_file_size_bytes": 531,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_utils/+plotting/export_case_figures.m"
     },
     {
       "source_path": "+ProjectName_utils/+plotting/export_project_figures.m",
       "source_git_blob_sha": "bd8bf1ff09dc54bb17839843de5be1bd86eb4d05",
-      "source_file_size_bytes": 554,
       "source_sha256": "aeabdeddc7feaa14270363dc8d240858a58f432e2cc7ec014fed7218b60bb015",
-      "adapted_path": "+TMM_Transmission_utils/+plotting/export_project_figures.m"
+      "source_file_size_bytes": 554,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_utils/+plotting/export_project_figures.m"
     },
     {
       "source_path": "+ProjectName_utils/+plotting/figure_profile.m",
       "source_git_blob_sha": "cb992df40643f16e01f5d201af5e0c194d447178",
-      "source_file_size_bytes": 2651,
       "source_sha256": "6335aedcb96bbb3f00b899a0f7a571ef4e7f80524c7cd82b2a37cc831f086f7a",
-      "adapted_path": "+TMM_Transmission_utils/+plotting/figure_profile.m"
+      "source_file_size_bytes": 2651,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_utils/+plotting/figure_profile.m"
     },
     {
       "source_path": "+ProjectName_utils/+plotting/methodStyle.m",
       "source_git_blob_sha": "ce05898bd8252728c3e437d406de53755f1dc684",
-      "source_file_size_bytes": 2157,
       "source_sha256": "d04bb33e2de271e0a88b75f108362e0cc597cfa6e7ceb3fd1111bfcaa475fca8",
-      "adapted_path": "+TMM_Transmission_utils/+plotting/methodStyle.m"
+      "source_file_size_bytes": 2157,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_utils/+plotting/methodStyle.m"
     },
     {
       "source_path": "+ProjectName_utils/+plotting/place_legend.m",
       "source_git_blob_sha": "a742ac73aaa972520bbddfa711e975a625f4a92e",
-      "source_file_size_bytes": 959,
       "source_sha256": "da3af9bc19a683ec10186a7326e2f413cf55599ae8754f7523604a1b892a543d",
-      "adapted_path": "+TMM_Transmission_utils/+plotting/place_legend.m"
+      "source_file_size_bytes": 959,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_utils/+plotting/place_legend.m"
     },
     {
       "source_path": "+ProjectName_utils/+plotting/plot_method_line.m",
       "source_git_blob_sha": "989d91dc52293dc94b9dc10da2fb76011521fa0c",
-      "source_file_size_bytes": 1237,
       "source_sha256": "b0834f016f383b7e75a58157f96949cc542c593d209058c8396a4ec966b12270",
-      "adapted_path": "+TMM_Transmission_utils/+plotting/plot_method_line.m"
+      "source_file_size_bytes": 1237,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_utils/+plotting/plot_method_line.m"
     },
     {
       "source_path": "+ProjectName_utils/+plotting/resolve_figure_width.m",
       "source_git_blob_sha": "7505839bd1927a3f84ea18e4d0b1c36eefe07204",
-      "source_file_size_bytes": 1249,
       "source_sha256": "8eb41cb2d0b57daf1a7d25cfdc85aa43168881367fd3d7a13741e566e2575e58",
-      "adapted_path": "+TMM_Transmission_utils/+plotting/resolve_figure_width.m"
+      "source_file_size_bytes": 1249,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_utils/+plotting/resolve_figure_width.m"
     },
     {
       "source_path": "+ProjectName_utils/+plotting/save_figure.m",
       "source_git_blob_sha": "695539f4f9e3428d670a92a635c90be76da858d4",
-      "source_file_size_bytes": 49953,
       "source_sha256": "f11dcaf70f4e5cc4cbfc8fae74ad0dfe4f71bfa551dfd89952d9e9ef20d7c859",
-      "adapted_path": "+TMM_Transmission_utils/+plotting/save_figure.m"
+      "source_file_size_bytes": 49953,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_utils/+plotting/save_figure.m"
     },
     {
       "source_path": "+ProjectName_utils/+ui/create_task_waitbar.m",
       "source_git_blob_sha": "389c1bb888df9017cf8c81b0976a2ed0afd69df2",
-      "source_file_size_bytes": 1927,
       "source_sha256": "404420472ad68ade53ffc1915a1503cbcb11f31d4c50d061e64bafbd6d4983f8",
-      "adapted_path": "+TMM_Transmission_utils/+ui/create_task_waitbar.m"
+      "source_file_size_bytes": 1927,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_utils/+ui/create_task_waitbar.m"
     },
     {
       "source_path": "+ProjectName_utils/+workflow/assert_stage_ready.m",
       "source_git_blob_sha": "37303049027857a3f43f6b0a6e9cfad8bb64cf7a",
-      "source_file_size_bytes": 1382,
       "source_sha256": "3329c97ca6ff6961dd86fb2d4ffadc45cae39ddc567fd3652fb0406693d99da9",
-      "adapted_path": "+TMM_Transmission_utils/+workflow/assert_stage_ready.m"
+      "source_file_size_bytes": 1382,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_utils/+workflow/assert_stage_ready.m"
     },
     {
       "source_path": "+ProjectName_utils/+workflow/create_step_tracker.m",
       "source_git_blob_sha": "643235f44898b41f6d44420d8cb7ea1cbbfc0997",
-      "source_file_size_bytes": 5021,
       "source_sha256": "2b3029766a1bcfad5a4a445d30cb2e612df274da9d1d2a99a4078980fbe07353",
-      "adapted_path": "+TMM_Transmission_utils/+workflow/create_step_tracker.m"
+      "source_file_size_bytes": 5021,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_utils/+workflow/create_step_tracker.m"
     },
     {
       "source_path": "+ProjectName_utils/+workflow/empty_run_summary.m",
       "source_git_blob_sha": "03eda8336d09712d253ae74a98c9de455ba4021c",
-      "source_file_size_bytes": 622,
       "source_sha256": "8af2c6fe5ceb3716ddddf4b0335ffb03c84fd1b77bf77004123fffc05c7a60bb",
-      "adapted_path": "+TMM_Transmission_utils/+workflow/empty_run_summary.m"
+      "source_file_size_bytes": 622,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_utils/+workflow/empty_run_summary.m"
     },
     {
       "source_path": "+ProjectName_utils/+workflow/finalize_case_run.m",
       "source_git_blob_sha": "673ad108b4478c67225c314ff52c68160c7d1e04",
-      "source_file_size_bytes": 13689,
       "source_sha256": "2bfff207c9b6406c54448be2812c6a41366b27b0527f9d099e24c2f3bffca743",
-      "adapted_path": "+TMM_Transmission_utils/+workflow/finalize_case_run.m"
+      "source_file_size_bytes": 13689,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_utils/+workflow/finalize_case_run.m"
     },
     {
       "source_path": "+ProjectName_utils/+workflow/finalize_failed_case_run.m",
       "source_git_blob_sha": "e9eca415de0efcd8d4131823b8240351951fa80b",
-      "source_file_size_bytes": 16186,
       "source_sha256": "3b7435f6e0a0729e1b504de59b15845d3bc0dd54c8f50de9036969a83a6c0a63",
-      "adapted_path": "+TMM_Transmission_utils/+workflow/finalize_failed_case_run.m"
+      "source_file_size_bytes": 16186,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_utils/+workflow/finalize_failed_case_run.m"
     },
     {
       "source_path": "+ProjectName_utils/+workflow/prepare_case_run.m",
       "source_git_blob_sha": "d98e2bb77ca35f93547807731211948d525b8c17",
-      "source_file_size_bytes": 1139,
       "source_sha256": "9bf89108307265ed87b009b8d7fa5f8332d47547dee5fd2e1107a13bc611ed49",
-      "adapted_path": "+TMM_Transmission_utils/+workflow/prepare_case_run.m"
+      "source_file_size_bytes": 1139,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_utils/+workflow/prepare_case_run.m"
     },
     {
       "source_path": "+ProjectName_utils/README.md",
       "source_git_blob_sha": "4ec37b826e08103185e6a6eae2222072c9657fb8",
-      "source_file_size_bytes": 3698,
       "source_sha256": "8f2ea9a64a2e9f2da8338397d52638d840a25f9c36f7416c8d3e48884fd89af2",
-      "adapted_path": "+TMM_Transmission_utils/README.md"
+      "source_file_size_bytes": 3698,
+      "snapshot_path": "03_REFERENCE/template_snapshot/+ProjectName_utils/README.md"
     },
     {
       "source_path": "01_IDEA/README.md",
       "source_git_blob_sha": "6a4875e0a49369d020f3bd5bf7ee92ff04c6cf3e",
-      "source_file_size_bytes": 3569,
       "source_sha256": "47271b5bc8db19a714ca1719aba922fc47906cabe35a3caf3006ee7fa29d1914",
-      "adapted_path": "01_IDEA/README.md"
+      "source_file_size_bytes": 3569,
+      "snapshot_path": "03_REFERENCE/template_snapshot/01_IDEA/README.md"
     },
     {
       "source_path": "01_IDEA/claims.md",
       "source_git_blob_sha": "83853dda7c9ad1140a9286bf2f4544e19807f2b4",
-      "source_file_size_bytes": 7245,
       "source_sha256": "92b7ad5967c94c15c3978608756d36ead74b73d8d97b4e0ff319fcf7c04adb2e",
-      "adapted_path": "01_IDEA/claims.md"
+      "source_file_size_bytes": 7245,
+      "snapshot_path": "03_REFERENCE/template_snapshot/01_IDEA/claims.md"
     },
     {
       "source_path": "01_IDEA/derivation.md",
       "source_git_blob_sha": "8545c978f462ee83175c7c3dac577b2f837fbb9e",
-      "source_file_size_bytes": 2592,
       "source_sha256": "dfe62dc4a4c58c3e2aa4757b6c8cddf3a69b761ca5934ac205b58fda73854bc5",
-      "adapted_path": "01_IDEA/derivation.md"
+      "source_file_size_bytes": 2592,
+      "snapshot_path": "03_REFERENCE/template_snapshot/01_IDEA/derivation.md"
     },
     {
       "source_path": "01_IDEA/evidence_map.md",
       "source_git_blob_sha": "5609437ef21ab825a26d12186d57e6c74b31c95b",
-      "source_file_size_bytes": 3255,
       "source_sha256": "a6222c7869bd8405f9442bbab66b01600e386681c4dad113ef6d2e5e2127580e",
-      "adapted_path": "01_IDEA/evidence_map.md"
+      "source_file_size_bytes": 3255,
+      "snapshot_path": "03_REFERENCE/template_snapshot/01_IDEA/evidence_map.md"
     },
     {
       "source_path": "01_IDEA/figure_plan.md",
       "source_git_blob_sha": "b63330a8d4495fef91cb16da534a1b76a420eb89",
-      "source_file_size_bytes": 6921,
       "source_sha256": "a101d5bba0af750d88e20968306e9e4916c2f3928c6b2743d6e81a5fd8ef493d",
-      "adapted_path": "01_IDEA/figure_plan.md"
+      "source_file_size_bytes": 6921,
+      "snapshot_path": "03_REFERENCE/template_snapshot/01_IDEA/figure_plan.md"
     },
     {
       "source_path": "01_IDEA/research_trace.yaml",
       "source_git_blob_sha": "b6c7baa72547cfbad9881b729a35e6fc32cab57f",
-      "source_file_size_bytes": 5030,
       "source_sha256": "4404f9ab4601d69fa0a227a945e9f33da5b4c40f5c8d0a1c3776641a3afbebb8",
-      "adapted_path": "01_IDEA/research_trace.yaml"
+      "source_file_size_bytes": 5030,
+      "snapshot_path": "03_REFERENCE/template_snapshot/01_IDEA/research_trace.yaml"
     },
     {
       "source_path": "01_IDEA/story.md",
       "source_git_blob_sha": "754ef8c6d543c211f39e6c17f8d90791a7073091",
-      "source_file_size_bytes": 9201,
       "source_sha256": "3f861d900d32ca66540d0f45e3ac031b3e161de9c7a1bbc0dbcb40dc9effd4da",
-      "adapted_path": "01_IDEA/story.md"
+      "source_file_size_bytes": 9201,
+      "snapshot_path": "03_REFERENCE/template_snapshot/01_IDEA/story.md"
     },
     {
       "source_path": "01_IDEA/symbols.md",
       "source_git_blob_sha": "ff6a9bd6ac3b07e58561641c0e50e9fcae69dcb0",
-      "source_file_size_bytes": 2796,
       "source_sha256": "2f5c09b1ec1ef12f81c0fb5afb1720a75de4f9084b0597eabbd9f3572450078f",
-      "adapted_path": "01_IDEA/symbols.md"
+      "source_file_size_bytes": 2796,
+      "snapshot_path": "03_REFERENCE/template_snapshot/01_IDEA/symbols.md"
     },
     {
       "source_path": "02_PAPER/README.md",
       "source_git_blob_sha": "fc39174438e746690655cee11908019dcfafb4cb",
-      "source_file_size_bytes": 2838,
       "source_sha256": "c0467d0a27d830e41355d777c860e2dfb5bdfe09567924b53ba4916d775bd9df",
-      "adapted_path": "02_PAPER/README.md"
+      "source_file_size_bytes": 2838,
+      "snapshot_path": "03_REFERENCE/template_snapshot/02_PAPER/README.md"
     },
     {
       "source_path": "02_PAPER/config/author-profile.example.yaml",
       "source_git_blob_sha": "20e387d8d12da471011d9925fa3ba4a771152d7d",
-      "source_file_size_bytes": 1359,
       "source_sha256": "392067c1e1900847d1fa5cc257c345f2ebd40af20195ea77e7b1aa7754858cf9",
-      "adapted_path": "02_PAPER/config/author-profile.example.yaml"
+      "source_file_size_bytes": 1359,
+      "snapshot_path": "03_REFERENCE/template_snapshot/02_PAPER/config/author-profile.example.yaml"
     },
     {
       "source_path": "02_PAPER/revision/comment_log.example.yaml",
       "source_git_blob_sha": "3368b77cbfba242057155ed0e0ab43ba6ebf7f47",
-      "source_file_size_bytes": 624,
       "source_sha256": "02ce65ce6a722cbaa723dce91490bfb8dd06292f25bf11293c4682413394fad6",
-      "adapted_path": "02_PAPER/revision/comment_log.example.yaml"
+      "source_file_size_bytes": 624,
+      "snapshot_path": "03_REFERENCE/template_snapshot/02_PAPER/revision/comment_log.example.yaml"
     },
     {
       "source_path": "02_PAPER/revision/response_matrix.md",
       "source_git_blob_sha": "515e38752721b20a0e6ec3cb61b9bb7fd5047bbd",
-      "source_file_size_bytes": 1172,
       "source_sha256": "34b627d0ead5563e71e2a970db1f20dc2494e3a98af23d9eaade1305003453dd",
-      "adapted_path": "02_PAPER/revision/response_matrix.md"
+      "source_file_size_bytes": 1172,
+      "snapshot_path": "03_REFERENCE/template_snapshot/02_PAPER/revision/response_matrix.md"
     },
     {
       "source_path": "02_PAPER/submission_consistency.md",
       "source_git_blob_sha": "e3d419be9f6be15b48f1996097a4b680c4146a44",
-      "source_file_size_bytes": 891,
       "source_sha256": "77000c9cf98774e99eb4c00ce081218646ccabd46e8f2c539426ce811079e315",
-      "adapted_path": "02_PAPER/submission_consistency.md"
+      "source_file_size_bytes": 891,
+      "snapshot_path": "03_REFERENCE/template_snapshot/02_PAPER/submission_consistency.md"
     },
     {
       "source_path": "03_REFERENCE/README.md",
       "source_git_blob_sha": "9d1eee1451cedde4750fab1182f90bc09fa725f1",
-      "source_file_size_bytes": 318,
       "source_sha256": "f767b2e2768d8c51e481b7e90a1040239c770a1fe71ae5e912a4fe5bdfe7247d",
-      "adapted_path": "03_REFERENCE/README.md"
+      "source_file_size_bytes": 318,
+      "snapshot_path": "03_REFERENCE/template_snapshot/03_REFERENCE/README.md"
     },
     {
       "source_path": "CLAUDE.md",
       "source_git_blob_sha": "722e4bcacfa4c89270f42a21cbbbec31b8eca971",
-      "source_file_size_bytes": 1162,
       "source_sha256": "eb8a679ada66102917395941db4029dab85a38f21b7058dc15158adf0093c7c0",
-      "adapted_path": "CLAUDE.md"
+      "source_file_size_bytes": 1162,
+      "snapshot_path": "03_REFERENCE/template_snapshot/CLAUDE.md"
     },
     {
       "source_path": "GEMINI.md",
       "source_git_blob_sha": "dd355b98896c8ada66abb40dc0473794cb0a9f54",
-      "source_file_size_bytes": 1572,
       "source_sha256": "dfaa30a9ccf3a9f931efdc03247592cde7d815626bcead05edb0a3fd3962bfb8",
-      "adapted_path": "GEMINI.md"
+      "source_file_size_bytes": 1572,
+      "snapshot_path": "03_REFERENCE/template_snapshot/GEMINI.md"
     },
     {
       "source_path": "ProjectName.m",
       "source_git_blob_sha": "fe173413fd821931b42114bd82f863b3337e650b",
-      "source_file_size_bytes": 2274,
       "source_sha256": "32e9aa11081f47764bc19b19bf75a4bc07ab15c1045e5cd9ea7c3faef1f6cafa",
-      "adapted_path": "03_REFERENCE/template_examples/TMM_Transmission.m"
+      "source_file_size_bytes": 2274,
+      "snapshot_path": "03_REFERENCE/template_snapshot/ProjectName.m"
     },
     {
       "source_path": "ProjectName_blog.md",
       "source_git_blob_sha": "b443061152015c70fac5d1fa09d66259546839f9",
-      "source_file_size_bytes": 4671,
       "source_sha256": "a4f0cf259c1ad868afce34cde4af66d03e6e0da0eb1b1ec9e06b5d1e8056453b",
-      "adapted_path": "TMM_Transmission_blog.md"
+      "source_file_size_bytes": 4671,
+      "snapshot_path": "03_REFERENCE/template_snapshot/ProjectName_blog.md"
     },
     {
       "source_path": "ProjectName_case123.m",
       "source_git_blob_sha": "1e7d30bacddf56276543cadd368d674e3227a3fe",
-      "source_file_size_bytes": 6463,
       "source_sha256": "f97a6b5c5289fb6fb716b3a0d2709e668ce0a25cbbc03d40ec91eb5d32863021",
-      "adapted_path": "03_REFERENCE/template_examples/TMM_Transmission_case123.m"
+      "source_file_size_bytes": 6463,
+      "snapshot_path": "03_REFERENCE/template_snapshot/ProjectName_case123.m"
     },
     {
       "source_path": "ProjectName_case33bw.m",
       "source_git_blob_sha": "603f0e11e609199d7baec41aaa93de40ae451345",
-      "source_file_size_bytes": 6471,
       "source_sha256": "06f2000c6c1ac8410f1a76e4d47ae7db8cc9e6c08c676d77a8118bc7460f9041",
-      "adapted_path": "03_REFERENCE/template_examples/TMM_Transmission_case33bw.m"
+      "source_file_size_bytes": 6471,
+      "snapshot_path": "03_REFERENCE/template_snapshot/ProjectName_case33bw.m"
     },
     {
       "source_path": "ProjectName_changelog.md",
       "source_git_blob_sha": "55d8e9b5571c2a02165f179ed1855790b0a14b48",
-      "source_file_size_bytes": 1470,
       "source_sha256": "36e44591e58b37507928710bfba8c88f5e0707b846576fae7feaedecdd5bf091",
-      "adapted_path": "TMM_Transmission_changelog.md"
+      "source_file_size_bytes": 1470,
+      "snapshot_path": "03_REFERENCE/template_snapshot/ProjectName_changelog.md"
     },
     {
       "source_path": "ProjectName_note.md",
       "source_git_blob_sha": "9920f3d4ca10776428ac4b2f290d73e4e2483ee1",
-      "source_file_size_bytes": 44102,
       "source_sha256": "d19473b9348d8d372dd20b4af2afeb797d6b2ec15bd4d89b5b03e0d5a5a08d6d",
-      "adapted_path": "TMM_Transmission_note.md"
+      "source_file_size_bytes": 44102,
+      "snapshot_path": "03_REFERENCE/template_snapshot/ProjectName_note.md"
     },
     {
       "source_path": "cache/README.md",
       "source_git_blob_sha": "c3cbc08eb3e11cf667e3d58ffcbf82bf28ba5c5a",
-      "source_file_size_bytes": 551,
       "source_sha256": "3d4c9293fe956d182730a36b2a2dd899c2108541d7c2ffd8122d52372b7f814f",
-      "adapted_path": "cache/README.md"
+      "source_file_size_bytes": 551,
+      "snapshot_path": "03_REFERENCE/template_snapshot/cache/README.md"
     },
     {
       "source_path": "data/README.md",
       "source_git_blob_sha": "95e91f300563e25753eb1b2ad1f027406195cc92",
-      "source_file_size_bytes": 1080,
       "source_sha256": "d91471cf0ab66bdb22ca4f4e71bbb46bf71b2b6a6aa041646b152baa1bdd08d9",
-      "adapted_path": "data/README.md"
+      "source_file_size_bytes": 1080,
+      "snapshot_path": "03_REFERENCE/template_snapshot/data/README.md"
     },
     {
       "source_path": "result/README.md",
       "source_git_blob_sha": "8eb1f4ac9a917dd2cabb010e44bb4eb2ee6980b0",
-      "source_file_size_bytes": 1793,
       "source_sha256": "38737fef3d7391ad351789d2fa417a205552bdef2387d33e2b90fb99288436a6",
-      "adapted_path": "result/README.md"
+      "source_file_size_bytes": 1793,
+      "snapshot_path": "03_REFERENCE/template_snapshot/result/README.md"
     },
     {
       "source_path": "result/case123/figures/README.md",
       "source_git_blob_sha": "b6e503dea54f8c6ca4a56d07deeab7c4de37dd9f",
-      "source_file_size_bytes": 2353,
       "source_sha256": "a63c8dbfc4e04aba1379255b5692ccc4c1c25f0b4642906a69b1152f985f4b13",
-      "adapted_path": "03_REFERENCE/template_examples/result/case123/figures/README.md"
+      "source_file_size_bytes": 2353,
+      "snapshot_path": "03_REFERENCE/template_snapshot/result/case123/figures/README.md"
     },
     {
       "source_path": "result/case33bw/figures/README.md",
       "source_git_blob_sha": "2b7e3cc3da28c4e2a026bb4fb691ddcb0e8470a7",
-      "source_file_size_bytes": 2355,
       "source_sha256": "29472b0e0b320db8574f73049cbe502cf59e09f05d77daadbfdd2c1670309c2c",
-      "adapted_path": "03_REFERENCE/template_examples/result/case33bw/figures/README.md"
+      "source_file_size_bytes": 2355,
+      "snapshot_path": "03_REFERENCE/template_snapshot/result/case33bw/figures/README.md"
     },
     {
       "source_path": "tests/README.md",
       "source_git_blob_sha": "708dc449815915dbbb4ab773bd765d79b79a1a5e",
-      "source_file_size_bytes": 455,
       "source_sha256": "a3b313a20fd58bbec1877e244d8318545fc7f8a45774c7e6ea2f17f5a47ff90c",
-      "adapted_path": "tests/README.md"
+      "source_file_size_bytes": 455,
+      "snapshot_path": "03_REFERENCE/template_snapshot/tests/README.md"
     }
-  ]
+  ],
+  "project_overrides": {
+    "Python_numerical_code_and_plots": "user-authorized",
+    "active_MATLAB_scaffolds": "not-used",
+    "new_scope": "restart-v1 whole-distribution validation",
+    "old_work_recovery": "stopped"
+  }
 }

@@ -1,45 +1,51 @@
 contractVersion: "2026.07.12"
-profileVersion: "1.1"
-lastConfirmedAt: ""
-
+profileVersion: "2.0-restart"
+lastConfirmedAt: "2026-10-20"
+studyId: restart-v1
 targetVenue: "Applied Energy"
 workingLanguage: "en"
-researchPurpose: "【待补充：与 01_IDEA/story.md 的项目研究目的保持一致】"
-researchPurposeStatus: draft
-researchPurposeBaselineVersion: ""
-researchPurposeChangeReason: ""
-minimumResearchObject: "【待补充】"
-paperSpine: "For [power-system object] under [condition], this paper [technical action] so that [conflict] can be addressed within [evidence boundary]."
-
+researchNoteLanguage: "zh-CN"
+quartileRequirement: "JCR Q1/Q2"
+excludedVenues: ["IEEE Transactions on Power Systems"]
+researchPurpose: "面向含电压控制机组的输电网，在固定拓扑、机组计划和源荷联合波动下，以已有TMM方法为基础，建立保留PQ/PV节点、机组无功限值及平衡节点切换的交流概率潮流计算流程；通过独立完整交流Monte Carlo，逐项检验节点电压幅值、相角和线路两端有功、无功及视在功率的完整分布与误差，同时核查机组无功和限值控制，明确潮流求解和概率表示各自的准确性与适用范围。"
+researchPurposeStatus: confirmed
+researchPurposeBaselineVersion: "2026-10-20-restart"
+researchPurposeChangeReason: "用户明确放弃旧内容恢复，改为重做含PV节点TMM交流概率潮流扩展及完整分布精度验证。"
+minimumResearchObject: "含PV节点的TMM交流概率潮流扩展及分布精度验证"
+paperSpine: "先检查混合PV/PQ交流状态与Q控制，再与独立完整交流MC比较节点电压、机组无功及线路双端P/Q/MVA的完整分布与误差。"
 primaryInnovationAxis: technical-object
 secondaryInnovationAxes: []
-noveltyMode: one-to-hundred
 technicalObjectType: model-formulation
-narrativeArc: method-first
-lifecycleStage: one-to-hundred-evidence
+noveltyMode: one-to-hundred
+narrativeArc: engineering-first
+lifecycleStage: zero-to-one-explore
 manuscriptUse: conditional
-
-caseContract: new-method
-requiredEvidenceRoles: [] # 按论文的实际算例故事填写，不自动要求四类角色齐全
-
-evidenceBoundary: "【待补充：系统、场景、假设、数据窗口与未覆盖条件】"
-canonicalTerms:
-  projectSpecific: {}
-keyQuantities: []
-
-venuePolicy:
-  skillVersion: ""
-  checkedAt: ""
-
-lastConfirmedBrief:
-  engineeringPainPoint: ""
-  mainInnovation: ""
-  theoreticalValue: ""
-  engineeringValue: ""
-  framingsToDrop: []
-
+caseContract: new-variable-scenario
+requiredEvidenceRoles: []
+evidenceBoundary: "本轮只有重建材料、重新取得的网络输入和未运行的材料/环境检查入口；潮流、TMM数值模块及实验从零开始。旧结果不作证据，尚无新PDF/CDF、精度、成本或加速结论。"
+keyQuantities:
+  - "全节点电压幅值与对齐相角的PDF/CDF、均值、标准差和分位数"
+  - "逐机组Pg/Qg和限值状态"
+  - "全部在线支路两端P/Q/MVA完整分布及物理单位误差"
+  - "固定PV幅值的点质量、触限后分布和模型泄漏"
+  - "独立MC区间、积分误差、回退和不可评估质量"
+  - "完整构建、交流调用、查询与备份成本"
+sourceFoundation:
+  repository: "https://github.com/wuhanichina/AQPPF_TMM"
+  commit: "0d5c999db4cbee2ea7055844d31b729d9694d747"
+  selectedFamily: "elliptical / ordinary multivariate t"
+  codeReuseInNewStudy: "not-yet-implemented; do-not-claim-reused-source"
+  formalMethodCitation: "待登记；不由仓库名称推定论文元数据"
+restart:
+  oldRecovery: stopped
+  oldResultsAllowed: false
+  oldArchiveBranch: archive/before-restart-20261020
+  newNumericalResults: 0
+  numericalImplementation: not-implemented
+  PythonMaterialChecker: written-not-run
+  actualReferenceBackend: not-run
+  MATPOWERExecuted: false
+  matlabLocalization: not-completed
 lastConsistencyVerdict:
-  checkedAt: ""
-  skillVersion: ""
   verdict: not-run
   report: 02_PAPER/submission_consistency.md

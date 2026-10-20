@@ -1,0 +1,746 @@
+{
+  "study_id": "restart-v1",
+  "all_cases_status": "planned-not-run",
+  "first_case": "C39_N",
+  "probabilistic_cases": [
+    {
+      "id": "C39_N",
+      "network": "ieee39",
+      "kind": "normal",
+      "pressure": 1,
+      "cv": 0.05,
+      "outage": null,
+      "stage": 1,
+      "status": "planned-not-run",
+      "claimIds": [
+        "N0",
+        "N1",
+        "N2"
+      ],
+      "network_path": "data/networks/ieee39/network.json",
+      "pressure_buses": [
+        4,
+        7,
+        8,
+        12
+      ],
+      "RES": {
+        "bus_ids": [
+          4,
+          8
+        ],
+        "capacity_total_fraction_of_original_PD": 0.2,
+        "capacity_split": [
+          0.5,
+          0.5
+        ],
+        "mean_capacity_fraction": 0.5,
+        "capacity_fraction_bounds": [
+          0.25,
+          0.75
+        ],
+        "Q_MVAr": 0
+      },
+      "monitor_pairs": [
+        {
+          "bus": 8,
+          "branch": [
+            7,
+            8
+          ],
+          "end_bus": 8
+        },
+        {
+          "bus": 7,
+          "branch": [
+            6,
+            7
+          ],
+          "end_bus": 7
+        },
+        {
+          "bus": 4,
+          "branch": [
+            3,
+            4
+          ],
+          "end_bus": 4
+        },
+        {
+          "bus": 4,
+          "branch": [
+            4,
+            14
+          ],
+          "end_bus": 4
+        }
+      ],
+      "PV_diagnostic_buses": [
+        30,
+        37,
+        31
+      ],
+      "sample_budget": {
+        "train": 3000,
+        "validation": 1000,
+        "calibration": 1000,
+        "pilot_AC": 10000,
+        "final_AC": 100000,
+        "model_sampling_check": 200000,
+        "automatic_expansion": false
+      },
+      "seed_family": 2026102000,
+      "streams": {
+        "training": 1,
+        "validation": 2,
+        "calibration": 3,
+        "pilot": 4,
+        "final_AC": 5,
+        "model_check": 6,
+        "integration_replicates": 7
+      },
+      "output_dir": "result/C39_N"
+    },
+    {
+      "id": "C39_S",
+      "network": "ieee39",
+      "kind": "pressure",
+      "pressure": 1.1,
+      "cv": 0.1,
+      "outage": null,
+      "stage": 2,
+      "status": "planned-not-run",
+      "claimIds": [
+        "N0",
+        "N1",
+        "N2",
+        "N3"
+      ],
+      "network_path": "data/networks/ieee39/network.json",
+      "pressure_buses": [
+        4,
+        7,
+        8,
+        12
+      ],
+      "RES": {
+        "bus_ids": [
+          4,
+          8
+        ],
+        "capacity_total_fraction_of_original_PD": 0.2,
+        "capacity_split": [
+          0.5,
+          0.5
+        ],
+        "mean_capacity_fraction": 0.5,
+        "capacity_fraction_bounds": [
+          0.25,
+          0.75
+        ],
+        "Q_MVAr": 0
+      },
+      "monitor_pairs": [
+        {
+          "bus": 8,
+          "branch": [
+            7,
+            8
+          ],
+          "end_bus": 8
+        },
+        {
+          "bus": 7,
+          "branch": [
+            6,
+            7
+          ],
+          "end_bus": 7
+        },
+        {
+          "bus": 4,
+          "branch": [
+            3,
+            4
+          ],
+          "end_bus": 4
+        },
+        {
+          "bus": 4,
+          "branch": [
+            4,
+            14
+          ],
+          "end_bus": 4
+        }
+      ],
+      "PV_diagnostic_buses": [
+        30,
+        37,
+        31
+      ],
+      "sample_budget": {
+        "train": 3000,
+        "validation": 1000,
+        "calibration": 1000,
+        "pilot_AC": 10000,
+        "final_AC": 100000,
+        "model_sampling_check": 200000,
+        "automatic_expansion": false
+      },
+      "seed_family": 2026102100,
+      "streams": {
+        "training": 1,
+        "validation": 2,
+        "calibration": 3,
+        "pilot": 4,
+        "final_AC": 5,
+        "model_check": 6,
+        "integration_replicates": 7
+      },
+      "output_dir": "result/C39_S"
+    },
+    {
+      "id": "C39_O58",
+      "network": "ieee39",
+      "kind": "contingency",
+      "pressure": "inherit-C39_S",
+      "cv": 0.1,
+      "outage": [
+        5,
+        8
+      ],
+      "stage": 3,
+      "status": "planned-not-run",
+      "claimIds": [
+        "N0",
+        "N1",
+        "N2",
+        "N3"
+      ],
+      "network_path": "data/networks/ieee39/network.json",
+      "pressure_buses": [
+        4,
+        7,
+        8,
+        12
+      ],
+      "RES": {
+        "bus_ids": [
+          4,
+          8
+        ],
+        "capacity_total_fraction_of_original_PD": 0.2,
+        "capacity_split": [
+          0.5,
+          0.5
+        ],
+        "mean_capacity_fraction": 0.5,
+        "capacity_fraction_bounds": [
+          0.25,
+          0.75
+        ],
+        "Q_MVAr": 0
+      },
+      "monitor_pairs": [
+        {
+          "bus": 8,
+          "branch": [
+            7,
+            8
+          ],
+          "end_bus": 8
+        },
+        {
+          "bus": 7,
+          "branch": [
+            6,
+            7
+          ],
+          "end_bus": 7
+        },
+        {
+          "bus": 4,
+          "branch": [
+            3,
+            4
+          ],
+          "end_bus": 4
+        },
+        {
+          "bus": 4,
+          "branch": [
+            4,
+            14
+          ],
+          "end_bus": 4
+        }
+      ],
+      "PV_diagnostic_buses": [
+        30,
+        37,
+        31
+      ],
+      "sample_budget": {
+        "train": 3000,
+        "validation": 1000,
+        "calibration": 1000,
+        "pilot_AC": 10000,
+        "final_AC": 100000,
+        "model_sampling_check": 200000,
+        "automatic_expansion": false
+      },
+      "seed_family": 2026102200,
+      "streams": {
+        "training": 1,
+        "validation": 2,
+        "calibration": 3,
+        "pilot": 4,
+        "final_AC": 5,
+        "model_check": 6,
+        "integration_replicates": 7
+      },
+      "output_dir": "result/C39_O58"
+    },
+    {
+      "id": "C39_O611",
+      "network": "ieee39",
+      "kind": "contingency",
+      "pressure": "inherit-C39_S",
+      "cv": 0.1,
+      "outage": [
+        6,
+        11
+      ],
+      "stage": 3,
+      "status": "planned-not-run",
+      "claimIds": [
+        "N0",
+        "N1",
+        "N2",
+        "N3"
+      ],
+      "network_path": "data/networks/ieee39/network.json",
+      "pressure_buses": [
+        4,
+        7,
+        8,
+        12
+      ],
+      "RES": {
+        "bus_ids": [
+          4,
+          8
+        ],
+        "capacity_total_fraction_of_original_PD": 0.2,
+        "capacity_split": [
+          0.5,
+          0.5
+        ],
+        "mean_capacity_fraction": 0.5,
+        "capacity_fraction_bounds": [
+          0.25,
+          0.75
+        ],
+        "Q_MVAr": 0
+      },
+      "monitor_pairs": [
+        {
+          "bus": 8,
+          "branch": [
+            7,
+            8
+          ],
+          "end_bus": 8
+        },
+        {
+          "bus": 7,
+          "branch": [
+            6,
+            7
+          ],
+          "end_bus": 7
+        },
+        {
+          "bus": 4,
+          "branch": [
+            3,
+            4
+          ],
+          "end_bus": 4
+        },
+        {
+          "bus": 4,
+          "branch": [
+            4,
+            14
+          ],
+          "end_bus": 4
+        }
+      ],
+      "PV_diagnostic_buses": [
+        30,
+        37,
+        31
+      ],
+      "sample_budget": {
+        "train": 3000,
+        "validation": 1000,
+        "calibration": 1000,
+        "pilot_AC": 10000,
+        "final_AC": 100000,
+        "model_sampling_check": 200000,
+        "automatic_expansion": false
+      },
+      "seed_family": 2026102300,
+      "streams": {
+        "training": 1,
+        "validation": 2,
+        "calibration": 3,
+        "pilot": 4,
+        "final_AC": 5,
+        "model_check": 6,
+        "integration_replicates": 7
+      },
+      "output_dir": "result/C39_O611"
+    },
+    {
+      "id": "C39_O1415",
+      "network": "ieee39",
+      "kind": "contingency",
+      "pressure": "inherit-C39_S",
+      "cv": 0.1,
+      "outage": [
+        14,
+        15
+      ],
+      "stage": 3,
+      "status": "planned-not-run",
+      "claimIds": [
+        "N0",
+        "N1",
+        "N2",
+        "N3"
+      ],
+      "network_path": "data/networks/ieee39/network.json",
+      "pressure_buses": [
+        4,
+        7,
+        8,
+        12
+      ],
+      "RES": {
+        "bus_ids": [
+          4,
+          8
+        ],
+        "capacity_total_fraction_of_original_PD": 0.2,
+        "capacity_split": [
+          0.5,
+          0.5
+        ],
+        "mean_capacity_fraction": 0.5,
+        "capacity_fraction_bounds": [
+          0.25,
+          0.75
+        ],
+        "Q_MVAr": 0
+      },
+      "monitor_pairs": [
+        {
+          "bus": 8,
+          "branch": [
+            7,
+            8
+          ],
+          "end_bus": 8
+        },
+        {
+          "bus": 7,
+          "branch": [
+            6,
+            7
+          ],
+          "end_bus": 7
+        },
+        {
+          "bus": 4,
+          "branch": [
+            3,
+            4
+          ],
+          "end_bus": 4
+        },
+        {
+          "bus": 4,
+          "branch": [
+            4,
+            14
+          ],
+          "end_bus": 4
+        }
+      ],
+      "PV_diagnostic_buses": [
+        30,
+        37,
+        31
+      ],
+      "sample_budget": {
+        "train": 3000,
+        "validation": 1000,
+        "calibration": 1000,
+        "pilot_AC": 10000,
+        "final_AC": 100000,
+        "model_sampling_check": 200000,
+        "automatic_expansion": false
+      },
+      "seed_family": 2026102400,
+      "streams": {
+        "training": 1,
+        "validation": 2,
+        "calibration": 3,
+        "pilot": 4,
+        "final_AC": 5,
+        "model_check": 6,
+        "integration_replicates": 7
+      },
+      "output_dir": "result/C39_O1415"
+    },
+    {
+      "id": "C118_N",
+      "network": "pglib118",
+      "kind": "normal",
+      "pressure": 1,
+      "cv": 0.05,
+      "outage": null,
+      "stage": 4,
+      "status": "planned-not-run",
+      "claimIds": [
+        "N0",
+        "N1",
+        "N2",
+        "N3"
+      ],
+      "network_path": "data/networks/pglib118/network.json",
+      "pressure_buses": [
+        70,
+        71,
+        75
+      ],
+      "RES": {
+        "bus_ids": [],
+        "model": "load-only-transfer-case"
+      },
+      "monitor_pairs": [
+        {
+          "bus": 70,
+          "branch": [
+            69,
+            70
+          ],
+          "end_bus": 70
+        },
+        {
+          "bus": 71,
+          "branch": [
+            70,
+            71
+          ],
+          "end_bus": 71
+        },
+        {
+          "bus": 75,
+          "branch": [
+            70,
+            75
+          ],
+          "end_bus": 75
+        }
+      ],
+      "PV_diagnostic_buses": [
+        70,
+        87,
+        69
+      ],
+      "sample_budget": {
+        "train": 3000,
+        "validation": 1000,
+        "calibration": 1000,
+        "pilot_AC": 10000,
+        "final_AC": 100000,
+        "model_sampling_check": 200000,
+        "automatic_expansion": false
+      },
+      "seed_family": 2026102500,
+      "streams": {
+        "training": 1,
+        "validation": 2,
+        "calibration": 3,
+        "pilot": 4,
+        "final_AC": 5,
+        "model_check": 6,
+        "integration_replicates": 7
+      },
+      "output_dir": "result/C118_N"
+    },
+    {
+      "id": "C118_S",
+      "network": "pglib118",
+      "kind": "pressure",
+      "pressure": 1.1,
+      "cv": 0.1,
+      "outage": null,
+      "stage": 4,
+      "status": "planned-not-run",
+      "claimIds": [
+        "N0",
+        "N1",
+        "N2",
+        "N3"
+      ],
+      "network_path": "data/networks/pglib118/network.json",
+      "pressure_buses": [
+        70,
+        71,
+        75
+      ],
+      "RES": {
+        "bus_ids": [],
+        "model": "load-only-transfer-case"
+      },
+      "monitor_pairs": [
+        {
+          "bus": 70,
+          "branch": [
+            69,
+            70
+          ],
+          "end_bus": 70
+        },
+        {
+          "bus": 71,
+          "branch": [
+            70,
+            71
+          ],
+          "end_bus": 71
+        },
+        {
+          "bus": 75,
+          "branch": [
+            70,
+            75
+          ],
+          "end_bus": 75
+        }
+      ],
+      "PV_diagnostic_buses": [
+        70,
+        87,
+        69
+      ],
+      "sample_budget": {
+        "train": 3000,
+        "validation": 1000,
+        "calibration": 1000,
+        "pilot_AC": 10000,
+        "final_AC": 100000,
+        "model_sampling_check": 200000,
+        "automatic_expansion": false
+      },
+      "seed_family": 2026102600,
+      "streams": {
+        "training": 1,
+        "validation": 2,
+        "calibration": 3,
+        "pilot": 4,
+        "final_AC": 5,
+        "model_check": 6,
+        "integration_replicates": 7
+      },
+      "output_dir": "result/C118_S"
+    },
+    {
+      "id": "C118_O2470",
+      "network": "pglib118",
+      "kind": "contingency",
+      "pressure": "inherit-C118_S",
+      "cv": 0.1,
+      "outage": [
+        24,
+        70
+      ],
+      "stage": 4,
+      "status": "planned-not-run",
+      "claimIds": [
+        "N0",
+        "N1",
+        "N2",
+        "N3"
+      ],
+      "network_path": "data/networks/pglib118/network.json",
+      "pressure_buses": [
+        70,
+        71,
+        75
+      ],
+      "RES": {
+        "bus_ids": [],
+        "model": "load-only-transfer-case"
+      },
+      "monitor_pairs": [
+        {
+          "bus": 70,
+          "branch": [
+            69,
+            70
+          ],
+          "end_bus": 70
+        },
+        {
+          "bus": 71,
+          "branch": [
+            70,
+            71
+          ],
+          "end_bus": 71
+        },
+        {
+          "bus": 75,
+          "branch": [
+            70,
+            75
+          ],
+          "end_bus": 75
+        }
+      ],
+      "PV_diagnostic_buses": [
+        70,
+        87,
+        69
+      ],
+      "sample_budget": {
+        "train": 3000,
+        "validation": 1000,
+        "calibration": 1000,
+        "pilot_AC": 10000,
+        "final_AC": 100000,
+        "model_sampling_check": 200000,
+        "automatic_expansion": false
+      },
+      "seed_family": 2026102700,
+      "streams": {
+        "training": 1,
+        "validation": 2,
+        "calibration": 3,
+        "pilot": 4,
+        "final_AC": 5,
+        "model_check": 6,
+        "integration_replicates": 7
+      },
+      "output_dir": "result/C118_O2470"
+    }
+  ],
+  "branch_selection": "unordered bus pair must have exactly one matching circuit; retain source row and endpoint, no bus-number-as-row assumption",
+  "islanding_checks": "required-before-any-outage-run; not yet performed"
+}

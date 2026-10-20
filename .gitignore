@@ -1,5 +1,3 @@
-# Preserve formal inputs, tests, models, results and logs in the repository.
-# Large binary arrays and archives use Git LFS through .gitattributes.
 cache/**
 !cache/
 !cache/README.md

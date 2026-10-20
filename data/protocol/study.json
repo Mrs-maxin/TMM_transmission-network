@@ -1,0 +1,137 @@
+{
+  "study_id": "restart-v1",
+  "date": "2026-10-20",
+  "purpose": "面向含电压控制机组的输电网，在固定拓扑、机组计划和源荷联合波动下，以已有TMM方法为基础，建立保留PQ/PV节点、机组无功限值及平衡节点切换的交流概率潮流计算流程；通过独立完整交流Monte Carlo，逐项检验节点电压幅值、相角和线路两端有功、无功及视在功率的完整分布与误差，同时核查机组无功和限值控制，明确潮流求解和概率表示各自的准确性与适用范围。",
+  "status": "materials-prepared-numerical-experiments-not-run",
+  "TMM_family": "elliptical-ordinary-multivariate-t",
+  "components": 3,
+  "component_search": false,
+  "df": {
+    "initial": 12,
+    "learned_bounds": [
+      4.1,
+      200
+    ],
+    "note": "scatter is not covariance; bound is a declared modeling restriction, not empirical proof"
+  },
+  "whitening": {
+    "retain_all_numerically_resolvable_directions": true,
+    "rank_relative_singular_value": 1e-12,
+    "scatter_floor_whitened": 1e-8,
+    "record_retained_and_discarded_singular_values": true
+  },
+  "fit": {
+    "max_iterations": 300,
+    "mean_log_likelihood_tolerance": 0.000001,
+    "initialization": "train-global-scatter-and-broad-means",
+    "selection_data": "training-and-validation-only",
+    "final_reference_forbidden_for_selection": true
+  },
+  "fixed_mode": {
+    "power_residual_pu": 1e-8,
+    "PV_V2_residual_pu2": 1e-8,
+    "reference_AC_tolerance_pu": 1e-10,
+    "fast_corrections_max": 12,
+    "search_voltage_guard_pu": [
+      0.2,
+      2
+    ],
+    "search_guard_is_not_engineering_limit": true
+  },
+  "Q_control": {
+    "tolerance_pu": 1e-8,
+    "guard_initial_MVAr": 5,
+    "guard_max_Q_range_fraction": 0.1,
+    "calibration_error_multiplier": 10,
+    "insufficient_guard_action": "force-independent-AC-fallback",
+    "switching": "simultaneous-currently-regulating-violations-with-no-release",
+    "reference_replacement": "first-remaining-eligible-PV-in-frozen-source-order",
+    "old_reference_Pg": "preserve-solved-output-before-switching",
+    "per_sample_reset": true,
+    "multi_online_generators_same_bus": "reject-until-a-shared-equivalence-and-allocation-policy-is-tested"
+  },
+  "mean_operating_point": {
+    "generator_active_planning": "bounded-proportional-headroom-allocation-to-net-mean-load-plus-loss",
+    "reference_active_reserve_fraction": 0.1,
+    "max_loss_reconciliation_solves": 5,
+    "keep_original_network_limits": true,
+    "normal_requires_all_declared_operating_limits": true,
+    "contingency_voltage_or_MVA_violation": "retain-and-label-if-AC-and-generation-control-are-evaluable",
+    "random_sample_Pg_violation": "record-without-clipping-or-dropping",
+    "pressure_primary_multiplier": 1.1,
+    "pressure_single_alternative": 1.05,
+    "alternative_attempts_max": 1,
+    "no_additional_parameter_search": true
+  },
+  "distribution": {
+    "complete_tables": true,
+    "representative_PDF_CDF": true,
+    "quantiles": [
+      0.01,
+      0.05,
+      0.5,
+      0.95,
+      0.99
+    ],
+    "CDF_grid_quantiles": 201,
+    "PDF_grid_points": 513,
+    "model_sampling_check_samples": 200000,
+    "model_sampling_is_not_AC_reference": true,
+    "PV_point_mass": "show-explicitly; do-not-smooth-or-project-model-samples",
+    "unevaluable_mass": "separate; fitted-model-is-conditional-on-evaluable",
+    "physical_outputs": [
+      "Vm_pu",
+      "Va_rad_aligned",
+      "Pg_MW",
+      "Qg_MVAr",
+      "P_from_MW",
+      "Q_from_MVAr",
+      "S_from_MVA",
+      "P_to_MW",
+      "Q_to_MVAr",
+      "S_to_MVA"
+    ],
+    "TMM_distribution_outputs": [
+      "Vm_pu",
+      "Va_rad_aligned",
+      "P_from_MW",
+      "Q_from_MVAr",
+      "S_from_MVA",
+      "P_to_MW",
+      "Q_to_MVAr",
+      "S_to_MVA"
+    ],
+    "generator_distribution_scope": "Pg/Qg: matched-forward checks and AC-MC statistics only. Voltage-only TMM does not jointly model random bus demand; no TMM Qg/Pg PDF is claimed."
+  },
+  "integration": {
+    "method": "one-scalar-conditional-t-CDF-plus-randomized-Sobol",
+    "initial_outer_points": 2048,
+    "maximum_outer_points": 8192,
+    "randomized_replicates": 4,
+    "voltage_invariant_direction_for_MVA": "verify-per-local-factor-or-declare-generic-quartic/numerical-fallback",
+    "PDF_method": "numerical-derivative-or-bin-mass-of-converged-CDF; record-step-and-repeat-refinement",
+    "negative_or_nonmonotone_CDF": "diagnose-and-refine-within-budget; do-not-clip"
+  },
+  "reference": {
+    "backend_candidate": "PYPOWER-polar-Newton-with-versioned-project-Q-controller",
+    "backend_frozen": false,
+    "MATPOWER_executed": false,
+    "independent_network_output_checks_required": true
+  },
+  "evidence": {
+    "old_results_allowed": false,
+    "claims_initial_state": "unverified",
+    "automatic_case_or_sample_expansion": false
+  },
+  "runtime": {
+    "research_execution": "OpenAI-hosted-only",
+    "user_Mac_research": false,
+    "current_executor_available": false
+  },
+  "backup": {
+    "checkpoint_after_each_stage": true,
+    "raw_arrays_required": true,
+    "Git_LFS_objects_required": true,
+    "clone_and_SHA_verify_required": true
+  }
+}

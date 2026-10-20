@@ -1,17 +1,14 @@
-# 待验证研究命题
+# 待验证命题
 
-更新：2026-10-20。研究目的与2026-10-19用户基线一致，原基线保存于03_REFERENCE/user_protocol_baseline_20261019/。本次只迁移模板和可从对话恢复的材料，原研究代码和数组未取得。
+版本restart-v1。以下命题均尚未完成新数值验证。主研究对象是含PV节点的交流概率潮流，不以风险尾部计算作为完成条件。
 
-| 编号 | 工程命题 | 当前记录 | 当前证据状态 |
+| 编号 | 工程命题 | 所需证据 | 当前状态 |
 | --- | --- | --- | --- |
-| C0 | 混合PV/PQ潮流能准确计算电压、Qg、平衡机组Pg及双端潮流，并正确执行Q限值与换参考 | 历史报告有IEEE39的40组和118的20组同输入检查；原文件待恢复 | 结果待复核 |
-| C1 | 普通TMM能准确表示节点电压和同端实际MVA的单项/并发概率及分项后果 | 已报告偏差；完整PDF和全分布误差未完成 | 当前证据不足 |
-| C2 | 同时越限状态和分项后果补充单项概率信息 | 定义与协议保留，原数值证据未迁入 | 尚未验证 |
-| C3 | 在匹配输入、机组控制和设备限值下，能确定与代表方法比较的精度和完整成本 | 累积量、PCE/HMS适配范围和费用记录仍有缺口 | 当前证据不足 |
-| C4 | 矩存在时，传播矩阵可辅助解释电压与线路电流的共同波动 | 原传播表和模型未取得 | 尚未验证 |
+| N0 | 固定模式快速求解能与独立完整AC一致计算电压、相角、Qg、平衡Pg和线路两端P/Q/MVA | 同输入误差与混合方程残差，涵盖导纳、变比/相移/充电和索引 | 尚未验证 |
+| N1 | Q限值与换平衡节点能给出一致的最终节点类型、机组限值等号及全节点状态 | 单上/下限、多PV、旧参考触限、能力不足及非孤岛退出诊断 | 尚未验证 |
+| N2 | 普通TMM能在声明误差内表示节点电压和线路功率的完整分布 | 独立MC与TMM的PDF/CDF、均值/标准差/分位数误差，PV点质量/泄漏 | 尚未验证 |
+| N3 | 新流程在压力和选定线路退出及118节点系统中具有可说明的适用范围和完整成本 | 同协议的迁移结果、回退率、失败输入、耗时和交流调用 | 尚未验证 |
 
-当前优先检查完整电压、相角和线路P/Q/MVA分布，再讨论尾部。有限同输入误差只能支持潮流求解检查；模型内抽样只能核查积分；最终分布精度需要独立完整交流参照。
+N0通过不能自动放行N2；模型内采样只检验TMM概率计算，独立源荷AC才检验实际分布。固定电压的点质量与连续密度误差分开，不借归零或投影隐藏偏差。
 
-TMM已作为已有方法基础，PV方程和普通t局部性质不重新认领为首次。普通t分支已确认，不切换默认多尺度t。无权重的拓扑条件结果不汇总年度风险。
-
-绑定：primaryInnovationAxis=technical-object，technicalObjectType=model-formulation，noveltyMode=one-to-hundred，caseContract=new-variable-scenario，lifecycleStage=zero-to-one-explore，manuscriptUse=conditional。正式数值evidenceId和历史run_manifest待原文件恢复后登记。
+绑定：primaryInnovationAxis=technical-object；technicalObjectType=model-formulation；noveltyMode=one-to-hundred；caseContract=new-variable-scenario；lifecycleStage=zero-to-one-explore；manuscriptUse=conditional。新evidenceId只有实际运行后才登记。

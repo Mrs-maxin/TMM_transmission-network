@@ -1,30 +1,27 @@
-version: "2026-10-20"
-researchPurposeBaseline: "01_IDEA/story.md"
-records:
-  - date: "2026-10-19"
-    decision: ordinary-multivariate-t-elliptical-confirmed
-    authority: user-supplied-project-protocol
-    scope: mixed-PV-PQ-transmission-AC-probabilistic-power-flow
-    excluded: [multiple-scaled-t-as-default, component-order-theory, optimization-dispatch-paper, cascading, unweighted-annual-risk]
-  - date: "2026-10-20"
-    decision: show-whole-voltage-and-branch-power-distributions-before-tails
-    authority: latest-user-request
-    outputs: [bus-voltage-magnitude, aligned-angle, generator-Pg-Qg, branch-end-P-Q-MVA, MC-TMM-PDF-CDF, distribution-error-table]
-    resultStatus: not-generated
-  - date: "2026-10-20"
-    decision: migrate-to-authorized-GitHub-repository
-    templateCommit: "861ad6f573aa64605dee9b9970b4fe3dcc0bc314"
-    destination: "Mrs-maxin/TMM_transmission-network"
-    originalWorkspace: "/workspace/scratch/e880dc0ac187/TMM_Transmission"
-    originalFileScan: blocked-execution-environment-offline
-    currentRecovery: template-and-conversation-documents-only
-    numericalRecords: pending-original-file-verification
-    completeMigration: false
-unresolved:
-  - recover-original-Python-source-and-dependency-lock
-  - recover-inputs-configs-models-arrays-logs-and-run-manifests
-  - verify-original-file-SHA-and-record-existing-errors
-  - complete-voltage-and-branch-power-whole-distribution-comparison
-  - establish-feasible-IEEE39-pressure-mean-operating-condition
-  - reconcile-PGLib118-Q-guard-and-full-AC-fallback-cost
-  - complete-matched-method-comparison-and-full-cost-ledger
+study_id: restart-v1
+date: "2026-10-20"
+decision: restart-without-recovering-old-work
+authority: explicit-user-instruction
+research_purpose: 01_IDEA/story.md
+scope: mixed-PV-PQ-TMM-AC-power-flow-and-whole-distribution-validation
+old_work_recovery: stopped
+old_results_as_new_evidence: prohibited
+old_archive_branch: archive/before-restart-20261020
+old_archive_commit: c0b457f4fc0aba061c1915fef0270f2251c4578e
+selected_TMM_family: ordinary-multivariate-t-elliptical
+component_order_search: false
+primary_reference: independent-full-AC-Monte-Carlo
+engineering_outputs: [bus-voltage, aligned-angle, generator-Pg-Qg, branch-end-P-Q-MVA]
+new_numerical_results: 0
+new_numerical_code: not-implemented
+materials_checker: written-not-run
+input_networks: newly-fetched-and-version-pinned
+first_case: C39_N
+next_work:
+  - verify-real-OpenAI-cloud-execution-and-free-disk
+  - implement-independent-network-and-reference-AC-adapters
+  - establish-and-freeze-mean-operating-point
+  - validate-PV-PQ-fast-forward-and-Q-control
+  - generate-independent-training-validation-calibration-and-MC-inputs
+  - fit-frozen-ordinary-TMM-and-query-whole-distributions
+  - publish-real-PDF-CDF-tables-errors-and-checkpoints

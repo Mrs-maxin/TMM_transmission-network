@@ -1,0 +1,40 @@
+{
+  "study_id": "restart-v1",
+  "kind": "controlled-bounded-joint-source-load-input",
+  "real_operating_records": false,
+  "model_does_not_assert_multivariate_t_after_bounding": true,
+  "TMM_voltage_family_is_ordinary_t": true,
+  "latent": {
+    "family": "multivariate-t",
+    "df": 12,
+    "common_scale": "one chi-square draw shared across the Gaussian factor vector per sample",
+    "bus_group": "source BUS_AREA",
+    "load_P_factors": {
+      "global": 0.4,
+      "area": 0.3,
+      "local": "sqrt(0.75)"
+    },
+    "load_Q_factors": {
+      "global": 0.4,
+      "area": 0.3,
+      "local": "sqrt(0.75)*(0.6*local_P+0.8*independent_local_Q)"
+    },
+    "RES_factors": {
+      "global": 0.3,
+      "area": 0.3,
+      "shared_RES": 0.6,
+      "local": "sqrt(0.46)"
+    }
+  },
+  "bounded_margins": {
+    "standard_load_deviation": "sqrt(3)*(2*student_t_cdf(latent,df=12)-1)",
+    "load_multiplier": "1+CV*standard_load_deviation",
+    "mean_and_variance": "marginal mean zero and variance one for standardized bounded deviation",
+    "Q_model": "same signed base QD with its own correlated bounded multiplier; no strict P/Q proportionality",
+    "RES_capacity_fraction": "0.25+0.5*student_t_cdf(RES_latent,df=12)",
+    "RES_Q": "fixed zero; no measured Q data claimed"
+  },
+  "calibration": "Validate sample moments, marginal bounds and input correlation before state generation; save actual correlation and seeds.",
+  "negative_base_QD": "preserve sign and source interpretation",
+  "all_load_multiplier_bounds_positive_for_registered_CVs": true
+}

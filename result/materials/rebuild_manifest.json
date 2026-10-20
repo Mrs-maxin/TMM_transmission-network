@@ -1,0 +1,43 @@
+{
+  "kind": "new-study-file-rebuild-not-scientific-run",
+  "study_id": "restart-v1",
+  "date": "2026-10-20",
+  "archive_branch": "archive/before-restart-20261020",
+  "archive_commit": "c0b457f4fc0aba061c1915fef0270f2251c4578e",
+  "old_recovery": "stopped",
+  "old_evidence_used": false,
+  "new_network_source_commits": [
+    {
+      "network": "ieee39",
+      "commit": "1a828c7af590714499284e36ee9c81273388c594",
+      "raw_sha256": "440833f998d1d8768c620477dacb6afd4e03f25f394bb0d200524513ad3fdc3c",
+      "json_sha256": "4eb39257806abc34470e84fffcd573cf0fc9eb8b034047171858c9b6b677e05c"
+    },
+    {
+      "network": "pglib118",
+      "commit": "dc6be4b2f85ca0e776952ec22cbd4c22396ea5a3",
+      "raw_sha256": "b1af0833849040c04babc3700631cff0d9afa66b79c5d3e13ae79bdf516cec78",
+      "json_sha256": "4d7a29296d02ae2209ba63bea677995f616c16174b6a35f54fde0a5941354305"
+    }
+  ],
+  "active_materials_rebuilt": true,
+  "Python_checker_status": "written-not-run",
+  "numerical_implementation_status": "not-implemented",
+  "new_numerical_runs": 0,
+  "new_MC_states": 0,
+  "new_TMM_models": 0,
+  "new_PDF_figures": 0,
+  "OpenAI_executor_status": "unavailable",
+  "does_not_depend_on_old_workspace": true,
+  "hash_scope": "Current new-study text, source-data and template files; not old inaccessible arrays",
+  "expected_cases": [
+    "C39_N",
+    "C39_S",
+    "C39_O58",
+    "C39_O611",
+    "C39_O1415",
+    "C118_N",
+    "C118_S",
+    "C118_O2470"
+  ]
+}

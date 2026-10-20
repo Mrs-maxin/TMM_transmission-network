@@ -1,0 +1,31 @@
+{
+  "kind": "material-static-checks-not-scientific-tests",
+  "study_id": "restart-v1",
+  "valid": true,
+  "errors": [],
+  "JSON_files_parsed": 11,
+  "source_networks": 2,
+  "source_counts": {
+    "ieee39": {
+      "bus": 39,
+      "gen": 10,
+      "branch": 46
+    },
+    "pglib118": {
+      "bus": 118,
+      "gen": 54,
+      "branch": 186
+    }
+  },
+  "monitor_endpoint_entries_checked": 29,
+  "case_count_planned": 8,
+  "validation_checks_planned": 26,
+  "template_snapshot_files_SHA_checked": 68,
+  "purpose_mirror_checked": true,
+  "relative_markdown_links_checked": true,
+  "Python_checker_executed": false,
+  "AC_solves": 0,
+  "TMM_fits": 0,
+  "PDFs_generated": 0,
+  "old_results_used": false
+}

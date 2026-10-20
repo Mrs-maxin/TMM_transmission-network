@@ -1,50 +1,61 @@
-# TMM_Transmission
+# TMM_Transmission：含PV节点的交流概率潮流扩展及分布精度验证
 
-含PV节点的输电网交流概率潮流研究。节点电压、机组无功和线路两端P/Q/MVA是直接检查对象；统计模型采用用户确认的普通多元t混合分支。
+**新研究基线：2026-10-20，版本restart-v1。新数值结果为零，旧工作恢复已停止。**
 
-**当前是部分迁移，原计算成果尚未完整保存到本仓库。** 本次已读取模板并恢复本对话中的研究文件；原云端执行器离线，Python研究源码、固定依赖、正式网络输入、模型、MC原始数组、历史日志和运行manifest尚未读取或上传。模板MATLAB代码只作示例，不是本项目历史源码或MATLAB本地化成果。
+研究首先回答节点电压、机组无功和线路功率能否算准，再回答TMM能否准确表示这些量的完整分布。独立完整交流MC为参照；主要展示PDF、CDF、均值、标准差和分位数误差。
 
-## 当前可查看内容
+## 已建立的材料
 
-- [研究笔记](TMM_Transmission_note.md)：研究目的、潮流计算逻辑、历史报告结果和证据边界。
-- [研究目的与方案](01_IDEA/story.md)、[待验证命题](01_IDEA/claims.md)、[扩展协议第15节](01_IDEA/derivation.md)和[符号表](01_IDEA/symbols.md)。
-- [完整分布图表要求](01_IDEA/figure_plan.md)：节点电压及线路P/Q/MVA与MC的全范围PDF/CDF对照，当前尚未生成。
-- [迁移状态](result/migration_20261020/migration_manifest.json)及[原文件恢复清单](data/recovery/README.md)。
-- [对话记录中的断面计算摘要](result/migration_20261020/reported_case_summary.csv)：属于待原件复核的记录，不是本次重算结果。
-- [模板来源与路径清单](03_REFERENCE/template_provenance.json)：固定模板提交及原始Git blob SHA；完整模板快照保留在03_REFERENCE/template_snapshot/。
+- [研究目的与范围](01_IDEA/story.md)、[待验证命题](01_IDEA/claims.md)、[新计算协议](01_IDEA/derivation.md)、[统一符号](01_IDEA/symbols.md)。
+- [预期算例](01_IDEA/case_plan.md)及[data/protocol/case_registry.json](data/protocol/case_registry.json)。
+- [分布比较与验收标准](01_IDEA/validation_plan.md)、[图表计划](01_IDEA/figure_plan.md)和[实现接口](01_IDEA/implementation_contract.md)。
+- 官方IEEE39与PGLib118原始网络文件、数值矩阵JSON及[来源SHA清单](data/networks/source_registry.json)。网络文件已重新取得，尚未做AC求解。
+- [研究笔记](TMM_Transmission_note.md)、[活动论文配置](02_PAPER/config/paper-profile.yaml)及[当前状态](result/project_status.json)。
 
-## 项目文件职责
+## 已做、待做与结果
 
-| 路径 | 保存内容 | 本次状态 |
-| --- | --- | --- |
-| 01_IDEA/ | 研究目的、命题、推导、符号、图表要求及证据索引 | 已按对话文本重建 |
-| 02_PAPER/ | Applied Energy配置及论文材料 | 配置已重建；未放行投稿结论 |
-| 03_REFERENCE/ | 模板、源库提交说明、用户协议基线 | 可读取部分已保存 |
-| data/ | 网络、源荷、配置及完整复算输入 | 原研究输入待恢复；恢复清单已保存 |
-| cache/ | 可再生中间缓存 | 未迁移；不能替代正式输入 |
-| result/ | 断面结果、模型、原始数组、图表和真实运行manifest | 仅迁移记录与对话摘要；原成果待恢复 |
-| tests/ | 原项目验证代码与结果 | 原测试代码待恢复 |
-| +TMM_Transmission_core/、+TMM_Transmission_utils/、+TMM_Transmission_sota/ | 模板MATLAB代码分类 | 模板示例已改名前缀；未运行 |
-| 03_REFERENCE/template_examples/ | 原模板33节点/123节点示例入口 | 与IEEE39/PGLib118研究结果分开 |
+| 项目 | 当前状态 |
+| --- | --- |
+| 研究材料、算例配置、输入来源与文件归档 | 已建立 |
+| 网络数值矩阵读取、字段与编号检查 | 已静态检查，不是潮流计算 |
+| 材料检查及环境记录入口 | 已编写，Python尚未运行 |
+| 快速混合PV/PQ潮流、Q控制与独立交流适配 | 待重新实现和测试 |
+| 普通t混合拟合、局部投影和半解析分布查询 | 待重新实现和测试 |
+| MC样本、真实PDF/CDF、误差表、耗时与费用 | 尚未产生 |
 
-仓库根目录是新项目目录，项目简称为TMM_Transmission。原Python包恢复后先保留其导入和相对路径关系，确认目录映射后再整理可复用代码；当前没有虚构可运行的Python入口。
+当前云端执行器不可用；GitHub文件操作不是研究计算。项目不依赖旧工作目录，也不等待旧源码或数组恢复。旧状态保留在[archive/before-restart-20261020](https://github.com/Mrs-maxin/TMM_transmission-network/tree/archive/before-restart-20261020)，不参与新结果、参数选择或通过率。
 
-## 已记录的研究状态
+## 计算与展示顺序
 
-历史对话报告IEEE39五个断面和PGLib118三个断面各完成10万输入的交流参照计算，并报告了有限条件下快速潮流与独立交流的一致性。原结果未恢复，本次没有重新验证这些数值。
+1. 建立并冻结满足声明要求的均值断面，检查机组Pg/Qg、节点电压和线路负载。
+2. 同输入比较快速与独立完整交流，覆盖Q限值和换平衡节点。
+3. 独立划分训练、验证、校准、试算和最终MC；固定普通多元t/elliptical，不做分量数扫描。
+4. 全节点/全支路输出统计表；代表对象给MC直方图与TMM半解析PDF/CDF叠图。
+5. 分开报告前向误差、统计模型误差、积分误差和MC不确定性。固定PV电压的点质量单独表示。
 
-完整电压和线路功率分布的TMM—MC叠图及误差表尚未完成。已有记录不能支持“分布贴合良好”的结论。IEEE39压力均值工况存在机组有功越限；PGLib118部分条件全部采用完整交流回退，不能声明快速计算成本优势。
+## 预期算例
 
-## 复算和大文件
+先完成IEEE39常规断面；其后为区域压力、压力下5–8/6–11/14–15分别退出，以及PGLib118常规、压力、24–70退出，共八个预期概率断面。每个断面先过均值与控制检查，才执行概率计算。小规模Q控制诊断不增加概率场景。
 
-当前仓库不能从零复算，因为原研究源码和正式输入尚未迁入。依赖锁、实际运行命令和历史run_manifest须从原文件恢复后原样登记；不以模板入口或本次迁移记录替代。
+首轮每断面1万MC试算，正式最多10万MC；本轮不自动增加至30万。不以增加场景、分量或样本改善结论。分布偏差即使超标也保留。
 
-已配置Git LFS追踪数组和归档格式，尚未上传LFS数据对象。只有在文件字节、SHA256、LFS对象、克隆恢复和代表流程均核查后，才能将迁移状态改为完整。详见data/recovery/README.md。
+## Python与复算入口
 
-## 来源与计算位置
+TMM_Transmission.py当前只负责材料校验和环境记录，不运行潮流。以下是未来在OpenAI托管执行器上的命令，尚未执行：
 
-模板：[wuhanichina/project-template-lite](https://github.com/wuhanichina/project-template-lite)，提交861ad6f573aa64605dee9b9970b4fe3dcc0bc314，模板版本2026.08.15。
+```bash
+python TMM_Transmission.py --check-materials
+python TMM_Transmission.py --preflight
+```
 
-方法基础：[wuhanichina/AQPPF_TMM](https://github.com/wuhanichina/AQPPF_TMM)，固定提交0d5c999db4cbee2ea7055844d31b729d9694d747。本次未从该仓库重新取得或公开其源码。
+真实研究入口、依赖锁与执行命令在实现并通过检查后登记；不以检查入口代替概率潮流程序。候选依赖列在requirements.in，不伪称已锁定或安装。
 
-云端Python是用户已授权路线。研究计算限定OpenAI托管执行环境；本次GitHub文件整理不构成交流潮流重算，也不代表执行器已恢复。
+保留模板的01_IDEA、02_PAPER、03_REFERENCE、data、cache、result和tests职责。模板MATLAB源仅保存在03_REFERENCE/template_snapshot，不作为研究实现；Python代码拟放在tmm_transmission按物理模型、统计模型、分布查询和参照交流分别组织。云端Python已授权，用户Mac不运行研究计算。
+
+## 保存要求
+
+正式输入、模型、随机种子、原始状态、失败输入、日志、真实run_manifest、图表数据和SHA256随阶段保存。大数组使用Git LFS，并从克隆后实际下载的对象复核，不能只上传指针。每个计算阶段完成后立即提交代码、配置及可上传结果；不等全部研究结束才备份。
+
+目标期刊暂沿用Applied Energy，投稿证据尚未形成。普通t、PV方程及已有TMM基础不作为首次提出。
+
+机组Pg/Qg保留同输入快算校核和完整AC-MC统计；仅电压TMM不包含随机母线负荷的联合模型，因此本轮不声称给出TMM机组Pg/Qg概率预测。

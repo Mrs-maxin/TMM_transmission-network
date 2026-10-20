@@ -104,11 +104,14 @@ ownership:
     - revision status tracking
 
 project_overrides:
-  authority: user-confirmed-session-instructions
-  project: TMM_Transmission
+  authority: latest-explicit-user-instruction
+  studyId: restart-v1
   execution: OpenAI-hosted-cloud-Python
-  localMacResearchExecution: prohibited
-  pythonFigures: authorized
+  PythonFigures: authorized
+  userMacResearch: prohibited
+  oldRecovery: stopped
+  oldNumericalEvidenceAllowed: false
+  currentStatus: materials-prepared-numerical-experiments-not-run
+  numericalImplementation: not-implemented
+  numericalRunCount: 0
   matlabLocalization: not-completed
-  originalResearchFiles: pending-recovery
-  currentMigrationStatus: partial-blocked-executor-offline
