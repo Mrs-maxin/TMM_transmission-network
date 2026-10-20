@@ -1,0 +1,18 @@
+# Preserve formal inputs, tests, models, results and logs in the repository.
+# Large binary arrays and archives use Git LFS through .gitattributes.
+cache/**
+!cache/
+!cache/README.md
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+tmp/
+*.tmp
+*.asv
+.DS_Store
+02_PAPER/config/author-profile.yaml
+.env
+.env.*
+!.env.example

@@ -1,0 +1,7 @@
+# 来源与历史材料
+
+template_snapshot保存固定提交861ad6f573aa64605dee9b9970b4fe3dcc0bc314的68个模板文件原文。template_provenance.json登记Git blob SHA和本次计算的文本SHA256。
+
+user_protocol_baseline_20261019保存本对话中用户提供的五份文档的文本重建版本，包含第15节摘录。它们不是从原磁盘读取的字节副本，原文件SHA未知；章节1–14未恢复。
+
+source_foundation.md记录用户确认的AQPPF_TMM提交及普通t分支选择。本次未重新取得或公开私有源库源码。原项目MATLAB、Python及数值结果仍待恢复，模板示例不能代替原件。

@@ -1,0 +1,3 @@
+"system","same_input_checks","max_voltage_magnitude_difference_pu","max_aligned_angle_difference_rad","max_Qg_difference_pu","reported_reference_backend","evidence_source","original_test_files_recovered","reverified_in_this_migration"
+"IEEE39","40","3.0458e-10","1.81e-10","1.2644e-8","PYPOWER-polar-Newton-and-project-Q-control","prior-conversation-execution-report","false","false"
+"PGLib118","20","5.445e-10","3.411e-10","5.118e-9","PYPOWER-polar-Newton-and-project-Q-control","prior-conversation-execution-report","false","false"

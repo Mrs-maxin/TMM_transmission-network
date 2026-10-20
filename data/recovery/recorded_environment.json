@@ -1,0 +1,36 @@
+{
+  "kind": "reported-historical-environment-not-current-probe",
+  "source": "prior-conversation-execution-report",
+  "original_environment_not_connected": true,
+  "os_reported": "Linux x86_64",
+  "python_reported": "3.12.14",
+  "packages_reported": {
+    "numpy": "2.3.5",
+    "scipy": "1.17",
+    "scikit_learn": "1.8",
+    "PYPOWER": "5.1.19"
+  },
+  "complete_dependency_lock_recovered": false,
+  "current_versions_verified": false,
+  "CPU_threads_memory_disk_time_snapshot_recovered": false,
+  "actual_MATPOWER_execution_reported": false,
+  "synthetic_source_input_reported": {
+    "family": "common-scale-t",
+    "df": 12,
+    "normal_load_CV": 0.05,
+    "stress_load_CV": 0.1,
+    "renewable_Q": 0,
+    "IEEE39_RES_buses": [
+      4,
+      8
+    ],
+    "total_RES_capacity_fraction_of_original_total_active_load": 0.2,
+    "mean_RES_fraction_of_capacity": 0.5
+  },
+  "reported_seeds": {
+    "training": 101001,
+    "pilot": 700001,
+    "final": 700002
+  },
+  "seed_and_configuration_files_recovered": false
+}

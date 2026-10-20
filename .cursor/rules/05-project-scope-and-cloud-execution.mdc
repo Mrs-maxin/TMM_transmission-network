@@ -1,0 +1,24 @@
+---
+description: User-confirmed TMM transmission scope and cloud Python overrides.
+alwaysApply: true
+---
+
+# Project scope and cloud execution
+
+The user's project-specific instructions take precedence over generic template defaults.
+
+- Use engineering-first Chinese reporting: “数学为工程和物理服务，写作时弱化数学性，强调电力系统工程性，降低阅读负担。时刻注意术语和动词必须在电力系统语境内。”
+- Cloud Python implementation, numerical tests, and plots are explicitly authorized. Template MATLAB-only execution and plotting defaults do not apply to this cloud work.
+- Do not run research computations on the user's Mac. A GitHub API operation, a workflow runner, or Sites hosting is not proof of OpenAI-hosted scientific computation.
+- The current executable cloud environment is unavailable. Do not claim it was restored based on successful GitHub operations.
+- Keep ordinary multivariate t / elliptical; do not switch to the source repository's default multiple-scaled-t.
+- The baseline research purpose in 01_IDEA/story.md is user-confirmed. Show whole voltage and branch-power distributions before revisiting tails, per the latest request.
+- Preserve original Python entrypoints, dependencies, data, seeds, models, raw arrays, logs, hashes, and run manifests when recovered. Do not replace them with newly written approximations while calling that a migration.
+- This repository's MATLAB files are imported template examples, not recovered original project MATLAB files and not completed localization.
+- Research results recovered only from this conversation are reported records pending original-file verification. They are not new tests or publishable evidence.
+- Do not invent PDF curves, full-distribution errors, runtime, monetary cost, or solver provenance.
+- Preserve Q-limit recomputation, reference switching, full-node phase alignment and old-reference voltage magnitude. Do not clip Qg without solving again.
+- Do not mark migration complete while original inputs, source, models, arrays, logs, or run manifests are missing. Never upload only Git LFS pointers and call the data delivered.
+- The destination repository write is explicitly authorized. Do not ask again for routine commits; avoid replacing unrelated user changes.
+- The source AQPPF_TMM repository is read-only. Do not push into it.
+- Keep paper authors' private configuration out of Git. Copying a template must not launch MATLAB.
