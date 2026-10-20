@@ -1,0 +1,49 @@
+{
+  "kind": "IEEE14-theory-material-checks-not-scientific-tests",
+  "study_id": "ieee14-baseline-v1",
+  "date": "2026-10-20",
+  "JSON_files_parsed": 8,
+  "markdown_links_checked": 41,
+  "literal_matrices_match_source": {
+    "bus": true,
+    "gen": true,
+    "branch": true,
+    "gencost": true
+  },
+  "source_structure": {
+    "study": "ieee14-baseline-v1",
+    "cases": 1,
+    "REF": [
+      1
+    ],
+    "PV": [
+      2,
+      3,
+      6,
+      8
+    ],
+    "PQ": [
+      4,
+      5,
+      7,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "unknowns": 26,
+    "gens": 5,
+    "branches": 20,
+    "all_rateA_zero": true
+  },
+  "purpose_mirror_checked": true,
+  "scientific_tests_run": 0,
+  "Python_checker_executed": false,
+  "AC_solves": 0,
+  "TMM_fits": 0,
+  "PDFs_generated": 0,
+  "valid": true,
+  "errors": []
+}

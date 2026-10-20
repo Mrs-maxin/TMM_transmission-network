@@ -1,9 +1,9 @@
-# 新研究来源
+# TMM方法基础与继承边界
 
-方法基础为用户授权参考的AQPPF_TMM，固定提交0d5c999db4cbee2ea7055844d31b729d9694d747。普通多元t/elliptical分支已由用户确认；默认多尺度t不进入本轮。
+源库为用户授权只读的wuhanichina/AQPPF_TMM，固定提交0d5c999db4cbee2ea7055844d31b729d9694d747。正式已发表方法论文元数据待登记，不能从仓库名推断。
 
-本轮未恢复旧实现，也未声称已复用具体私有源码。后续可通过授权连接只读核查并实现适配，不向源库推送。正式TMM论文题录仍待登记。
+按本会话已确认的源库核查，原前向限非参考PQ且在线发电仅在参考节点；默认multiple-scaled-t，另有ordinary multivariate t / elliptical。局部普通t投影、单项电压与双端MVA事件、条件标量积分已有基础。
 
-IEEE39来自MATPOWER8.1提交1a828c7af590714499284e36ee9c81273388c594；PGLib118来自提交dc6be4b2f85ca0e776952ec22cbd4c22396ea5a3。来源SHA和转换说明在data/networks/source_registry.json。原始网络均保存原文和参考注释，未称实际运行MATPOWER求解器。
+当前明确选ordinary t，采用用户提供的第15节扩展协议，完整新计算逻辑见../01_IDEA/derivation.md。IEEE14通过非参考P、PQ的Q、PV的V²适配，增加Qg/限值控制、参考变化和全节点重建。PV方程、普通t性质和既有局部积分不称新理论。
 
-MATPOWER_LICENSE.txt明确其BSD软件许可不自动覆盖case数据；case39来源按原文件注释保留。PGLib数据采用源文件声明的CC BY 4.0，PGLIB_LICENSE.txt保留原许可。未以基准额定值冒充真实设备铭牌。
+本轮尚未导入、移植或运行源库具体数值函数，不声称已经源码复用完成。官方IEEE14输入重新保存，MATPOWER控制代码已读取；代码阅读和数值运行分别记录。尚无本轮MC、模型、分布图或误差。

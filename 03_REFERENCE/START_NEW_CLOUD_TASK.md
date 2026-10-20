@@ -1,17 +1,15 @@
-# 新云端任务交接
+# 新执行器交接：IEEE14正常拓扑
 
-目标：含PV节点的TMM交流概率潮流扩展及完整分布精度验证。仓库为Mrs-maxin/TMM_transmission-network，当前研究study_id=restart-v1。
+当前study_id=ieee14-baseline-v1，目标是含PV节点的普通TMM交流概率潮流扩展及完整分布精度验证。只用标准IEEE14正常拓扑与相关负荷P/Q波动，旧八算例停用，旧目录恢复已停止，旧数字不作新证据。
 
-旧恢复已停止，不需要旧目录、旧模型或旧数组。旧数字不作证据。本轮官方IEEE39/PGLib118网络和全部协议在data，原始来源和SHA在source_registry。
+先读AGENTS.md、rule05、研究笔记、01_IDEA/derivation.md及case_plan/validation_plan/implementation_contract，读取data/protocol与data/networks/source_registry.json。理论已成文，数值模块待实现，科学测试/MC/拟合/图为零。Python材料入口未运行。
 
-先读取AGENTS.md、rule05、研究笔记、case_plan、validation_plan、implementation_contract和data/protocol/study.json。用户已授权云端Python及GitHub保存，用户Mac不做研究计算。
+第一项真实命令须确认工具位于OpenAI托管执行器并记录OS、目录、UTC、Python/包版本、CPU/线程与空间。脚本不能自行证明运行商；不能在用户Mac、GitHub CI或Sites运行后称为OpenAI研究计算。当前离线状态不能靠文档提交解除。
 
-第一步必须在实际OpenAI托管执行器上运行真实命令，记录工具执行位置、OS、工作目录、Python/包、CPU/线程、UTC时间和可用空间。TMM_Transmission.py可做材料校验及环境记录，provider字段需要工具上下文确认，脚本不能自行证明运行商。
+先复算原case14，审核源文件1号Qg与限值及参考切换；保留原非参考Pg、Vset和Q限值，不重新优化。所有rateA为0，不给过载风险。再实现26维混合方程、固定模式对照、完整Q控制和全节点重建，之后训练普通TMM与独立MC。
 
-当前数值模块尚未实现、科学测试为零；检查入口未运行。实现顺序：独立网络/参照交流→均值断面→混合方程/快速修正/Q控制→独立输入和MC→普通TMM→局部CDF/PDF→全量统计与图表。
+代表图为V4/V9/V14及1–2的1端、4–9的9端、9–14的14端P/Q/MVA；全表14节点、5机组、20支路双端。机组仅同输入校核与AC-MC统计，不声称电压TMM获得全部机组PDF。PV点质量、幅值泄漏和失败质量单列。
 
-从C39_N开始，先生成真实节点电压和线路双端P/Q/MVA完整结果。机组Qg/Pg做同输入校核与AC-MC统计，不虚构仅电压TMM的机组概率预测。固定PV点质量显式展示；半解析查询和模型抽样区分。
+每阶段在云端保存完整检查点；用户明确“Push／推送”时将当时测试与结果整体保存GitHub并同步相关文档、核查实际数组/SHA。直接编辑文档请求只授权该次范围。不得恢复旧自动推送政策。
 
-八个预期断面、样本配额和种子流已登记。参数仅用训练/验证/校准确定，最终MC不用于选分量、改源荷或删样本。分布不达标照实报告。
-
-每阶段立即保存、上传并核对源码/输入/模型/状态/失败/日志/费用/真实run_manifest与SHA；数组要有LFS实物和克隆验证。不等所有场景跑完才备份。目标期刊沿用Applied Energy，但无投稿放行结论。
+没有数值证据就不报告精度、曲线贴合、回退率、加速或完成；失败和未覆盖同样保存。依赖锁、真实入口和后端版本须在实际安装/运行后登记。

@@ -1,5 +1,5 @@
 {
-  "study_id": "restart-v1",
+  "study_id": "ieee14-baseline-v1",
   "status": "contract-only-no-results",
   "record_primary_key": [
     "case_id",
@@ -8,12 +8,10 @@
   ],
   "required_inputs": {
     "network": "external bus ids, bus/gen/branch source matrices and internal-index map",
-    "operating_point": "raw and adjusted Pg plans, Vset, true Q/P/V/rating limits, topology, baseMVA and control rule",
+    "operating_point": "source Pg plans, Vset, true Q/P/V limits, topology, baseMVA and control; rateA zero means unavailable, no adjusted dispatch",
     "random_input_arrays": [
       "PD_MW",
-      "QD_MVAr",
-      "RES_P_MW",
-      "RES_Q_MVAr"
+      "QD_MVAr"
     ],
     "random_input_retention": "all attempted samples, not only successes",
     "seeds": "SeedSequence family/stream and generator/version"
@@ -29,7 +27,7 @@
     "failure_reason": "per-input record",
     "residuals": "P/Q/V2 separately in p.u. or p.u.^2",
     "cost": "fast iterations, fallback, controller outer steps, full AC inner calls, wall and CPU time",
-    "operating_violations": "Pg/Qg/V/MVA flags separate from numerical status"
+    "operating_violations": "Pg/Qg/V flags; MVA loading unavailable when rateA=0"
   },
   "branch_sample_arrays": {
     "retained_by_default": false,

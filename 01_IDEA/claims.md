@@ -1,14 +1,16 @@
-# 待验证命题
+# 待验证命题与理论依据
 
-版本restart-v1。以下命题均尚未完成新数值验证。主研究对象是含PV节点的交流概率潮流，不以风险尾部计算作为完成条件。
+版本：2026-10-20，IEEE14基础测试。理论文件已经成文；数值命题均未验证。已有TMM、PV方程与普通t性质不认领为首次提出。
 
-| 编号 | 工程命题 | 所需证据 | 当前状态 |
+| claimId | 待验证命题 | 工程检查与证据位置 | evidenceState |
 | --- | --- | --- | --- |
-| N0 | 固定模式快速求解能与独立完整AC一致计算电压、相角、Qg、平衡Pg和线路两端P/Q/MVA | 同输入误差与混合方程残差，涵盖导纳、变比/相移/充电和索引 | 尚未验证 |
-| N1 | Q限值与换平衡节点能给出一致的最终节点类型、机组限值等号及全节点状态 | 单上/下限、多PV、旧参考触限、能力不足及非孤岛退出诊断 | 尚未验证 |
-| N2 | 普通TMM能在声明误差内表示节点电压和线路功率的完整分布 | 独立MC与TMM的PDF/CDF、均值/标准差/分位数误差，PV点质量/泄漏 | 尚未验证 |
-| N3 | 新流程在压力和选定线路退出及118节点系统中具有可说明的适用范围和完整成本 | 同协议的迁移结果、回退率、失败输入、耗时和交流调用 | 尚未验证 |
+| N0 | 混合PV/PQ快速潮流可在相同负荷下得到与独立完整交流一致的电压和支路功率 | 26维P/Q/V²、Qg、参考Pg、20支路双端；拟用E14-PHYS | unverified |
+| N1 | Q限值与参考切换后仍保留正确电压、机组输出与模式 | 单上/下、多PV、换参考、无平衡能力；拟用E14-QCTRL | unverified |
+| N2 | 普通TMM能够在所测IEEE14负荷条件下描述电压及线路功率完整分布，并给出可复核误差 | PDF/CDF、均值/标准差/分位数、MC区间、PV泄漏；拟用E14-DIST | unverified |
+| N3 | 所测计算流程可以保存完整输入与状态，并从代码/data复算，记录全部成本 | 空cache与实际归档恢复；拟用E14-REPRO | unverified |
 
-N0通过不能自动放行N2；模型内采样只检验TMM概率计算，独立源荷AC才检验实际分布。固定电压的点质量与连续密度误差分开，不借归零或投影隐藏偏差。
+混合方程维度、固定模式二次关系、普通t仿射投影和条件分布具有理论依据，见derivation.md；这不构成N0–N3数值通过证据。首版可能有大量回退、固定PV泄漏或分布误差超标，均需保留。
 
-绑定：primaryInnovationAxis=technical-object；technicalObjectType=model-formulation；noveltyMode=one-to-hundred；caseContract=new-variable-scenario；lifecycleStage=zero-to-one-explore；manuscriptUse=conditional。新evidenceId只有实际运行后才登记。
+统一绑定：primaryInnovationAxis=technical-object；noveltyMode=one-to-hundred；technicalObjectType=model-formulation；manuscriptUse=conditional；lifecycleStage=zero-to-one-explore。每项evidenceBoundary均为“待实现及独立IEEE14数值验证；当前无新结果”。上表evidenceId为预留编号，不是已存在run。
+
+同输入前向、模型内积分与独立交流分布分别验证。仅电压TMM不声称获得带随机母线负荷的全部机组Pg/Qg PDF。不得以最终MC选分量、改输入、删不利样本或把无效输入记为安全。

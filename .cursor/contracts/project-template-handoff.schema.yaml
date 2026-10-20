@@ -105,7 +105,7 @@ ownership:
 
 project_overrides:
   authority: latest-explicit-user-instruction
-  studyId: restart-v1
+  studyId: ieee14-baseline-v1
   execution: OpenAI-hosted-cloud-Python
   PythonFigures: authorized
   userMacResearch: prohibited
@@ -115,3 +115,6 @@ project_overrides:
   numericalImplementation: not-implemented
   numericalRunCount: 0
   matlabLocalization: not-completed
+  currentNetwork: IEEE14
+  normalTopologyOnly: true
+  remoteTestPush: explicit-user-Push-trigger

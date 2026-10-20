@@ -1,24 +1,35 @@
-# 新研究符号与接口
+# 符号、单位与实现状态
 
-版本restart-v1。代码映射为拟采用字段，数值模块尚未实现；不把命名登记当成实现证据。
+版本：2026-10-20。对应[计算理论](derivation.md)。下列代码字段均为拟定接口，尚无已运行数值实现，不把字段名当作已存在函数。
 
-| 工程量 | 符号/含义 | 单位 | 拟采用字段 |
+| 符号 | 电力系统含义 | 单位/维度 | 拟定字段 |
 | --- | --- | --- | --- |
-| 节点与参考 | i、原相角基准r0、当前参考r | 外部母线号 | bus_id, original_reference_bus, reference_bus |
-| 节点电压 | V=e+jf、幅值Vm、对齐相角Va | p.u.、rad | voltage_complex, Vm_pu, Va_rad_aligned |
-| 负荷与新能源 | PD/QD、PR/QR | MW、MVAr | PD_MW, QD_MVAr, RES_P_MW, RES_Q_MVAr |
-| 同步机计划与输出 | Pg_plan、实际Pg/Qg | MW、MVAr | Pg_plan_MW, Pg_MW, Qg_MVAr |
-| 调压与无功限额 | Vset、QMIN/QMAX | p.u.、MVAr | Vset_pu, Qmin_MVAr, Qmax_MVAr |
-| 节点导纳与支路导纳 | Ybus、Yf、Yt | p.u. | Ybus, Yfrom, Yto |
-| 线路两端功率 | Pf/Qf/Sf、Pt/Qt/St | MW、MVAr、MVA | P_from_MW, Q_from_MVAr, S_from_MVA, P_to_MW, Q_to_MVAr, S_to_MVA |
-| 混合方程与目标 | F、b | P/Q为p.u.，V²为p.u.² | mixed_equations, mixed_targets |
-| 全节点电压坐标 | v、v0、TV、z | p.u.及白化坐标 | voltage_center, voltage_transform, coordinates |
-| 普通t混合 | 权重π、位置μ、散布Σ、自由度ν | 对应坐标单位 | weights, location, scatter, df, family=elliptical |
-| 局部端量 | x=[e,f,iR,iI] | p.u. | local_location, local_scatter, local_factor |
-| 无功模式 | 调压、上限、下限和当前参考 | 状态标签 | bus_type_final, Q_limit_direction, reference_bus |
-| 输入与评估状态 | 源荷样本、可评估/失败 | input_id、状态 | input_id, status, failure_reason |
-| 分布误差 | 均值/标准差差、分位数差、CDF差 | 原单位或概率 | mean_abs_error, std_abs_error, quantile_abs_error, CDF_grid_max_error |
+| n、r_m、r_0 | 节点数、当前参考、共同相角基准 | IEEE14为14；初始参考1 | n_bus, reference_bus, original_reference |
+| m | PV/PQ及Q限值控制模式 | 每输入独立重置 | control_mode |
+| ξ | 负荷P/Q联合输入 | MW/MVAr | PD_MW, QD_MVAr |
+| Pg_plan、Vset | 非参考有功计划、调压电压设定 | MW、p.u. | Pg_plan_MW, Vset_pu |
+| Pg、Qg | 机组有功、无功输出 | MW/MVAr；方程中p.u. | Pg_MW, Qg_MVAr |
+| Qmin、Qmax | 真实机组无功上下限 | MVAr或统一p.u. | Qmin_MVAr, Qmax_MVAr |
+| τQ、δQ | Q触发容差、近边界回退保护带 | 同一Q单位；用途不同 | Q_tolerance_pu, Q_guard_MVAr |
+| B0 | 三相功率基准 | 100 MVA | baseMVA |
+| Y、Yf、Yt | 完整节点导纳、支路首/末端电流映射 | 14×14、20×14复矩阵，p.u. | Ybus, Yf, Yt |
+| e、f、V | 节点电压实部、虚部、复电压 | 14维，p.u. | V_complex |
+| iR、iI | 节点或指定端电流实虚部 | 对应p.u. | current_real, current_imag |
+| y、F_m、b_m | 非参考电压、P/Q/V²计算与目标 | 初始26维，分行功率或电压平方 | fixed_mode_coordinates, residuals |
+| J_a、d1、d2 | 混合雅可比、两次逆初值修正 | 26×26、26维 | anchor_factorization, first_step, second_step |
+| Vbar、v | 对齐到原1号相角的全节点电压 | 复14维、实28维，p.u. | voltage_aligned, voltage_real_full |
+| v0、T_V、z | 训练中心、仿射变换、白化电压坐标 | 28维、28×d、d维 | voltage_center, voltage_transform, coordinates |
+| k、πk、νk | 统计分量、权重、t自由度 | k=1..3；不同于控制模式m | weights, df |
+| μk、Σk | 坐标位置与散布 | d维、d×d；不是协方差 | locations, scatter |
+| U、g | 普通t的共同卡方尺度、高斯扰动 | 正标量、有效维向量 | common_chi_square, normal_vector |
+| H_a、x | 全电压到同端电压/电流的投影、局部实量 | 4×28、4维 | local_projection, local_state |
+| m_a,k、Λ_a,k、F | 局部位置、散布、有效生成因子 | 4维、4×4、4×r；r≤4 | local_location, local_scatter, local_factor |
+| T、η | 条件积分标量、剩余联合t坐标 | 1维、r−1维；与T_V不同 | conditional_coordinate, outer_coordinates |
+| F_V、u | 局部因子的电压两行、电压不变单位方向 | 2×r、r维 | voltage_factor, invariant_direction |
+| P_a、Q_a、S_a | 指定支路端有功、无功、视在功率幅值 | MW、MVAr、MVA | P_end_MW, Q_end_MVAr, S_end_MVA |
+| F_X、f_X | 物理量X的CDF、连续部分PDF | 概率、物理单位倒数 | CDF_grid, PDF_grid |
+| ε | 不可评估输入概率质量 | [0,1]，有限MC还需区间 | unevaluable_mass |
 
-散布矩阵不能当协方差；角度统一为rad，外部源文件Va的度数在适配时显式转换；baseMVA只用于功率标幺换算，不给电压幅值乘基准。线路正号表示从该端节点注入支路。
+初始维度26来自13行非参考P、9行PQ的Q、4行PV的V²；触限后行类别变化，维度不变。全节点统计坐标保留旧参考幅值；相角单位在表中采用rad，作图可转deg并标注。
 
-完整状态字段与文件规范见data/protocol/output_contract.json；正式代码实现后补充真实模块路径和行级对应。
+功率从p.u.换回MW/MVAr/MVA乘B0。Q容差10⁻⁸ p.u.对应本例10⁻⁶ MVAr，不能把二者数值直接混用。电压原子质量是概率，不是密度高度。运行限值、数值容差和Q保护带分别登记。

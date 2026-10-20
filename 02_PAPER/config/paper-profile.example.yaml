@@ -1,18 +1,18 @@
 contractVersion: "2026.07.12"
-profileVersion: "2.0-restart"
+profileVersion: "2.1-ieee14-theory"
 lastConfirmedAt: "2026-10-20"
-studyId: restart-v1
+studyId: ieee14-baseline-v1
 targetVenue: "Applied Energy"
 workingLanguage: "en"
 researchNoteLanguage: "zh-CN"
 quartileRequirement: "JCR Q1/Q2"
 excludedVenues: ["IEEE Transactions on Power Systems"]
-researchPurpose: "面向含电压控制机组的输电网，在固定拓扑、机组计划和源荷联合波动下，以已有TMM方法为基础，建立保留PQ/PV节点、机组无功限值及平衡节点切换的交流概率潮流计算流程；通过独立完整交流Monte Carlo，逐项检验节点电压幅值、相角和线路两端有功、无功及视在功率的完整分布与误差，同时核查机组无功和限值控制，明确潮流求解和概率表示各自的准确性与适用范围。"
+researchPurpose: "面向含电压控制机组的输电网，以已有普通TMM方法为基础，建立保留PQ/PV节点、机组无功限值及参考节点切换的交流概率潮流计算流程；本轮仅采用标准IEEE14正常拓扑和相关负荷P/Q波动，通过独立完整交流Monte Carlo检验全节点电压幅值、相角及线路双端有功、无功和视在功率的完整分布与误差，同时核查机组Pg/Qg及控制状态，明确潮流求解和概率表示的准确性与适用范围。"
 researchPurposeStatus: confirmed
-researchPurposeBaselineVersion: "2026-10-20-restart"
-researchPurposeChangeReason: "用户明确放弃旧内容恢复，改为重做含PV节点TMM交流概率潮流扩展及完整分布精度验证。"
+researchPurposeBaselineVersion: "2026-10-20-ieee14"
+researchPurposeChangeReason: "用户将基础测试明确为标准IEEE14正常拓扑，先比较完整潮流分布；本次优先补充仓库理论MD。"
 minimumResearchObject: "含PV节点的TMM交流概率潮流扩展及分布精度验证"
-paperSpine: "先检查混合PV/PQ交流状态与Q控制，再与独立完整交流MC比较节点电压、机组无功及线路双端P/Q/MVA的完整分布与误差。"
+paperSpine: "IEEE14正常拓扑：先核查混合潮流和Q控制，再比较电压/相角及支路双端P/Q/MVA完整分布；机组Pg/Qg作同输入和AC-MC统计。"
 primaryInnovationAxis: technical-object
 secondaryInnovationAxes: []
 technicalObjectType: model-formulation
@@ -22,7 +22,7 @@ lifecycleStage: zero-to-one-explore
 manuscriptUse: conditional
 caseContract: new-variable-scenario
 requiredEvidenceRoles: []
-evidenceBoundary: "本轮只有重建材料、重新取得的网络输入和未运行的材料/环境检查入口；潮流、TMM数值模块及实验从零开始。旧结果不作证据，尚无新PDF/CDF、精度、成本或加速结论。"
+evidenceBoundary: "计算理论已成文，官方IEEE14输入及初始协议已保存；数值实现和测试未完成，无新MC、TMM、PDF/CDF、误差、速度或费用结论。"
 keyQuantities:
   - "全节点电压幅值与对齐相角的PDF/CDF、均值、标准差和分位数"
   - "逐机组Pg/Qg和限值状态"
@@ -49,3 +49,14 @@ restart:
 lastConsistencyVerdict:
   verdict: not-run
   report: 02_PAPER/submission_consistency.md
+
+currentCase:
+  network: IEEE14
+  normalTopologyOnly: true
+  probabilityCases: 1
+  outages: false
+  addedRES: false
+  activeTheory: 01_IDEA/derivation.md
+remoteTestSaving:
+  automaticPush: false
+  trigger: "用户明确Push/推送；直接要求编辑仓库文档只授权该次范围"

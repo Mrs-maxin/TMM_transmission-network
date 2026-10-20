@@ -1,10 +1,10 @@
 {
-  "study_id": "restart-v1",
+  "study_id": "ieee14-baseline-v1",
   "date": "2026-10-20",
   "goal": "含PV节点的TMM交流概率潮流扩展及分布精度验证",
-  "materials": "prepared",
-  "network_inputs": "new-official-source-and-literal-JSON-saved; AC-not-run",
-  "case_count_planned": 8,
+  "materials": "theory-documented-and-IEEE14-scope-synchronized",
+  "network_inputs": "official-IEEE14-source-and-literal-JSON-saved; AC-not-run",
+  "case_count_planned": 1,
   "correctness_checks_planned": 26,
   "material_and_environment_checker": "written-not-run",
   "numerical_implementation": "not-implemented",
@@ -17,9 +17,12 @@
   "old_results_used_as_new_evidence": false,
   "actual_cloud_executor_available": false,
   "new_work_needs_old_directory": false,
-  "next_action": "execute preflight on a new usable OpenAI-hosted runtime, implement network/reference adapters and establish C39_N mean point",
+  "next_action": "usable OpenAI-hosted runtime preflight, deterministic standard case14, mixed 26-row equation and Q-control verification before TMM/MC",
   "dependency_lock": "pending-real-installation-verification",
   "actual_reference_backend": "not-run",
   "MATPOWER_solver_executed": false,
-  "matlab_localization": "not-completed"
+  "matlab_localization": "not-completed",
+  "theory_document": "01_IDEA/derivation.md",
+  "previous_eight_cases": "inactive",
+  "remote_test_backup_policy": "explicit-user-Push-only"
 }

@@ -1,8 +1,8 @@
 {
-  "study_id": "restart-v1",
+  "study_id": "ieee14-baseline-v1",
   "date": "2026-10-20",
-  "purpose": "面向含电压控制机组的输电网，在固定拓扑、机组计划和源荷联合波动下，以已有TMM方法为基础，建立保留PQ/PV节点、机组无功限值及平衡节点切换的交流概率潮流计算流程；通过独立完整交流Monte Carlo，逐项检验节点电压幅值、相角和线路两端有功、无功及视在功率的完整分布与误差，同时核查机组无功和限值控制，明确潮流求解和概率表示各自的准确性与适用范围。",
-  "status": "materials-prepared-numerical-experiments-not-run",
+  "purpose": "面向含电压控制机组的输电网，以已有普通TMM方法为基础，建立保留PQ/PV节点、机组无功限值及参考节点切换的交流概率潮流计算流程；本轮仅采用标准IEEE14正常拓扑和相关负荷P/Q波动，通过独立完整交流Monte Carlo检验全节点电压幅值、相角及线路双端有功、无功和视在功率的完整分布与误差，同时核查机组Pg/Qg及控制状态，明确潮流求解和概率表示的准确性与适用范围。",
+  "status": "theory-documented-numerical-implementation-not-completed",
   "TMM_family": "elliptical-ordinary-multivariate-t",
   "components": 3,
   "component_search": false,
@@ -48,20 +48,20 @@
     "reference_replacement": "first-remaining-eligible-PV-in-frozen-source-order",
     "old_reference_Pg": "preserve-solved-output-before-switching",
     "per_sample_reset": true,
-    "multi_online_generators_same_bus": "reject-until-a-shared-equivalence-and-allocation-policy-is-tested"
+    "multi_online_generators_same_bus": "reject-until-a-shared-equivalence-and-allocation-policy-is-tested",
+    "guard_formula": "min(guard_initial_MVAr, guard_max_Q_range_fraction*(Qmax-Qmin)); if calibration needs more than allowed cap, force full AC"
   },
   "mean_operating_point": {
-    "generator_active_planning": "bounded-proportional-headroom-allocation-to-net-mean-load-plus-loss",
-    "reference_active_reserve_fraction": 0.1,
-    "max_loss_reconciliation_solves": 5,
-    "keep_original_network_limits": true,
-    "normal_requires_all_declared_operating_limits": true,
-    "contingency_voltage_or_MVA_violation": "retain-and-label-if-AC-and-generation-control-are-evaluable",
+    "generator_active_planning": "preserve-source-nonreference-Pg; current-reference-balances-load-and-losses",
+    "keep_source_Vset": true,
+    "keep_original_Q_limits": true,
+    "no_optimization": true,
+    "normal_requires_all_declared_operating_limits": false,
+    "operating_limit_violations": "record-separately-from-numerical-evaluability",
+    "source_Qg_is_not_new_solution": true,
+    "reference_Q_limit_audit_required": true,
     "random_sample_Pg_violation": "record-without-clipping-or-dropping",
-    "pressure_primary_multiplier": 1.1,
-    "pressure_single_alternative": 1.05,
-    "alternative_attempts_max": 1,
-    "no_additional_parameter_search": true
+    "all_rateA_zero": "no-overload-risk-or-percent-loading"
   },
   "distribution": {
     "complete_tables": true,
@@ -101,7 +101,8 @@
       "Q_to_MVAr",
       "S_to_MVA"
     ],
-    "generator_distribution_scope": "Pg/Qg: matched-forward checks and AC-MC statistics only. Voltage-only TMM does not jointly model random bus demand; no TMM Qg/Pg PDF is claimed."
+    "generator_distribution_scope": "Pg/Qg: matched-forward checks and AC-MC statistics only. Voltage-only TMM does not jointly model random bus demand; no TMM Qg/Pg PDF is claimed.",
+    "CDF_grid_selection": "predeclared from training/validation/frozen model before final AC; no feedback to fitting"
   },
   "integration": {
     "method": "one-scalar-conditional-t-CDF-plus-randomized-Sobol",
@@ -132,6 +133,19 @@
     "checkpoint_after_each_stage": true,
     "raw_arrays_required": true,
     "Git_LFS_objects_required": true,
-    "clone_and_SHA_verify_required": true
+    "clone_and_SHA_verify_required": true,
+    "remote_push_trigger": "explicit user Push/推送 or direct request to edit repository documents for that scope",
+    "auto_push_test_results": false
+  },
+  "scope": {
+    "network": "ieee14",
+    "probability_cases": 1,
+    "normal_topology_only": true,
+    "outages": false,
+    "regional_pressure": false,
+    "added_RES": false,
+    "larger_systems": false,
+    "whole_distribution_primary": true,
+    "tail_risk": false
   }
 }

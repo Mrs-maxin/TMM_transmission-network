@@ -1,63 +1,48 @@
 # TMM_Transmission：含PV节点的交流概率潮流扩展及分布精度验证
 
-**新研究基线：2026-10-20，版本restart-v1。新数值结果为零，旧工作恢复已停止。**
+**当前版本：2026-10-20，IEEE14基础测试。计算理论已成文；数值实现和验证未完成。**
 
-研究首先回答节点电压、机组无功和线路功率能否算准，再回答TMM能否准确表示这些量的完整分布。独立完整交流MC为参照；主要展示PDF、CDF、均值、标准差和分位数误差。
+先读[计算理论文档](01_IDEA/derivation.md)：从PV节点电压控制、机组Q限值和参考切换，说明快速潮流、普通TMM拟合、电压/线路功率CDF与PDF，以及独立完整交流MC误差验证。
 
-## 已建立的材料
+## 当前研究范围
 
-- [研究目的与范围](01_IDEA/story.md)、[待验证命题](01_IDEA/claims.md)、[新计算协议](01_IDEA/derivation.md)、[统一符号](01_IDEA/symbols.md)。
-- [预期算例](01_IDEA/case_plan.md)及[data/protocol/case_registry.json](data/protocol/case_registry.json)。
-- [分布比较与验收标准](01_IDEA/validation_plan.md)、[图表计划](01_IDEA/figure_plan.md)和[实现接口](01_IDEA/implementation_contract.md)。
-- 官方IEEE39与PGLib118原始网络文件、数值矩阵JSON及[来源SHA清单](data/networks/source_registry.json)。网络文件已重新取得，尚未做AC求解。
-- [研究笔记](TMM_Transmission_note.md)、[活动论文配置](02_PAPER/config/paper-profile.yaml)及[当前状态](result/project_status.json)。
+只采用标准IEEE14正常拓扑和相关负荷P/Q波动。保留原非参考Pg、Vset、Q限值、变比、充电与并联元件。当前不安排停运、区域压力、新增新能源或IEEE39/118概率算例；原其他网络文件仅保留来源参考。
 
-## 已做、待做与结果
+初始参考1、PV2/3/6/8，9个PQ节点；13个非参考节点实虚电压共26未知量，对应13行P、9行Q和4行V²。PV的Qg为输出，触限时解除电压设定并重算。
 
-| 项目 | 当前状态 |
+## 当前材料与结果状态
+
+| 内容 | 状态 |
 | --- | --- |
-| 研究材料、算例配置、输入来源与文件归档 | 已建立 |
-| 网络数值矩阵读取、字段与编号检查 | 已静态检查，不是潮流计算 |
-| 材料检查及环境记录入口 | 已编写，Python尚未运行 |
-| 快速混合PV/PQ潮流、Q控制与独立交流适配 | 待重新实现和测试 |
-| 普通t混合拟合、局部投影和半解析分布查询 | 待重新实现和测试 |
-| MC样本、真实PDF/CDF、误差表、耗时与费用 | 尚未产生 |
+| 计算理论、符号、近似及MC验证协议 | 已成文 |
+| 官方IEEE14原文、字面JSON、来源SHA及单算例配置 | 已保存，AC尚未运行 |
+| 材料/环境检查Python入口 | 已编写，未执行；本次只同步study_id |
+| 混合潮流、Q控制、普通TMM、半解析查询 | 尚未实现与验证 |
+| MC状态、实际PDF/CDF、误差、速度与费用 | 尚无本轮结果 |
 
-当前云端执行器不可用；GitHub文件操作不是研究计算。项目不依赖旧工作目录，也不等待旧源码或数组恢复。旧状态保留在[archive/before-restart-20261020](https://github.com/Mrs-maxin/TMM_transmission-network/tree/archive/before-restart-20261020)，不参与新结果、参数选择或通过率。
+原case14的1号机组Qg记录与Q限值不一致，需要真实复算核查参考切换。6/8号Vset高于通用Vmax需记录。全部支路rateA为0，本轮只报告MW/MVAr/MVA分布，不补造额定值或过载结论。
 
-## 计算与展示顺序
+## 文档入口
 
-1. 建立并冻结满足声明要求的均值断面，检查机组Pg/Qg、节点电压和线路负载。
-2. 同输入比较快速与独立完整交流，覆盖Q限值和换平衡节点。
-3. 独立划分训练、验证、校准、试算和最终MC；固定普通多元t/elliptical，不做分量数扫描。
-4. 全节点/全支路输出统计表；代表对象给MC直方图与TMM半解析PDF/CDF叠图。
-5. 分开报告前向误差、统计模型误差、积分误差和MC不确定性。固定PV电压的点质量单独表示。
+- [研究目的](01_IDEA/story.md)、[理论正文](01_IDEA/derivation.md)、[符号与单位](01_IDEA/symbols.md)、[来源及控制依据](03_REFERENCE/ieee14_theory_sources.md)。
+- [研究笔记](TMM_Transmission_note.md)、[待验证命题](01_IDEA/claims.md)、[证据状态](01_IDEA/evidence_map.md)。
+- [IEEE14算例](01_IDEA/case_plan.md)、[验证标准](01_IDEA/validation_plan.md)、[分布图计划](01_IDEA/figure_plan.md)、[实现接口](01_IDEA/implementation_contract.md)。
+- [算例注册](data/protocol/case_registry.json)、[网络来源SHA](data/networks/source_registry.json)、[当前状态](result/project_status.json)、[活动论文配置](02_PAPER/config/paper-profile.yaml)。
 
-## 预期算例
+## 计算和分布比较
 
-先完成IEEE39常规断面；其后为区域压力、压力下5–8/6–11/14–15分别退出，以及PGLib118常规、压力、24–70退出，共八个预期概率断面。每个断面先过均值与控制检查，才执行概率计算。小规模Q控制诊断不增加概率场景。
+先做标准确定性潮流及26维方程检查，然后同输入核查电压、5机组Pg/Qg和20支路双端功率。关闭Q切换的固定模式只作诊断，正式概率比较采用匹配Q控制。成功全节点电压统一相角，保留旧参考幅值，拟合共同尺度普通多元t混合，初始固定3分量。
 
-首轮每断面1万MC试算，正式最多10万MC；本轮不自动增加至30万。不以增加场景、分量或样本改善结论。分布偏差即使超标也保留。
+正式图预先选择V4/V9/V14及1–2的1端、4–9的9端、9–14的14端P/Q/MVA，比较独立MC直方图/经验CDF与TMM半解析曲线。完整表覆盖14节点和20支路两端。机组输出用于同输入校核和AC-MC统计，当前不声称仅电压TMM得到全部机组PDF。
 
-## Python与复算入口
+同时报告均值、标准差、分位数、CDF误差、MC区间、PV点质量和模型泄漏。前向、拟合、积分与MC统计误差分别说明。不能只看曲线或均值宣布完成。
 
-TMM_Transmission.py当前只负责材料校验和环境记录，不运行潮流。以下是未来在OpenAI托管执行器上的命令，尚未执行：
+## 执行与保存
 
-```bash
-python TMM_Transmission.py --check-materials
-python TMM_Transmission.py --preflight
-```
+当前执行器离线，GitHub读写不是云端潮流计算。只在实际OpenAI托管执行器运行研究，用户Mac不运行研究计算。旧恢复已经停止，不依赖原工作目录。新执行交接见[START_NEW_CLOUD_TASK.md](03_REFERENCE/START_NEW_CLOUD_TASK.md)。
 
-真实研究入口、依赖锁与执行命令在实现并通过检查后登记；不以检查入口代替概率潮流程序。候选依赖列在requirements.in，不伪称已锁定或安装。
+TMM_Transmission.py仅做材料检查/环境记录，尚未执行；--check-materials和--preflight不是数值研究入口。候选依赖见requirements.in，实际安装后才生成锁定版本。模板MATLAB仅供参考，未完成本地化。
 
-保留模板的01_IDEA、02_PAPER、03_REFERENCE、data、cache、result和tests职责。模板MATLAB源仅保存在03_REFERENCE/template_snapshot，不作为研究实现；Python代码拟放在tmm_transmission按物理模型、统计模型、分布查询和参照交流分别组织。云端Python已授权，用户Mac不运行研究计算。
+每阶段在云端保存代码、输入、状态、失败、模型、种子、日志、manifest与SHA。用户明确说“Push／推送”时，把当时测试内容和结果整体同步GitHub并核对实际数组/LFS对象。此次用户明确要求补充仓库理论文档，因此保存本次文档和IEEE14对应输入配置；后续测试不自动推送。
 
-## 保存要求
-
-正式输入、模型、随机种子、原始状态、失败输入、日志、真实run_manifest、图表数据和SHA256随阶段保存。大数组使用Git LFS，并从克隆后实际下载的对象复核，不能只上传指针。每个计算阶段完成后立即提交代码、配置及可上传结果；不等全部研究结束才备份。
-
-目标期刊暂沿用Applied Energy，投稿证据尚未形成。普通t、PV方程及已有TMM基础不作为首次提出。
-
-机组Pg/Qg保留同输入快算校核和完整AC-MC统计；仅电压TMM不包含随机母线负荷的联合模型，因此本轮不声称给出TMM机组Pg/Qg概率预测。
-
-新执行器的交接要求见[新云端任务交接](03_REFERENCE/START_NEW_CLOUD_TASK.md)，从新网络和协议开始，不恢复旧目录。
+result/materials中的旧重建/读回记录只适用于各自指定提交，不是方法验证。目标期刊暂沿用Applied Energy，当前没有投稿放行结论。

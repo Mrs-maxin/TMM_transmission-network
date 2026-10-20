@@ -1,27 +1,32 @@
-study_id: restart-v1
+contractVersion: "2026.07.12"
+studyId: ieee14-baseline-v1
 date: "2026-10-20"
-decision: restart-without-recovering-old-work
-authority: explicit-user-instruction
-research_purpose: 01_IDEA/story.md
-scope: mixed-PV-PQ-TMM-AC-power-flow-and-whole-distribution-validation
-old_work_recovery: stopped
-old_results_as_new_evidence: prohibited
-old_archive_branch: archive/before-restart-20261020
-old_archive_commit: c0b457f4fc0aba061c1915fef0270f2251c4578e
-selected_TMM_family: ordinary-multivariate-t-elliptical
-component_order_search: false
-primary_reference: independent-full-AC-Monte-Carlo
-engineering_outputs: [bus-voltage, aligned-angle, generator-Pg-Qg, branch-end-P-Q-MVA]
-new_numerical_results: 0
-new_numerical_code: not-implemented
-materials_checker: written-not-run
-input_networks: newly-fetched-and-version-pinned
-first_case: C39_N
-next_work:
-  - verify-real-OpenAI-cloud-execution-and-free-disk
-  - implement-independent-network-and-reference-AC-adapters
-  - establish-and-freeze-mean-operating-point
-  - validate-PV-PQ-fast-forward-and-Q-control
-  - generate-independent-training-validation-calibration-and-MC-inputs
-  - fit-frozen-ordinary-TMM-and-query-whole-distributions
-  - publish-real-PDF-CDF-tables-errors-and-checkpoints
+purposeSource: 01_IDEA/story.md
+researchPurpose: "面向含电压控制机组的输电网，以已有普通TMM方法为基础，建立保留PQ/PV节点、机组无功限值及参考节点切换的交流概率潮流计算流程；本轮仅采用标准IEEE14正常拓扑和相关负荷P/Q波动，通过独立完整交流Monte Carlo检验全节点电压幅值、相角及线路双端有功、无功和视在功率的完整分布与误差，同时核查机组Pg/Qg及控制状态，明确潮流求解和概率表示的准确性与适用范围。"
+currentScope:
+  network: IEEE14
+  normalTopologyOnly: true
+  probabilisticCases: 1
+  outages: false
+  pressure: false
+  addedRES: false
+  previousEightCases: inactive
+theory:
+  status: documented-not-numerically-validated
+  path: 01_IDEA/derivation.md
+  family: elliptical-ordinary-multivariate-t
+  originalSection15: user-provided-excerpt-not-recovered-history
+evidence:
+  oldRecovery: stopped
+  oldResultsUsed: false
+  numericalImplementation: not-implemented
+  scientificTests: 0
+  MCStates: 0
+  TMMModels: 0
+  distributionFigures: 0
+cloudRuntime:
+  available: false
+  required: actual-OpenAI-hosted-runtime
+remoteSaving:
+  thisDocumentationEdit: explicitly-requested
+  subsequentTests: user-Push-trigger

@@ -61,7 +61,7 @@ def check_materials():
     registry = load_json("data/protocol/case_registry.json")
     sources = load_json("data/networks/source_registry.json")
     errors, checks, networks = [], [], {}
-    if study["study_id"] != "restart-v1":
+    if study["study_id"] != "ieee14-baseline-v1":
         errors.append("Unexpected study id")
     if study["TMM_family"] != "elliptical-ordinary-multivariate-t":
         errors.append("Ordinary multivariate t family is required")
@@ -145,7 +145,7 @@ def record_environment():
     affinity = sorted(os.sched_getaffinity(0)) if hasattr(os, "sched_getaffinity") else None
     return {
         "kind": "environment-probe-not-numerical-validation",
-        "study_id": "restart-v1",
+        "study_id": "ieee14-baseline-v1",
         "provider": "unverified-by-this-script",
         "tool_execution_location_requires_external_confirmation": True,
         "UTC_time": datetime.now(timezone.utc).isoformat(),

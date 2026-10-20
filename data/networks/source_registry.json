@@ -1,8 +1,31 @@
 {
-  "study_id": "restart-v1",
+  "study_id": "ieee14-baseline-v1",
   "source_data_newly_fetched": true,
   "AC_solve_performed": false,
   "networks": [
+    {
+      "network_id": "ieee14",
+      "repository": "MATPOWER/matpower",
+      "path": "data/case14.m",
+      "commit": "1a828c7af590714499284e36ee9c81273388c594",
+      "git_blob_sha": "a67682c6654077a0dd71f0eab936de2ec830903d",
+      "source_sha256": "2ffc4e1b734ae6c5e92dbe68b4e36010ed695a4bbcc4d065c74c4fbc39fcf3c1",
+      "conversion": "literal numeric MATPOWER matrices only; no power-flow computation; raw original retains bus names and conversion warnings; external ids retained",
+      "json_path": "data/networks/ieee14/network.json",
+      "json_sha256": "0060628b55240dea51dc980783dfd6630aa43c73fc89505ffb751893e641a2a3",
+      "rows": {
+        "bus": 14,
+        "gen": 5,
+        "branch": 20
+      },
+      "source_gen_columns": 21,
+      "local_source_path": "data/networks/ieee14/case14.m",
+      "role": "sole-active-network",
+      "all_rateA_zero": true,
+      "Q_limits_modified_by_this_project": false
+    }
+  ],
+  "inactive_reference_networks": [
     {
       "network_id": "ieee39",
       "repository": "MATPOWER/matpower",
@@ -20,7 +43,9 @@
       },
       "source_gen_columns": 21,
       "backend_padding": "If backend requires 21 generator columns, append zero optional columns after PMIN; preserve 10 required physical columns and original file.",
-      "local_source_path": "data/networks/ieee39/case39.m"
+      "local_source_path": "data/networks/ieee39/case39.m",
+      "role": "inactive-reference-not-scheduled",
+      "note": "Preserved source file only; no active probability case."
     },
     {
       "network_id": "pglib118",
@@ -39,7 +64,9 @@
       },
       "source_gen_columns": 10,
       "backend_padding": "If backend requires 21 generator columns, append zero optional columns after PMIN; preserve 10 required physical columns and original file.",
-      "local_source_path": "data/networks/pglib118/pglib_opf_case118_ieee.m"
+      "local_source_path": "data/networks/pglib118/pglib_opf_case118_ieee.m",
+      "role": "inactive-reference-not-scheduled",
+      "note": "Preserved source file only; no active probability case."
     }
   ]
 }
