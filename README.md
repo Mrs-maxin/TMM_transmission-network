@@ -59,3 +59,5 @@ python TMM_Transmission.py --preflight
 目标期刊暂沿用Applied Energy，投稿证据尚未形成。普通t、PV方程及已有TMM基础不作为首次提出。
 
 机组Pg/Qg保留同输入快算校核和完整AC-MC统计；仅电压TMM不包含随机母线负荷的联合模型，因此本轮不声称给出TMM机组Pg/Qg概率预测。
+
+新执行器的交接要求见[新云端任务交接](03_REFERENCE/START_NEW_CLOUD_TASK.md)，从新网络和协议开始，不恢复旧目录。
