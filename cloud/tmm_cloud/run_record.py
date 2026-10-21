@@ -31,7 +31,7 @@ def git_state():
         except Exception:
             return None
 
-    status = run("status", "--porcelain")
+    status = run("status", "--porcelain", "--untracked-files=no")
     return {
         "branch": run("rev-parse", "--abbrev-ref", "HEAD"),
         "commit": run("rev-parse", "HEAD"),
