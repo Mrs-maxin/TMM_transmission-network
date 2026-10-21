@@ -1,62 +1,124 @@
+# 本项目活动配置。立项基线不变；2026-10-21核查IEEE14云端快照，潜在优势尚未验证。
 contractVersion: "2026.07.12"
-profileVersion: "2.1-ieee14-theory"
-lastConfirmedAt: "2026-10-20"
-studyId: ieee14-baseline-v1
+profileVersion: "1.9"
+lastConfirmedAt: "2026-10-21"
+
 targetVenue: "Applied Energy"
 workingLanguage: "en"
 researchNoteLanguage: "zh-CN"
 quartileRequirement: "JCR Q1/Q2"
 excludedVenues: ["IEEE Transactions on Power Systems"]
-researchPurpose: "面向含电压控制机组的输电网，以已有普通TMM方法为基础，建立保留PQ/PV节点、机组无功限值及参考节点切换的交流概率潮流计算流程；本轮仅采用标准IEEE14正常拓扑和相关负荷P/Q波动，通过独立完整交流Monte Carlo检验全节点电压幅值、相角及线路双端有功、无功和视在功率的完整分布与误差，同时核查机组Pg/Qg及控制状态，明确潮流求解和概率表示的准确性与适用范围。"
+researchPurpose: "面向非高斯相关源荷不确定性下的输电网稳态运行风险，以已发表的 TMM 方法为基础，将其配电网交流概率潮流实现适配到含 PQ/PV 节点的输电网络，形成电压越限与支路过载单项及并发风险的半解析计算流程，重点验证越限尾部概率和分项严重程度的计算准确性，并在统一输入、物理限值与控制规则下比较代表性方法的精度和完整计算成本，为输电网运行风险评估提供可复核的方法与适用范围。"
 researchPurposeStatus: confirmed
-researchPurposeBaselineVersion: "2026-10-20-ieee14"
-researchPurposeChangeReason: "用户将基础测试明确为标准IEEE14正常拓扑，先比较完整潮流分布；本次优先补充仓库理论MD。"
-minimumResearchObject: "含PV节点的TMM交流概率潮流扩展及分布精度验证"
-paperSpine: "IEEE14正常拓扑：先核查混合潮流和Q控制，再比较电压/相角及支路双端P/Q/MVA完整分布；机组Pg/Qg作同输入和AC-MC统计。"
-primaryInnovationAxis: technical-object
+researchPurposeBaselineVersion: "2026-10-19"
+researchPurposeChangeReason: "用户选定 Applied Energy，确认已有配电网前向能力并提供 AQPPF_TMM；先适配输电前向，再验证单项/并发尾部和成本；源库普通 t 与默认多尺度 t 区分。"
+minimumResearchObject: "输电网电压与支路过载尾部风险半解析计算"
+paperSpine: "先将配电网 PQ 前向适配到输电混合 PV/PQ，基于已有 TMM 分支和局部内核计算单项/并发概率及严重程度，再以独立交流和代表方法验证尾部精度与完整成本；传播矩阵辅助。"
+
+primaryInnovationAxis: "technical-object"
 secondaryInnovationAxes: []
-technicalObjectType: model-formulation
-noveltyMode: one-to-hundred
-narrativeArc: engineering-first
-lifecycleStage: zero-to-one-explore
-manuscriptUse: conditional
-caseContract: new-variable-scenario
-requiredEvidenceRoles: []
-evidenceBoundary: "计算理论已成文，官方IEEE14输入及初始协议已保存；数值实现和测试未完成，无新MC、TMM、PDF/CDF、误差、速度或费用结论。"
+noveltyMode: "one-to-hundred"
+technicalObjectType: "model-formulation"
+narrativeArc: "engineering-first"
+lifecycleStage: "zero-to-one-explore"
+manuscriptUse: "conditional"
+
+caseContract: "new-variable-scenario"
+requiredEvidenceRoles: [] # 按论文的实际算例故事填写，不自动要求四类角色齐全
+
+evidenceBoundary: "IEEE14云端独立Python实现及原始结果已下载校验，固定模式有有限支持；5000组全部完整交流回退，连续TMM未保留固定电压概率质量，部分非固定分布也未达精度目标。无快算收益、过载/并发尾部或比较优势结论。源库逐函数等价未证明；IEEE39/118暂不开展。"
+canonicalTerms:
+  projectSpecific: {}
 keyQuantities:
-  - "全节点电压幅值与对齐相角的PDF/CDF、均值、标准差和分位数"
-  - "逐机组Pg/Qg和限值状态"
-  - "全部在线支路两端P/Q/MVA完整分布及物理单位误差"
-  - "固定PV幅值的点质量、触限后分布和模型泄漏"
-  - "独立MC区间、积分误差、回退和不可评估质量"
-  - "完整构建、交流调用、查询与备份成本"
-sourceFoundation:
-  repository: "https://github.com/wuhanichina/AQPPF_TMM"
-  commit: "0d5c999db4cbee2ea7055844d31b729d9694d747"
-  selectedFamily: "elliptical / ordinary multivariate t"
-  codeReuseInNewStudy: "not-yet-implemented; do-not-claim-reused-source"
-  formalMethodCitation: "待登记；不由仓库名称推定论文元数据"
-restart:
-  oldRecovery: stopped
-  oldResultsAllowed: false
-  oldArchiveBranch: archive/before-restart-20261020
-  newNumericalResults: 0
-  numericalImplementation: not-implemented
-  PythonMaterialChecker: written-not-run
-  actualReferenceBackend: not-run
-  MATPOWERExecuted: false
-  matlabLocalization: not-completed
+  - "尾部概率与分项期望严重程度的绝对/相对误差及交流参照区间"
+  - "完整构建、拓扑更新和风险查询成本及交流求解次数"
+  - "节点欠压与过压概率"
+  - "支路两端电流越限概率"
+  - "与实际限额匹配的指定支路端 MVA 过载概率"
+  - "指定节点电压与同端过载并发概率 pVO"
+  - "双向条件概率与四类互斥状态比例"
+  - "并发条件下电压与过载各自严重程度及分项期望贡献"
+  - "幅值期望越限量（电压或电流原单位）"
+  - "越限条件平均相对严重程度 s"
+  - "期望相对越限风险 R=p*s"
+  - "给定断面下的风险类型及高风险对象空间分布"
+  - "给定 N−1 条件下的风险变化"
+  - "小拓展：电压与电流传播矩阵、运行点线性项及平方量协变结构；要求矩存在"
+
+venuePolicy:
+  skillVersion: "Energy-family official scope checked; inherited prewriting venue profiles not applied"
+  checkedAt: "2026-10-19"
+
+lastConfirmedBrief:
+  engineeringPainPoint: "有限计算资源下，输电网电压与支路过载的尾部概率和严重程度是否准确，完整评估代价是否可接受。"
+  mainInnovation: "输电前向适配，复用既有局部内核的并发及分项后果计算，端到端尾部精度与成本证据；全部数值优势待验证。"
+  theoreticalValue: "统一实际事件、条件积分及分项后果；说明局部 TMM 与成对传播矩阵共享投影空间，传播矩阵及线性项共同参数化联合特征函数；已有统计性质不称新理论，低阶矩量不替代概率。"
+  engineeringValue: "明确尾部风险精度与成本的可用范围，并补充同时状态及条件后果；正常/选定故障和扩展系统核查。"
+  framingsToDrop:
+    - "将 TMM 的提出、分量数或尾部拟合优势作为本文主要创新"
+    - "将 PV 节点扩展作为主要创新"
+    - "以宽泛天气韧性背景代替具体风险计算问题"
+    - "把条件 N−1 风险当作年度总风险"
+    - "将固定断面高风险对象辨识直接等同于主导运行约束，或强制引入首风险边界与灵敏度分析"
+
 lastConsistencyVerdict:
+  checkedAt: ""
+  skillVersion: ""
   verdict: not-run
   report: 02_PAPER/submission_consistency.md
 
-currentCase:
-  network: IEEE14
-  normalTopologyOnly: true
-  probabilityCases: 1
-  outages: false
-  addedRES: false
-  activeTheory: 01_IDEA/derivation.md
-remoteTestSaving:
-  automaticPush: false
-  trigger: "用户明确Push/推送；直接要求编辑仓库文档只授权该次范围"
+prewritingReview:
+  checkedAt: "2026-10-19"
+  skillVersion: "2026.07.03"
+  verdict: "CONDITIONAL GO"
+  scope: "研究方案与已推导模型有论文潜力；当前无完整投稿证据，不放行未验证结论。"
+  report: "02_PAPER/prewriting_review_20261019.md"
+  targetVenueStatus: "历史预审先于目标调整；用户当前选定 Applied Energy，英文 SCI、JCR Q1/Q2，排除 TPWRS。"
+  currentPriorityUpdate: "以尾部精度和方法比较为主，不沿用前序期刊表与单一并发增量判据。"
+  currentPlan: "03_REFERENCE/aqppf_tmm_transmission_extension_20261019.md"
+
+sourceFoundation:
+  repository: "https://github.com/wuhanichina/AQPPF_TMM"
+  commit: "0d5c999db4cbee2ea7055844d31b729d9694d747"
+  inspectedAt: "2026-10-19"
+  inheritedImplementation: "配电网源荷样本到联合电压及输出，非参考 PQ"
+  defaultStatisticalFamily: "multiple-scaled-t"
+  selectedFamilyForCurrentRiskPlan: "elliptical / ordinary multivariate t"
+  familyDecisionStatus: "user-confirmed"
+  familyConfirmedAt: "2026-10-19"
+  existingKernel: "局部普通 t 投影、一坐标解析 CDF 加剩余随机化数值积分"
+  formalMethodCitation: "待用户登记；不由代码仓库推定论文发表元数据"
+
+transmissionExtensionProtocol:
+  status: "IEEE14-cloud-prototype-audited; distribution-and-fast-route-revision-needed"
+  derivation: "01_IDEA/derivation.md, section 15, X1-X9"
+  fixedModeEquations: "所有非参考 P、PQ 的 Q、PV 的电压平方"
+  firstImplementationRoute: "固定未触限模式快速计算；Q临界、触限或失败样本标准带限值交流回退"
+  referencePolicy: "固定版本和同一控制策略；换参考样本统一相角后保留全节点幅值变化"
+  statisticalReconstruction: "统一相角的全节点仿射坐标，不固定旧参考幅值"
+  fitScope: "首轮成功控制模式全局普通 t 拟合；统计分量不当控制模式"
+  validation: "方程与雅可比、固定模式同输入、Q模式与参考切换、统计表示、给定模型积分、独立交流尾部"
+  numericalTargetsStatus: "IEEE14有限固定模式检查达到初始目标；整体分布及带限值快算收益未达目标，见2026-10-21核查报告。"
+  formalExecution: "cloud IEEE14 run recovered; local saved-array audit only"
+
+userWritingRequirements:
+  confirmedAt: "2026-10-19"
+  wording: "数学为工程和物理服务，写作时弱化数学性，强调电力系统工程性，降低阅读负担。时刻注意术语和动词必须在电力系统语境内。"
+cloudExecution:
+  authorizedAt: "2026-10-19"
+  provider: "OpenAI"
+  taskThreadId: "01a15495-3550-708e-9ab4-9e102a29e057"
+  hostId: "durable"
+  workspaceReportedByTask: "/workspace/scratch/e880dc0ac187"
+  taskState: "last-read-idle-2026-10-21"
+  actualComputeVerified: true
+  language: "Python"
+  localization: "deferred-by-user"
+  scope: "项目搭建、输电扩展及必要测试、独立尾部风险和方法比较；失败和不足保留"
+  handoff: "01_IDEA/cloud_execution_brief_20261019.md"
+  localNumericalExecution: "2026-10-21 user-requested saved-array audit; no local AC, refitting, or new samples"
+  verificationScope: "Downloaded cloud archive and independent SHA256 matched; raw arrays and code inspected, no current cloud executor recovery claimed"
+  localArchive: "result/cloud_import_20261021/IEEE14_TMM_MC_complete_20261020.zip"
+  archiveSha256: "141394ac90396b0ec3422c4897f8db349124deb14d3ef9018befa90e41307893"
+  currentScope: "IEEE14 code/results and error diagnosis; no IEEE39/118 expansion"
+  localAudit: "01_IDEA/ieee14_cloud_audit_20261021.md"

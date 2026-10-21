@@ -1,5 +1,23 @@
-# 文稿一致性状态
+# Submission Consistency
 
-2026-10-20。已将研究目的、理论、IEEE14单一正常拓扑、输入/控制、MC比较、图表与活动配置同步；本次为材料一致性检查，不是投稿预审或科学测试。
+This file records the latest PowerLit consistency-check outcome. The rules live
+in the writing skill; this project stores locations, status, and audit history.
 
-尚缺数值实现、真实运行环境、实际独立交流后端、完整MC/TMM分布、误差、费用与恢复验证。当前不放行摘要中的数值结论、精度优势、加速比或论文ready表述。
+| Field | Value |
+| --- | --- |
+| contractVersion | `2026.07.12` |
+| checkedAt | 【not-run】 |
+| writingSkillVersion | 【待补充】 |
+| manuscriptVersion | 【待补充】 |
+| verdict | `not-run` |
+| checkedEvidenceSurface | 【待补充：run/figure manifest and manuscript revision】 |
+
+## Issues
+
+| issueId | severity | location | claimId / figurePlanId | observed | expected | repair action | status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 【待检查】 | 【blocker / major / minor】 | 【待补充】 | 【待补充】 | 【待补充】 | 【待补充】 | 【待补充】 | open |
+
+## Release Decision
+
+【PASS / CONDITIONAL PASS / BLOCK；记录决定和未解决项。】

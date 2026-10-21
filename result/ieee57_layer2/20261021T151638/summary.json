@@ -1,0 +1,226 @@
+{
+  "study": "ieee57 TMM AC probabilistic power flow, layer 2",
+  "claim": "C0",
+  "network": "ieee57",
+  "layer": 2,
+  "baseCase": {
+    "voltageMagnitudeMin": 0.93593245045237661,
+    "voltageMagnitudeMax": 1.0597974643600621,
+    "slackGeneratorP_MW": 478.66375150549726,
+    "slackGeneratorQ_MVAr": 128.84962752808673,
+    "fixedUnitsAtBase": "all PV regulating"
+  },
+  "mapping": {
+    "training": {
+      "sampleCount": 5256,
+      "anchorCount": 7,
+      "fallbackCount": 0,
+      "exactAcCallCount": 7,
+      "maximumPasses": 3,
+      "finalModes": [
+        "G3@Qmin, G9@Qmin",
+        "G3@Qmin",
+        "G9@Qmin",
+        "all PV regulating",
+        "G9@Qmax",
+        "G9@Qmax, G12@Qmax"
+      ],
+      "finalModeCounts": [
+        59,
+        8,
+        531,
+        4254,
+        403,
+        1
+      ],
+      "seconds": 1.6102028333333334
+    },
+    "validation": {
+      "sampleCount": 1752,
+      "anchorCount": 7,
+      "fallbackCount": 0,
+      "exactAcCallCount": 7,
+      "maximumPasses": 3,
+      "finalModes": [
+        "G3@Qmin, G9@Qmin",
+        "G3@Qmin",
+        "G9@Qmin",
+        "all PV regulating",
+        "G9@Qmax",
+        "G9@Qmax, G12@Qmax"
+      ],
+      "finalModeCounts": [
+        26,
+        3,
+        189,
+        1413,
+        120,
+        1
+      ],
+      "seconds": 0.76202429166666663
+    },
+    "test": {
+      "sampleCount": 20000,
+      "anchorCount": 7,
+      "fallbackCount": 0,
+      "exactAcCallCount": 7,
+      "maximumPasses": 3,
+      "finalModes": [
+        "G3@Qmin, G9@Qmin",
+        "G3@Qmin",
+        "G9@Qmin",
+        "all PV regulating",
+        "G9@Qmax",
+        "G9@Qmax, G12@Qmax"
+      ],
+      "finalModeCounts": [
+        272,
+        18,
+        2070,
+        16260,
+        1378,
+        2
+      ],
+      "seconds": 1.4747094166666668
+    }
+  },
+  "pairedFastVersusMatpower": {
+    "count": 20000,
+    "sameModeCount": 20000,
+    "referenceSwitchedCount": 3740,
+    "fastSwitchedCount": 3740,
+    "maximumComplexVoltageErrorPu": 2.3305125060778131E-8,
+    "maximumComplexVoltageErrorSwitchedPu": 2.2301978211869436E-8,
+    "maximumLineFlowError_MW_MVAr": 2.2749826733559075E-6,
+    "fastExactAcCalls": 7,
+    "fastAnchorCount": 7,
+    "fastFallbackCount": 0,
+    "fastSeconds": 1.4747094166666668,
+    "referenceSeconds": 1036.5404565416666
+  },
+  "referenceModeShare": [
+    {
+      "mode": "G3@Qmin, G9@Qmin",
+      "count": 272,
+      "share": 0.0136
+    },
+    {
+      "mode": "G3@Qmin",
+      "count": 18,
+      "share": 0.0009
+    },
+    {
+      "mode": "G9@Qmin",
+      "count": 2070,
+      "share": 0.1035
+    },
+    {
+      "mode": "all PV regulating",
+      "count": 16260,
+      "share": 0.813
+    },
+    {
+      "mode": "G9@Qmax",
+      "count": 1378,
+      "share": 0.0689
+    },
+    {
+      "mode": "G9@Qmax, G12@Qmax",
+      "count": 2,
+      "share": 0.0001
+    }
+  ],
+  "referenceSeconds": 1036.5404565416666,
+  "fitRank": 81,
+  "selectedK": {
+    "gmmK": 6,
+    "tmmK": 6
+  },
+  "distributionSummary": [
+    {
+      "method": "training-data",
+      "K": 0,
+      "lineFlowKSMedian": 0.012047602739755636,
+      "lineFlowKSP90": 0.016502435312062469,
+      "lineFlowKSMax": 0.023298173515949538,
+      "lineFlowKSArgmax": "linePfrom#40",
+      "lineFlowStdRelativeErrorMax": 0.026498423213700439,
+      "lineFlowStdRelativeErrorMin": -0.022066082259382336,
+      "lineFlowQ99ErrorIQRMax": 0.11441422576642271,
+      "pqVoltageKSMedian": 0.013641171994002166,
+      "pqVoltageKSMax": 0.020057153729150068,
+      "lossKS": 0.010466971080548393,
+      "lossMeanErrorMW": 0.040525826551704114,
+      "analyticLineMeanErrorMaxMW": null,
+      "analyticLineStdRelativeErrorMax": null
+    },
+    {
+      "method": "GMM",
+      "K": 3,
+      "lineFlowKSMedian": 0.016177459771841207,
+      "lineFlowKSP90": 0.029727223905454958,
+      "lineFlowKSMax": 0.063521287598463316,
+      "lineFlowKSArgmax": "lineQto#45",
+      "lineFlowStdRelativeErrorMax": 0.026437765369274668,
+      "lineFlowStdRelativeErrorMin": -0.021658404453372526,
+      "lineFlowQ99ErrorIQRMax": 0.38171881316219136,
+      "pqVoltageKSMedian": 0.013281914017131906,
+      "pqVoltageKSMax": 0.037658577966008133,
+      "lossKS": 0.025201450579518614,
+      "lossMeanErrorMW": 0.04059325768427513,
+      "analyticLineMeanErrorMaxMW": 0.18212986842331702,
+      "analyticLineStdRelativeErrorMax": 0.02638334919956109
+    },
+    {
+      "method": "TMM",
+      "K": 3,
+      "lineFlowKSMedian": 0.016626005478022676,
+      "lineFlowKSP90": 0.032406019957119364,
+      "lineFlowKSMax": 0.063578355019979882,
+      "lineFlowKSArgmax": "lineQto#45",
+      "lineFlowStdRelativeErrorMax": 0.050610278083464966,
+      "lineFlowStdRelativeErrorMin": -0.021276173314995206,
+      "lineFlowQ99ErrorIQRMax": 0.426718398972806,
+      "pqVoltageKSMedian": 0.014892021337386332,
+      "pqVoltageKSMax": 0.036947589650946161,
+      "lossKS": 0.030526090252768534,
+      "lossMeanErrorMW": 0.059525845978892988,
+      "analyticLineMeanErrorMaxMW": 0.24027994105580319,
+      "analyticLineStdRelativeErrorMax": 0.050049887094007595
+    },
+    {
+      "method": "GMM",
+      "K": 6,
+      "lineFlowKSMedian": 0.013926517001180444,
+      "lineFlowKSP90": 0.029215231485538617,
+      "lineFlowKSMax": 0.061209269565939306,
+      "lineFlowKSArgmax": "lineQto#45",
+      "lineFlowStdRelativeErrorMax": 0.025544051717154126,
+      "lineFlowStdRelativeErrorMin": -0.021700442222749583,
+      "lineFlowQ99ErrorIQRMax": 0.37072390997101162,
+      "pqVoltageKSMedian": 0.014968383558102316,
+      "pqVoltageKSMax": 0.0342391760004328,
+      "lossKS": 0.012078735647732541,
+      "lossMeanErrorMW": 0.040583867483153568,
+      "analyticLineMeanErrorMaxMW": 0.1821298684232886,
+      "analyticLineStdRelativeErrorMax": 0.026355900185150327
+    },
+    {
+      "method": "TMM",
+      "K": 6,
+      "lineFlowKSMedian": 0.013530907429228037,
+      "lineFlowKSP90": 0.029061235554715265,
+      "lineFlowKSMax": 0.061249558375998769,
+      "lineFlowKSArgmax": "lineQto#45",
+      "lineFlowStdRelativeErrorMax": 0.0461805140788365,
+      "lineFlowStdRelativeErrorMin": -0.0260516709127373,
+      "lineFlowQ99ErrorIQRMax": 0.40648304213168573,
+      "pqVoltageKSMedian": 0.013156668268673177,
+      "pqVoltageKSMax": 0.032799674270082235,
+      "lossKS": 0.014861087816035456,
+      "lossMeanErrorMW": 0.050774030949082061,
+      "analyticLineMeanErrorMaxMW": 0.212416904312704,
+      "analyticLineStdRelativeErrorMax": 0.0465173129845613
+    }
+  ]
+}

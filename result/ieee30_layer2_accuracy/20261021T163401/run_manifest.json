@@ -1,0 +1,78 @@
+{
+  "entry": "tests/run_tmm_transmission_accuracy.m",
+  "arguments": [
+    "ieee30",
+    "2"
+  ],
+  "config": {
+    "caseName": "ieee30_layer2_accuracy",
+    "networkFile": "/Users/maxin/Library/CloudStorage/OneDrive-个人/4-PHD/[3]博三/[2]TMM_Transmission/data/networks/ieee30/case_ieee30.m",
+    "matpowerRoot": "/Users/maxin/Library/CloudStorage/OneDrive-个人/4-PHD/00codezip/matpower8.0",
+    "aqppfRoot": "/Users/maxin/Library/CloudStorage/OneDrive-个人/4-PHD/[3]博三/[1]ACPPF_TMM",
+    "aqppfReferenceCommit": "0d5c999db4cbee2ea7055844d31b729d9694d747",
+    "blockTmmSource": "AQPPF_TMM 01_IDEA/derivation.md, section 2026-10-21 (B1)-(B16)",
+    "resultDir": "/Users/maxin/Library/CloudStorage/OneDrive-个人/4-PHD/[3]博三/[2]TMM_Transmission/result/ieee30_layer2_accuracy/20261021T163401",
+    "reactiveLimitRule": "PV units limited by source Qmin/Qmax; slack unlimited; MATPOWER pf.enforce_q_lims=1",
+    "referenceReusedFrom": "/Users/maxin/Library/CloudStorage/OneDrive-个人/4-PHD/[3]博三/[2]TMM_Transmission/result/ieee30_layer2/20261021T145708",
+    "seed": 2.0261021E+7,
+    "modelingCount": 5256,
+    "determinationCount": 1752,
+    "checkCount": 20000,
+    "maximumAnchorCount": 12,
+    "stateTolerance": 1E-7,
+    "powerTolerance": 1E-8,
+    "maximumCorrections": 10,
+    "powerFlowTolerance": 1E-10,
+    "reactiveTolerance": 5E-6,
+    "fit": {
+      "componentCounts": [
+        3,
+        6,
+        9,
+        12,
+        15,
+        20
+      ],
+      "pcaVarianceTolerance": 1E-10,
+      "blockMaximumIterations": 300,
+      "fitter": {
+        "seed": 2.0261021E+7,
+        "initialization": "balanced-physical",
+        "selectionMode": "likelihood",
+        "restarts": 3,
+        "maximumIterations": 500,
+        "likelihoodTolerance": 1E-6,
+        "covarianceFloor": 1E-7,
+        "projectInitialScale": true,
+        "initialDf": [
+          12,
+          200
+        ],
+        "dfUpdateMethod": "latent-em",
+        "dfBounds": [
+          4.1,
+          100000
+        ],
+        "emAcceleration": "none",
+        "saveCandidateModels": false
+      }
+    },
+    "distribution": {
+      "modelDrawCount": 50000,
+      "seed": 2.0261121E+7,
+      "propagationBatchSize": 5000
+    }
+  },
+  "dependencies": {
+    "matpowerRoot": "/Users/maxin/Library/CloudStorage/OneDrive-个人/4-PHD/00codezip/matpower8.0",
+    "matpowerVersion": "8.0",
+    "aqppfRoot": "/Users/maxin/Library/CloudStorage/OneDrive-个人/4-PHD/[3]博三/[1]ACPPF_TMM",
+    "aqppfCommit": "4e5856338fe89444df71b4c84af94372e8b1c7d3",
+    "aqppfNumericalCodeEquivalentTo": "0d5c999db4cbee2ea7055844d31b729d9694d747",
+    "matlabVersion": "26.1.0.3203278 (R2026a)"
+  },
+  "networkSha256": "4dd5c38286a183cb578a43b35db4fa68028543e04714613546de8cb2ef1f3269",
+  "projectGit": "【Git 待提交】 local project is not a Git repository",
+  "finishedAt": "2026-10-21 16:45:16",
+  "componentCountUsesReference": false
+}

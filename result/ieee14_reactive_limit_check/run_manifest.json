@@ -1,0 +1,21 @@
+{
+  "entry": "tests/check_reactive_limit_modes.m",
+  "config": {
+    "networkFile": "/Users/maxin/Library/CloudStorage/OneDrive-个人/4-PHD/[3]博三/[2]TMM_Transmission/data/networks/ieee14/case14.m",
+    "matpowerRoot": "/Users/maxin/Library/CloudStorage/OneDrive-个人/4-PHD/00codezip/matpower8.0",
+    "aqppfRoot": "/Users/maxin/Library/CloudStorage/OneDrive-个人/4-PHD/[3]博三/[1]ACPPF_TMM",
+    "aqppfReferenceCommit": "0d5c999db4cbee2ea7055844d31b729d9694d747",
+    "resultDir": "/Users/maxin/Library/CloudStorage/OneDrive-个人/4-PHD/[3]博三/[2]TMM_Transmission/result/ieee14_reactive_limit_check",
+    "powerFlowTolerance": 1E-10,
+    "reactiveTolerance": 5E-6
+  },
+  "dependencies": {
+    "matpowerRoot": "/Users/maxin/Library/CloudStorage/OneDrive-个人/4-PHD/00codezip/matpower8.0",
+    "matpowerVersion": "8.0",
+    "aqppfRoot": "/Users/maxin/Library/CloudStorage/OneDrive-个人/4-PHD/[3]博三/[1]ACPPF_TMM",
+    "aqppfCommit": "4e5856338fe89444df71b4c84af94372e8b1c7d3",
+    "aqppfNumericalCodeEquivalentTo": "0d5c999db4cbee2ea7055844d31b729d9694d747",
+    "matlabVersion": "26.1.0.3203278 (R2026a)"
+  },
+  "finishedAt": "2026-10-21 18:46:26"
+}

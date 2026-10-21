@@ -94,6 +94,26 @@ contribution lists, captions, or reader-facing README prose.
 | Programming-shaped Chinese labels | 范式 | methods, models, calculation procedures, input-output mappings, metrics, or engineering decisions |
 | Over-mathematized English labels | certificate, nullspace | power-system equations, constraints, states, feasible checks, measurements, physical relations, or model parameters |
 | Programming-shaped English labels | paradigm, estimator | methods, models, calculation procedures, input-output mappings, metrics, or engineering decisions |
+| Machine-learning and software-shaped Chinese labels (author requirement, 2026-10-21) | 训练, 训练集, 训练样本, 训练数据, 验证集, 验证样本, 测试集, 测试样本, 标签, 种子, 对照, 回退, 锚点, 过拟合, 超参数, 进程, 后台, 日志, 脚本 | the probabilistic power-flow terms in the table below |
+
+Probabilistic power-flow wording that replaces the machine-learning and
+software-shaped labels in reader-facing prose and in conversation with the
+author:
+
+| Avoid | Write |
+| --- | --- |
+| 训练样本 / 训练数据 | 建模场景：用于建立TMM的源荷场景及其节点电压 |
+| 验证样本 / 验证集 | 定阶场景：用于确定分量数的另一组独立源荷场景 |
+| 测试样本 / 测试集 | 检验场景：独立交流Monte Carlo场景 |
+| 种子 | 随机抽样设置，或直接写“同一组源荷场景” |
+| 标签 | 所属分量、所属运行方式 |
+| 对照 | 比较、参照（交流Monte Carlo参照） |
+| 回退 | 改用逐点牛顿-拉夫逊潮流计算 |
+| 锚点 | 展开点（建立快速映射所用的牛顿-拉夫逊潮流解） |
+| 选阶、选K | 确定分量数 |
+| 接收/拒绝拟合 | 满足/不满足分量有效性条件 |
+| 过拟合 | 分量数过多使定阶场景对数似然下降 |
+| 进程、后台、日志、脚本 | 计算、计算记录、计算入口文件 |
 
 ## Avoid Terms
 

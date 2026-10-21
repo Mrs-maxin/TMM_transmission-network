@@ -1,32 +1,380 @@
-contractVersion: "2026.07.12"
-studyId: ieee14-baseline-v1
-date: "2026-10-20"
-purposeSource: 01_IDEA/story.md
-researchPurpose: "面向含电压控制机组的输电网，以已有普通TMM方法为基础，建立保留PQ/PV节点、机组无功限值及参考节点切换的交流概率潮流计算流程；本轮仅采用标准IEEE14正常拓扑和相关负荷P/Q波动，通过独立完整交流Monte Carlo检验全节点电压幅值、相角及线路双端有功、无功和视在功率的完整分布与误差，同时核查机组Pg/Qg及控制状态，明确潮流求解和概率表示的准确性与适用范围。"
-currentScope:
-  network: IEEE14
-  normalTopologyOnly: true
-  probabilisticCases: 1
-  outages: false
-  pressure: false
-  addedRES: false
-  previousEightCases: inactive
-theory:
-  status: documented-not-numerically-validated
-  path: 01_IDEA/derivation.md
-  family: elliptical-ordinary-multivariate-t
-  originalSection15: user-provided-excerpt-not-recovered-history
-evidence:
-  oldRecovery: stopped
-  oldResultsUsed: false
-  numericalImplementation: not-implemented
-  scientificTests: 0
-  MCStates: 0
-  TMMModels: 0
-  distributionFigures: 0
-cloudRuntime:
-  available: false
-  required: actual-OpenAI-hosted-runtime
-remoteSaving:
-  thisDocumentationEdit: explicitly-requested
-  subsequentTests: user-Push-trigger
+# 研究定位及执行核查记录；历史空证据保留，2026-10-21起登记已恢复IEEE14证据。
+schema_version: research_template_lite_trace_v1
+
+guide:
+  purpose: "记录研究定位、方法分工与后续待验证问题。"
+  provenance_values: [user, ai-suggested, ai-executed, user-revised]
+  provenance_rule: "文档归档不代表研究实验已执行；未执行方案不使用 ai-executed。"
+
+tree:
+  - id: N01
+    type: decision
+    date: "2026-10-19"
+    title: "聚焦输电网稳态运行风险解析评估"
+    provenance: user-revised
+    status: confirmed
+    choice: "以电压越限、支路过载、风险位置与主导约束为对象，研究选定 N−1 条件和运行措施效果。"
+    source: "用户要求按当前讨论定位归档 story 与研究笔记，并考虑可行性。"
+    evidence: []
+    affects:
+      files: ["01_IDEA/story.md", "TMM_Transmission_note.md", "02_PAPER/config/paper-profile.yaml"]
+    children:
+      - id: N02
+        type: decision
+        title: "TMM 作为已发表的方法基础"
+        provenance: user
+        status: confirmed
+        choice: "复用既有 TMM 交流概率潮流；分量数和尾部拟合的 TMM/GMM 比较由另一篇论文承担。"
+        evidence: []
+        next_action: "登记正式方法引用、版本、接口与适用范围，不重新开展方法论文任务。"
+      - id: N03
+        type: decision
+        title: "PV 节点不作为主要创新"
+        provenance: user
+        status: confirmed
+        choice: "固定 PV 节点扩展与无功限值检查属于正确性与适用性工作。"
+        evidence: []
+        next_action: "在后续模型和算例中明确电压控制及无功限值，检查限值触发。"
+      - id: N04
+        type: retained_idea
+        title: "复用二次型、交流非线性和解析尾部计算能力"
+        provenance: user
+        status: retained
+        retained_reason: "用于电压和支路风险计算与多工况比较，支持工程问题求解。"
+        evidence: []
+      - id: N05
+        type: open_question
+        title: "风险差异能否改变关注对象或措施评价"
+        provenance: ai-suggested
+        status: open
+        question: "输送水平、无功支撑与潮流转移条件下，概率信息能否形成有意义且可重复的工程增量？"
+        evidence: []
+        next_step: "先核查最近邻工作与风险口径，进入实现阶段后以独立交流参照验证代表断面。"
+      - id: N06
+        type: open_question
+        title: "数据、限值与完整计算成本"
+        provenance: ai-suggested
+        status: open
+        question: "候选输电网是否具备合适的额定值与控制数据，既有方法能否覆盖目标工况，逐拓扑更新成本是否可接受？"
+        evidence: []
+        next_step: "核查 IEEE39/118 候选数据、方法接口与无功限值适用性；候选系统和预算尚未定案。"
+      - id: N07
+        type: archived_route
+        date: "2026-10-19"
+        title: "主导约束采用指定路径的首风险边界诊断"
+        provenance: ai-suggested
+        status: archived
+        source: "用户要求梳理具体模型、概率与严重程度，并询问主导约束是否只是概率排序。"
+        retained_reason: "概率、条件严重程度与期望风险分别描述当前状态，首风险边界描述指定方向上的运行限制。"
+        evidence: []
+        related_files: ["01_IDEA/derivation.md", "01_IDEA/symbols.md", "TMM_Transmission_note.md"]
+        archived_reason: "用户指出该过程更偏灵敏度分析；首边界搜索实为风险裕度评估，超出当前固定断面风险评估主线。"
+        next_action: "保留于 derivation 附录 A，不作为当前必需任务或潜在创新。"
+      - id: N08
+        type: decision
+        date: "2026-10-19"
+        title: "区分风险对象辨识、灵敏度分析与运行裕度搜索"
+        provenance: user-revised
+        status: confirmed
+        choice: "当前聚焦给定断面的概率、条件严重程度和期望风险，使用风险类型与高风险对象表述；灵敏度和边界搜索不作为主线必要步骤。"
+        evidence: []
+        related_files: ["01_IDEA/derivation.md", "01_IDEA/story.md", "TMM_Transmission_note.md"]
+      - id: N09
+        type: decision
+        date: "2026-10-19"
+        title: "主线收敛至给定断面的风险解析评估"
+        provenance: user
+        status: confirmed
+        choice: "暂不考虑主导约束与灵敏度；按正常和选定故障断面计算电压与支路的概率、严重程度及空间分布。"
+        evidence: []
+      - id: N10
+        type: retained_idea
+        date: "2026-10-19"
+        title: "分级风险与选定并发事件作为待选扩展"
+        provenance: ai-suggested
+        status: archived
+        retained_reason: "分级补充越限后果信息；少量节点与支路并发事件补充单项边际风险不能决定的同时发生信息。"
+        evidence: []
+        archived_reason: "用户在 N12 明确将并发风险纳入主线；分级保留可选，原候选排序不再生效。"
+        next_action: "后续按 N12 的主线与 N13 的算例设计推进，不继续以并发为可选方向。"
+        related_files: ["TMM_Transmission_note.md", "03_REFERENCE/risk_assessment_positioning_20261019.md"]
+      - id: N11
+        type: retained_idea
+        date: "2026-10-19"
+        title: "电压与支路端过载采用低维条件 TMM 计算"
+        provenance: ai-suggested
+        status: retained
+        source: "用户要求检索并发风险研究，分析新增工程信息、低维联合计算及创新性与可行性，暂不写代码。"
+        retained_reason: "既有联合电压 TMM 可投影为电压与电流的至多四维表示；条件电流二次型尾部与二维外积分可计算电流及同端 MVA 并发事件。"
+        evidence: []
+        limitation: "已有联合概率和交集估计研究；条件 t 性质不是新理论。当前只有文献与模型分析，未验证数值精度、效率或工程效果。"
+        next_action: "作为 N12 主线的拟采用计算路线，核查一致联合参数与实际限值，分别验证积分误差与完整交流联合尾部误差。"
+        related_files: ["01_IDEA/derivation.md", "01_IDEA/symbols.md", "TMM_Transmission_note.md", "03_REFERENCE/concurrent_voltage_overload_review_20261019.md"]
+      - id: N12
+        type: decision
+        date: "2026-10-19"
+        title: "将电压与支路过载并发风险纳入研究主线"
+        provenance: user
+        status: confirmed
+        source: "用户要求重新梳理目的、工程问题与创新，设计体现并发相对单项增量的算例，并更新 story 和研究笔记，暂不写代码。"
+        choice: "单项及并发风险均为主要研究内容；相关性、条件依赖和解析性作为既有 TMM 的方法能力，不另强制提出新概率理论。PV、主导约束和灵敏度的既定边界保持。"
+        evidence: []
+        related_files: ["01_IDEA/story.md", "TMM_Transmission_note.md", "02_PAPER/config/paper-profile.yaml"]
+      - id: N13
+        type: retained_idea
+        date: "2026-10-19"
+        title: "以同场景信息比较及条件后果验证并发增量"
+        provenance: ai-suggested
+        status: retained
+        retained_reason: "IEEE39 预选四组同端对象和五个断面，比较边际、独立乘积与联合参照，并检查条件后果和故障前后组成；扩展至带限额的 PGLib118 少量对象。"
+        limitation: "仅完成方案与官方数据只读核对；输入设计值、基准可行性和最终统计精度未验证。边际匹配可能不存在，不调限值强求差异。"
+        evidence: []
+        next_action: "本轮止于文档；实现阶段再冻结方法/数据与协议，先做一个主系统断面检查，再按有限组合开展。"
+        related_files: ["TMM_Transmission_note.md", "01_IDEA/claims.md", "01_IDEA/figure_plan.md"]
+      - id: N14
+        type: retained_idea
+        date: "2026-10-19"
+        title: "以不确定性传播矩阵补充并发风险的结构解释"
+        provenance: user-revised
+        status: retained
+        source: "用户提供第五章完整理论推导，建议参考不确定性传播矩阵做小拓展；具体成对矩阵及协变方案由 AI 据此整理。"
+        retained_reason: "复用已有电压状态参数，为电压与电流构造成对传播矩阵，保留运行点线性项及共同尺度，解释平方量协变及正常/故障变化。"
+        limitation: "矩量与结构解释不能替代实际并发概率；不恢复敏感度或主导约束，不引入新尾部定理；总体协方差要求有效分量矩存在。"
+        evidence: []
+        next_action: "进入实现阶段后只复用两组对象、两个已有断面及既有交流参照，增加一张表核查；本轮仅推导和文档。"
+        related_files: ["01_IDEA/story.md", "01_IDEA/derivation.md", "01_IDEA/symbols.md", "TMM_Transmission_note.md", "01_IDEA/figure_plan.md"]
+      - id: N15
+        type: retained_idea
+        date: "2026-10-19"
+        title: "统一单项、并发与传播矩阵的完整模型和流程"
+        provenance: ai-suggested
+        status: retained
+        source: "用户要求梳理完整数学模型、计算流程、已有基础与新增内容，并对应到具体算例，暂不写代码。"
+        retained_reason: "同一低维条件核通过积分域切换得到单项和并发，分项期望偏差按状态拆分；成对传播矩阵与局部 TMM 共享投影并构成联合特征函数。"
+        limitation: "仅整理理论关系、流程和算例绑定；不将标准联合 CF 称新分布理论，不增加二维频域反演、场景、灵敏度或数值结论。"
+        evidence: []
+        next_action: "进入实现阶段再按 derivation 第12节逐步落实，先核查模型内积分，再检查独立交流风险。"
+        related_files: ["01_IDEA/derivation.md", "01_IDEA/symbols.md", "01_IDEA/story.md", "TMM_Transmission_note.md", "01_IDEA/claims.md", "01_IDEA/figure_plan.md"]
+      - id: N16
+        type: open_question
+        date: "2026-10-19"
+        title: "投稿潜力取决于独立工程增量的验证"
+        provenance: ai-suggested
+        status: archived
+        source: "用户要求检查按现有研究体系能否投稿。"
+        question: "相对已发表 TMM 及既有联合概率方法，实际 MVA 并发事件和条件后果的独立增量能否由同事件近邻及完整交流参照证明？"
+        assessment: "CONDITIONAL GO，方案有论文潜力；当前无数值证据，不代表稿件已就绪。保持研究目的和算例规模，不额外强制新理论或优化。"
+        evidence: []
+        next_step: "由 N17 更新主次：尾部风险准确性、常规体系与方法比较为主，不能继续把并发信息增量作为唯一投稿判据。"
+        related_files: ["02_PAPER/prewriting_review_20261019.md", "TMM_Transmission_note.md", "02_PAPER/config/paper-profile.yaml"]
+      - id: N17
+        type: decision
+        date: "2026-10-19"
+        title: "转向尾部风险精度与完整成本比较，面向英文 SCI"
+        provenance: user-revised
+        status: confirmed
+        source: "用户要求关注尾部解析计算准确性、常规输电风险评估流程和方法比较；确认 IEEE TSTE、JCR Q1/Q2，排除 TPWRS。"
+        choice: "已有 TMM 为基础，电压/实际支路限值的单项及并发风险为对象；概率与严重程度精度、完整成本为主要证据，传播矩阵辅助。"
+        supersedes: ["N16 的主次及期刊口径，不删除其历史判断"]
+        comparison: "累积量重构、保留尾部校正的 PCE/HMS、独立完整交流参照；GMM 可选，不展开分量数研究。"
+        case_update: "原系统/断面规模保持；边际匹配降为可选；主输入优先核查 ν=12 或有界且满足矩条件的统一分布，ν=6 为可选边界。TSTE 需增加实质可再生能源注入内容，数据和设置尚待选定。"
+        limitation: "所有精度、速度和工程认识待验证；公开 JCR-JIF 表格非 Clarivate 原始导出；Energy 当前范围更偏综合能源系统。"
+        evidence: []
+        next_action: "保持仅文档阶段；后续获准实现时先用一个 IEEE39 断面核查风险输出和成本，再按原有主/扩展系统计划验证。"
+        related_files: ["01_IDEA/story.md", "TMM_Transmission_note.md", "01_IDEA/derivation.md", "01_IDEA/claims.md", "01_IDEA/figure_plan.md", "02_PAPER/config/paper-profile.yaml", "03_REFERENCE/transmission_tail_risk_and_venues_20261019.md"]
+      - id: N18
+        type: decision
+        date: "2026-10-19"
+        title: "选定 Applied Energy 并先核查配电 TMM 的输电适配"
+        provenance: user-revised
+        status: confirmed
+        source: "用户先以 Applied Energy 为目标，建议先扩展输电交流概率潮流；确认已有配电网源荷到联合电压能力，提供 AQPPF_TMM。"
+        choice: "同一论文中先适配输电前向，再验证单项/并发尾部与完整成本；PV 仍是必要适配，不作为新节点理论。"
+        source_repository: "https://github.com/wuhanichina/AQPPF_TMM"
+        source_commit: "0d5c999db4cbee2ea7055844d31b729d9694d747"
+        findings: "现有前向明确限非参考 PQ 和平衡节点发电；已有电压/MVA事件、普通 t 局部投影和单项条件积分；默认多尺度 t 与原普通 t 公式不等价。"
+        proposed_route: "优先继承已有 elliptical 分支并复用条件内核；这是 AI 工作建议，不是用户已确认唯一统计分支。"
+        case_proposal: "IEEE39 一个断面先验证前向，沿原断面做尾部/并发并扩展 PGLib118；节点4/8新增总装机20%聚合风光为待验证设计，RTS-GMLC 时序为备选，不增加第三套网络。"
+        limitation: "仅源码及文字核查，没有导入、修改或运行源库代码；无本项目输电结果；源库既有数值不转为本项目证据。"
+        evidence: []
+        next_action: "后续实现阶段先冻结统计分支、源库版本、控制及数据，再验证一个含 PV 的主系统断面；本轮止于文档。"
+        related_files: ["01_IDEA/story.md", "01_IDEA/derivation.md", "01_IDEA/claims.md", "01_IDEA/figure_plan.md", "TMM_Transmission_note.md", "02_PAPER/config/paper-profile.yaml", "03_REFERENCE/aqppf_tmm_transmission_extension_20261019.md"]
+      - id: N19
+        type: decision
+        date: "2026-10-19"
+        title: "确认普通多元 t 分支并细化输电扩展协议"
+        provenance: user
+        status: confirmed
+        source: "用户明确先采用源库已有普通多元 t 分支，要求详细数学、复用/修改清单及 PV/PQ 和 Q 限值正确性，暂不写代码。"
+        choice: "采用 elliptical；混合 P/Q/V² 方程及直接直角坐标雅可比；首轮未触限快速、Q临界/切换/失败样本改用带限值的标准逐点潮流计算。"
+        new_boundary: "参考触限可换平衡节点，前向按模式求解后统一相角；统计采用全节点仿射坐标，不能固定旧参考幅值。"
+        source_reuse: "普通 t 拟合/共同尺度/局部条件数学直接复用；状态生成、机组输入、Q策略、固定prototype与pq拼接接口需改。"
+        validation: "全PQ退化、PV/PQ未触限、上下限、多个触限、换参考、无可用调压与失败；再分开验证前向、表示、积分及独立交流尾部。"
+        limitation: "数值容差和保护带为初始设计；普通t不精确保持PV非线性支撑；成功样本拟合需单列未评估质量。无代码或运行结果。"
+        evidence: []
+        next_action: "保持文档阶段；实现时按 derivation 第15节从单个可行IEEE39断面开始，不自动铺开全模式库。"
+        related_files: ["01_IDEA/derivation.md", "01_IDEA/symbols.md", "TMM_Transmission_note.md", "01_IDEA/story.md", "01_IDEA/claims.md", "01_IDEA/figure_plan.md", "02_PAPER/config/paper-profile.yaml"]
+      - id: N20
+        type: decision
+        date: "2026-10-19"
+        title: "授权新建 OpenAI 云端项目并使用 Python 完成实施测试"
+        provenance: user
+        status: confirmed
+        source: "用户要求工程物理优先表述、在云端搭建并完成测试；回复确认新建 OpenAI 云端任务。"
+        choice: "OpenAI托管计算，Python实施；后续再本地化，当前本机不做研究计算。"
+        cloud_thread_id: "01a15495-3550-708e-9ab4-9e102a29e057"
+        cloud_host_id: "durable"
+        handoff: "01_IDEA/cloud_execution_brief_20261019.md"
+        scope: "从固定模式及Q限值正确性到普通t表示、单项/并发积分、独立交流尾部和公平方法比较。"
+        limitation: "任务已创建active，实际环境和研究运行仍待确认；本地未产生新数值证据。"
+        evidence: []
+        next_action: "读取云端进度并按实际产出更新执行状态，不将创建成功写成测试通过。"
+      - id: N21
+        type: validation
+        date: "2026-10-21"
+        title: "恢复IEEE14云端复算包并核查全部改用逐点潮流计算和分布偏差"
+        provenance: ai-executed
+        status: completed-with-limitations
+        source: "用户要求下载最新完整包到本地项目，分析全改用逐点潮流计算和TMM精度，不扩大IEEE39/118。"
+        archive: "result/cloud_import_20261021/IEEE14_TMM_MC_complete_20261020.zip"
+        archive_sha256: "141394ac90396b0ec3422c4897f8db349124deb14d3ef9018befa90e41307893"
+        integrity: "独立云端校验值一致，1080/1080文件SHA256及ZIP CRC通过。"
+        execution: "本地仅保存数组和代码核查，没有新增AC、拟合或样本；云端原件独立保存。"
+        forward_finding: "5000组残差合格，1号Qg全部低于0；原未限Q方式不符控制。调度流程尚未按accept分流。"
+        distribution_finding: "2–3线路2端Q：建模场景对交流结果差0.00971，TMM对AC差0.06571，同模型抽样对AC差0.06583；固定量连续泄漏。"
+        causal_boundary: "参考切换0.881%不足以单独解释约6.6个百分点偏差；白化、初始化等尚未通过受控拟合隔离。"
+        evidence: ["E-IEEE14-IMPORT-20261021", "E-IEEE14-FORWARD-20261021", "E-IEEE14-MODEL-20261021"]
+        next_action: "仅IEEE14主要限值方式、Pg传递与分流修订及普通t源方法/分布表示比较；新试验未执行。"
+        related_files: ["01_IDEA/ieee14_cloud_audit_20261021.md", "tests/audit_ieee14_cloud_results_20261021.py", "01_IDEA/evidence_map.md", "TMM_Transmission_note.md", "02_PAPER/config/paper-profile.yaml"]
+      - id: N22
+        type: validation
+        date: "2026-10-21"
+        title: "受控重拟合定位IEEE14 TMM误差来源"
+        provenance: ai-executed
+        status: completed-with-limitations
+        source: "用户判断理论上输电网TMM应能保持配电网精度，要求区分方法问题与拟合问题；风险计算推后，当前目标是使输电网TMM稳定。"
+        execution: "仅用已保存3000组建模场景交流状态重拟合，1000组定阶场景确定分量数，1万组pilot AC评估；无新增交流求解。"
+        finding: "前向扩展未进入分布误差（建模全为完整AC，快速解全改用逐点潮流计算）。主要原因是云端K固定为3；按定阶场景对数似然确定分量数后，多数支路输出KS达到抽样下限，PV固定电压泄漏基本消失。"
+        mechanism: "有界均匀负荷边际（主方向超额峰度−0.63）、PV固定幅值与零注入形成的弯曲低维状态面、0.88%参考切换孤立簇，使输电网状态需要比单一椭圆更多的分量。"
+        residual: "4–9支路受端Q约为下限2倍；尾部未检验；K=20可能分量数过多导致定阶场景对数似然下降需复核；固定幅值仅近似到1e-4 p.u.。"
+        evidence: ["E-IEEE14-REFIT-20261021"]
+        next_action: "固化按定阶场景对数似然确定分量数与多次重启的拟合流程；修正限Q展开方式并接通快速解分流；随后检验10^-2至10^-3尾部和快速解进入建模后的误差。"
+        related_files: ["tests/diagnose_ieee14_tmm_fit_20261021.py", "01_IDEA/ieee14_cloud_audit_20261021.md", "01_IDEA/evidence_map.md", "TMM_Transmission_note.md"]
+      - id: N23
+        type: review
+        date: "2026-10-21"
+        title: "输电GitHub仓库完整性及与AQPPF_TMM计算链比较"
+        provenance: ai-executed
+        status: completed
+        source: "用户要求对比AQPPF_TMM与TMM_transmission-network的计算逻辑，明确后者是否完整及缺失内容。"
+        versions: "AQPPF_TMM main@0d5c999d；TMM_transmission-network main@93b79f4；本地云端快照2026-10-20"
+        finding: "GitHub输电仓库只有理论、协议和输入，数值实现登记为未实现；云端代码与结果未推送。云端实现相对AQPPF缺确定分量数拟合流程、多展开点限Q前向、快速前向建模、按状态条件化拟合和GMM比较。"
+        evidence: []
+        next_action: "推送云端快照；先移植fit_order_candidates确定分量数流程，再修正限Q展开点与分流。"
+        related_files: ["01_IDEA/repo_completeness_review_20261021.md", "TMM_Transmission_note.md"]
+      - id: N24
+        type: decision
+        date: "2026-10-21"
+        title: "按原逻辑重做输电网快速潮流扩展：MATLAB复用AQPPF_TMM，确定有功平衡规则"
+        provenance: user
+        status: partly-superseded-by-N25
+        source: "用户确认现有测试未按原逻辑完成扩展；选择MATLAB复用AQPPF_TMM并用MATPOWER参照，1号机按计划出力固定、2号机承担全部不平衡和网损。"
+        choice: "IEEE14数据中2号节点为平衡节点、1号节点为PV；快速潮流运行点建于1号机无功到下限转PQ的实际方式；2号机无功到限时仍承担有功不平衡。"
+        replaces: "云端Python实现中关闭无功限值建立运行点、由完整交流建立TMM、固定三分量拟合的做法；云端结果保留为比较。"
+        writing_requirement: "数学为工程和物理服务，弱化数学性，强调电力系统工程性，术语和动词保持电力系统语境。"
+        evidence: []
+        next_action: "确定性复算实际运行方式基准潮流，再建立该方式下的快速潮流运行点；当前未运行MATLAB。"
+        related_files: ["01_IDEA/derivation.md", "TMM_Transmission_note.md", "TMM_Transmission_changelog.md"]
+      - id: N25
+        type: pivot
+        date: "2026-10-21"
+        title: "撤回改平衡节点，保持标准平衡节点与常规潮流算法"
+        provenance: user
+        status: confirmed
+        source: "用户指出常规牛拉法和MC法可在标准IEEE14跑通，改平衡节点没有必要；IEEE14只是最小输电测试系统，目标是把TMM概率潮流扩展到含PV节点的输电网。"
+        retained_from_N24: "MATLAB复用AQPPF_TMM，MATPOWER参照。"
+        withdrawn: "2号节点改为平衡节点、1号机按计划出力固定的规则。"
+        finding: "平衡节点不设无功限值时，已保存5000组快速解全部可靠，99.1%样本PV机组无功在限值内；全部改用逐点潮流计算源于对平衡节点执行无功限值，标准IEEE14平衡机组无功本身在下限之外。"
+        lesson: "测试系统的数据限值问题不应转化为方法前提或改动标准数据。"
+        evidence: []
+        case_layers: "用户确定分两层：第一层不计无功限值，检验含PV节点TMM精度；第二层计入PV机组无功限值，检验切换与改用逐点潮流计算；平衡节点均不设无功限值。"
+        next_action: "编写第一层标准IEEE14基准潮流与快速潮流运行点的MATLAB入口。"
+      - id: N26
+        type: validation
+        date: "2026-10-21"
+        title: "含PV节点输电网TMM交流概率潮流第一层测试（IEEE14，不计无功限值）"
+        provenance: ai-executed
+        status: completed-with-limitations
+        source: "用户确认扩展后方法应与配电网逻辑一致：注入功率样本映射为节点电压样本，拟合TMM，再解析计算线路功率；要求完成输电网扩展测试。"
+        logic: "与AQPPF_TMM一致；仅新增含PV节点（P、PQ的Q、PV的电压平方）的快速潮流映射，拟合、确定分量数和线路功率计算调用AQPPF_TMM原函数。"
+        result: "1个运行点覆盖7508组建模/定阶负荷，无逐点潮流计算；同输入电压误差2.4e-9 p.u.；K=20时线路功率KS中位数0.0113，与建模场景自身0.0112相同，最大0.0437；PV机端电压偏离设定值最大8.7e-5 p.u.。"
+        residual: "少数线路功率约为抽样误差2倍，模型尾部略宽；GMM结果相近；第二层无功限值、1%以外尾部、其他系统未验证。"
+        evidence: ["E-IEEE14-L1-20261021"]
+        next_action: "第二层：计入PV机组无功限值，快速潮流中判断越限并切换或改用逐点潮流计算，用同一流程检验。"
+        related_files: ["tests/run_ieee14_tmm_extension_layer1.m", "+TMM_Transmission_core/+powerflow/", "01_IDEA/evidence_map.md", "TMM_Transmission_note.md"]
+      - id: N27
+        type: validation
+        date: "2026-10-21"
+        title: "第二层测试：计入PV机组无功限值"
+        provenance: ai-executed
+        status: completed-with-limitations
+        source: "用户要求继续下一步。"
+        rule: "PV机组按源文件Qmin/Qmax受限，平衡节点不设限值；越限机组同时固定在限值、节点转PQ、重算至无新越限，不回到调压，同MATPOWER pf.enforce_q_lims=1。"
+        result: "20000组运行方式全部与MATPOWER一致（189组2号机到上限），电压误差3.7e-9 p.u.；2次交流潮流建运行点、无逐点潮流计算；8个控制诊断全部一致；K=20线路功率KS中位数0.0120，最大0.0452。"
+        residual: "概率算例越限约1%且只有一种方式；2号机端电压释放后的分布TMM偏宽；KS不适用于集中概率量。"
+        evidence: ["E-IEEE14-L2-20261021"]
+        next_action: "加大越限频率的压力算例或换IEEE30/57/118，检验多种运行方式并存时的TMM表示与快速潮流稳定性。"
+      - id: N28
+        type: validation
+        date: "2026-10-21"
+        title: "两层流程推广到IEEE30/57/118"
+        provenance: ai-executed
+        status: completed-with-limitations
+        source: "用户选择换更大的输电系统，按两层流程重复。"
+        result: "六组运行运行方式全部与MATPOWER一致（IEEE118第二层37种方式），电压误差≤2.3e-8 p.u.，无逐点潮流计算；线路功率KS中位数0.012–0.016，接近建模场景自身0.011–0.013。"
+        error_pattern: "末端负荷支路的有界波动被拟合出超界尾部（KS约0.06）；IEEE118中被PV节点钳住的节点电压和两端调压支路无功，TMM波动约为交流结果10倍（物理偏差≤2.4e-4 p.u.、≤0.06 MVAr）。"
+        fit_limit: "高维且含罕见运行方式时，k-means初始化产生过小分量，IEEE57/118较大K不满足分量有效性条件。"
+        evidence: ["E-IEEE30-57-118-20261021"]
+        next_action: "试用AQPPF等人数初始化与留出数据选维；对近似固定量改用物理偏差评价；考虑用真实负荷曲线替代有界合成波动。"
+        related_files: ["tests/run_tmm_transmission_extension.m", "01_IDEA/evidence_map.md", "TMM_Transmission_note.md"]
+      - id: N29
+        type: decision
+        date: "2026-10-21"
+        title: "统一电力系统概率潮流用语；选择等人数分组初值改善高维拟合"
+        provenance: user
+        status: confirmed
+        source: "作者指出表述中训练、标签、种子、对照等用语不适合电力系统概率潮流研究，要求彻底修改并在后续禁止；追问快速潮流是什么方法、为何与之比较；拟合误差方面选择改用AQPPF_TMM等人数分组初值。"
+        wording: "替换规则写入.cursor/rules/lexicon.md；快速潮流定义写入note第17节。"
+        next_action: "IEEE57/118两层以等人数分组初值、分量数3至20重新拟合，沿用已有交流Monte Carlo检验场景。"
+        related_files: [".cursor/rules/lexicon.md", "TMM_Transmission_note.md", "tests/run_tmm_transmission_extension.m"]
+      - id: N30
+        type: validation
+        date: "2026-10-21"
+        title: "分块TMM及四个输电系统电压幅值、相角与线路功率精度"
+        provenance: ai-executed
+        status: completed-with-limitations
+        source: "作者要求不必证明TMM优于GMM，只需精度相当；按AQPPF_TMM derivation最新内容调整TMM计算逻辑，继续测试不同规模输电网的电压幅值、相角和线路有功、无功精度，并补充概率密度图，明确下一步。"
+        logic: "分块TMM：共同波动强度只作用于负荷注入经混合潮流雅可比逆矩阵驱动的电压方向，其余方向高斯；运行点取建模场景最多运行方式下的平均负荷潮流解。"
+        result: "均值误差：电压幅值≤7.5e-5 p.u.、相角≤0.03°、线路有功≤0.41 MW、无功≤0.08 MVAr；相角KS≤0.025；线路功率KS中位数0.012–0.016；GMM、标准TMM、分块TMM精度相当。"
+        residual: "末端负荷支路的有界矩形分布；IEEE118紧邻PV机组的近似固定量；当前输入无厚尾，分块TMM尾部作用未检验。"
+        evidence: ["E-ACC-L2-20261021"]
+        next_action: "建立含天气驱动新能源的厚尾输电网输入；在该输入下修正TMM尾部特性并检验0.5%–5%尾段；处理PV钳住的近似固定量；随后计算电压与线路越限风险。"
+        related_files: ["tests/run_tmm_transmission_accuracy.m", "+TMM_Transmission_core/+statistics/fit_block_tmm.m", "01_IDEA/derivation.md", "01_IDEA/evidence_map.md", "TMM_Transmission_note.md"]
+      - id: N31
+        type: decision
+        date: "2026-10-21"
+        title: "整理为基准材料：精简代码与结果，重写derivation为论文正文体例"
+        provenance: user
+        status: completed
+        source: "作者要求精简整理代码和结果文件，只保留必要内容和记录；derivation按中国电机工程学报正文写作方式改写，只保留能进入小论文的内容；整理后作为后续讨论的基准。"
+        removed_results: "result/cloud_import_20261021（云端复算包362312708字节，SHA256 141394ac90396b0ec3422c4897f8db349124deb14d3ef9018befa90e41307893，云端文件库保留原件）；ieee14/30/57/118不计无功限值的第一层结果；IEEE57/118等人数分组初值中途停止的计算；第二层目录中被精度计算取代的分布表、拟合与图。"
+        removed_code: "tests/run_ieee14_tmm_extension_layer1.m、run_ieee14_tmm_extension_layer2.m、plot_ieee14_layer1_pdf.m、run_tmm_transmission_extension.m、audit_ieee14_cloud_results_20261021.py、diagnose_ieee14_tmm_fit_20261021.py；+distributions/evaluate_mixture_power_distribution.m、+metrics/summarize_distribution_errors.m；03_REFERENCE/AQPPF_TMM_ordinary_t_20261021源码快照。"
+        removed_notes: "01_IDEA/cloud_execution_brief_20261019.md、ieee14_cloud_audit_20261021.md、ieee14_source_comparison_20261021.md、repo_completeness_review_20261021.md；结论见N20—N23。"
+        retained_numbers: "第一层（不计无功限值）：IEEE14线路功率KS中位数0.0113（建模场景自身0.0112），PV机端电压偏离设定值最大8.7e-5 p.u.；IEEE30/57/118线路功率KS中位数0.012–0.016；1个展开点覆盖全部场景、无逐点补算。云端IEEE14：固定K=3时2–3线路2端无功KS 0.066，按定阶场景对数似然选K=20后降至0.012。"
+        removed_evidence_ids: ["E-IEEE14-IMPORT-20261021", "E-IEEE14-FORWARD-20261021", "E-IEEE14-MODEL-20261021", "E-IEEE14-REFIT-20261021", "E-IEEE14-L1-20261021", "E-IEEE14-L2-20261021", "E-IEEE30-57-118-20261021"]
+        retained_evidence_ids: ["E-PF-PV-20261021", "E-QLIM-IEEE14-20261021", "E-ACC-L2-20261021"]
+        derivation: "derivation.md重写为六节、公式(1)—(29)；旧版与旧符号表存为01_IDEA/derivation_archive_20261021.md。"
+        next_action: "以整理后材料为基准讨论项目主要内容：厚尾新能源输入、TMM尾部修正、近似固定量处理与风险评估。"
+        related_files: ["01_IDEA/derivation.md", "01_IDEA/symbols.md", "01_IDEA/evidence_map.md", "result/README.md", "tests/README.md"]
+        related_files: ["tests/run_ieee14_tmm_extension_layer2.m", "+TMM_Transmission_core/+powerflow/", "01_IDEA/evidence_map.md", "TMM_Transmission_note.md"]
+        related_files: ["01_IDEA/derivation.md", "TMM_Transmission_note.md", "01_IDEA/story.md"]

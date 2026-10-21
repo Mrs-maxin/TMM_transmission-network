@@ -1,0 +1,3 @@
+pass,mode,sampleCount,anchorCount,fallbackCount,exactAcCallCount,newViolations,maximumFinalResidualPu
+1,all PV regulating,20000,1,0,1,189,9.99809135482366e-09
+2,G2@Qmax,189,1,0,1,0,5.83955351435295e-09

@@ -1,0 +1,8 @@
+pass,mode,sampleCount,anchorCount,fallbackCount,exactAcCallCount,newViolations,maximumFinalResidualPu
+1,"all PV regulating",20000,1,0,1,3740,9.99547428159886e-09
+2,"G3@Qmin, G9@Qmin",232,1,0,1,0,9.95824994687311e-09
+2,"G3@Qmin",18,1,0,1,0,9.19294623757949e-09
+2,"G9@Qmin",2110,1,0,1,40,9.99835941817295e-09
+2,"G9@Qmax",1380,1,0,1,2,9.89346160551463e-09
+3,"G3@Qmin, G9@Qmin",40,1,0,1,0,9.95803373093906e-09
+3,"G9@Qmax, G12@Qmax",2,1,0,1,0,4.06764406879478e-10

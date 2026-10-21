@@ -1,0 +1,10 @@
+family,initialization,restart,initialDf,dfMode,estimateDf,dfUpdateMethod,status,accepted,validationLogDensity,iterations,dfMin,dfMax,minimumEffectiveCount,initialScaleAdjustedComponents,fitSeconds,warmStartSeconds,errorId,message,selectionMode,selectionEligible,emAcceleration
+GMM,balanced-physical,1,Inf,gaussian,0,gaussian,converged,1,-255.04008374994,7,Inf,Inf,871.999967345937,0,2.01288333333333,0,,,likelihood,1,none
+TMM,balanced-physical,1,12,adaptive,1,latent-em,converged,1,-245.651518938731,50,19.4973336587076,23.5189513767159,860.992073708937,0,12.8931426666667,2.01288333333333,,,likelihood,1,none
+TMM,balanced-physical,1,200,adaptive,1,latent-em,converged,1,-245.655919403283,52,19.5200992364954,23.5249144777205,860.992111432546,0,12.2082274583333,2.01288333333333,,,likelihood,1,none
+GMM,balanced-physical,2,Inf,gaussian,0,gaussian,converged,1,-304.975103634814,20,Inf,Inf,861.859803618353,0,5.04451529166667,0,,,likelihood,1,none
+TMM,balanced-physical,2,12,adaptive,1,latent-em,converged,1,-260.577723906125,128,19.6996874319986,23.857763524611,339.997568281708,0,41.0436004583333,5.04451529166667,,,likelihood,1,none
+TMM,balanced-physical,2,200,adaptive,1,latent-em,converged,1,-260.581869934114,120,19.7085919731207,23.935265177819,339.999471409801,0,37.6919456666667,5.04451529166667,,,likelihood,1,none
+GMM,balanced-physical,3,Inf,gaussian,0,gaussian,converged,1,-256.156034176495,38,Inf,Inf,806.993413227319,0,10.030217125,0,,,likelihood,1,none
+TMM,balanced-physical,3,12,adaptive,1,latent-em,converged,1,-246.253671737587,69,18.4538079608542,24.3636066056369,785.990288411191,0,18.3139218333333,10.030217125,,,likelihood,1,none
+TMM,balanced-physical,3,200,adaptive,1,latent-em,converged,1,-246.249938454065,61,18.3957710683131,24.3796527374878,784.989141648885,0,21.3464017916667,10.030217125,,,likelihood,1,none

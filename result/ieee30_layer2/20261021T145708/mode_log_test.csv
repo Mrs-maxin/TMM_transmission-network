@@ -1,0 +1,10 @@
+pass,mode,sampleCount,anchorCount,fallbackCount,exactAcCallCount,newViolations,maximumFinalResidualPu
+1,"all PV regulating",20000,1,0,1,19726,9.99983160165918e-09
+2,"G2@Qmax",16431,1,0,1,3196,9.99618254837742e-09
+2,"G2@Qmax, G8@Qmax",1596,1,0,1,990,9.96959383103846e-09
+2,"G2@Qmax, G5@Qmax",863,1,0,1,552,9.95519763846708e-09
+2,"G2@Qmax, G5@Qmax, G8@Qmax",836,1,0,1,0,9.78710416876805e-09
+3,"G2@Qmax, G8@Qmax",1133,1,0,1,96,9.93777172705879e-09
+3,"G2@Qmax, G5@Qmax",1413,1,0,1,151,9.96038769171537e-09
+3,"G2@Qmax, G5@Qmax, G8@Qmax",2192,1,0,1,0,9.97685500880863e-09
+4,"G2@Qmax, G5@Qmax, G8@Qmax",247,1,0,1,0,9.9056597230307e-09

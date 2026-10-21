@@ -1,35 +1,50 @@
-# 符号、单位与实现状态
+# 符号表
 
-版本：2026-10-20。对应[计算理论](derivation.md)。下列代码字段均为拟定接口，尚无已运行数值实现，不把字段名当作已存在函数。
+版本2026-10-21，与`derivation.md`重写版一致。重写前的符号见`derivation_archive_20261021.md`附录。
 
-| 符号 | 电力系统含义 | 单位/维度 | 拟定字段 |
+## 1 潮流模型（derivation第1、2节）
+
+| 符号 | 含义 | 单位/维度 | 代码变量 |
 | --- | --- | --- | --- |
-| n、r_m、r_0 | 节点数、当前参考、共同相角基准 | IEEE14为14；初始参考1 | n_bus, reference_bus, original_reference |
-| m | PV/PQ及Q限值控制模式 | 每输入独立重置 | control_mode |
-| ξ | 负荷P/Q联合输入 | MW/MVAr | PD_MW, QD_MVAr |
-| Pg_plan、Vset | 非参考有功计划、调压电压设定 | MW、p.u. | Pg_plan_MW, Vset_pu |
-| Pg、Qg | 机组有功、无功输出 | MW/MVAr；方程中p.u. | Pg_MW, Qg_MVAr |
-| Qmin、Qmax | 真实机组无功上下限 | MVAr或统一p.u. | Qmin_MVAr, Qmax_MVAr |
-| τQ、δQ | Q触发容差、近边界回退保护带 | 同一Q单位；用途不同 | Q_tolerance_pu, Q_guard_MVAr |
-| B0 | 三相功率基准 | 100 MVA | baseMVA |
-| Y、Yf、Yt | 完整节点导纳、支路首/末端电流映射 | 14×14、20×14复矩阵，p.u. | Ybus, Yf, Yt |
-| e、f、V | 节点电压实部、虚部、复电压 | 14维，p.u. | V_complex |
-| iR、iI | 节点或指定端电流实虚部 | 对应p.u. | current_real, current_imag |
-| y、F_m、b_m | 非参考电压、P/Q/V²计算与目标 | 初始26维，分行功率或电压平方 | fixed_mode_coordinates, residuals |
-| J_a、d1、d2 | 混合雅可比、两次逆初值修正 | 26×26、26维 | anchor_factorization, first_step, second_step |
-| Vbar、v | 对齐到原1号相角的全节点电压 | 复14维、实28维，p.u. | voltage_aligned, voltage_real_full |
-| v0、T_V、z | 训练中心、仿射变换、白化电压坐标 | 28维、28×d、d维 | voltage_center, voltage_transform, coordinates |
-| k、πk、νk | 统计分量、权重、t自由度 | k=1..3；不同于控制模式m | weights, df |
-| μk、Σk | 坐标位置与散布 | d维、d×d；不是协方差 | locations, scatter |
-| U、g | 普通t的共同卡方尺度、高斯扰动 | 正标量、有效维向量 | common_chi_square, normal_vector |
-| H_a、x | 全电压到同端电压/电流的投影、局部实量 | 4×28、4维 | local_projection, local_state |
-| m_a,k、Λ_a,k、F | 局部位置、散布、有效生成因子 | 4维、4×4、4×r；r≤4 | local_location, local_scatter, local_factor |
-| T、η | 条件积分标量、剩余联合t坐标 | 1维、r−1维；与T_V不同 | conditional_coordinate, outer_coordinates |
-| F_V、u | 局部因子的电压两行、电压不变单位方向 | 2×r、r维 | voltage_factor, invariant_direction |
-| P_a、Q_a、S_a | 指定支路端有功、无功、视在功率幅值 | MW、MVAr、MVA | P_end_MW, Q_end_MVAr, S_end_MVA |
-| F_X、f_X | 物理量X的CDF、连续部分PDF | 概率、物理单位倒数 | CDF_grid, PDF_grid |
-| ε | 不可评估输入概率质量 | [0,1]，有限MC还需区间 | unevaluable_mass |
+| $n$，$s$ | 节点数、平衡节点 | — | `control.busCount`、`control.slack` |
+| $\mathcal N^{*}$，$\mathcal N_{\rm PV}$，$\mathcal N_{\rm PQ}$ | 非平衡、PV、PQ节点集合 | 节点编号 | `control.nonReference`、`control.pv`、`control.pq` |
+| $e_i,f_i$ | 节点电压实部、虚部 | p.u. | `real(voltage)`、`imag(voltage)` |
+| $G_{ij},B_{ij}$ | 节点导纳矩阵实部、虚部 | p.u. | `anchor.Ybus` |
+| $P_{{\rm G},i},Q_{{\rm G},i}$ | 机组计划有功、无功出力（固定于限值时为限值） | MW、Mvar | `control.scheduledP`、`control.scheduledQ` |
+| $P_{{\rm L},i},Q_{{\rm L},i}$ | 负荷有功、无功 | MW、Mvar | `loadP`、`loadQ` |
+| $U_i^{\rm set}$ | PV节点及平衡节点电压设定值 | p.u. | `control.voltageSet` |
+| $\boldsymbol x$ | 非平衡节点电压实部、虚部，实部在前 | $2(n-1)$维 | `state` |
+| $\boldsymbol F,\boldsymbol y$ | 潮流方程与给定量（P、PQ节点Q、PV节点电压平方） | $2(n-1)$维 | `evaluate_mixed_power`、`build_mixed_power_targets` |
+| $\boldsymbol J_0$ | 展开点雅可比矩阵 | $2(n-1)$阶 | `anchor.jacobian`，逆为`anchor.inverseMatrix` |
+| $\boldsymbol h$ | 潮流方程二次项 | $2(n-1)$维 | 由`evaluate_mixed_power`差分得到 |
+| $\alpha_m$ | 修正步长 | — | `refine_mixed_jacobian`中`step` |
+| $\varepsilon_y,\varepsilon_x$ | 功率残差、状态残差估计容许值 | $10^{-8}$、$10^{-7}$ p.u. | `PowerTolerance`、`StateTolerance` |
+| $\sigma_g$ | 机组运行状态（0调压，1上限，−1下限） | — | `modeState` |
+| $\varepsilon_Q$ | 无功越限判别容差 | $5\times10^{-6}$ Mvar | `ReactiveTolerance` |
 
-初始维度26来自13行非参考P、9行PQ的Q、4行PV的V²；触限后行类别变化，维度不变。全节点统计坐标保留旧参考幅值；相角单位在表中采用rad，作图可转deg并标注。
+## 2 电压联合概率模型（derivation第3节）
 
-功率从p.u.换回MW/MVAr/MVA乘B0。Q容差10⁻⁸ p.u.对应本例10⁻⁶ MVAr，不能把二者数值直接混用。电压原子质量是概率，不是密度高度。运行限值、数值容差和Q保护带分别登记。
+| 符号 | 含义 | 单位/维度 | 代码变量 |
+| --- | --- | --- | --- |
+| $\bar{\boldsymbol x},\boldsymbol E_d,\boldsymbol D$ | 建模场景电压均值、保留特征向量、方向标准差 | p.u.；$2(n-1)\times d$；$d$阶 | `transform.center`、`transform.basis`、`transform.scale` |
+| $\boldsymbol z$，$d$ | 标准化电压坐标及维数 | $d$维 | `x`、`transform.rank` |
+| $K$，$\pi_k$ | 分量数、分量权重 | — | `componentCounts`、`model.weights` |
+| $\boldsymbol\mu_k,\boldsymbol\Sigma_k,\nu_k$ | 位置向量、散布矩阵、自由度 | $d$维、$d$阶、— | `model.means`、`model.scatter`、`model.df` |
+| $S_k$ | 共同波动强度 | — | 抽样中的`strength` |
+| $\boldsymbol H,\boldsymbol L_{\mathcal W}$ | 共同强度驱动的电压变化方向、注入选择矩阵 | $2(n-1)\times n_w$ | `determine_common_strength_directions`中`sensitivity` |
+| $r$，$\boldsymbol Q_u,\boldsymbol Q_w$ | 强度作用方向数及两块方向 | $d\times r$、$d\times(d-r)$ | `directions.rank`、`directions.Q1`、`directions.Q2` |
+| $\boldsymbol m_k,\boldsymbol\Sigma_k^{u}$ | 分块TMM强度块位置与散布 | $r$维、$r$阶 | 分块模型`means`、`scatter` |
+| $\boldsymbol a_k,\boldsymbol G_k,\boldsymbol\Omega_k$ | 其余块截距、回归系数、残差协方差 | $(d-r)$维等 | 分块模型`intercept`、`coefficient`、`residual` |
+| $\gamma_{ik},\tau_{ik},\delta_{ik}$ | 后验概率、强度权重、t距离 | — | `membership`、`tau`、`distance` |
+| $N$，$N_{\rm v}$ | 建模场景数、定阶场景数 | 5256、1752 | `modelingCount`、`determinationCount` |
+
+## 3 电气量与评价指标（derivation第4、6节）
+
+| 符号 | 含义 | 单位 | 代码变量 |
+| --- | --- | --- | --- |
+| $U_i,\theta_i$ | 节点电压幅值、相角（以平衡节点为基准） | p.u.、(°) | `voltage`、`voltageAngle` |
+| $P_{ij},Q_{ij}$ | 支路首端（末端同理）有功、无功 | MW、Mvar | `linePfrom`、`lineQfrom`（`linePto`、`lineQto`） |
+| $S_{\rm B}$ | 功率基准值 | 100 MVA | `mpc.baseMVA` |
+| $N^{\rm s}$ | 分布积分点数 | 50000 | `modelDrawCount` |
+| $c,\nu$ | 负荷变异系数、共同强度自由度 | 5%、12 | `CoefficientOfVariation`、`LatentDf` |
+| $e_\mu,e_\sigma,e_p,D_{\rm KS}$ | 均值误差、标准差相对误差、分位误差、KS距离 | 与电气量同单位 | `meanAbsoluteError`、由方差计算、`q01/q99`差、`KS` |

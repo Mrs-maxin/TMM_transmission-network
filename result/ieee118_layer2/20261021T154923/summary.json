@@ -1,0 +1,525 @@
+{
+  "study": "ieee118 TMM AC probabilistic power flow, layer 2",
+  "claim": "C0",
+  "network": "ieee118",
+  "layer": 2,
+  "baseCase": {
+    "voltageMagnitudeMin": 0.94300000000000017,
+    "voltageMagnitudeMax": 1.05,
+    "slackGeneratorP_MW": 513.48074930437406,
+    "slackGeneratorQ_MVAr": -82.386229654080623,
+    "fixedUnitsAtBase": "G19@Qmin, G32@Qmin, G34@Qmin, G92@Qmin, G103@Qmax, G105@Qmin"
+  },
+  "mapping": {
+    "training": {
+      "sampleCount": 5256,
+      "anchorCount": 42,
+      "fallbackCount": 0,
+      "exactAcCallCount": 42,
+      "maximumPasses": 3,
+      "finalModes": [
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G56@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G56@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G34@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G34@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G34@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G34@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G34@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G34@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G34@Qmin, G92@Qmin, G103@Qmax, G105@Qmin"
+      ],
+      "finalModeCounts": [
+        13,
+        1,
+        65,
+        16,
+        2,
+        11,
+        6,
+        1,
+        258,
+        512,
+        38,
+        284,
+        4,
+        17,
+        49,
+        14,
+        7,
+        1,
+        1,
+        1,
+        5,
+        215,
+        1076,
+        65,
+        1516,
+        3,
+        137,
+        7,
+        931
+      ],
+      "seconds": 13.45287075
+    },
+    "validation": {
+      "sampleCount": 1752,
+      "anchorCount": 35,
+      "fallbackCount": 0,
+      "exactAcCallCount": 35,
+      "maximumPasses": 3,
+      "finalModes": [
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G56@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G56@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G34@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G34@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G34@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G34@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G34@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G34@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G34@Qmin, G92@Qmin, G103@Qmax, G105@Qmin"
+      ],
+      "finalModeCounts": [
+        3,
+        3,
+        17,
+        5,
+        2,
+        4,
+        1,
+        95,
+        175,
+        14,
+        93,
+        1,
+        6,
+        15,
+        3,
+        1,
+        68,
+        359,
+        20,
+        522,
+        2,
+        52,
+        1,
+        290
+      ],
+      "seconds": 9.26114675
+    },
+    "test": {
+      "sampleCount": 20000,
+      "anchorCount": 53,
+      "fallbackCount": 0,
+      "exactAcCallCount": 53,
+      "maximumPasses": 3,
+      "finalModes": [
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G56@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G56@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G56@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G34@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G34@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G34@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G1@Qmin, G19@Qmin, G34@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G56@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G56@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G32@Qmin, G34@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G34@Qmin, G56@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G34@Qmin, G56@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G34@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G34@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G34@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+        "G19@Qmin, G34@Qmin, G92@Qmin, G103@Qmax, G105@Qmin"
+      ],
+      "finalModeCounts": [
+        56,
+        9,
+        1,
+        166,
+        72,
+        6,
+        7,
+        52,
+        17,
+        2,
+        1,
+        943,
+        2067,
+        155,
+        1067,
+        4,
+        74,
+        3,
+        171,
+        6,
+        1,
+        42,
+        24,
+        2,
+        1,
+        16,
+        5,
+        804,
+        4162,
+        236,
+        5784,
+        1,
+        1,
+        16,
+        546,
+        19,
+        3461
+      ],
+      "seconds": 16.249127416666667
+    }
+  },
+  "pairedFastVersusMatpower": {
+    "count": 20000,
+    "sameModeCount": 20000,
+    "referenceSwitchedCount": 20000,
+    "fastSwitchedCount": 20000,
+    "maximumComplexVoltageErrorPu": 4.8083500414954392E-9,
+    "maximumComplexVoltageErrorSwitchedPu": 4.8083500414954392E-9,
+    "maximumLineFlowError_MW_MVAr": 3.3970166732899543E-6,
+    "fastExactAcCalls": 53,
+    "fastAnchorCount": 53,
+    "fastFallbackCount": 0,
+    "fastSeconds": 16.249127416666667,
+    "referenceSeconds": 967.49277883333332
+  },
+  "referenceModeShare": [
+    {
+      "mode": "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G56@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 56,
+      "share": 0.0028
+    },
+    {
+      "mode": "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G56@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 9,
+      "share": 0.00045
+    },
+    {
+      "mode": "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G56@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 1,
+      "share": 5E-5
+    },
+    {
+      "mode": "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 166,
+      "share": 0.0083
+    },
+    {
+      "mode": "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 72,
+      "share": 0.0036
+    },
+    {
+      "mode": "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 6,
+      "share": 0.0003
+    },
+    {
+      "mode": "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 7,
+      "share": 0.00035
+    },
+    {
+      "mode": "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 52,
+      "share": 0.0026
+    },
+    {
+      "mode": "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 17,
+      "share": 0.00085
+    },
+    {
+      "mode": "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 2,
+      "share": 0.0001
+    },
+    {
+      "mode": "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 1,
+      "share": 5E-5
+    },
+    {
+      "mode": "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 943,
+      "share": 0.04715
+    },
+    {
+      "mode": "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 2067,
+      "share": 0.10335
+    },
+    {
+      "mode": "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 155,
+      "share": 0.00775
+    },
+    {
+      "mode": "G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 1067,
+      "share": 0.05335
+    },
+    {
+      "mode": "G1@Qmin, G19@Qmin, G34@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 4,
+      "share": 0.0002
+    },
+    {
+      "mode": "G1@Qmin, G19@Qmin, G34@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 74,
+      "share": 0.0037
+    },
+    {
+      "mode": "G1@Qmin, G19@Qmin, G34@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 3,
+      "share": 0.00015
+    },
+    {
+      "mode": "G1@Qmin, G19@Qmin, G34@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 171,
+      "share": 0.00855
+    },
+    {
+      "mode": "G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G56@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 6,
+      "share": 0.0003
+    },
+    {
+      "mode": "G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G56@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 1,
+      "share": 5E-5
+    },
+    {
+      "mode": "G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 42,
+      "share": 0.0021
+    },
+    {
+      "mode": "G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 24,
+      "share": 0.0012
+    },
+    {
+      "mode": "G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 2,
+      "share": 0.0001
+    },
+    {
+      "mode": "G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 1,
+      "share": 5E-5
+    },
+    {
+      "mode": "G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 16,
+      "share": 0.0008
+    },
+    {
+      "mode": "G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 5,
+      "share": 0.00025
+    },
+    {
+      "mode": "G19@Qmin, G32@Qmin, G34@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 804,
+      "share": 0.0402
+    },
+    {
+      "mode": "G19@Qmin, G32@Qmin, G34@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 4162,
+      "share": 0.2081
+    },
+    {
+      "mode": "G19@Qmin, G32@Qmin, G34@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 236,
+      "share": 0.0118
+    },
+    {
+      "mode": "G19@Qmin, G32@Qmin, G34@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 5784,
+      "share": 0.2892
+    },
+    {
+      "mode": "G19@Qmin, G34@Qmin, G56@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 1,
+      "share": 5E-5
+    },
+    {
+      "mode": "G19@Qmin, G34@Qmin, G56@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 1,
+      "share": 5E-5
+    },
+    {
+      "mode": "G19@Qmin, G34@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 16,
+      "share": 0.0008
+    },
+    {
+      "mode": "G19@Qmin, G34@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 546,
+      "share": 0.0273
+    },
+    {
+      "mode": "G19@Qmin, G34@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 19,
+      "share": 0.00095
+    },
+    {
+      "mode": "G19@Qmin, G34@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",
+      "count": 3461,
+      "share": 0.17305
+    }
+  ],
+  "referenceSeconds": 967.49277883333332,
+  "fitRank": 203,
+  "selectedK": {
+    "gmmK": 3,
+    "tmmK": 6
+  },
+  "distributionSummary": [
+    {
+      "method": "training-data",
+      "K": 0,
+      "lineFlowKSMedian": 0.011402663622586351,
+      "lineFlowKSP90": 0.016774094368353372,
+      "lineFlowKSMax": 0.024185159817427304,
+      "lineFlowKSArgmax": "linePfrom#46",
+      "lineFlowStdRelativeErrorMax": 0.027766399393979402,
+      "lineFlowStdRelativeErrorMin": -0.025516472774203436,
+      "lineFlowQ99ErrorIQRMax": 0.23038851060437257,
+      "pqVoltageKSMedian": 0.011475456621062363,
+      "pqVoltageKSMax": 0.56906392694062613,
+      "lossKS": 0.0096302130899090788,
+      "lossMeanErrorMW": 0.036812727478348961,
+      "analyticLineMeanErrorMaxMW": null,
+      "analyticLineStdRelativeErrorMax": null
+    },
+    {
+      "method": "GMM",
+      "K": 3,
+      "lineFlowKSMedian": 0.014333399357726262,
+      "lineFlowKSP90": 0.036400616304899408,
+      "lineFlowKSMax": 0.42843921875579555,
+      "lineFlowKSArgmax": "lineQto#102",
+      "lineFlowStdRelativeErrorMax": 3.0879494834040857,
+      "lineFlowStdRelativeErrorMin": -0.026069467256931378,
+      "lineFlowQ99ErrorIQRMax": 6.32544077702028,
+      "pqVoltageKSMedian": 0.052590942895587835,
+      "pqVoltageKSMax": 0.56350001469236932,
+      "lossKS": 0.028026575187456326,
+      "lossMeanErrorMW": 0.036858946035124518,
+      "analyticLineMeanErrorMaxMW": 0.30285867019928503,
+      "analyticLineStdRelativeErrorMax": 3.0845905492799508
+    },
+    {
+      "method": "TMM",
+      "K": 3,
+      "lineFlowKSMedian": 0.014936938953884704,
+      "lineFlowKSP90": 0.03875896471288659,
+      "lineFlowKSMax": 0.4088381722974892,
+      "lineFlowKSArgmax": "lineQto#102",
+      "lineFlowStdRelativeErrorMax": 3.0079641721998227,
+      "lineFlowStdRelativeErrorMin": -0.027454832711280908,
+      "lineFlowQ99ErrorIQRMax": 6.3952042350185012,
+      "pqVoltageKSMedian": 0.04599222612829143,
+      "pqVoltageKSMax": 0.55204003307873217,
+      "lossKS": 0.028492954528375303,
+      "lossMeanErrorMW": 0.016825016568986939,
+      "analyticLineMeanErrorMaxMW": 0.2928536651232605,
+      "analyticLineStdRelativeErrorMax": 3.0027753070283243
+    },
+    {
+      "method": "GMM",
+      "K": 6,
+      "lineFlowKSMedian": 0.0132864632526567,
+      "lineFlowKSP90": 0.034205595278715153,
+      "lineFlowKSMax": 0.37217856659396381,
+      "lineFlowKSArgmax": "lineQto#102",
+      "lineFlowStdRelativeErrorMax": 2.1695511647899144,
+      "lineFlowStdRelativeErrorMin": -0.025115611188535114,
+      "lineFlowQ99ErrorIQRMax": 4.17413934549868,
+      "pqVoltageKSMedian": 0.029478367008323819,
+      "pqVoltageKSMax": 0.55191995627980561,
+      "lossKS": 0.011976463313818186,
+      "lossMeanErrorMW": 0.036599865345806393,
+      "analyticLineMeanErrorMaxMW": 0.30285867019928503,
+      "analyticLineStdRelativeErrorMax": 2.1913362145879702
+    },
+    {
+      "method": "TMM",
+      "K": 6,
+      "lineFlowKSMedian": 0.013828596695642736,
+      "lineFlowKSP90": 0.033901094832290757,
+      "lineFlowKSMax": 0.32389507699452108,
+      "lineFlowKSArgmax": "lineQto#102",
+      "lineFlowStdRelativeErrorMax": 1.8936796811941434,
+      "lineFlowStdRelativeErrorMin": -0.029526989403170556,
+      "lineFlowQ99ErrorIQRMax": 3.9038459075289675,
+      "pqVoltageKSMedian": 0.028005259608311017,
+      "pqVoltageKSMax": 0.54980009800271079,
+      "lossKS": 0.015753346985593192,
+      "lossMeanErrorMW": 0.07363022526087093,
+      "analyticLineMeanErrorMaxMW": 0.59036590227388785,
+      "analyticLineStdRelativeErrorMax": 1.8936015796993768
+    }
+  ]
+}

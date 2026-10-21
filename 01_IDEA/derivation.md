@@ -1,467 +1,324 @@
-# 含PV节点输电网的TMM交流概率潮流：计算理论与验证协议
+# 含PV节点输电网的TMM交流概率潮流计算方法
 
-版本：2026-10-20，IEEE14基础测试。本文从节点电压控制、机组无功和线路潮流说明计算过程，再给出实现所需公式。当前状态为“理论与计算协议已成文，数值实现和验证未完成”。
+> 文件说明（不进入论文）：本文件按中国电机工程学报正文体例整理，只保留可进入小论文的方法内容，版本2026-10-21。符号与代码变量对应见`symbols.md`，数值证据见`evidence_map.md`中E-PF-PV-20261021、E-QLIM-IEEE14-20261021、E-ACC-L2-20261021。重写前的推导及风险评估相关公式见`derivation_archive_20261021.md`。文中【文献待核查】处需补充已发表的配电网GMM/TMM概率潮流前作、分块TMM前作及MATPOWER文献。
 
-本文扩写本轮重做项目的简要协议。用户此前传入的第15节是扩展协议摘录；本文不表示恢复了旧推导文件第1至14节，也不把旧算例数字作为本轮结果。研究目的以[story.md](story.md)为准，符号和单位见[symbols.md](symbols.md)。
+## 1 含PV节点输电网的交流潮流模型
 
-## 1. 需要计算的电网输出
+### 1.1 节点类型与直角坐标潮流方程
 
-负荷有功、无功波动后，首先计算14个节点的电压幅值和相角、5台机组的有功和无功、20条支路两端的有功、无功与视在功率。随后检验普通TMM能否描述节点电压及线路功率的完整分布，包括分布位置、宽度、偏斜和分位数。独立完整交流Monte Carlo，以下简称MC，为分布参照。
-
-这条计算链分为四步：
-
-1. 在相同负荷输入下，求解含PV/PQ节点的交流潮流，正确处理机组Q限值。
-2. 用训练电压建立全节点普通多元t混合模型，即本项目选定的TMM分支。
-3. 由联合电压分布计算节点电压和支路端P、Q、MVA的CDF及PDF。
-4. 用独立负荷样本逐次进行完整交流求解，比较完整分布及误差。
-
-前两步分别引入潮流近似和统计表示近似，第三步还存在数值积分误差。这些误差分别验证。普通t的已有性质和PV电压方程作为方法基础，不在本项目中重新认领为新理论。
-
-当前只采用IEEE14正常拓扑，不安排线路停运、区域压力、新能源新增注入或更大系统。已有IEEE39/PGLib118文件仅作历史参考，不是当前待运行算例。尾部风险和后果计算不属于本轮验收任务。
-
-## 2. IEEE14输入、节点类型和原始数据问题
-
-网络采用MATPOWER 8.1固定提交中的case14.m，原文和数值矩阵分别保存于data/networks/ieee14。功率基准为100 MVA。源文件提供的节点类型为：
-
-| 节点类别 | 节点 | 固定输入 | 求解输出 |
-| --- | --- | --- | --- |
-| 初始参考节点 | 1 | 本次模式的复电压 | 平衡有功、调压无功 |
-| 初始PV节点 | 2、3、6、8 | 非参考机组Pg计划、Vset、母线负荷 | 相角、Qg及完整复电压 |
-| 初始PQ节点 | 4、5、7、9、10、11、12、13、14 | 净有功、净无功 | 电压幅值和相角 |
-
-PV表示电压控制节点。机组Qg是为了维持电压而求得的输出，不能继续把该节点净无功作为指定目标。负荷QD仍是已知输入；“不指定PV净Q”不等于删除其无功负荷。
-
-保留源文件的非参考Pg计划、电压设定、Q上下限、恒功率负荷、节点并联元件、线路充电及固定变比/相移。本轮没有新的优化调度或有功分摊策略。当前参考机组承担有功不平衡和网损；参考切换后按冻结控制过程更新平衡责任。多机同母线需要另行验证等值和分配，本例每个发电母线只有一台在线机组。
-
-原文件有三项必须在执行时说明：
-
-- 1号机组记录Qg为−16.9 MVAr，而Qmin/Qmax为0/10 MVAr。这是源文件条目，尚不是本项目重新计算的输出。启用Q限值后须检查是否转PQ并更换参考；不得改宽Q限值来保留原参考。
-- 6、8号节点电压设定分别为1.07、1.09 p.u.，高于源文件通用Vmax=1.06 p.u.。本轮检验计算方法，保留设定并记录运行限值违反，不把标准算例称为全部运行限值合格。
-- 20条支路rateA均为0，不能解释为真实的零容量，也不能补造额定值。本轮报告MW、MVAr、MVA分布，不报告过载概率或负载百分比。
-
-4–7、4–9、5–6变压器和9号节点并联电纳须进入导纳；支路索引保留源文件行号与端节点，不以母线号代替矩阵行号。数据来源、SHA和控制代码依据见[IEEE14来源说明](../03_REFERENCE/ieee14_theory_sources.md)。
-
-## 3. 负荷波动与独立样本
-
-当前采用受控、有界、相关的负荷P/Q模型，不把它称为真实运行记录。非零PD、QD分别乘以均值为1、变异系数为5%的乘子；QD保持原符号，P/Q相关但不严格同比例。基准为零的负荷分量仍为零。
-
-具体构造为：同一输入样本先生成共享一个尺度的ν=12联合t潜变量。每个负荷有功潜变量由全网、区域和本地高斯因子按0.4、0.3、sqrt(0.75)组合；无功本地因子为0.6倍本地有功因子与0.8倍独立无功因子的组合。所有组合除以同一个sqrt(U/12)，其中U服从12自由度卡方分布，且与高斯因子独立。各潜变量边际是标准t分布。
-
-令某一潜变量为h，则负荷乘子为
+设输电网共有$n$个节点，节点集合为$\mathcal N$，平衡节点为$s$，PV节点集合为$\mathcal N_{\rm PV}$，PQ节点集合为$\mathcal N_{\rm PQ}$，非平衡节点集合$\mathcal N^{*}=\mathcal N_{\rm PV}\cup\mathcal N_{\rm PQ}$。节点$i$的电压相量记为$\dot V_i=e_i+{\rm j}f_i$，节点导纳矩阵元素记为$Y_{ij}=G_{ij}+{\rm j}B_{ij}$。直角坐标下节点注入有功、无功及电压幅值平方为
 
 $$
-M=1+c_v\sqrt{3}\,[2F_{t_{12}}(h)-1],\qquad c_v=0.05 .
+P_i=e_i\sum_{j\in\mathcal N}\left(G_{ij}e_j-B_{ij}f_j\right)+f_i\sum_{j\in\mathcal N}\left(G_{ij}f_j+B_{ij}e_j\right)
 \tag{1}
 $$
 
-因此乘子边际均值为1、标准差为0.05，范围为1±0.05sqrt(3)。有界变换后的联合输入不再声称服从普通多元t；电压TMM也不要求输入本身是t混合。最终负荷相关系数须从真实输入样本核查，不能直接拿潜变量相关系数代替。
-
-训练3000、验证1000、Q保护校准1000、MC试算10000、最终MC最多100000、模型内积分检查200000为初始配额，均尚未生成。各用途使用独立随机流。TMM参数只用训练/验证确定；最终MC不参与模型选取、输入调整、积分调参或删样本。初始分量数固定为3，不做分量数扫描。这些设置是预先声明的设计，不是精度保证。
-
-## 4. 电压控制如何进入交流潮流
-
-### 4.1 完整导纳与节点注入
-
-设完整节点导纳为Y=G+jB，复电压为V=e+jf。电流和节点净注入满足
-
 $$
-i_R=Ge-Bf,\quad i_I=Be+Gf,
-$$
-
-$$
-P=e\odot i_R+f\odot i_I,\qquad
-Q=f\odot i_R-e\odot i_I .
+Q_i=f_i\sum_{j\in\mathcal N}\left(G_{ij}e_j-B_{ij}f_j\right)-e_i\sum_{j\in\mathcal N}\left(G_{ij}f_j+B_{ij}e_j\right)
 \tag{2}
 $$
 
-P、Q采用“发电减负荷”为正，均按100 MVA基准换为标幺值。完整Y包含充电、变压器和节点并联元件。物理支路输出另用Yf、Yt计算。对串联导纳y_s=1/(r+jx)、总充电b_c及首端复变比t=τexp(jφ)，在线支路的π型导纳为
-
-$
-y_{ff}=(y_s+jb_c/2)/|t|^2,\quad
-y_{ft}=-y_s/t^*,\quad y_{tf}=-y_s/t,\quad
-y_{tt}=y_s+jb_c/2 .
-\tag{2a}
-$
-
-源文件变比0表示1。以支路首末端连接矩阵C_f、C_t组装Y_f、Y_t，再按Y=C_f^\mathsf TY_f+C_t^\mathsf TY_t+diag((G_s+jB_s)/B_0)组装节点导纳。G_s/B_s采用源文件MW/MVAr定义，线路r/x/b已经是系统基准标幺量。该支路公式可与独立后端交叉核查；当前测试仍只用正常拓扑。
-
-### 4.2 每个控制模式求解哪些量
-
-一个控制模式包括当前参考节点、仍调压的PV集合、固定净无功的PQ集合和已触Q限值的机组。固定本次参考复电压，其余13个节点的实部、虚部均为未知量，包括PV节点：
-
 $$
-y=[e_*^\mathsf T,f_*^\mathsf T]^\mathsf T,\qquad
-F_m(y)=
-\begin{bmatrix}
-P_*\\Q_{\mathrm{PQ},m}\\e_{\mathrm{PV},m}^2+f_{\mathrm{PV},m}^2
-\end{bmatrix}
-=
-\begin{bmatrix}
-P_*^{sp}\\Q_{\mathrm{PQ},m}^{sp}\\(V_{\mathrm{PV},m}^{set})^2
-\end{bmatrix}=b_m(\xi).
+U_i^{2}=e_i^{2}+f_i^{2}
 \tag{3}
 $$
 
-初始IEEE14模式有26个未知量，对应13行非参考有功、9行PQ无功、4行PV电压平方。PV实部、虚部不删除，也不给PV额外指定Q方程。一个PV触限转PQ时，用无功平衡替换该节点的电压平方行；未知量总数保持26。全部非参考改为PQ时，式(3)恢复原全PQ关系。
-
-参考机组Pg和调压机组Qg由求解电压回算。搜索电压范围只是数值保护；实际越过运行电压限值的成功状态仍应保留。
-
-## 5. 快速潮流如何得到电压
-
-### 5.1 展开点和混合雅可比
-
-展开点必须由相同网络、输入和控制模式的完整交流求解获得。如果带限值求解已切换模式，就不能把该状态标为原未触限模式的展开点。首版只为原始固定调压模式建立快速展开点；原参考触限等样本采用完整交流回退。若这使大部分样本回退，照实报告。
-
-以D(a)表示对角矩阵，节点功率对全电压实虚部的导数为
+平衡节点电压幅值与相角给定，承担系统有功、无功不平衡量及网损。PV节点给定有功注入和机端电压幅值，PQ节点给定有功、无功注入，即
 
 $$
-\begin{aligned}
-P_e&=D(i_R)+D(e)G+D(f)B,&
-P_f&=D(i_I)-D(e)B+D(f)G,\\
-Q_e&=D(f)G-D(i_I)-D(e)B,&
-Q_f&=D(i_R)-D(f)B-D(e)G.
-\end{aligned}
+P_i^{\rm sp}=P_{{\rm G},i}-P_{{\rm L},i},\ i\in\mathcal N^{*};\qquad
+Q_i^{\rm sp}=Q_{{\rm G},i}-Q_{{\rm L},i},\ i\in\mathcal N_{\rm PQ};\qquad
+U_i^{\rm sp}=U_i^{\rm set},\ i\in\mathcal N_{\rm PV}
 \tag{4}
 $$
 
-PV电压平方行仅在对应节点有2e、2f。按式(3)选取P/Q/V²行和非参考e/f列，形成26阶混合雅可比。原PQ代码的节点掩码和极坐标变换不能直接沿用。
+式中：$P_{{\rm G},i}$、$Q_{{\rm G},i}$为机组计划有功和无功出力，节点无机组时取零，机组无功到达限值转为PQ节点后$Q_{{\rm G},i}$取该限值；$P_{{\rm L},i}$、$Q_{{\rm L},i}$为负荷有功和无功；$U_i^{\rm set}$为机端电压设定值。
 
-固定模式下F为二次关系，故任一电压增量d满足
+以全部非平衡节点电压的实部和虚部为未知量$\boldsymbol x=[\boldsymbol e_{\mathcal N^{*}}^{\rm T},\boldsymbol f_{\mathcal N^{*}}^{\rm T}]^{\rm T}\in\mathbb R^{2(n-1)}$，潮流方程写为
 
 $$
-F(y_a+d)=F(y_a)+J_a d+H(d),
+\boldsymbol F(\boldsymbol x)=
+\begin{bmatrix}\boldsymbol P_{\mathcal N^{*}}(\boldsymbol x)\\ \boldsymbol Q_{\mathcal N_{\rm PQ}}(\boldsymbol x)\\ \boldsymbol U^{2}_{\mathcal N_{\rm PV}}(\boldsymbol x)\end{bmatrix}
+=\boldsymbol y=
+\begin{bmatrix}\boldsymbol P^{\rm sp}_{\mathcal N^{*}}\\ \boldsymbol Q^{\rm sp}_{\mathcal N_{\rm PQ}}\\ (\boldsymbol U^{\rm set}_{\mathcal N_{\rm PV}})^{2}\end{bmatrix}
 \tag{5}
 $$
 
-其中H只含增量二次项。式(5)用于检查方程和导数，不表示反向电压解也恰好是二次函数。
-
-### 5.2 二次逆初值与残差修正
-
-给定负荷样本，先通过展开点雅可比分解求解两次线性方程：
+方程个数为$(n-1)+n_{\rm PQ}+n_{\rm PV}=2(n-1)$，与未知量个数相等。与配电网中非平衡节点均为PQ节点的情形相比，PV节点以电压幅值平方方程(3)替代无功平衡方程。电压求得后，平衡节点和仍在调压的PV节点的机组无功出力为
 
 $$
-J_a d_1=b-F(y_a),\qquad
-J_a d_2=-[F(y_a+d_1)-b],\qquad
-y^{(0)}=y_a+d_1+d_2 .
+Q_{{\rm G},i}=Q_i(\boldsymbol x)+Q_{{\rm L},i},\qquad i\in\mathcal N_{\rm PV}\cup\{s\}
 \tag{6}
 $$
 
-然后保持J_a，继续修正电压：
+### 1.2 潮流方程的二次结构
+
+平衡节点电压给定后，式(5)中各方程均为$\boldsymbol x$的二次函数。在任一运行点$\boldsymbol x_0$处有
 
 $$
-J_a\Delta y^{(j)}=b-F(y^{(j)}),\qquad
-y^{(j+1)}=y^{(j)}+\Delta y^{(j)} .
+\boldsymbol F(\boldsymbol x_0+\Delta\boldsymbol x)=\boldsymbol F(\boldsymbol x_0)+\boldsymbol J_0\Delta\boldsymbol x+\boldsymbol h(\Delta\boldsymbol x)
 \tag{7}
 $$
 
-实现采用矩阵分解和线性求解，不显式求逆。预设最多12次修正；若残差不降、状态异常或未达目标，采用有限步长回退或完整交流回退，并记录调用。
+式中：$\boldsymbol J_0=\partial\boldsymbol F/\partial\boldsymbol x|_{\boldsymbol x_0}$为雅可比矩阵，其有功、无功行由式(1)、(2)对$e_j$、$f_j$求导得到，PV节点行为$\partial U_i^{2}/\partial e_i=2e_i$、$\partial U_i^{2}/\partial f_i=2f_i$，其余元素为零；$\boldsymbol h(\Delta\boldsymbol x)$为$\Delta\boldsymbol x$的二次齐次项，式(7)不含更高阶项，且$\boldsymbol h(\Delta\boldsymbol x)=[\boldsymbol F(\boldsymbol x_0+\Delta\boldsymbol x)+\boldsymbol F(\boldsymbol x_0-\Delta\boldsymbol x)]/2-\boldsymbol F(\boldsymbol x_0)$。
 
-初始接受目标为P/Q残差不大于10⁻⁸ p.u.、PV电压平方残差不大于10⁻⁸ p.u.²。这些是求解目标，不是已验证结果，也不能自动推出电压误差一定小于10⁻⁶ p.u.。真实电压、相角、Qg与支路功率误差必须通过相同输入的独立交流对照取得。
+式(7)表明，计入PV节点后潮流方程仍保持与配电网相同的二次结构，已发表的基于展开点的批量潮流计算方法【文献待核查】可直接用于含PV节点的输电网。
 
-## 6. 机组无功限值和参考节点切换
+## 2 源荷场景下的批量潮流计算
 
-固定调压模式给出电压后，机组无功需求为
+### 2.1 展开点与二阶初值
+
+以牛顿-拉夫逊法求得展开点潮流解$\boldsymbol x_0$，其给定量为$\boldsymbol y_0=\boldsymbol F(\boldsymbol x_0)$。对源荷场景$\omega$的给定量$\boldsymbol y_\omega$，由式(7)取电压增量的二阶近似作为初值：
 
 $$
-Q_{G,i}^{req}=Q_i^{inj}(V)+Q_i^D-Q_i^{other,fixed}.
+\Delta\boldsymbol x_\omega^{(0)}=\boldsymbol J_0^{-1}\Delta\boldsymbol y_\omega-\boldsymbol J_0^{-1}\boldsymbol h\!\left(\boldsymbol J_0^{-1}\Delta\boldsymbol y_\omega\right),\qquad
+\Delta\boldsymbol y_\omega=\boldsymbol y_\omega-\boldsymbol y_0
 \tag{8}
 $$
 
-本轮没有新增新能源；以后若有固定PQ注入，应进入other,fixed并避免重复计数。各项统一为p.u.，报告再转换MVAr。
+全部场景共用同一$\boldsymbol J_0^{-1}$，式(8)只需两次潮流方程求值和矩阵乘法，可对场景矩阵批量计算。
 
-每个输入从源文件初始节点类型和机组状态重新开始，流程为：
+### 2.2 固定雅可比修正与收敛判据
 
-| 固定模式结果 | 采用的状态 |
-| --- | --- |
-| 残差合格，所有调压机组远离Q上下限 | 接受快速电压并回算机组、支路输出 |
-| Qg近限、越限，或快速求解不可靠 | 标准完整交流求解并启用冻结的Q限值控制 |
-| 原参考触限，需要换参考 | 直接采用完整交流控制的最终状态 |
-| 无剩余调压/平衡能力、完整交流不收敛或模型不支持 | 单列不可评估输入及原因 |
-
-上限触发后将Qg固定在Qmax，下限同理；解除该节点Vset约束，转换为PQ并重新求解。只把输出Qg裁剪到限值不能得到正确电压和线路潮流。
-
-本轮计划采用“同一轮同时处理超限调压机组，本次求解中已限Q机组不恢复PV”的策略；新参考从剩余可用PV的冻结内部顺序选择。原参考切换前已求得的Pg进入后续控制过程，不能仅改变相角零点而继续固定旧机组计划。没有可用参考时应明确停止该输入的计算。实际后端必须核对这些行为，不能只核查Qg是否在范围内。
-
-Q判断容差τQ初设10⁻⁸ p.u.，按本例100 MVA换算为10⁻⁶ MVAr。近边界保护带δQ更宽，两者用途不同。保护带初设为min(5 MVAr,0.1倍机组Q范围)；校准若要求更宽而超出范围上限，则相关输入直接完整交流，不压小保护带来保留快速接受率。该保护设置没有全局误差保证，最终独立样本仍须审计漏触限。
-
-MATPOWER 8.1 legacy runpf的Q限值分支作为控制依据，已核查其同时/逐个切换、参考更新和相角还原代码；“已阅读代码”不等于“已运行MATPOWER”。计划参照可采用独立PYPOWER极坐标Newton加版本化控制适配，但须说明与MATPOWER的差别并用确定性控制案例验证。尚未冻结实际后端，不写已复现MATPOWER全部控制行为。
-
-## 7. 从不同控制模式得到同一组电压坐标
-
-参考更换后，所有成功样本统一到原1号节点相角：
+以式(8)为初值，保持$\boldsymbol J_0$不变进行修正：
 
 $$
-\overline V=V\exp[-j\arg(V_1)],\qquad
-v=[\Re\overline V^\mathsf T,\Im\overline V^\mathsf T]^\mathsf T .
+\boldsymbol x_\omega^{(m+1)}=\boldsymbol x_\omega^{(m)}+\alpha_m\boldsymbol J_0^{-1}\left[\boldsymbol y_\omega-\boldsymbol F(\boldsymbol x_\omega^{(m)})\right]
 \tag{9}
 $$
 
-这次旋转不改变电压幅值、节点复功率或线路功率。原1号节点一旦失去调压，其电压幅值可能随负荷变化，必须保留。用“固定旧参考复电压＋其余节点变化”的重建方式会漏掉该变化。
-
-训练电压采用全节点仿射表示：
+式中：$\alpha_m$在$1,1/2,\ldots,1/2^{8}$中取使残差2-范数下降的最大值，每个展开点最多修正10次。场景$\omega$的收敛判据为
 
 $$
-v=v_0+T_V z .
+\|\boldsymbol r_\omega\|_\infty\le\varepsilon_y,\qquad
+\|\boldsymbol J_0^{-1}\|_2\,\|\boldsymbol r_\omega\|_2\le\varepsilon_x,\qquad
+\boldsymbol r_\omega=\boldsymbol y_\omega-\boldsymbol F(\boldsymbol x_\omega)
 \tag{10}
 $$
 
-v0、SVD白化和秩判断只用训练数据。保留全部数值可辨方向，登记全部奇异值、舍弃规则和正则化。初始相对奇异值门限为10⁻¹²，仍须用电压重建、相邻节点差压和支路电流误差核查。低方差不等于线路功率不受影响；不采用累计方差达到某百分比就删方向的规则。
+式中：$\varepsilon_y=10^{-8}$ p.u.，$\varepsilon_x=10^{-7}$ p.u.；同时要求节点电压幅值位于0.5~1.5 p.u.的数值求解范围内，该范围不是运行限值。
 
-式(10)是坐标变换，下一步才拟合统计分布。近零方向剔除、白化正则化与统计模型误差分别记录。
+首个展开点取给定量最接近全部场景均值的场景。若仍有场景不满足式(10)，取残差估计$\|\boldsymbol J_0^{-1}\|_2\|\boldsymbol r_\omega\|_2$最大的未收敛场景作为下一个展开点，重复式(8)、(9)，展开点不超过12个；其余未收敛场景逐点用牛顿-拉夫逊法求解。由此得到的全部场景电压均满足式(5)至$\varepsilon_y$，与逐点牛顿-拉夫逊法求解的是同一组交流潮流方程。
 
-## 8. 普通TMM描述什么电压分布
+### 2.3 机组无功限值与运行方式
 
-### 8.1 共同尺度和散布参数
+运行方式由各机组状态$\sigma_g\in\{-1,0,1\}$表示：$\sigma_g=0$表示机组调压，$\sigma_g=1$、$-1$分别表示无功固定于上限$Q_{{\rm G},g}^{\max}$和下限$Q_{{\rm G},g}^{\min}$。固定于限值的机组所在节点转为PQ节点，其电压幅值不再给定。对每个场景按以下规则计算：
 
-在训练坐标拟合固定3分量的普通多元t混合：
+1）全部PV机组调压，按2.1、2.2节求解；
+
+2）按式(6)计算仍调压机组的无功出力，若$Q_{{\rm G},g}>Q_{{\rm G},g}^{\max}+\varepsilon_Q$则置$\sigma_g=1$，若$Q_{{\rm G},g}<Q_{{\rm G},g}^{\min}-\varepsilon_Q$则置$\sigma_g=-1$，同一次求解中的全部越限机组同时转换；
+
+3）若出现新的越限，按新的运行方式重新求解；已转换的机组不再恢复调压，直至不再出现新的越限。
+
+式中：$\varepsilon_Q=5\times10^{-6}$ Mvar。平衡节点不设无功限值。该规则与MATPOWER牛顿-拉夫逊潮流计入机组无功限值时的处理一致【文献待核查】。运行方式相同的场景分为一组批量计算，每种运行方式按2.1、2.2节建立各自的展开点。
+
+## 3 节点电压的联合概率模型
+
+### 3.1 电压坐标与标准化
+
+全部非平衡节点（含PV节点）电压的实部和虚部构成电压坐标$\boldsymbol x$。由用于建立模型的源荷场景（下称建模场景）的电压样本计算均值$\bar{\boldsymbol x}$及协方差矩阵的特征分解，标准化坐标为
 
 $$
-z\sim\sum_{k=1}^{3}\pi_k\,t_{\nu_k}(\mu_k,\Sigma_k),\qquad
-\pi_k\ge0,\quad\sum_k\pi_k=1 .
+\boldsymbol z=\boldsymbol D^{-1}\boldsymbol E_d^{\rm T}(\boldsymbol x-\bar{\boldsymbol x}),\qquad
+\boldsymbol x=\bar{\boldsymbol x}+\boldsymbol E_d\boldsymbol D\boldsymbol z
 \tag{11}
 $$
 
-每个分量的生成方式为
+式中：$\boldsymbol E_d$为前$d$个特征向量组成的矩阵；$\boldsymbol D={\rm diag}(\sigma_1,\ldots,\sigma_d)$为对应方向的电压标准差。$d$取累计方差损失不超过$10^{-10}$且数值可分辨的方向数，PV节点电压幅值固定等确定性关系对应的方向不保留。
+
+### 3.2 多元t混合模型
+
+标准化电压的概率密度采用多元t混合模型（TMM）：
 
 $$
-z=\mu_k+L_k g\sqrt{\nu_k/U},\qquad
-g\sim N(0,I),\quad U\sim\chi^2_{\nu_k},\quad L_kL_k^\mathsf T=\Sigma_k .
+f(\boldsymbol z)=\sum_{k=1}^{K}\pi_k\,t_{\nu_k}(\boldsymbol z;\boldsymbol\mu_k,\boldsymbol\Sigma_k)
 \tag{12}
 $$
 
-同一分量内所有方向共享一个U，且U与g独立。这是用户确认的ordinary multivariate t / elliptical，不是各方向独立尺度的multiple-scaled-t。Σ是散布矩阵；ν>2时协方差为νΣ/(ν−2)，不能混用。
-
-### 8.2 拟合参数怎样确定
-
-对训练样本z_n，以当前参数计算分量责任γ_nk和距离δ_nk：
-
 $$
-\gamma_{nk}=\frac{\pi_k t_{\nu_k}(z_n;\mu_k,\Sigma_k)}
-{\sum_h\pi_h t_{\nu_h}(z_n;\mu_h,\Sigma_h)},\qquad
-u_{nk}=\frac{\nu_k+d}{\nu_k+\delta_{nk}},\quad
-\delta_{nk}=(z_n-\mu_k)^\mathsf T\Sigma_k^{-1}(z_n-\mu_k).
+t_{\nu}(\boldsymbol z;\boldsymbol\mu,\boldsymbol\Sigma)=
+\frac{\Gamma\!\left(\frac{\nu+d}{2}\right)}{\Gamma\!\left(\frac{\nu}{2}\right)(\nu\pi)^{d/2}|\boldsymbol\Sigma|^{1/2}}
+\left(1+\frac{\delta}{\nu}\right)^{-\frac{\nu+d}{2}},\qquad
+\delta=(\boldsymbol z-\boldsymbol\mu)^{\rm T}\boldsymbol\Sigma^{-1}(\boldsymbol z-\boldsymbol\mu)
 \tag{13}
 $$
 
-未加正则化的EM位置和散布更新为
+式中：$K$为分量数；$\pi_k$、$\boldsymbol\mu_k$、$\boldsymbol\Sigma_k$、$\nu_k$分别为第$k$个分量的权重、位置向量、散布矩阵和自由度，分量协方差为$\nu_k\boldsymbol\Sigma_k/(\nu_k-2)$。式(12)可等价表示为
 
 $$
-\pi_k^{new}=\frac{\sum_n\gamma_{nk}}{N},\qquad
-\mu_k^{new}=\frac{\sum_n\gamma_{nk}u_{nk}z_n}{\sum_n\gamma_{nk}u_{nk}},
-$$
-
-$$
-\Sigma_k^{new}=
-\frac{\sum_n\gamma_{nk}u_{nk}(z_n-\mu_k^{new})(z_n-\mu_k^{new})^\mathsf T}
-{\sum_n\gamma_{nk}} .
+\boldsymbol z\mid C=k,S_k=s\sim\mathcal N(\boldsymbol\mu_k,s\boldsymbol\Sigma_k),\qquad
+S_k\sim{\rm InvGamma}\!\left(\frac{\nu_k}{2},\frac{\nu_k}{2}\right)
 \tag{14}
 $$
 
-散布更新的分母是责任之和，不能误用责任与尺度权重之和。ν在声明区间[4.1,200]内，用训练目标的一维更新确定；区间、白化后散布下限10⁻⁸、初始化和停止条件属于模型设置，须保存并用验证集检查。正则化后仍须监测目标和病态分量，不能以公式正确代替实现验证。首版不要求重新发明源库的EM/PX-EM。
+式中：$C$为场景所属分量；$S_k$为第$k$个分量的共同波动强度，同一场景中所有电压方向按同一$\sqrt{S_k}$缩放。$\nu_k\to\infty$时$S_k\equiv1$，式(12)退化为高斯混合模型（GMM）。
 
-统计分量k描述电压分布形状，不代表某个PV/PQ控制模式。固定PV幅值对应电压平面上的圆，连续普通t在该平面中一般会偏离该圆。全局TMM混合不同成功控制模式也是近似；二次潮流方程不保证输出电压恰好服从式(11)。
+### 3.3 共同波动强度作用方向与分块模型
 
-## 9. 电压分布怎样连接线路功率
+式(14)中共同波动强度作用于全部电压方向。输电网中，只有由同一波动过程驱动的注入功率所引起的电压变化需要随该强度放大，机组调压约束及其他独立波动对应的电压方向不必共享该强度。为此采用分块TMM【文献待核查】，由潮流灵敏度确定强度的作用方向。
 
-完整网络给出线路两端电流：
+在运行点$\boldsymbol x^{(0)}$处，共用同一波动强度的注入功率所驱动的电压变化方向张成
 
 $$
-I_f=Y_f\overline V,\qquad I_t=Y_t\overline V .
+\boldsymbol H=\boldsymbol J_{0}^{-1}\boldsymbol L_{\mathcal W}
 \tag{15}
 $$
 
-每端电压取该端节点电压。设功率基准B0=100 MVA，则
+式中：$\boldsymbol J_{0}$为式(7)的雅可比矩阵，运行点取建模场景中出现最多的运行方式在平均负荷下的潮流解；$\boldsymbol L_{\mathcal W}$为0-1选择矩阵，选取共用同一波动强度的注入所在的方程行。本文算例中全部负荷共用同一波动强度，故选取全部非平衡负荷节点的有功行及PQ负荷节点的无功行；仍调压的PV节点上负荷无功由机组承担，不改变节点电压，不予选取。
+
+将$\boldsymbol H$映射到标准化坐标并作奇异值分解：
 
 $$
-S_a^{complex}=B_0\,\overline V_a I_a^*,\quad
-P_a=\Re S_a^{complex},\quad Q_a=\Im S_a^{complex},\quad
-|S_a|=B_0|\overline V_a||I_a| .
+\tilde{\boldsymbol H}=\boldsymbol D^{-1}\boldsymbol E_d^{\rm T}\boldsymbol H=\boldsymbol U_H\boldsymbol\Lambda_H\boldsymbol R_H^{\rm T},\qquad
+r=\#\{\lambda_{H,j}>10^{-10}\lambda_{H,1}\},\qquad
+\boldsymbol Q_u=\boldsymbol U_H(:,1{:}r)
 \tag{16}
 $$
 
-P/Q正号表示从该端节点流入支路；另端单独计算，不能简单取负。线路有功损耗、无功损耗和充电均保留。MVA取实际同端电压与电流乘积。
-
-某个支路端只需要4个局部实量：
+式中：$\lambda_{H,j}$为奇异值；$\boldsymbol Q_w$取$\boldsymbol Q_u$的正交补。记$\boldsymbol u=\boldsymbol Q_u^{\rm T}\boldsymbol z\in\mathbb R^{r}$，$\boldsymbol w=\boldsymbol Q_w^{\rm T}\boldsymbol z\in\mathbb R^{d-r}$，第$k$个分量为
 
 $$
-x=[e_a,f_a,i_{R,a},i_{I,a}]^\mathsf T=H_a v .
+\boldsymbol u\mid C=k,S_k=s\sim\mathcal N(\boldsymbol m_k,s\boldsymbol\Sigma_k^{u}),\qquad
+S_k\sim{\rm InvGamma}\!\left(\frac{\nu_k}{2},\frac{\nu_k}{2}\right)
 \tag{17}
 $$
 
-第k分量的局部位置、散布为
-
 $$
-m_{a,k}=H_a(v_0+T_V\mu_k),\qquad
-\Lambda_{a,k}=H_aT_V\Sigma_kT_V^\mathsf TH_a^\mathsf T .
+\boldsymbol w\mid\boldsymbol u,C=k\sim\mathcal N(\boldsymbol a_k+\boldsymbol G_k\boldsymbol u,\boldsymbol\Omega_k)
 \tag{18}
 $$
 
-混合权重和ν不变。Λ的有效秩最多4；可用有效因子写x=m+Ft，t服从秩r的标准普通t。全网电压维度增加不意味着每个支路端都做同维数积分。
+式中：$\boldsymbol m_k$、$\boldsymbol\Sigma_k^{u}$为强度作用方向上的位置向量与散布矩阵；$\boldsymbol a_k$、$\boldsymbol G_k$、$\boldsymbol\Omega_k$为其余方向的截距、对$\boldsymbol u$的回归系数矩阵和残差协方差矩阵。$r=d$时式(17)、(18)退化为式(14)；$\nu_k\to\infty$时退化为GMM。同一分量数下，分块TMM与标准TMM的参数个数相同。
 
-用局部量可直接得到
+### 3.4 参数估计与分量数确定
 
-$$
-V_a^2=e_a^2+f_a^2,\quad
-P_a/B_0=e_a i_R+f_a i_I,\quad
-Q_a/B_0=f_a i_R-e_a i_I,
-$$
+标准TMM采用期望最大化方法估计参数。第$k$个分量对场景$i$的后验概率记为$\gamma_{ik}$，强度权重为$\tau_{ik}=(\nu_k+d)/(\nu_k+\delta_{ik})$，$N_k=\sum_i\gamma_{ik}$，参数更新为
 
 $$
-|S_a|^2/B_0^2=(e_a^2+f_a^2)(i_R^2+i_I^2).
+\pi_k=\frac{N_k}{N},\qquad
+\boldsymbol\mu_k=\frac{\sum_i\gamma_{ik}\tau_{ik}\boldsymbol z_i}{\sum_i\gamma_{ik}\tau_{ik}},\qquad
+\boldsymbol\Sigma_k=\frac{1}{N_k}\sum_i\gamma_{ik}\tau_{ik}(\boldsymbol z_i-\boldsymbol\mu_k)(\boldsymbol z_i-\boldsymbol\mu_k)^{\rm T}
 \tag{19}
 $$
 
-前三项是局部二次关系；MVA平方一般为四次关系，不以固定电流替代。
-
-## 10. 节点电压和线路P/Q的CDF怎样算
-
-电压幅值及支路P/Q都可转为局部二次量q的阈值事件。对x=m+Ft，指定q后，其关于t仍是二次式。选其中一个标量坐标T，将其余r−1维记为η。标准普通t给出
+自由度由下式求根：
 
 $$
-T\mid\eta\sim t_{\nu+r-1}
-\left(0,\frac{\nu+\eta^\mathsf T\eta}{\nu+r-1}\right).
+\ln\frac{\nu_k}{2}-\psi\!\left(\frac{\nu_k}{2}\right)+1+\frac{1}{N_k}\sum_i\gamma_{ik}\left[\psi\!\left(\frac{\nu_k'+d}{2}\right)-\ln\frac{\nu_k'+\delta_{ik}}{2}-\tau_{ik}\right]=0
 \tag{20}
 $$
 
-括号第二项是标量散布，即尺度的平方。η边际仍为ν自由度普通多元t。给定η后，q≤q0变为
+式中：$N$为建模场景数；$\psi$为双伽马函数；$\nu_k'$为上一次迭代的自由度。分块TMM采用期望条件最大化方法：$\boldsymbol u$块按式(19)、(20)更新，其中$d$换为$r$；$\boldsymbol w$块按加权最小二乘更新：
 
 $$
-a(\eta)T^2+b(\eta)T+c(\eta)-q_0\le0 .
+[\boldsymbol a_k,\boldsymbol G_k]=\arg\min\sum_i\gamma_{ik}\|\boldsymbol w_i-\boldsymbol a_k-\boldsymbol G_k\boldsymbol u_i\|_2^{2},\qquad
+\boldsymbol\Omega_k=\frac{1}{N_k}\sum_i\gamma_{ik}\boldsymbol\epsilon_{ik}\boldsymbol\epsilon_{ik}^{\rm T}
 \tag{21}
 $$
 
-根据系数和实根确定区间并集，用式(20)的标量t CDF相减，再对η平均。二次退化为一次、恒真、恒假及阈值原子情形须单独处理。最后按π加权各分量。
+式中：$\boldsymbol\epsilon_{ik}=\boldsymbol w_i-\boldsymbol a_k-\boldsymbol G_k\boldsymbol u_i$；分块TMM的$\gamma_{ik}$由式(17)的t密度与式(18)的条件高斯密度之积计算。
 
-外层最多3维，可用随机化Sobol。需要从正确的联合t边际生成η，例如逐维条件逆CDF：第j维的条件自由度为ν+j−1，散布为(ν+前面各维平方和)/(ν+j−1)。不能给各维独立抽取同一自由度t，也不能多引入一个随机尺度后仍把实际积分称为3维。
+计算设置如下：散布矩阵与残差协方差矩阵的特征值下限为$10^{-7}$；自由度取值范围为$[4.1,10^{5}]$；平均对数似然变化小于$10^{-6}$时停止迭代。初值按前三个电压主方向上的投影将建模场景等分为$K$组形成，取3组不同投影方向；先估计GMM，再以GMM结果为初值估计TMM，自由度初值取12和200；分块TMM以同一分量数的GMM为初值。估计结果需满足迭代收敛、对数似然不下降且各分量有效场景数$N_k>d+2$。
 
-节点幅值的CDF为
+分量数由另一组独立源荷场景（下称定阶场景）的平均对数似然确定：
 
 $$
-F_{V_i}(v)=
-\begin{cases}
-0,&v<0,\\
-\Pr(e_i^2+f_i^2\le v^2),&v\ge0 .
-\end{cases}
+K^{*}=\arg\max_{K}\frac{1}{N_{\rm v}}\sum_{v=1}^{N_{\rm v}}\ln\hat f_K(\boldsymbol z_v)
 \tag{22}
 $$
 
-支路P/Q保留正负和单位，不取绝对值来制造单峰。节点相角使用atan2并统一基准；相角CDF按完整角扇区和象限处理，不能用arctan(f/e)。1号基准相角是确定量；若其他相角跨越±π，应说明圆周统计约定。
+式中：$N_{\rm v}$为定阶场景数；$\hat f_K$为分量数为$K$时的估计密度。分量数确定不使用交流Monte Carlo结果。
 
-## 11. 线路MVA分布怎样算
+## 4 节点电压与线路功率的概率分布
 
-给定一般T方向，式(19)的MVA平方可能是四次式。优先在局部因子中寻找一个使电压实虚部不变的单位方向u：
+### 4.1 节点电压幅值与相角
+
+由式(11)将$\boldsymbol z$还原为$\boldsymbol x$，节点$i$的电压幅值和相角为
 
 $$
-F_Vu=0,\qquad \|u\|=1 .
+U_i=\sqrt{e_i^{2}+f_i^{2}},\qquad\theta_i=\arctan\!2(f_i,e_i)
 \tag{23}
 $$
 
-F_V是F的前两行。正交旋转后把T放在该方向，给定η时端电压固定，电流随T线性变化，MVA平方便成为关于T的二次式。于是复用式(20)和区间CDF计算，并保留真实端电压。
+相角以平衡节点电压相角为基准。
 
-方向是否存在必须逐分量、逐支路端核查。满秩4维时通常可找到；退化局部秩下可能没有。不存在时采用通用四次不等式区间求解或明确的数值积分回退，记录实际方法、次数和耗时，不强行套二次公式。r=0时直接计算确定值；奇异散布按有效秩处理。
+### 4.2 线路功率
 
-MVA阈值s<0时CDF为0；s≥0时计算qV qI≤(s/B0)²。本轮没有有效线路额定值，不把上述分布查询扩写为过载结论。
-
-## 12. PDF、固定PV电压和曲线呈现
-
-半解析计算优先获得CDF。连续部分的PDF可由已经收敛的CDF差分或分箱概率得到。例如在相邻网格点间，
+计及线路充电电容与变压器变比、相移，支路$ij$首端电流和功率为
 
 $$
-\bar f_j=\frac{F(x_{j+1})-F(x_j)}{x_{j+1}-x_j}.
+\dot I_{ij}=y_{ij}^{\rm ff}\dot V_i+y_{ij}^{\rm ft}\dot V_j,\qquad
+P_{ij}+{\rm j}Q_{ij}=S_{\rm B}\,\dot V_i\dot I_{ij}^{*}
 \tag{24}
 $$
 
-它是该区间平均密度，不自动等于中点精确密度。同一组阈值优先共享外层积分点，减少相邻CDF差分的随机化噪声；步长细化、积分点数和边界处理分别检查；记录实际差分或解析求导方法。负密度、CDF非单调或区间概率不归一时诊断，不静默裁为0、强制平滑或重新归一来掩盖误差。有限绘图区间还须报告区间外概率，不能只对可见部分归一。
-
-均值和标准差不能只从有限绘图窗口求和。对局部二次量q=t^\mathsf TAt+2b^\mathsf Tt+c，例如P/Q，单分量矩量可由普通t得到：
-
-$
-E(q)=c+\alpha_2\,tr(A),\qquad
-Var(q)=2\alpha_4\,tr(A^2)+(\alpha_4-\alpha_2^2)[tr(A)]^2
-+4\alpha_2 b^\mathsf Tb,
-\tag{24a}
-$
-
-其中α2=ν/(ν−2)，α4=ν²/[(ν−2)(ν−4)]，方差要求ν>4。各混合分量再按权重合并均值和二阶矩，不能只平均分量标准差。所选ν下限4.1满足该矩条件，但接近4时方差对尾部敏感，需要保存参数并单独检查数值可靠性。
-
-幅值V和MVA非负，均值和二阶矩可由完整CDF尾积分计算：
-
-$
-E(X)=\int_0^\infty[1-F_X(x)]dx,\qquad
-E(X^2)=2\int_0^\infty x[1-F_X(x)]dx .
-\tag{24b}
-$
-
-截断半径、外层积分误差和尾部剩余量须分别检查；在最大预算下无法界定时，将矩量标为精度不足或明确给出独立模型抽样估计及其不确定性，不改称解析矩量。MVA二阶矩也可用式(19)的四次多项式和普通t四阶矩核对。分位数采用inf{x:F(x)≥p}，经验CDF与模型使用一致定义；原子处保留跳跃。
-
-MC用完整交流样本形成经验CDF与直方图。直方图高度按全部可评估样本及箱宽计算；若另画KDE，应标为MC密度平滑。TMM模型抽样得到的KDE也必须标明抽样来源，不能称作半解析曲线。
-
-PV处于调压状态时，真实电压幅值在Vset有点质量；触限后才出现变化部分：
+式中：$y_{ij}^{\rm ff}$、$y_{ij}^{\rm ft}$为支路$\pi$型等值导纳参数；$S_{\rm B}$为功率基准值；末端功率同理。由式(24)，$P_{ij}$、$Q_{ij}$及节点注入功率均为$\boldsymbol x$的二次函数，记为$q(\boldsymbol x)=\boldsymbol x^{\rm T}\boldsymbol A\boldsymbol x+\boldsymbol b^{\rm T}\boldsymbol x+c$，其中常数项和一次项来自平衡节点电压。给定分量$k$时，
 
 $$
-\Pr(V_i=V_i^{set})=\Pr(i\text{仍调压})+
-\Pr(V_i=V_i^{set},i\text{已限Q}) .
+{\rm E}\left[q\mid C=k\right]=q(\boldsymbol c_k)+{\rm tr}\!\left(\boldsymbol A\boldsymbol M\boldsymbol V_k\boldsymbol M^{\rm T}\right),\qquad
+\boldsymbol c_k=\bar{\boldsymbol x}+\boldsymbol M\boldsymbol\mu_k,\quad\boldsymbol M=\boldsymbol E_d\boldsymbol D
 \tag{25}
 $$
 
-通常第二项没有可测质量，但有确定状态时不能先验删去。按控制记录识别调压质量，另以声明的数值容差识别其他近似固定量；不把数值容差带内全部概率称为严格原子。
+式中：$\boldsymbol V_k$为分量$k$中$\boldsymbol z$的协方差矩阵，标准TMM为$\nu_k\boldsymbol\Sigma_k/(\nu_k-2)$；分块TMM中$\boldsymbol u$、$\boldsymbol w$两块的协方差分别为$\boldsymbol V_k^{u}=\nu_k\boldsymbol\Sigma_k^{u}/(\nu_k-2)$和$\boldsymbol G_k\boldsymbol V_k^{u}\boldsymbol G_k^{\rm T}+\boldsymbol\Omega_k$，互协方差为$\boldsymbol G_k\boldsymbol V_k^{u}$，按$\boldsymbol Q_u$、$\boldsymbol Q_w$变换回$\boldsymbol z$坐标。电气量均值为各分量均值按$\pi_k$加权之和。
 
-连续TMM一般不能表达该PV点质量，因此单列MC调压比例、限Q比例、CDF跳跃、TMM偏离Vset的分布及10⁻⁴ p.u.容差带内质量。固定PV不画虚假的连续钟形MC密度。不得把模型样本投回圆上、裁剪电压或删样本后仍沿用原普通t公式。CDF在原子处可能有不可消除的差别，应作为模型局限报告。
+### 4.3 概率分布的数值计算
 
-首批可视化对象为PQ电压V4/V9/V14，以及1–2的1端、4–9的9端、9–14的14端P/Q/MVA。选择在运行前确定；完整表仍覆盖14节点和20支路双端。图表设计见[figure_plan.md](figure_plan.md)。
-
-## 13. 机组Pg/Qg计算的概率边界
-
-相同负荷输入下，快速和完整交流都能回算机组Pg/Qg，必须逐机组比较Qg、参考Pg、限值等号和最终节点类型。
-
-但是Qg=节点网络无功注入＋随机QD−其他固定注入。只拟合电压分布，没有同时保留QD与电压的联合分布，不能在带随机负荷的发电母线上给出普遍正确的机组Qg PDF；Pg也有类似问题。线路功率则由电压和固定导纳直接决定，可用式(17)至(21)。
-
-当前机组输出提供同输入前向误差及完整AC-MC统计。特别地，母线无随机负荷且其他注入确定时，可由网络电压计算该母线总发电输出，但这一特例不用于声称本轮已经获得全部机组TMM分布。若将来拟合联合输入/电压，需要单独扩展协议，本次不暗中新增。
-
-## 14. 与完整交流MC怎样分层比较
-
-| 验证层次 | 比较对象 | 能回答的问题 |
-| --- | --- | --- |
-| 网络和方程 | 完整导纳、独立支路公式、有限差分、二次恒等式 | 变压器、充电、索引和PV方程是否正确 |
-| 固定模式潮流 | 相同输入，双方关闭Q切换 | 快速电压、Qg与双端潮流误差多大；这只是诊断 |
-| 带Q限值潮流 | 相同输入、相同Q策略，与独立完整交流对照 | 触限、换参考和状态是否一致 |
-| 电压坐标与拟合 | 训练外电压、差压、电流和PV幅值 | 重建误差、弱方向与统计表示偏差 |
-| 给定TMM积分 | 半解析CDF与独立模型内采样 | 条件CDF、MVA处理与数值积分是否正确 |
-| 最终分布 | 独立负荷完整交流MC与冻结TMM查询 | 实际电压和线路分布误差及适用范围 |
-
-固定模式检查不能替代带Q限值结果。模型内采样只检验给定分布的积分，不能代替独立源荷MC。快速直角坐标与参照极坐标实现还需独立物理核查，不能共同使用一段有缺陷的输出程序互相证明。
-
-同输入前向初始目标：电压幅值差10⁻⁶ p.u.、对齐相角差10⁻⁵ rad、Qg与参考Pg差10⁻⁵ p.u.，支路P/Q/MVA分别不超过10⁻³ MW/MVAr/MVA；独立交流方程容差初设10⁻¹⁰ p.u.。这些均未验证。
-
-完整分布至少报告均值、标准差、1%/5%/50%/95%/99%分位数、CDF网格最大绝对差。初始电压均值/分位数目标分别为10⁻⁴/10⁻³ p.u.，线路功率均值/分位数目标分别为1/5 MW、MVAr或MVA；CDF网格差初设0.02。目标用于登记不足，不预设通过。近零均值/标准差和固定量采用绝对误差，不用不稳定的相对数。
-
-CDF网格差不是严格全域KS距离；如需报告KS，应另计算或可靠界定全域上确界。MC直方图形状依赖箱宽，主要分布判断同时依靠CDF和物理单位误差，不凭肉眼宣布贴合。
-
-MC的95%点概率区间可按二项分布构造；若要求整条CDF的同时带，需使用明确的同时覆盖方法，不能把逐点区间当整曲线区间。均值/分位数不确定性采用有记录的独立MC重采样等方法，记录重复次数与随机流。随机化Sobol重复的波动单列为积分诊断，不是MC参照置信区间。
-
-## 15. 失败输入、概率解释与费用
-
-所有尝试输入保留input_id、初始/最终节点类型、参考、机组Pg/Qg、电压、支路端标识、残差、控制步骤、失败原因和交流调用。数值不收敛不能直接称为电压崩溃；运行限值违反也不等于求解失败。
-
-若不可评估质量为ε，成功状态归一化的TMM描述“给定可评估”的分布。某个电压或线路事件E的无条件概率只能给出
+电气量的累积分布函数按分量分层的随机化Sobol序列计算。第$k$个分量分配$N_k^{\rm s}=N^{\rm s}\pi_k$个积分点，每点取$d+1$维Sobol点$\boldsymbol\eta$，由前$d$维生成标准正态向量，由最后一维生成共同波动强度：
 
 $$
-(1-\varepsilon)\Pr(E\mid可评估)
-\le\Pr(E)\le
-(1-\varepsilon)\Pr(E\mid可评估)+\varepsilon .
+\boldsymbol z=\boldsymbol\mu_k+\frac{\boldsymbol L_k\Phi^{-1}(\boldsymbol\eta_{1:d})}{\sqrt{\tau}},\qquad
+\tau=\frac{2}{\nu_k}\Gamma^{-1}\!\left(\eta_{d+1};\frac{\nu_k}{2}\right)
 \tag{26}
 $$
 
-有限MC中的ε本身也有统计误差；若用TMM近似条件概率，还须另报告模型误差。式(26)不能消除拟合偏差。缺少不可评估状态的功率/电压后果界时，不能给均值或严重程度作同样的有限上下界。
+式中：$\boldsymbol L_k$为$\boldsymbol\Sigma_k$的Cholesky因子；$\Phi^{-1}$为标准正态分布的逆函数；$\Gamma^{-1}(\cdot;a)$为正则化不完全伽马函数的逆函数。分块TMM中$\boldsymbol u$按式(26)生成，$\boldsymbol w=\boldsymbol a_k+\boldsymbol G_k\boldsymbol u+\boldsymbol L_k^{\Omega}\Phi^{-1}(\boldsymbol\eta_{r+1:d})$。每个积分点的权重为$\pi_k/N_k^{\rm s}$，由式(11)、(23)、(24)计算电压幅值、相角与线路功率，加权得到累积分布函数。本文取$N^{\rm s}=50000$。
 
-成本包括展开点、快速修正、所有完整交流回退、控制内层求解、训练/验证、拟合、积分、MC参照、出图和归档。100000个MC输入不等于100000次交流内层求解。没有实际计时就不报告加速比；没有计费信息则费用记unknown。
+## 5 计算流程
 
-## 16. 实现顺序、当前结论与复算要求
+步骤1：按源荷不确定性模型生成建模场景与定阶场景。
 
-依次完成标准case14确定性复算、26维方程/导数、同输入固定模式、Q控制分支、全节点重建、普通TMM拟合、局部CDF/PDF和独立MC比较。Q控制诊断保留未触限、单上限、单下限、多PV限值、原参考触限、无剩余平衡能力及边界两侧；这些是少量正确性检查，不新增概率研究场景。
+步骤2：按2.1~2.3节对两组场景进行批量潮流计算，得到计及机组无功限值的节点电压场景。
 
-每阶段在真实OpenAI托管执行器保存代码、输入、模型、种子、失败状态、日志、依赖版本、运行清单和SHA。从代码及data可在空cache恢复代表流程。当前执行器离线，不能运行潮流或生成研究曲线；GitHub文档读写不代表计算环境恢复。
+步骤3：由建模场景电压按式(11)确定标准化坐标。
 
-本次明确要求更新仓库理论文档，因此保存本次文档和对应IEEE14输入/配置。后续测试内容与结果在用户明确说“Push／推送”时整体同步到GitHub，并更新研究笔记、命题、证据、图表与状态；阶段云端检查点仍持续保存。实际LFS对象未核验时不称完整归档。
+步骤4：按式(15)、(16)确定共同波动强度的作用方向。
 
-目前能够支持的判断是：混合P/Q/V²方程、普通t仿射投影和条件标量积分构成一条可实施路线；快速逆计算、固定PV支撑近似、控制切换及最终分布误差仍需真实数值验证。尚无本轮MC结果、PDF/CDF曲线、误差、速度或方法完成结论。
+步骤5：对各候选分量数按3.4节估计GMM、标准TMM和分块TMM参数，按式(22)确定分量数。
+
+步骤6：按4.3节计算节点电压幅值、相角及线路有功、无功的概率分布，均值可按式(25)解析计算。
+
+全过程只在各运行方式的展开点及少量未收敛场景处调用牛顿-拉夫逊潮流计算，不需要逐场景交流潮流计算。
+
+## 6 算例源荷模型与精度评价指标
+
+### 6.1 算例源荷模型
+
+算例中各负荷节点有功、无功负荷按基准值乘以随机倍率：
+
+$$
+P_{{\rm L},i}=P_{{\rm L},i}^{0}\left[1+c\sqrt3\left(2F_{t,\nu}(h_i^{P})-1\right)\right],\qquad
+h_i^{P}=\sqrt{\frac{\nu}{\chi^{2}_{\nu}}}\left(0.4\xi_{\rm g}+0.3\xi_{\rm a}+\sqrt{0.75}\,\xi_i^{P}\right)
+\tag{27}
+$$
+
+$$
+h_i^{Q}=\sqrt{\frac{\nu}{\chi^{2}_{\nu}}}\left[0.4\xi_{\rm g}+0.3\xi_{\rm a}+\sqrt{0.75}\left(0.6\xi_i^{P}+0.8\xi_i^{Q}\right)\right]
+\tag{28}
+$$
+
+式中：$\xi_{\rm g}$、$\xi_{\rm a}$、$\xi_i^{P}$、$\xi_i^{Q}$为相互独立的标准正态变量，分别表示全系统、区域及节点有功、无功的波动；$\chi^{2}_{\nu}$为与之独立、自由度$\nu=12$的卡方变量，同一场景中全部负荷共用，构成共同波动强度；$F_{t,\nu}$为t分布的累积分布函数；$c=5\%$为负荷波动的变异系数。无功负荷倍率以$h_i^{Q}$按式(27)同理计算。每个负荷倍率在$1\pm\sqrt3c$范围内均匀分布，基准负荷为零的节点保持为零。
+
+### 6.2 精度评价指标
+
+以独立的交流Monte Carlo场景（下称检验场景）逐点牛顿-拉夫逊潮流结果为参照，对每个电气量计算
+
+$$
+e_\mu=|\hat\mu-\mu_{\rm MC}|,\qquad
+e_\sigma=\left|\frac{\hat\sigma}{\sigma_{\rm MC}}-1\right|,\qquad
+e_p=\left|\hat y_p-y_{{\rm MC},p}\right|,\qquad
+D_{\rm KS}=\sup_{y}\left|\hat F(y)-F_{\rm MC}(y)\right|
+\tag{29}
+$$
+
+式中：$\hat\mu$、$\hat\sigma$、$\hat y_p$、$\hat F$分别为计算所得均值、标准差、$p$分位数和累积分布函数，下标MC表示交流Monte Carlo结果；$p$取1%和99%，$e_p$同时以$\sigma_{\rm MC}$为单位报告。$e_\mu$反映计算结果的准确度，$e_\sigma$、$e_p$和$D_{\rm KS}$反映分布形状与尾部的精度。建模场景本身与检验场景之间的$D_{\rm KS}$作为有限场景数下的抽样误差水平。

@@ -1,0 +1,54 @@
+pass,mode,sampleCount,anchorCount,fallbackCount,exactAcCallCount,newViolations,maximumFinalResidualPu
+1,"all PV regulating",20000,1,0,1,20000,9.99763127840225e-09
+2,"G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",104,1,0,1,55,9.63949264853881e-09
+2,"G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",30,1,0,1,13,8.77320227576917e-09
+2,"G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",3,1,0,1,1,8.42002023659916e-09
+2,"G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",1,1,0,1,0,2.35353766278468e-12
+2,"G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",967,1,0,1,154,9.99929161693558e-09
+2,"G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",2275,1,0,1,214,9.9750412374533e-09
+2,"G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",133,1,0,1,6,9.54630596794459e-09
+2,"G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",1097,1,0,1,34,9.99763899445227e-09
+2,"G1@Qmin, G19@Qmin, G34@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",3,1,0,1,0,6.14669304344062e-09
+2,"G1@Qmin, G19@Qmin, G34@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",81,1,0,1,7,9.21991483160411e-09
+2,"G1@Qmin, G19@Qmin, G34@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",3,1,0,1,0,3.03055658346096e-09
+2,"G1@Qmin, G19@Qmin, G34@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",176,1,0,1,5,9.28329857430299e-09
+2,"G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",17,1,0,1,5,6.93090485004433e-09
+2,"G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",10,1,0,1,5,6.24381757408088e-09
+2,"G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",1,1,0,1,1,2.9005886384641e-12
+2,"G19@Qmin, G32@Qmin, G34@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",683,1,0,1,39,9.96564020194768e-09
+2,"G19@Qmin, G32@Qmin, G34@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",4320,1,0,1,184,9.96256055429967e-09
+2,"G19@Qmin, G32@Qmin, G34@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",186,1,0,1,1,9.56082457648222e-09
+2,"G19@Qmin, G32@Qmin, G34@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",5763,1,0,1,53,9.99496485576401e-09
+2,"G19@Qmin, G34@Qmin, G56@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",1,1,0,1,0,2.11879887106119e-12
+2,"G19@Qmin, G34@Qmin, G56@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",1,1,0,1,0,2.55220094873483e-12
+2,"G19@Qmin, G34@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",17,1,0,1,3,8.69113658819032e-09
+2,"G19@Qmin, G34@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",571,1,0,1,26,9.84210157817245e-09
+2,"G19@Qmin, G34@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",16,1,0,1,2,9.15472841978016e-09
+2,"G19@Qmin, G34@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",3541,1,0,1,80,9.99873051021893e-09
+3,"G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G56@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",56,1,0,1,0,9.86270842773251e-09
+3,"G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G56@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",9,1,0,1,0,6.20174911425408e-09
+3,"G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G56@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",1,1,0,1,0,6.20885438811956e-12
+3,"G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",166,1,0,1,0,9.94643845064758e-09
+3,"G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",72,1,0,1,0,9.39528513321797e-09
+3,"G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",6,1,0,1,0,9.88119386313713e-09
+3,"G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",7,1,0,1,0,4.47492520816439e-09
+3,"G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",3,1,0,1,0,6.8195302738161e-09
+3,"G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",130,1,0,1,0,8.68594618452789e-09
+3,"G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",6,1,0,1,0,7.6740583332402e-09
+3,"G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",28,1,0,1,0,6.36971742018488e-09
+3,"G1@Qmin, G19@Qmin, G32@Qmin, G34@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",4,1,0,1,0,5.72512881547027e-09
+3,"G1@Qmin, G19@Qmin, G34@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",1,1,0,1,0,2.07549791808447e-12
+3,"G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G56@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",6,1,0,1,0,9.58814938556429e-09
+3,"G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G56@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",1,1,0,1,0,3.44254367994448e-12
+3,"G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",42,1,0,1,0,9.30701737900108e-09
+3,"G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",24,1,0,1,0,7.65190726059739e-09
+3,"G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",2,1,0,1,0,4.80849138284611e-10
+3,"G19@Qmin, G32@Qmin, G34@Qmin, G36@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",1,1,0,1,0,3.60378271558996e-12
+3,"G19@Qmin, G32@Qmin, G34@Qmin, G56@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",4,1,0,1,0,6.24383267311401e-09
+3,"G19@Qmin, G32@Qmin, G34@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",160,1,0,1,0,9.56925427786359e-09
+3,"G19@Qmin, G32@Qmin, G34@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",26,1,0,1,0,7.22500748118193e-09
+3,"G19@Qmin, G32@Qmin, G34@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",51,1,0,1,0,9.37164534864365e-09
+3,"G19@Qmin, G32@Qmin, G34@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",74,1,0,1,0,9.76498537585968e-09
+3,"G19@Qmin, G34@Qmin, G74@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",2,1,0,1,0,7.87049314610044e-09
+3,"G19@Qmin, G34@Qmin, G74@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",1,1,0,1,0,1.57881278334603e-12
+3,"G19@Qmin, G34@Qmin, G85@Qmin, G92@Qmin, G103@Qmax, G105@Qmin",5,1,0,1,0,7.37652428028923e-09

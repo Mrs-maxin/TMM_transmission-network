@@ -1,15 +1,35 @@
 # AGENTS.md
 
-# Shared project agent rules
+## Project Rules
 
-Read .cursor/rules/05-project-scope-and-cloud-execution.mdc first, then 00, 03, 04 and lexicon.md. Read 01 only for actual MATLAB work; 02 does not create an optimization requirement.
+Before editing code, documentation, comments, generated prose, or template
+structure in this repository, read and follow:
 
-The current study is ieee14-baseline-v1 (standard IEEE14 normal topology only). Old recovery is stopped; new numerical evidence is zero. Source and compute status are recorded truthfully. Cloud Python is authorized, user-Mac research is prohibited.
+- `.cursor/rules/00-lightweight-research-coding.mdc`
+- `.cursor/rules/01-matlab-code-style.mdc`
+- `.cursor/rules/02-local-optimizer-first.mdc`
+- `.cursor/rules/03-public-note-and-paper-skill-bridge.mdc`
+- `.cursor/rules/04-case-figure-and-metric-plan.mdc`
+- `.cursor/rules/lexicon.md`
 
-Before edits load TMM_Transmission_note.md, 01_IDEA/story.md, the affected protocol/config files, and 02_PAPER/config/paper-profile.yaml. Keep purpose, claims, note and changelog synchronized.
+Treat these files as repository policy for Codex, Gemini CLI, Antigravity, and
+other coding-agent work in this template. Antigravity compatibility is routed
+through `GEMINI.md`.
 
-Project organization follows project-template-lite with a Python override. Original template examples live in 03_REFERENCE/template_snapshot, not as new numerical implementation. Copying the project must not start MATLAB or research calculations.
+For PowerLit writing/review handoff, also read
+`.cursor/contracts/project-template-handoff.schema.yaml` and the active
+`02_PAPER/config/paper-profile.yaml` (or its example). Keep reasoning policy in
+the Skill and persistent state, MATLAB execution, manifests, and audit artifacts
+in this template.
 
-Use actual source/inputs/models/results and frozen seeds. Do not treat a registered test, checker, template, planning file or old record as new passed evidence. Source data and code need independent physical validation.
+## Sync Policy
 
-Commit AGENTS.md, GEMINI.md, CLAUDE.md and .cursor changes together. Save cloud checkpoints, and push test content/results only when the user says Push/推送. A direct repository documentation edit request authorizes that requested scope. Preserve concurrent user edits. No numerical use of GitHub CI as a substitute for OpenAI-hosted execution.
+Commit and push `.cursor/`, `AGENTS.md`, `GEMINI.md`, and `CLAUDE.md` changes
+together with template changes. Do not treat agent rule files as editor-only
+local state.
+
+## Validation
+
+This template intentionally ships without a default executable test runner.
+Do not launch MATLAB automatically when copying or deploying the template.
+Run only the project-specific checks explicitly selected by the author.

@@ -1,5 +1,5 @@
 * text=auto
-*.py text eol=lf
+
 *.m text eol=lf
 *.md text eol=lf
 *.mdc text eol=lf
@@ -7,16 +7,14 @@
 *.yml text eol=lf
 *.json text eol=lf
 *.jsonl text eol=lf
-*.csv text eol=lf
 *.txt text eol=lf
-*.log text eol=lf
+*.csv text eol=lf
+
+*.fig binary
+*.mat binary
 *.png binary
-*.svg text eol=lf
+*.jpg binary
+*.jpeg binary
+*.tif binary
+*.tiff binary
 *.pdf binary
-*.npz filter=lfs diff=lfs merge=lfs -text
-*.npy filter=lfs diff=lfs merge=lfs -text
-*.h5 filter=lfs diff=lfs merge=lfs -text
-*.hdf5 filter=lfs diff=lfs merge=lfs -text
-*.parquet filter=lfs diff=lfs merge=lfs -text
-*.mat filter=lfs diff=lfs merge=lfs -text
-*.zip filter=lfs diff=lfs merge=lfs -text

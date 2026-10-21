@@ -1,0 +1,10 @@
+family,initialization,restart,initialDf,dfMode,estimateDf,dfUpdateMethod,status,accepted,validationLogDensity,iterations,dfMin,dfMax,minimumEffectiveCount,initialScaleAdjustedComponents,fitSeconds,warmStartSeconds,errorId,message,selectionMode,selectionEligible,emAcceleration
+GMM,balanced-physical,1,Inf,gaussian,0,gaussian,converged,1,-51.2114322107214,85,Inf,Inf,218.332514160537,0,10.9393157083333,0,,"",likelihood,1,none
+TMM,balanced-physical,1,12,adaptive,1,latent-em,converged,1,-49.3950030291978,101,12.7132923744812,46.1520143594337,214.050221170655,0,16.8734899583333,10.9393157083333,,"",likelihood,1,none
+TMM,balanced-physical,1,200,adaptive,1,latent-em,converged,1,-49.5026475475928,76,12.7803201869945,45.5408811372266,231.873233338507,0,13.62079975,10.9393157083333,,"",likelihood,1,none
+GMM,balanced-physical,2,Inf,gaussian,0,gaussian,failed,0,-Inf,0,NaN,NaN,NaN,NaN,8.23567508333333,0,TMM:CollapsedComponent,"Minimum effective count 47.3237292 at iteration 80 is not above 48 (dimension=46, K=20).",likelihood,0,none
+TMM,balanced-physical,2,12,adaptive,1,latent-em,converged,1,-51.603324450125,308,17.3671026888506,12005.7801792241,50.9748711861336,0,45.298523125,0,,"",likelihood,1,none
+TMM,balanced-physical,2,200,adaptive,1,latent-em,converged,1,-51.7601201767318,296,20.1060452905351,12038.0125212627,49.9687112848825,0,29.420127875,0,,"",likelihood,1,none
+GMM,balanced-physical,3,Inf,gaussian,0,gaussian,converged,1,-52.1132403631335,148,Inf,Inf,57.9853767512935,0,12.890971625,0,,"",likelihood,1,none
+TMM,balanced-physical,3,12,adaptive,1,latent-em,converged,1,-50.5839035219603,204,17.1313367367882,6443.14393862662,55.9957023000368,1,32.751946625,12.890971625,,"",likelihood,1,none
+TMM,balanced-physical,3,200,adaptive,1,latent-em,converged,1,-50.3857062513798,245,17.1301752549891,8108.58806650169,55.9961882178084,0,35.2297368333333,12.890971625,,"",likelihood,1,none
