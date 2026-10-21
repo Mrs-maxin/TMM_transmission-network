@@ -1,0 +1,130 @@
+{
+  "operating_point": "OP2",
+  "heavy_tailed_model": "grouped_t",
+  "nu_groups": [
+    5.926664849857451,
+    5.8890766788964415
+  ],
+  "sets": {
+    "modeling": {
+      "scenarios": 5256,
+      "converged": 5256,
+      "failures": {},
+      "failed_scenario_index": [],
+      "wall_time_s": 17.154040336608887,
+      "summed_worker_time_s": 48.16672897338867,
+      "workers": 4,
+      "iterations_mean": 7.973363774733638,
+      "iterations_max": 12,
+      "rounds_distribution": {
+        "1": 1,
+        "2": 2907,
+        "3": 2299,
+        "4": 49
+      },
+      "files": [
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/modeling_chunk000.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/modeling_chunk001.npz"
+      ],
+      "storage_precision": "float64",
+      "sampling_time_s": 0.025044918060302734,
+      "input_model": "grouped_t",
+      "disk_MB": 43.482892990112305
+    },
+    "determination": {
+      "scenarios": 1752,
+      "converged": 1752,
+      "failures": {},
+      "failed_scenario_index": [],
+      "wall_time_s": 11.94325065612793,
+      "summed_worker_time_s": 14.295002698898315,
+      "workers": 4,
+      "iterations_mean": 7.987442922374429,
+      "iterations_max": 12,
+      "rounds_distribution": {
+        "2": 957,
+        "3": 779,
+        "4": 16
+      },
+      "files": [
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/determination_chunk000.npz"
+      ],
+      "storage_precision": "float64",
+      "sampling_time_s": 0.00918126106262207,
+      "input_model": "grouped_t",
+      "disk_MB": 14.414515495300293
+    },
+    "check_heavy": {
+      "scenarios": 100000,
+      "converged": 100000,
+      "failures": {},
+      "failed_scenario_index": [],
+      "wall_time_s": 288.23855471611023,
+      "summed_worker_time_s": 956.3521275520325,
+      "workers": 4,
+      "iterations_mean": 7.97562,
+      "iterations_max": 12,
+      "rounds_distribution": {
+        "1": 8,
+        "2": 55244,
+        "3": 43895,
+        "4": 852,
+        "5": 1
+      },
+      "files": [
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk000.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk001.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk002.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk003.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk004.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk005.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk006.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk007.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk008.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk009.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk010.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk011.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk012.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk013.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk014.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk015.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk016.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk017.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk018.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk019.npz"
+      ],
+      "storage_precision": "float32",
+      "sampling_time_s": 0.4405241012573242,
+      "input_model": "grouped_t",
+      "disk_MB": 380.3834009170532
+    },
+    "check_light": {
+      "scenarios": 20000,
+      "converged": 20000,
+      "failures": {},
+      "failed_scenario_index": [],
+      "wall_time_s": 53.90689754486084,
+      "summed_worker_time_s": 177.87133955955505,
+      "workers": 4,
+      "iterations_mean": 7.98555,
+      "iterations_max": 12,
+      "rounds_distribution": {
+        "1": 3,
+        "2": 11040,
+        "3": 8786,
+        "4": 171
+      },
+      "files": [
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_light_chunk000.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_light_chunk001.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_light_chunk002.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_light_chunk003.npz"
+      ],
+      "storage_precision": "float32",
+      "sampling_time_s": 0.05308675765991211,
+      "input_model": "gauss",
+      "disk_MB": 75.95325469970703
+    }
+  },
+  "total_wall_time_s": 371.80005502700806
+}
