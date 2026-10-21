@@ -9,6 +9,7 @@ cloud/
 ├── README.md
 ├── requirements.txt      # Python依赖
 ├── tmm_cloud/            # 可复用计算程序（潮流、源荷场景、概率模型、指标）
+├── tasks/                # 云端任务说明，启动云端代理时输入“按 cloud/tasks/<任务>.md 执行”
 ├── tests/                # 云端计算入口
 └── results/<任务>/<日期时间>/   # 每次计算的结果、计算记录run_manifest.json与说明README.md
 ```
