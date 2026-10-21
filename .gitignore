@@ -21,3 +21,4 @@ tmp/
 !data/**
 *.log
 *.tmp
+.DS_Store

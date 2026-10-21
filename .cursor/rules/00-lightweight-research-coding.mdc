@@ -5,6 +5,14 @@ alwaysApply: true
 
 # Lightweight Research Coding Rules
 
+## Git Sync With GitHub
+
+- The project root is a working copy of `https://github.com/Mrs-maxin/TMM_transmission-network`, branch `main`.
+- Commit and push only when the author says “提交推送”. At that point, commit all current changes and push to `origin/main` without asking again.
+- Push code, documents, `data/`, and lightweight results under `result/` (CSV, JSON, PNG, README files, added with `git add -f`). Keep `.mat` and `.fig` result files local.
+- Never commit `02_PAPER/config/author-profile.yaml`.
+- `cloud/` (created at the author's request, 2026-10-21) holds Python cloud tests and their results. Cloud agents work on a `cloud/<task>` branch and commit and push that branch after each completed stage; merging into `main` follows the author's instruction. Follow `cloud/README.md` for layout, run manifests and the 50 MB file limit. Verified cloud computations are later rewritten in MATLAB for the main line.
+
 ## Project Boundary
 
 This repository uses the project root as the MATLAB code root. Do not recreate legacy staged coding or paper automation scaffolding such as `02_Coding/`, `03_Paper/`, `00_MEMORY/`, or staged experiment trees unless the user explicitly asks for them.

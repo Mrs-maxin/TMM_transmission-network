@@ -47,7 +47,10 @@ for j = 1:count
     if isempty(rows), rows = row; else, rows(end+1) = row; end %#ok<AGROW>
 end
 writetable(struct2table(rows), fullfile(config.resultDir, "reactive_limit_modes.csv"));
+[gitStatus, commit] = system(sprintf('git -C "%s" rev-parse HEAD', projectRoot));
+if gitStatus ~= 0, commit = "unavailable"; end
 record = struct("entry", "tests/check_reactive_limit_modes.m", "config", config, "dependencies", dependencies, ...
+    "projectGitCommit", strtrim(string(commit)), ...
     "finishedAt", string(datetime("now", "Format", "yyyy-MM-dd HH:mm:ss")));
 fid = fopen(fullfile(config.resultDir, "run_manifest.json"), "w");
 fprintf(fid, "%s", jsonencode(record, PrettyPrint=true));

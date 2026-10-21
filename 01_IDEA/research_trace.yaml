@@ -376,5 +376,27 @@ tree:
         derivation: "derivation.md重写为六节、公式(1)—(29)；旧版与旧符号表存为01_IDEA/derivation_archive_20261021.md。"
         next_action: "以整理后材料为基准讨论项目主要内容：厚尾新能源输入、TMM尾部修正、近似固定量处理与风险评估。"
         related_files: ["01_IDEA/derivation.md", "01_IDEA/symbols.md", "01_IDEA/evidence_map.md", "result/README.md", "tests/README.md"]
+      - id: N32
+        type: decision
+        date: "2026-10-21"
+        title: "阶段一：以RTS-GMLC建立厚尾源荷输入，有功不平衡多机分担"
+        provenance: user
+        status: confirmed
+        source: "作者确认下一步按五个阶段推进（厚尾输入、TMM尾部修正、风险计算、方法比较与成本、工程示例），阶段一数据选RTS-GMLC，有功不平衡由多台机组按调节系数分担，误差场景由历史误差建立带共同波动强度的模型后抽样。"
+        data_check: "RTS-GMLC 2020年：日前逐时、实时5分钟；4个风电场2508 MW，25个集中式光伏1554 MW，31个屋顶光伏，3个负荷区域。风电预测误差（实时小时平均减日前）标准差为最大出力的22%–26%，超额峰度2.8–4.1，场站间误差相关系数约0.40、误差平方相关系数约0.31；负荷预测误差可忽略（区域1约1.2%）。核查为/tmp临时计算，尚未存入data/。"
+        choices: "网络PGLib IEEE118（带额定容量）；新能源映射到三个区域的若干节点，总装机暂定系统负荷的20%–30%，可行性核查后冻结；运行点取代表性时刻的日前预测；误差模型边缘取经验分布，相关性与共同强度由数据估计，并按超额峰度与误差平方相关核对；负荷取区域曲线，不作主要随机源。"
+        model_change: "多机分担引入系统不平衡量为新未知量，潮流方程仍为二次；MATPOWER标准潮流不直接支持，需外层迭代形成参照解。"
+        next_action: "RTS-GMLC数据存入data/并登记来源；实现多机分担的批量潮流与参照潮流；建立并检验误差模型；交流Monte Carlo确认厚尾传递到电压与线路功率。"
+        related_files: ["TMM_Transmission_note.md", "01_IDEA/derivation.md"]
+      - id: N33
+        type: decision
+        date: "2026-10-21"
+        title: "基础测试改在云端用Python完成，结果推送到GitHub的cloud/目录"
+        provenance: user
+        status: confirmed
+        source: "作者要求在云端测试，使电脑关机不影响计算；现在云端用Python完成所有基础测试，后续检验无误的版本再改写MATLAB保存本地；在GitHub仓库新建云端文件夹及时推送云端测试结果。"
+        layout: "cloud/README.md规定目录、分支cloud/<任务>、每阶段提交推送、run_manifest与50 MB文件上限；云端结果不直接作为论文证据。"
+        next_action: "启动云端代理完成阶段一：RTS-GMLC数据入库、误差模型、多机分担与无功限值的潮流、新能源接入可行性、交流Monte Carlo与厚尾传递检验。"
+        related_files: ["cloud/README.md", ".cursor/rules/00-lightweight-research-coding.mdc"]
         related_files: ["tests/run_ieee14_tmm_extension_layer2.m", "+TMM_Transmission_core/+powerflow/", "01_IDEA/evidence_map.md", "TMM_Transmission_note.md"]
         related_files: ["01_IDEA/derivation.md", "TMM_Transmission_note.md", "01_IDEA/story.md"]

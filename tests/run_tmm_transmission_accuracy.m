@@ -134,7 +134,7 @@ summary = struct("study", sprintf("%s TMM AC probabilistic power flow accuracy, 
 local_write_json(fullfile(config.resultDir, "summary.json"), summary);
 record = struct("entry", "tests/run_tmm_transmission_accuracy.m", "arguments", [networkName, string(layer)], ...
     "config", config, "dependencies", dependencies, "networkSha256", local_sha256(config.networkFile), ...
-    "projectGit", "【Git 待提交】 local project is not a Git repository", ...
+    "projectGit", local_git_state(projectRoot), ...
     "finishedAt", string(datetime("now", "Format", "yyyy-MM-dd HH:mm:ss")), "componentCountUsesReference", false);
 local_write_json(fullfile(config.resultDir, "run_manifest.json"), record);
 fprintf("%s done: %s\n", tag, config.resultDir);
@@ -246,6 +246,16 @@ fid = fopen(file, "w");
 assert(fid > 0, "Cannot write %s.", file);
 cleanup = onCleanup(@() fclose(fid));
 fprintf(fid, "%s", jsonencode(value, PrettyPrint=true));
+end
+
+function state = local_git_state(projectRoot)
+[status, commit] = system(sprintf('git -C "%s" rev-parse HEAD', projectRoot));
+[~, changes] = system(sprintf('git -C "%s" status --porcelain', projectRoot));
+state = struct("commit", "unavailable", "uncommittedChanges", true);
+if status == 0
+    state.commit = strtrim(string(commit));
+    state.uncommittedChanges = strlength(strtrim(string(changes))) > 0;
+end
 end
 
 function digest = local_sha256(file)
