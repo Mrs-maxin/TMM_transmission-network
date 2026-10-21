@@ -1,0 +1,66 @@
+{
+  "created_utc": "2026-10-21T20:51:50+00:00",
+  "command": "python cloud/tests/run_stage_f_batch_pf.py",
+  "git": {
+    "branch": "cursor/phase1-rts118-37d0",
+    "commit": "caf8d8be7ee265a6b15bbaee690657bff28fa46e",
+    "dirty": false
+  },
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.18.1",
+      "pandas": "2.3.3",
+      "matplotlib": "3.11.2",
+      "pandapower": "3.5.6",
+      "numba": "0.68.0"
+    }
+  },
+  "data_sources": [
+    {
+      "path": "data/networks/pglib118/pglib_opf_case118_ieee.m",
+      "sha256": "b1af0833849040c04babc3700631cff0d9afa66b79c5d3e13ae79bdf516cec78"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T201240/stage_b_network/operating_point_OP1.npz",
+      "sha256": "1fd80943e543bc732cb7faa8f2123b4b367435e00c3b91c2f9c6158edf70e2af"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T201240/stage_b_network/operating_point_OP2.npz",
+      "sha256": "3eb2113d7f7ba6755e37dc45d141a6ce3df7543f098f3d520730481bafcf4729"
+    }
+  ],
+  "parameters": {
+    "stage_d_result": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo",
+    "scenario_set": "modeling (float64 storage)",
+    "eps_y_pu": 1e-08,
+    "eps_x_pu": 1e-07,
+    "max_corrections": 10,
+    "max_expansion_points_per_group": 12,
+    "step_lengths": [
+      1.0,
+      0.5,
+      0.25,
+      0.125,
+      0.0625,
+      0.03125,
+      0.015625,
+      0.0078125,
+      0.00390625
+    ],
+    "voltage_error_tolerance_pu": 1e-07,
+    "newton_raphson_sub_batch": 200,
+    "threads": "one BLAS thread, one process, for both methods"
+  },
+  "random_sampling": "not applicable (stored stage D scenarios)",
+  "outputs": [
+    "cloud/results/phase1_rts118/20261021T204943/stage_f_batch_powerflow/README.md",
+    "cloud/results/phase1_rts118/20261021T204943/stage_f_batch_powerflow/batch_vs_newton_OP1.csv",
+    "cloud/results/phase1_rts118/20261021T204943/stage_f_batch_powerflow/batch_vs_newton_OP2.csv",
+    "cloud/results/phase1_rts118/20261021T204943/stage_f_batch_powerflow/mode_pattern_sizes_OP1.png",
+    "cloud/results/phase1_rts118/20261021T204943/stage_f_batch_powerflow/mode_pattern_sizes_OP2.png",
+    "cloud/results/phase1_rts118/20261021T204943/stage_f_batch_powerflow/stage_f_summary.json"
+  ]
+}
