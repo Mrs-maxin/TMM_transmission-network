@@ -1,0 +1,1012 @@
+{
+  "1": {
+    "entropy": 2026102201,
+    "power_flow": {
+      "modeling": {
+        "scenarios": 5256,
+        "converged": 5256,
+        "failures": {},
+        "failed_scenario_index": [],
+        "wall_time_s": 17.156007528305054,
+        "summed_worker_time_s": 48.13070511817932,
+        "workers": 4,
+        "iterations_mean": 8.001141552511415,
+        "iterations_max": 12,
+        "rounds_distribution": {
+          "2": 2843,
+          "3": 2362,
+          "4": 51
+        }
+      },
+      "determination": {
+        "scenarios": 1752,
+        "converged": 1752,
+        "failures": {},
+        "failed_scenario_index": [],
+        "wall_time_s": 11.97722840309143,
+        "summed_worker_time_s": 14.466140508651733,
+        "workers": 4,
+        "iterations_mean": 7.945205479452055,
+        "iterations_max": 11,
+        "rounds_distribution": {
+          "2": 986,
+          "3": 755,
+          "4": 11
+        }
+      }
+    },
+    "d": 157,
+    "r": 10,
+    "selected_K": {
+      "GMM": 6,
+      "TMM": 8,
+      "block TMM": 6,
+      "two-strength block TMM": 6
+    },
+    "candidate_status_counts": [
+      [
+        "GMM",
+        "converged",
+        18
+      ],
+      [
+        "TMM",
+        "converged",
+        36
+      ],
+      [
+        "block TMM",
+        "converged",
+        36
+      ],
+      [
+        "two-strength block TMM",
+        "converged",
+        36
+      ]
+    ],
+    "df": {
+      "TMM": [
+        12.418,
+        17.718,
+        30.385,
+        26.721,
+        30.343,
+        19.49,
+        13.93,
+        10.914
+      ],
+      "block TMM": [
+        5.211,
+        6.371,
+        7.07,
+        7.218,
+        6.496,
+        5.836
+      ],
+      "two-strength block TMM": [
+        10.12,
+        18.614,
+        17.405,
+        16.638,
+        15.382,
+        9.107
+      ]
+    },
+    "fit_seconds": 378.72051548957825,
+    "propagation_seconds": {
+      "GMM": 25.701549768447876,
+      "TMM": 25.771104335784912,
+      "block TMM": 34.28721308708191,
+      "two-strength block TMM": 30.85272216796875
+    },
+    "replication_seconds": 524.9549930095673
+  },
+  "2": {
+    "entropy": 2026102202,
+    "power_flow": {
+      "modeling": {
+        "scenarios": 5256,
+        "converged": 5256,
+        "failures": {},
+        "failed_scenario_index": [],
+        "wall_time_s": 17.30855941772461,
+        "summed_worker_time_s": 48.60902690887451,
+        "workers": 4,
+        "iterations_mean": 7.976407914764079,
+        "iterations_max": 12,
+        "rounds_distribution": {
+          "2": 2887,
+          "3": 2330,
+          "4": 39
+        }
+      },
+      "determination": {
+        "scenarios": 1752,
+        "converged": 1752,
+        "failures": {},
+        "failed_scenario_index": [],
+        "wall_time_s": 12.540401697158813,
+        "summed_worker_time_s": 14.97854471206665,
+        "workers": 4,
+        "iterations_mean": 7.950342465753424,
+        "iterations_max": 11,
+        "rounds_distribution": {
+          "2": 990,
+          "3": 754,
+          "4": 8
+        }
+      }
+    },
+    "d": 157,
+    "r": 10,
+    "selected_K": {
+      "GMM": 4,
+      "TMM": 8,
+      "block TMM": 4,
+      "two-strength block TMM": 4
+    },
+    "candidate_status_counts": [
+      [
+        "GMM",
+        "converged",
+        18
+      ],
+      [
+        "TMM",
+        "converged",
+        36
+      ],
+      [
+        "block TMM",
+        "converged",
+        36
+      ],
+      [
+        "two-strength block TMM",
+        "converged",
+        36
+      ]
+    ],
+    "df": {
+      "TMM": [
+        10.895,
+        18.812,
+        24.772,
+        20.132,
+        19.179,
+        30.046,
+        31.18,
+        13.726
+      ],
+      "block TMM": [
+        5.498,
+        7.52,
+        6.638,
+        5.543
+      ],
+      "two-strength block TMM": [
+        10.799,
+        14.792,
+        17.175,
+        14.345
+      ]
+    },
+    "fit_seconds": 426.9466507434845,
+    "propagation_seconds": {
+      "GMM": 26.923328399658203,
+      "TMM": 25.716593503952026,
+      "block TMM": 29.262925148010254,
+      "two-strength block TMM": 28.148775100708008
+    },
+    "replication_seconds": 567.3427994251251
+  },
+  "3": {
+    "entropy": 2026102203,
+    "power_flow": {
+      "modeling": {
+        "scenarios": 5256,
+        "converged": 5256,
+        "failures": {},
+        "failed_scenario_index": [],
+        "wall_time_s": 16.835113048553467,
+        "summed_worker_time_s": 47.47730016708374,
+        "workers": 4,
+        "iterations_mean": 7.986681887366819,
+        "iterations_max": 14,
+        "rounds_distribution": {
+          "2": 2889,
+          "3": 2323,
+          "4": 43,
+          "5": 1
+        }
+      },
+      "determination": {
+        "scenarios": 1752,
+        "converged": 1752,
+        "failures": {},
+        "failed_scenario_index": [],
+        "wall_time_s": 12.197404623031616,
+        "summed_worker_time_s": 14.570961475372314,
+        "workers": 4,
+        "iterations_mean": 7.958333333333333,
+        "iterations_max": 12,
+        "rounds_distribution": {
+          "2": 994,
+          "3": 740,
+          "4": 18
+        }
+      }
+    },
+    "d": 157,
+    "r": 10,
+    "selected_K": {
+      "GMM": 6,
+      "TMM": 8,
+      "block TMM": 6,
+      "two-strength block TMM": 6
+    },
+    "candidate_status_counts": [
+      [
+        "GMM",
+        "converged",
+        18
+      ],
+      [
+        "TMM",
+        "converged",
+        36
+      ],
+      [
+        "block TMM",
+        "converged",
+        36
+      ],
+      [
+        "two-strength block TMM",
+        "converged",
+        36
+      ]
+    ],
+    "df": {
+      "TMM": [
+        11.631,
+        18.295,
+        38.017,
+        36.228,
+        16.406,
+        25.544,
+        16.885,
+        10.747
+      ],
+      "block TMM": [
+        5.528,
+        6.923,
+        6.613,
+        8.479,
+        5.791,
+        5.688
+      ],
+      "two-strength block TMM": [
+        12.511,
+        30.005,
+        9.575,
+        24.596,
+        16.323,
+        9.351
+      ]
+    },
+    "fit_seconds": 400.4902424812317,
+    "propagation_seconds": {
+      "GMM": 25.153828859329224,
+      "TMM": 26.78897261619568,
+      "block TMM": 27.13822031021118,
+      "two-strength block TMM": 27.970674753189087
+    },
+    "replication_seconds": 537.0576646327972
+  },
+  "4": {
+    "entropy": 2026102204,
+    "power_flow": {
+      "modeling": {
+        "scenarios": 5256,
+        "converged": 5256,
+        "failures": {},
+        "failed_scenario_index": [],
+        "wall_time_s": 16.7857449054718,
+        "summed_worker_time_s": 47.24701547622681,
+        "workers": 4,
+        "iterations_mean": 7.964421613394216,
+        "iterations_max": 12,
+        "rounds_distribution": {
+          "2": 2940,
+          "3": 2268,
+          "4": 48
+        }
+      },
+      "determination": {
+        "scenarios": 1752,
+        "converged": 1752,
+        "failures": {},
+        "failed_scenario_index": [],
+        "wall_time_s": 12.149619579315186,
+        "summed_worker_time_s": 14.563734292984009,
+        "workers": 4,
+        "iterations_mean": 7.975456621004566,
+        "iterations_max": 12,
+        "rounds_distribution": {
+          "2": 966,
+          "3": 774,
+          "4": 12
+        }
+      }
+    },
+    "d": 157,
+    "r": 10,
+    "selected_K": {
+      "GMM": 6,
+      "TMM": 8,
+      "block TMM": 6,
+      "two-strength block TMM": 6
+    },
+    "candidate_status_counts": [
+      [
+        "GMM",
+        "converged",
+        18
+      ],
+      [
+        "TMM",
+        "converged",
+        36
+      ],
+      [
+        "block TMM",
+        "converged",
+        36
+      ],
+      [
+        "two-strength block TMM",
+        "converged",
+        36
+      ]
+    ],
+    "df": {
+      "TMM": [
+        13.62,
+        13.264,
+        29.365,
+        31.534,
+        28.582,
+        13.952,
+        20.571,
+        9.602
+      ],
+      "block TMM": [
+        5.853,
+        6.036,
+        9.394,
+        6.968,
+        4.799,
+        5.296
+      ],
+      "two-strength block TMM": [
+        10.527,
+        127.133,
+        9.764,
+        18.024,
+        14.093,
+        12.259
+      ]
+    },
+    "fit_seconds": 383.9342293739319,
+    "propagation_seconds": {
+      "GMM": 25.408430576324463,
+      "TMM": 24.473358869552612,
+      "block TMM": 26.694839477539062,
+      "two-strength block TMM": 28.14931631088257
+    },
+    "replication_seconds": 518.0931580066681
+  },
+  "5": {
+    "entropy": 2026102205,
+    "power_flow": {
+      "modeling": {
+        "scenarios": 5256,
+        "converged": 5256,
+        "failures": {},
+        "failed_scenario_index": [],
+        "wall_time_s": 16.638023376464844,
+        "summed_worker_time_s": 46.25931668281555,
+        "workers": 4,
+        "iterations_mean": 7.99486301369863,
+        "iterations_max": 12,
+        "rounds_distribution": {
+          "2": 2866,
+          "3": 2347,
+          "4": 43
+        }
+      },
+      "determination": {
+        "scenarios": 1752,
+        "converged": 1752,
+        "failures": {},
+        "failed_scenario_index": [],
+        "wall_time_s": 11.979304075241089,
+        "summed_worker_time_s": 14.32348370552063,
+        "workers": 4,
+        "iterations_mean": 7.992579908675799,
+        "iterations_max": 12,
+        "rounds_distribution": {
+          "2": 945,
+          "3": 792,
+          "4": 15
+        }
+      }
+    },
+    "d": 157,
+    "r": 10,
+    "selected_K": {
+      "GMM": 6,
+      "TMM": 6,
+      "block TMM": 6,
+      "two-strength block TMM": 6
+    },
+    "candidate_status_counts": [
+      [
+        "GMM",
+        "converged",
+        18
+      ],
+      [
+        "TMM",
+        "converged",
+        36
+      ],
+      [
+        "block TMM",
+        "converged",
+        36
+      ],
+      [
+        "two-strength block TMM",
+        "converged",
+        36
+      ]
+    ],
+    "df": {
+      "TMM": [
+        10.126,
+        20.269,
+        29.573,
+        32.704,
+        20.44,
+        13.613
+      ],
+      "block TMM": [
+        5.316,
+        6.93,
+        10.786,
+        9.295,
+        7.386,
+        8.499
+      ],
+      "two-strength block TMM": [
+        8.129,
+        20.792,
+        14.713,
+        17.517,
+        24.901,
+        21.573
+      ]
+    },
+    "fit_seconds": 455.8218078613281,
+    "propagation_seconds": {
+      "GMM": 25.80309748649597,
+      "TMM": 26.67598581314087,
+      "block TMM": 27.701725006103516,
+      "two-strength block TMM": 27.5214946269989
+    },
+    "replication_seconds": 592.6302328109741
+  },
+  "6": {
+    "entropy": 2026102206,
+    "power_flow": {
+      "modeling": {
+        "scenarios": 5256,
+        "converged": 5256,
+        "failures": {},
+        "failed_scenario_index": [],
+        "wall_time_s": 16.79330062866211,
+        "summed_worker_time_s": 47.23035955429077,
+        "workers": 4,
+        "iterations_mean": 7.964041095890411,
+        "iterations_max": 12,
+        "rounds_distribution": {
+          "2": 2918,
+          "3": 2296,
+          "4": 42
+        }
+      },
+      "determination": {
+        "scenarios": 1752,
+        "converged": 1752,
+        "failures": {},
+        "failed_scenario_index": [],
+        "wall_time_s": 12.15218210220337,
+        "summed_worker_time_s": 14.600555896759033,
+        "workers": 4,
+        "iterations_mean": 7.948630136986301,
+        "iterations_max": 12,
+        "rounds_distribution": {
+          "2": 989,
+          "3": 744,
+          "4": 19
+        }
+      }
+    },
+    "d": 157,
+    "r": 10,
+    "selected_K": {
+      "GMM": 4,
+      "TMM": 6,
+      "block TMM": 6,
+      "two-strength block TMM": 6
+    },
+    "candidate_status_counts": [
+      [
+        "GMM",
+        "converged",
+        18
+      ],
+      [
+        "TMM",
+        "converged",
+        36
+      ],
+      [
+        "block TMM",
+        "converged",
+        36
+      ],
+      [
+        "two-strength block TMM",
+        "converged",
+        36
+      ]
+    ],
+    "df": {
+      "TMM": [
+        14.217,
+        33.286,
+        33.053,
+        26.237,
+        18.366,
+        12.673
+      ],
+      "block TMM": [
+        5.875,
+        6.451,
+        7.478,
+        7.471,
+        7.417,
+        6.134
+      ],
+      "two-strength block TMM": [
+        12.617,
+        21.71,
+        11.093,
+        19.841,
+        108.547,
+        10.043
+      ]
+    },
+    "fit_seconds": 354.63071393966675,
+    "propagation_seconds": {
+      "GMM": 26.65825605392456,
+      "TMM": 25.269343852996826,
+      "block TMM": 27.381455898284912,
+      "two-strength block TMM": 27.97423219680786
+    },
+    "replication_seconds": 491.3482418060303
+  },
+  "7": {
+    "entropy": 2026102207,
+    "power_flow": {
+      "modeling": {
+        "scenarios": 5256,
+        "converged": 5256,
+        "failures": {},
+        "failed_scenario_index": [],
+        "wall_time_s": 17.200897455215454,
+        "summed_worker_time_s": 47.91208815574646,
+        "workers": 4,
+        "iterations_mean": 7.95662100456621,
+        "iterations_max": 12,
+        "rounds_distribution": {
+          "2": 2945,
+          "3": 2275,
+          "4": 36
+        }
+      },
+      "determination": {
+        "scenarios": 1752,
+        "converged": 1752,
+        "failures": {},
+        "failed_scenario_index": [],
+        "wall_time_s": 13.073948621749878,
+        "summed_worker_time_s": 15.543403148651123,
+        "workers": 4,
+        "iterations_mean": 7.9520547945205475,
+        "iterations_max": 11,
+        "rounds_distribution": {
+          "2": 991,
+          "3": 750,
+          "4": 11
+        }
+      }
+    },
+    "d": 157,
+    "r": 10,
+    "selected_K": {
+      "GMM": 4,
+      "TMM": 8,
+      "block TMM": 4,
+      "two-strength block TMM": 4
+    },
+    "candidate_status_counts": [
+      [
+        "GMM",
+        "converged",
+        18
+      ],
+      [
+        "TMM",
+        "converged",
+        36
+      ],
+      [
+        "block TMM",
+        "converged",
+        36
+      ],
+      [
+        "two-strength block TMM",
+        "converged",
+        36
+      ]
+    ],
+    "df": {
+      "TMM": [
+        11.482,
+        22.413,
+        25.938,
+        21.868,
+        23.59,
+        27.121,
+        24.581,
+        14.202
+      ],
+      "block TMM": [
+        5.481,
+        8.718,
+        6.336,
+        5.419
+      ],
+      "two-strength block TMM": [
+        12.655,
+        11.698,
+        16.295,
+        11.188
+      ]
+    },
+    "fit_seconds": 469.02536725997925,
+    "propagation_seconds": {
+      "GMM": 24.82344102859497,
+      "TMM": 24.767213582992554,
+      "block TMM": 26.840755462646484,
+      "two-strength block TMM": 28.08796787261963
+    },
+    "replication_seconds": 604.3151547908783
+  },
+  "8": {
+    "entropy": 2026102208,
+    "power_flow": {
+      "modeling": {
+        "scenarios": 5256,
+        "converged": 5256,
+        "failures": {},
+        "failed_scenario_index": [],
+        "wall_time_s": 16.882723569869995,
+        "summed_worker_time_s": 47.139798402786255,
+        "workers": 4,
+        "iterations_mean": 7.989155251141552,
+        "iterations_max": 12,
+        "rounds_distribution": {
+          "1": 1,
+          "2": 2863,
+          "3": 2349,
+          "4": 43
+        }
+      },
+      "determination": {
+        "scenarios": 1752,
+        "converged": 1752,
+        "failures": {},
+        "failed_scenario_index": [],
+        "wall_time_s": 12.438374996185303,
+        "summed_worker_time_s": 14.87612795829773,
+        "workers": 4,
+        "iterations_mean": 7.990296803652968,
+        "iterations_max": 11,
+        "rounds_distribution": {
+          "2": 950,
+          "3": 792,
+          "4": 10
+        }
+      }
+    },
+    "d": 157,
+    "r": 10,
+    "selected_K": {
+      "GMM": 4,
+      "TMM": 6,
+      "block TMM": 4,
+      "two-strength block TMM": 4
+    },
+    "candidate_status_counts": [
+      [
+        "GMM",
+        "converged",
+        18
+      ],
+      [
+        "TMM",
+        "converged",
+        36
+      ],
+      [
+        "block TMM",
+        "converged",
+        36
+      ],
+      [
+        "two-strength block TMM",
+        "converged",
+        36
+      ]
+    ],
+    "df": {
+      "TMM": [
+        17.519,
+        20.317,
+        30.6,
+        29.414,
+        16.021,
+        10.876
+      ],
+      "block TMM": [
+        5.125,
+        7.39,
+        7.214,
+        5.371
+      ],
+      "two-strength block TMM": [
+        9.695,
+        11.651,
+        24.103,
+        10.211
+      ]
+    },
+    "fit_seconds": 381.5242085456848,
+    "propagation_seconds": {
+      "GMM": 25.998657703399658,
+      "TMM": 24.553261041641235,
+      "block TMM": 26.853986978530884,
+      "two-strength block TMM": 27.566883325576782
+    },
+    "replication_seconds": 516.3220665454865
+  },
+  "9": {
+    "entropy": 2026102209,
+    "power_flow": {
+      "modeling": {
+        "scenarios": 5256,
+        "converged": 5256,
+        "failures": {},
+        "failed_scenario_index": [],
+        "wall_time_s": 16.96833896636963,
+        "summed_worker_time_s": 47.90384292602539,
+        "workers": 4,
+        "iterations_mean": 7.96689497716895,
+        "iterations_max": 11,
+        "rounds_distribution": {
+          "2": 2911,
+          "3": 2303,
+          "4": 42
+        }
+      },
+      "determination": {
+        "scenarios": 1752,
+        "converged": 1752,
+        "failures": {},
+        "failed_scenario_index": [],
+        "wall_time_s": 12.520001649856567,
+        "summed_worker_time_s": 14.955354452133179,
+        "workers": 4,
+        "iterations_mean": 7.9743150684931505,
+        "iterations_max": 11,
+        "rounds_distribution": {
+          "2": 971,
+          "3": 765,
+          "4": 16
+        }
+      }
+    },
+    "d": 157,
+    "r": 10,
+    "selected_K": {
+      "GMM": 6,
+      "TMM": 8,
+      "block TMM": 6,
+      "two-strength block TMM": 6
+    },
+    "candidate_status_counts": [
+      [
+        "GMM",
+        "converged",
+        18
+      ],
+      [
+        "TMM",
+        "converged",
+        36
+      ],
+      [
+        "block TMM",
+        "converged",
+        36
+      ],
+      [
+        "two-strength block TMM",
+        "converged",
+        36
+      ]
+    ],
+    "df": {
+      "TMM": [
+        12.169,
+        18.25,
+        29.256,
+        24.548,
+        23.2,
+        28.239,
+        15.743,
+        14.116
+      ],
+      "block TMM": [
+        5.583,
+        5.839,
+        8.095,
+        6.526,
+        6.494,
+        5.771
+      ],
+      "two-strength block TMM": [
+        12.691,
+        21.748,
+        12.119,
+        12.914,
+        17.426,
+        10.665
+      ]
+    },
+    "fit_seconds": 385.9638786315918,
+    "propagation_seconds": {
+      "GMM": 25.84319233894348,
+      "TMM": 24.345555067062378,
+      "block TMM": 27.80289626121521,
+      "two-strength block TMM": 29.760270595550537
+    },
+    "replication_seconds": 523.7207193374634
+  },
+  "10": {
+    "entropy": 2026102210,
+    "power_flow": {
+      "modeling": {
+        "scenarios": 5256,
+        "converged": 5256,
+        "failures": {},
+        "failed_scenario_index": [],
+        "wall_time_s": 17.67425227165222,
+        "summed_worker_time_s": 49.90034294128418,
+        "workers": 4,
+        "iterations_mean": 7.976407914764079,
+        "iterations_max": 12,
+        "rounds_distribution": {
+          "2": 2891,
+          "3": 2320,
+          "4": 45
+        }
+      },
+      "determination": {
+        "scenarios": 1752,
+        "converged": 1752,
+        "failures": {},
+        "failed_scenario_index": [],
+        "wall_time_s": 12.687556266784668,
+        "summed_worker_time_s": 15.233613729476929,
+        "workers": 4,
+        "iterations_mean": 7.984589041095891,
+        "iterations_max": 11,
+        "rounds_distribution": {
+          "2": 973,
+          "3": 765,
+          "4": 14
+        }
+      }
+    },
+    "d": 157,
+    "r": 10,
+    "selected_K": {
+      "GMM": 4,
+      "TMM": 8,
+      "block TMM": 4,
+      "two-strength block TMM": 4
+    },
+    "candidate_status_counts": [
+      [
+        "GMM",
+        "converged",
+        18
+      ],
+      [
+        "TMM",
+        "converged",
+        36
+      ],
+      [
+        "block TMM",
+        "converged",
+        36
+      ],
+      [
+        "two-strength block TMM",
+        "converged",
+        36
+      ]
+    ],
+    "df": {
+      "TMM": [
+        9.4,
+        14.735,
+        26.636,
+        21.878,
+        22.431,
+        19.747,
+        29.626,
+        12.466
+      ],
+      "block TMM": [
+        5.404,
+        7.773,
+        6.771,
+        5.656
+      ],
+      "two-strength block TMM": [
+        9.996,
+        12.471,
+        18.551,
+        11.721
+      ]
+    },
+    "fit_seconds": 358.0264811515808,
+    "propagation_seconds": {
+      "GMM": 25.897368669509888,
+      "TMM": 25.561439275741577,
+      "block TMM": 27.41337823867798,
+      "two-strength block TMM": 28.89092779159546
+    },
+    "replication_seconds": 496.64150643348694
+  }
+}

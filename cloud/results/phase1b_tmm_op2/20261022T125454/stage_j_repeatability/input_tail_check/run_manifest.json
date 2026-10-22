@@ -1,0 +1,51 @@
+{
+  "created_utc": "2026-10-22T16:08:18+00:00",
+  "command": "python cloud/tests/run_stage_j_input_tail_check.py --result-stamp 20261022T125454",
+  "git": {
+    "branch": "cursor/phase1b-tmm-op2-37d0",
+    "commit": "0b6bc504086a81a86a0ff8abaa65490a9217c661",
+    "dirty": false
+  },
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.18.1",
+      "pandas": "2.3.3",
+      "matplotlib": "3.11.2",
+      "pandapower": "3.5.6",
+      "numba": "0.68.0"
+    }
+  },
+  "data_sources": [
+    {
+      "path": "cloud/results/phase1_rts118/20261021T201850/stage_c_error_model/error_model_OP2.npz",
+      "sha256": "7f0529bc1138462663681ad7766ce621583992ed9deb659260161abd9841a4e7"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T201240/stage_b_network/operating_point_OP2.npz",
+      "sha256": "3eb2113d7f7ba6755e37dc45d141a6ce3df7543f098f3d520730481bafcf4729"
+    }
+  ],
+  "parameters": {
+    "quantity": "total renewable injection minus total forecast (MW), within [0, capacity] per station",
+    "thresholds": "check-set quantiles at the listed levels",
+    "levels": [
+      0.99,
+      0.995,
+      0.9977,
+      0.999
+    ],
+    "fresh_samples": 1000000,
+    "check_set": "phase-1 stage D OP2 check_heavy (chunk SHA256 in stage_g_identity.json)"
+  },
+  "random_sampling": {
+    "fresh": "numpy default_rng(SeedSequence(2026102400 + b)), b = 0..9, 100000 heavy-tailed error vectors each"
+  },
+  "outputs": [
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/input_tail_check/README.md",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/input_tail_check/input_tail_check_OP2.csv",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/input_tail_check/input_tail_check_OP2.json"
+  ]
+}
