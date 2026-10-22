@@ -60,6 +60,13 @@ def new_result_dir(task, stage):
     return path
 
 
+def stamped_stage_dir(task, stamp, stage):
+    """Stage folder inside a shared result stamp, cloud/results/<task>/<stamp>/<stage>."""
+    path = CLOUD_ROOT / "results" / task / stamp / stage
+    path.mkdir(parents=True, exist_ok=True)
+    return path
+
+
 def latest_stage_dir(task, stage):
     base = CLOUD_ROOT / "results" / task
     candidates = sorted(p for p in base.glob(f"*/{stage}") if (p / "run_manifest.json").exists())
