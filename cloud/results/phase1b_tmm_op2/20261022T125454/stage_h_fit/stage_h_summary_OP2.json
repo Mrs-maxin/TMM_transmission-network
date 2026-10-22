@@ -1,0 +1,85 @@
+{
+  "operating_point": "OP2",
+  "modeling_scenarios": 5256,
+  "determination_scenarios": 1752,
+  "state_dimension": 235,
+  "d": 157,
+  "dropped_variance_share": 9.137057034288257e-11,
+  "smallest_kept_eigenvalue": 5.672514719377914e-12,
+  "largest_dropped_eigenvalue": 5.175214115065256e-12,
+  "directions": {
+    "mode_share": 0.007990867579908675,
+    "mode_units_at_limit": 10,
+    "newton_iterations": 5,
+    "imbalance_at_point_MW": 11.370179722087654,
+    "jacobian_condition": 6709.369009608828,
+    "r": 10,
+    "singular_values": [
+      82.88975925567084,
+      45.348984949150434,
+      38.90599476344043,
+      36.559523532653294,
+      31.461173100578442,
+      23.07081725801004,
+      21.093825478228585,
+      11.509835233115735,
+      8.551369352488996,
+      6.545328140741882
+    ],
+    "r_wind": 4,
+    "r_pv": 6,
+    "host_buses": [
+      106,
+      94,
+      96,
+      17,
+      23,
+      11,
+      75,
+      82,
+      83,
+      88
+    ],
+    "host_kind": [
+      "wind",
+      "wind",
+      "wind",
+      "wind",
+      "pv",
+      "pv",
+      "pv",
+      "pv",
+      "pv",
+      "pv"
+    ]
+  },
+  "selected_K": {
+    "GMM": 4,
+    "TMM": 8,
+    "block TMM": 4,
+    "two-strength block TMM": 4
+  },
+  "fit_wall_time_s": 464.8564932346344,
+  "candidate_counts": [
+    [
+      "GMM",
+      "converged",
+      18
+    ],
+    [
+      "TMM",
+      "converged",
+      36
+    ],
+    [
+      "block TMM",
+      "converged",
+      36
+    ],
+    [
+      "two-strength block TMM",
+      "converged",
+      36
+    ]
+  ]
+}

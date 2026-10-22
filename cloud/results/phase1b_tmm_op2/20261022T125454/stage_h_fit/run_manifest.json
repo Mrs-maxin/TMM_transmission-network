@@ -1,0 +1,92 @@
+{
+  "created_utc": "2026-10-22T13:14:47+00:00",
+  "command": "python cloud/tests/run_stage_h_fit.py --result-stamp 20261022T125454 --workers 4",
+  "git": {
+    "branch": "cursor/phase1b-tmm-op2-37d0",
+    "commit": "ef4659fe4011fc28006c08fa51643aae5b818072",
+    "dirty": false
+  },
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.18.1",
+      "pandas": "2.3.3",
+      "matplotlib": "3.11.2",
+      "pandapower": "3.5.6",
+      "numba": "0.68.0"
+    }
+  },
+  "data_sources": [
+    {
+      "path": "data/networks/pglib118/pglib_opf_case118_ieee.m",
+      "sha256": "b1af0833849040c04babc3700631cff0d9afa66b79c5d3e13ae79bdf516cec78"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T201240/stage_b_network/operating_point_OP2.npz",
+      "sha256": "3eb2113d7f7ba6755e37dc45d141a6ce3df7543f098f3d520730481bafcf4729"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T201240/stage_b_network/renewable_mapping.csv",
+      "sha256": "bb0e23016552f21b280223e70e36fcf0a8d265f5a02315ff7a52226eef98231f"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/modeling_chunk000.npz",
+      "sha256": "0ac6ca7d80bdfb34e6cd98cea17c319c9b434bdc1418d49c1dcf5086a87fe0c5"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/modeling_chunk001.npz",
+      "sha256": "7d6b204971bda0cea4745d2e351aa819c712bb5455afc0f88fb99ba54033cee6"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/determination_chunk000.npz",
+      "sha256": "1637e609186c98c56544a60f5a08f3af69ae294054fd87908311ea643610d22f"
+    }
+  ],
+  "parameters": {
+    "state": "x = [e(117 non-reference buses), f(117), lam (p.u.)]",
+    "standardization": "eq. (11), dropped variance share <= 1e-10, eigenvalues > p*eps*lambda_1",
+    "candidate_K": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      8
+    ],
+    "covariance_floor": 1e-07,
+    "df_bounds": [
+      4.1,
+      100000.0
+    ],
+    "stopping": "absolute change of the mean log-likelihood < 1e-06, at most 3000 iterations",
+    "decrease_tolerance": 1e-08,
+    "initial_df": [
+      12.0,
+      200.0
+    ],
+    "initial_splits": "principal directions 1, 2, 3, K equal-count groups",
+    "acceptance": "converged, no decrease, N_k > d + 2",
+    "per_K_choice": "highest modeling mean log-likelihood among accepted fits",
+    "K_selection": "eq. (22), determination mean log-likelihood",
+    "block_L_W": "active-power rows of the 10 renewable host buses (stage-B renewable_mapping.csv)",
+    "jacobian_point": "most frequent unit mode of the modeling set, mean modeling-set load factors and renewable injections",
+    "two_strength_variant": "wind rows and PV rows each with an independent inverse-gamma strength within a component; PV directions orthogonalized against wind directions",
+    "workers": 4
+  },
+  "random_sampling": "not applicable (deterministic initial splits; stored stage D scenarios)",
+  "outputs": [
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_h_fit/README.md",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_h_fit/coordinates_OP2.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_h_fit/fit_by_order_OP2.csv",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_h_fit/fit_candidates_OP2.csv",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_h_fit/model_GMM_K4_OP2.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_h_fit/model_TMM_K8_OP2.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_h_fit/model_block_TMM_K4_OP2.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_h_fit/model_two_strength_block_TMM_K4_OP2.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_h_fit/order_selection_OP2.png",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_h_fit/stage_h_summary_OP2.json",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_h_fit/strength_directions_OP2.npz"
+  ]
+}
