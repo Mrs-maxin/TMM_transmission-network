@@ -1,0 +1,91 @@
+{
+  "created_utc": "2026-10-22T16:17:02+00:00",
+  "command": "python cloud/tests/run_stage_h_fit.py --result-stamp 20261022T125454 --workers 4 --op OP1",
+  "git": {
+    "branch": "cursor/phase1b-tmm-op2-37d0",
+    "commit": "353d5bd620ba1ce90162a04b34e029e28feceea3",
+    "dirty": true
+  },
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.18.1",
+      "pandas": "2.3.3",
+      "matplotlib": "3.11.2",
+      "pandapower": "3.5.6",
+      "numba": "0.68.0"
+    }
+  },
+  "data_sources": [
+    {
+      "path": "data/networks/pglib118/pglib_opf_case118_ieee.m",
+      "sha256": "b1af0833849040c04babc3700631cff0d9afa66b79c5d3e13ae79bdf516cec78"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T201240/stage_b_network/operating_point_OP1.npz",
+      "sha256": "1fd80943e543bc732cb7faa8f2123b4b367435e00c3b91c2f9c6158edf70e2af"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T201240/stage_b_network/renewable_mapping.csv",
+      "sha256": "bb0e23016552f21b280223e70e36fcf0a8d265f5a02315ff7a52226eef98231f"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/modeling_chunk000.npz",
+      "sha256": "c6292df5507787ee8174fc7cd74368f601989d5fc5d91f85951db88e7ec84fb7"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/modeling_chunk001.npz",
+      "sha256": "dc4d4c2b4d69e82582295d9335c29b9df3e41138ac964628d22c8287cc6f4baf"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/determination_chunk000.npz",
+      "sha256": "24a20306ecc12f3d28cd7132497a7f250defbd75f98795c6622d61fa68f7fa9c"
+    }
+  ],
+  "parameters": {
+    "state": "x = [e(117 non-reference buses), f(117), lam (p.u.)]",
+    "standardization": "eq. (11), dropped variance share <= 1e-10, eigenvalues > p*eps*lambda_1",
+    "candidate_K": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      8
+    ],
+    "covariance_floor": 1e-07,
+    "df_bounds": [
+      4.1,
+      100000.0
+    ],
+    "stopping": "absolute change of the mean log-likelihood < 1e-06, at most 3000 iterations",
+    "decrease_tolerance": 1e-08,
+    "initial_df": [
+      12.0,
+      200.0
+    ],
+    "initial_splits": "principal directions 1, 2, 3, K equal-count groups",
+    "acceptance": "converged, no decrease, N_k > d + 2",
+    "per_K_choice": "highest modeling mean log-likelihood among accepted fits",
+    "K_selection": "eq. (22), determination mean log-likelihood",
+    "block_L_W": "active-power rows of the renewable host buses (stage-B renewable_mapping.csv) whose modeling-set injection varies (std > 1e-9 MW)",
+    "jacobian_point": "most frequent unit mode of the modeling set, mean modeling-set load factors and renewable injections",
+    "two_strength_variant": "wind rows and PV rows each with an independent inverse-gamma strength within a component; PV directions orthogonalized against wind directions",
+    "workers": 4
+  },
+  "random_sampling": "not applicable (deterministic initial splits; stored stage D scenarios)",
+  "outputs": [
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_h_fit/README.md",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_h_fit/coordinates_OP1.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_h_fit/fit_by_order_OP1.csv",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_h_fit/fit_candidates_OP1.csv",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_h_fit/model_GMM_K4_OP1.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_h_fit/model_TMM_K8_OP1.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_h_fit/model_block_TMM_K4_OP1.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_h_fit/order_selection_OP1.png",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_h_fit/stage_h_summary_OP1.json",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_h_fit/strength_directions_OP1.npz"
+  ]
+}
