@@ -1,0 +1,402 @@
+{
+  "identical": true,
+  "comparison": [
+    {
+      "set": "modeling",
+      "quantity": "scenarios",
+      "committed": 5256,
+      "regenerated": 5256,
+      "identical": true
+    },
+    {
+      "set": "modeling",
+      "quantity": "converged",
+      "committed": 5256,
+      "regenerated": 5256,
+      "identical": true
+    },
+    {
+      "set": "modeling",
+      "quantity": "failed_scenario_index",
+      "committed": [],
+      "regenerated": [],
+      "identical": true
+    },
+    {
+      "set": "modeling",
+      "quantity": "iterations_mean",
+      "committed": 7.973363774733638,
+      "regenerated": 7.973363774733638,
+      "identical": true
+    },
+    {
+      "set": "modeling",
+      "quantity": "iterations_max",
+      "committed": 12,
+      "regenerated": 12,
+      "identical": true
+    },
+    {
+      "set": "modeling",
+      "quantity": "rounds_distribution",
+      "committed": {
+        "1": 1,
+        "2": 2907,
+        "3": 2299,
+        "4": 49
+      },
+      "regenerated": {
+        "1": 1,
+        "2": 2907,
+        "3": 2299,
+        "4": 49
+      },
+      "identical": true
+    },
+    {
+      "set": "determination",
+      "quantity": "scenarios",
+      "committed": 1752,
+      "regenerated": 1752,
+      "identical": true
+    },
+    {
+      "set": "determination",
+      "quantity": "converged",
+      "committed": 1752,
+      "regenerated": 1752,
+      "identical": true
+    },
+    {
+      "set": "determination",
+      "quantity": "failed_scenario_index",
+      "committed": [],
+      "regenerated": [],
+      "identical": true
+    },
+    {
+      "set": "determination",
+      "quantity": "iterations_mean",
+      "committed": 7.987442922374429,
+      "regenerated": 7.987442922374429,
+      "identical": true
+    },
+    {
+      "set": "determination",
+      "quantity": "iterations_max",
+      "committed": 12,
+      "regenerated": 12,
+      "identical": true
+    },
+    {
+      "set": "determination",
+      "quantity": "rounds_distribution",
+      "committed": {
+        "2": 957,
+        "3": 779,
+        "4": 16
+      },
+      "regenerated": {
+        "2": 957,
+        "3": 779,
+        "4": 16
+      },
+      "identical": true
+    },
+    {
+      "set": "check_heavy",
+      "quantity": "scenarios",
+      "committed": 100000,
+      "regenerated": 100000,
+      "identical": true
+    },
+    {
+      "set": "check_heavy",
+      "quantity": "converged",
+      "committed": 100000,
+      "regenerated": 100000,
+      "identical": true
+    },
+    {
+      "set": "check_heavy",
+      "quantity": "failed_scenario_index",
+      "committed": [],
+      "regenerated": [],
+      "identical": true
+    },
+    {
+      "set": "check_heavy",
+      "quantity": "iterations_mean",
+      "committed": 7.97562,
+      "regenerated": 7.97562,
+      "identical": true
+    },
+    {
+      "set": "check_heavy",
+      "quantity": "iterations_max",
+      "committed": 12,
+      "regenerated": 12,
+      "identical": true
+    },
+    {
+      "set": "check_heavy",
+      "quantity": "rounds_distribution",
+      "committed": {
+        "1": 8,
+        "2": 55244,
+        "3": 43895,
+        "4": 852,
+        "5": 1
+      },
+      "regenerated": {
+        "1": 8,
+        "2": 55244,
+        "3": 43895,
+        "4": 852,
+        "5": 1
+      },
+      "identical": true
+    },
+    {
+      "set": "check_light",
+      "quantity": "scenarios",
+      "committed": 20000,
+      "regenerated": 20000,
+      "identical": true
+    },
+    {
+      "set": "check_light",
+      "quantity": "converged",
+      "committed": 20000,
+      "regenerated": 20000,
+      "identical": true
+    },
+    {
+      "set": "check_light",
+      "quantity": "failed_scenario_index",
+      "committed": [],
+      "regenerated": [],
+      "identical": true
+    },
+    {
+      "set": "check_light",
+      "quantity": "iterations_mean",
+      "committed": 7.98555,
+      "regenerated": 7.98555,
+      "identical": true
+    },
+    {
+      "set": "check_light",
+      "quantity": "iterations_max",
+      "committed": 12,
+      "regenerated": 12,
+      "identical": true
+    },
+    {
+      "set": "check_light",
+      "quantity": "rounds_distribution",
+      "committed": {
+        "1": 3,
+        "2": 11040,
+        "3": 8786,
+        "4": 171
+      },
+      "regenerated": {
+        "1": 3,
+        "2": 11040,
+        "3": 8786,
+        "4": 171
+      },
+      "identical": true
+    }
+  ],
+  "event_counts": {
+    "branch_100_103_loading_gt_1.05": 122,
+    "any_branch_loading_gt_1.05": 153,
+    "imbalance_below_-325.75MW": 228,
+    "per_branch_loading_gt_1.05": {
+      "77-82": 32,
+      "100-103": 122
+    }
+  },
+  "expected_event_counts": {
+    "any_branch_loading_gt_1.05": 153,
+    "imbalance_below_-325.75MW": 228
+  },
+  "max_abs_statistic_difference_vs_stage_e": {
+    "Vm": {
+      "mean": 2.220446049250313e-16,
+      "std": 9.901476340223869e-17,
+      "excess_kurtosis": 3.552713678800501e-15,
+      "q005": 2.220446049250313e-16,
+      "q995": 2.220446049250313e-16
+    },
+    "Pf": {
+      "mean": 1.4210854715202004e-14,
+      "std": 1.0302869668521453e-13,
+      "excess_kurtosis": 5.542233338928781e-13,
+      "q005": 5.684341886080802e-14,
+      "q995": 2.842170943040401e-14
+    },
+    "Qf": {
+      "mean": 7.105427357601002e-15,
+      "std": 1.5987211554602254e-14,
+      "excess_kurtosis": 4.263256414560601e-13,
+      "q005": 7.105427357601002e-15,
+      "q995": 7.105427357601002e-15
+    },
+    "Pt": {
+      "mean": 1.4210854715202004e-14,
+      "std": 1.1191048088221578e-13,
+      "excess_kurtosis": 4.050093593832571e-13,
+      "q005": 5.684341886080802e-14,
+      "q995": 2.842170943040401e-14
+    },
+    "Qt": {
+      "mean": 7.105427357601002e-15,
+      "std": 1.3322676295501878e-14,
+      "excess_kurtosis": 7.460698725481052e-13,
+      "q005": 7.105427357601002e-15,
+      "q995": 3.552713678800501e-15
+    }
+  },
+  "branch_100_103_index": 162,
+  "regenerated_chunks": [
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk000.npz",
+      "sha256": "5eff79dac0bf83959afe620e17de5846ae71608321d7fdfaaeeda262d9c12d2e",
+      "bytes": 19943899
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk001.npz",
+      "sha256": "bb42a6177ea99f22f76701b7be45846ec4e7bfd4907bfe83adc909f9119fe0c8",
+      "bytes": 19944261
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk002.npz",
+      "sha256": "77e2b1b644c2e1423f590f8b8c72b7303c6671b7c71d7f2dd1330f198d9bd0d7",
+      "bytes": 19941092
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk003.npz",
+      "sha256": "0e2d5bd0fd7365167af1f4d49b3f81e13d0af89273137b57446de336d1b4ef3f",
+      "bytes": 19944583
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk004.npz",
+      "sha256": "c41fdd5b6fa30fe3f5fd05579bc743e7d96846b16fdf24b0484b25af3f170c23",
+      "bytes": 19942986
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk005.npz",
+      "sha256": "5f0d45c1e022ad07b54e8de4d711597bb8e893414ba739ce9c10c9c6d2ee7633",
+      "bytes": 19940524
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk006.npz",
+      "sha256": "ec9a7ddb1f4d36a3e7cc9805ee5da668cdcf1cc9b84cf19c857d33d952c306c2",
+      "bytes": 19943321
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk007.npz",
+      "sha256": "d97ff8aa6996e034dbf1c35edac20fa37bd858341cf9ade4b641369a13a96b8a",
+      "bytes": 19940974
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk008.npz",
+      "sha256": "0c96d6082de9ab8720453f92041b694a8c716947e934052c88d0397f5a9bcaf7",
+      "bytes": 19951519
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk009.npz",
+      "sha256": "50734f3fbc805e84525c5e2e60263e5425b3e4961999d370aa1368a555758462",
+      "bytes": 19943002
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk010.npz",
+      "sha256": "c77df0290d092806f40d747ea68eae59777de4a375bd998e71526260fde2be57",
+      "bytes": 19941138
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk011.npz",
+      "sha256": "4b47d07cb279c39400233a6760ed4f7b1411bfabedc11f54907b657395e62750",
+      "bytes": 19944573
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk012.npz",
+      "sha256": "6ce08ccc54cf3dbcc0b031710e915b22e4c8380c325e28ba1d42c8f7c2e89a26",
+      "bytes": 19938517
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk013.npz",
+      "sha256": "9361d1b727db23c3f74df07575f5eba7dec46ccc611e5dd2139415271e1d2840",
+      "bytes": 19943394
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk014.npz",
+      "sha256": "30b3cdeb8455783af43c30c1c3846b03c3214d75c2a6f9daca06503445b79e22",
+      "bytes": 19940565
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk015.npz",
+      "sha256": "c4ddcc36d199d45b38036c99f76c7352160a66ae7de11f7d57db0e057aad88b9",
+      "bytes": 19942382
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk016.npz",
+      "sha256": "2e8cb99c2a03b6067f87e1a1d18cbf1825dcf9269311af6d5d3fdc210cc88d5b",
+      "bytes": 19943673
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk017.npz",
+      "sha256": "80ebb3a786a9a52175599ecc31d2200192b6c8b18518b2b45b1db0d9f1a64856",
+      "bytes": 19944509
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk018.npz",
+      "sha256": "1e968c850dfc77dad12383117532c4b8c15539b064c0a029278536e63496ec4c",
+      "bytes": 19941820
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_heavy_chunk019.npz",
+      "sha256": "bfd44ea34cc3e00fe00ceb167f88ed363a82a115e7489bb33acdf68016ea34fd",
+      "bytes": 19944173
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_light_chunk000.npz",
+      "sha256": "d880ec3a200daadbd93ec9c39a27116db1daf387ceb383bcf55b8d0ddef40fd3",
+      "bytes": 19910036
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_light_chunk001.npz",
+      "sha256": "bdbbff4d1410f84572403152531f7b5278267b9ff4f24f7aa535e0ee0f8c3dc2",
+      "bytes": 19910923
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_light_chunk002.npz",
+      "sha256": "167cf4c50ab6606a6a5651625b002be9014d92bd5c625b604132477e5848d7a2",
+      "bytes": 19909456
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/check_light_chunk003.npz",
+      "sha256": "24fef831c2802004c3bcbf8e45c5ecee3b2c0077d579944d8b2376a1b3c16941",
+      "bytes": 19912345
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/determination_chunk000.npz",
+      "sha256": "1637e609186c98c56544a60f5a08f3af69ae294054fd87908311ea643610d22f",
+      "bytes": 15114715
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/modeling_chunk000.npz",
+      "sha256": "0ac6ca7d80bdfb34e6cd98cea17c319c9b434bdc1418d49c1dcf5086a87fe0c5",
+      "bytes": 43349026
+    },
+    {
+      "file": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP2/modeling_chunk001.npz",
+      "sha256": "7d6b204971bda0cea4745d2e351aa819c712bb5455afc0f88fb99ba54033cee6",
+      "bytes": 2246092
+    }
+  ],
+  "committed_total_wall_time_s": 371.80005502700806
+}

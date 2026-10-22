@@ -1,0 +1,57 @@
+{
+  "created_utc": "2026-10-22T12:57:17+00:00",
+  "command": "python cloud/tests/run_stage_g_identity.py --result-stamp 20261022T125454",
+  "git": {
+    "branch": "cursor/phase1b-tmm-op2-37d0",
+    "commit": "78c13a43da63996c04722afc997379fa3e9fd666",
+    "dirty": false
+  },
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.18.1",
+      "pandas": "2.3.3",
+      "matplotlib": "3.11.2",
+      "pandapower": "3.5.6",
+      "numba": "0.68.0"
+    }
+  },
+  "data_sources": [
+    {
+      "path": "data/networks/pglib118/pglib_opf_case118_ieee.m",
+      "sha256": "b1af0833849040c04babc3700631cff0d9afa66b79c5d3e13ae79bdf516cec78"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/tail_statistics_OP2.csv",
+      "sha256": "014f89477d959a0d5b027cfcc42f3da5cd773f58795940e81980066bd7793487"
+    }
+  ],
+  "parameters": {
+    "regeneration_command": "python cloud/tests/run_stage_d_montecarlo.py OP2 --result-stamp 20261021T202200 --workers 4",
+    "compared_summary_fields": [
+      "scenarios",
+      "converged",
+      "failed_scenario_index",
+      "iterations_mean",
+      "iterations_max",
+      "rounds_distribution"
+    ],
+    "expected_event_counts": {
+      "any_branch_loading_gt_1.05": 153,
+      "imbalance_below_-325.75MW": 228
+    },
+    "loading": "max(|S_from|, |S_to|) / rateA from float32 check_heavy powers"
+  },
+  "random_sampling": {
+    "generator": "numpy default_rng (PCG64)",
+    "seed_sequence_entropy": 2026102112,
+    "spawn": "as in phase-1 stage D"
+  },
+  "outputs": [
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_g_identity/README.md",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_g_identity/regeneration_console_output.txt",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_g_identity/stage_g_identity.json"
+  ]
+}
