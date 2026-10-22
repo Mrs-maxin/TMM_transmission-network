@@ -106,13 +106,22 @@ def summarise(df):
     return pd.DataFrame(out)
 
 
-def plot_object(net, key, col, label, models, coords, outmap, R, Ymod, out):
-    vals = {}
+def plotted_values(targets, models, coords, outmap):
+    """{(key, col): {method: (values, normalized weights)}} for the plotted objects, one point set per method."""
+    keys = sorted({k for k, _ in targets})
+    vals = {t: {} for t in targets}
     for i, method in enumerate(METHODS):
         if method not in models:
             continue
         Z, w, _ = pg.model_points(models[method][0], N_POINTS, SOBOL_ENTROPY + i)
-        vals[method] = (pg.evaluate_points(Z, coords, outmap, [key])[key][:, col], w / w.sum())
+        Y = pg.evaluate_points(Z, coords, outmap, keys)
+        for k, c in targets:
+            vals[(k, c)][method] = (Y[k][:, c].copy(), w / w.sum())
+        del Z, Y
+    return vals
+
+
+def plot_object(key, col, label, vals, R, Ymod, out):
     r = R[:, col]
     lo, hi = np.quantile(r, [0.0005, 0.9995])
     span = hi - lo
@@ -125,32 +134,41 @@ def plot_object(net, key, col, label, models, coords, outmap, R, Ymod, out):
         ax.plot(0.5 * (e[1:] + e[:-1]), h, color=styles[method][0], ls=styles[method][1], label=method)
     ax.set_xlabel(f"{label} ({UNITS[key]})")
     ax.set_ylabel("probability density")
-    ax.legend(fontsize=7)
+    ax.legend(fontsize=7, loc="upper right")
     fig.tight_layout()
     tag = label.replace(" ", "_").replace("/", "_")
     fig.savefig(out / f"pdf_{tag}.png", dpi=130)
     plt.close(fig)
 
     fig, ax = plt.subplots(figsize=(6, 4))
-    rs = np.sort(r)
-    n = len(rs)
-    ax.semilogy(rs, 1 - np.arange(1, n + 1) / n + 1e-12, color="k", label="check, P(Y > y)")
-    ax.semilogy(rs, np.arange(1, n + 1) / n, color="k", ls="--", label="check, P(Y < y)")
-    ms = np.sort(Ymod[:, col])
-    nm = len(ms)
-    ax.semilogy(ms, 1 - np.arange(1, nm + 1) / nm + 1e-12, color="0.5", lw=0.8, label="modeling scenarios (5256), P(Y > y)")
-    ax.semilogy(ms, np.arange(1, nm + 1) / nm, color="0.5", lw=0.8, ls="--")
-    for method, (y, w) in vals.items():
+
+    def tails(y, w):
         o = np.argsort(y)
-        cw = np.cumsum(w[o])
+        ys, cw = y[o], np.cumsum(w[o])
+        return ys[thin(cw)], cw[thin(cw)]
+
+    def thin(cw):
+        # plotted at the sorted points nearest to a log-spaced grid of tail probabilities (both tails)
+        grid = np.unique(np.concatenate([np.geomspace(1e-7, 0.5, 600), 1 - np.geomspace(1e-7, 0.5, 600)]))
+        return np.unique(np.clip(np.searchsorted(cw, grid), 0, len(cw) - 1))
+
+    ys, cw = tails(r, np.full(len(r), 1.0 / len(r)))
+    ax.semilogy(ys, np.clip(1 - cw, 1e-12, None), color="k", label="check, P(Y > y)")
+    ax.semilogy(ys, cw, color="k", ls="--", label="check, P(Y < y)")
+    ys, cw = tails(Ymod[:, col], np.full(len(Ymod), 1.0 / len(Ymod)))
+    ax.semilogy(ys, np.clip(1 - cw, 1e-12, None), color="0.5", lw=0.8, label="modeling scenarios (5256), P(Y > y)")
+    ax.semilogy(ys, cw, color="0.5", lw=0.8, ls="--")
+    for method, (y, w) in vals.items():
+        ys, cw = tails(y, w)
         c, ls = styles[method]
-        ax.semilogy(y[o], np.clip(1 - cw, 1e-12, None), color=c, ls=ls, lw=1, label=f"{method}, P(Y > y)")
-        ax.semilogy(y[o], cw, color=c, ls=ls, lw=1, alpha=0.6)
+        ax.semilogy(ys, np.clip(1 - cw, 1e-12, None), color=c, ls=ls, lw=1, label=f"{method}, P(Y > y)")
+        ax.semilogy(ys, cw, color=c, ls=ls, lw=1, alpha=0.6)
+    rs = np.sort(r)
     ax.set_ylim(1e-6, 1)
     ax.set_xlim(rs[0] - 0.1 * span, rs[-1] + 0.1 * span)
     ax.set_xlabel(f"{label} ({UNITS[key]})")
     ax.set_ylabel("probability (upper tail solid, lower tail dashed)")
-    ax.legend(fontsize=6)
+    ax.legend(fontsize=6, loc="lower center")
     fig.tight_layout()
     fig.savefig(out / f"exceedance_{tag}.png", dpi=130)
     plt.close(fig)
@@ -159,6 +177,7 @@ def plot_object(net, key, col, label, models, coords, outmap, R, Ymod, out):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--result-stamp", required=True)
+    ap.add_argument("--plots-only", action="store_true", help="reuse marginal_metrics_OP2.csv of an earlier run of the same settings")
     a = ap.parse_args()
     t0 = time.time()
     out = rr.stamped_stage_dir(TASK, a.result_stamp, "stage_i_marginals")
@@ -189,7 +208,7 @@ def main():
     for key in check:
         rows += metrics_rows(mod[key], np.full(nm, 1.0 / nm), check[key], key, names[key], "modeling scenarios (5256)", live[key], ub if key == "Vm" else None)
     for i, method in enumerate(METHODS):
-        if method not in models:
+        if method not in models or a.plots_only:
             continue
         ts = time.time()
         Z, w, alloc = pg.model_points(models[method][0], N_POINTS, SOBOL_ENTROPY + i)
@@ -202,8 +221,13 @@ def main():
         timing[method] = time.time() - ts
         print(method, f"{timing[method]:.0f} s", flush=True)
         del Z
-    df = pd.DataFrame(rows)
-    df.to_csv(out / f"marginal_metrics_{OP}.csv", index=False)
+    if a.plots_only:
+        df = pd.read_csv(out / f"marginal_metrics_{OP}.csv")
+        alloc_info = {m: pg.allocation(models[m][0].weights, N_POINTS).tolist() for m in METHODS if m in models}
+        timing = "see metrics_console_output.txt"
+    else:
+        df = pd.DataFrame(rows)
+        df.to_csv(out / f"marginal_metrics_{OP}.csv", index=False)
     summ = summarise(df)
     summ.to_csv(out / f"marginal_summary_{OP}.csv", index=False)
 
@@ -220,8 +244,9 @@ def main():
         if (r.quantity, r.object) not in chosen and len(extra) < 3:
             extra.append((r.quantity, names[r.quantity].index(r.object), f"{r.quantity} {r.object} (TMM KS {r.ks:.3f})"))
             chosen.add((r.quantity, r.object))
+    vals = plotted_values([(k, c) for k, c, _ in plots + extra], models, coords, outmap)
     for key, col, label in plots + extra:
-        plot_object(net, key, col, label, models, coords, outmap, check[key], mod[key], out)
+        plot_object(key, col, label, vals[(key, col)], check[key], mod[key], out)
 
     summary = {"operating_point": OP, "points_per_model": N_POINTS, "component_allocation": alloc_info,
                "propagation_seconds": timing, "fixed_objects": len(fixed), "plotted_objects": [p[2] for p in plots + extra],
@@ -229,7 +254,7 @@ def main():
     rr.write_json(out / f"stage_i_summary_{OP}.json", summary)
     rr.write_manifest(
         out,
-        command=f"python cloud/tests/run_stage_i_marginals.py --result-stamp {a.result_stamp}",
+        command=f"python cloud/tests/run_stage_i_marginals.py --result-stamp {a.result_stamp}" + (" --plots-only" if a.plots_only else ""),
         data_files=[mc.PGLIB118, STAGE_B / f"operating_point_{OP}.npz", hdir / f"coordinates_{OP}.npz",
                     *[p for _, p in models.values()], *sorted(STAGE_D.glob("modeling_chunk*.npz"))],
         parameters={"reference": "check_heavy (100000, float32 storage), phase-1 stage D OP2; chunk SHA256 in stage_g_identity.json",
@@ -238,6 +263,7 @@ def main():
                     "fixed_object_std_tolerance": FIXED_TOL, "quantile_probabilities": pg.PROBS,
                     "quantile_convention": "model: smallest value with cumulative weight >= p; check: inverted_cdf",
                     "ks": "sup over the check sample points of |F_model - F_check|, both one-sided limits",
+                    "exceedance_plot": "curves drawn at the sorted points nearest to 1200 log-spaced tail probabilities (1e-7 to 0.5, both tails); metrics use all points",
                     "reporting_split": "Vm of unit buses (point mass at the setpoint while regulating) summarised apart from Vm of PQ buses; the 3 extra plotted objects are the largest-TMM-KS objects outside Vm of unit buses"},
         random_settings={"sobol": "scipy.stats.qmc.Sobol(scramble=True): linear matrix scramble with digital random shift; dimension d+1 per component (GMM d)",
                          "entropy": {m: SOBOL_ENTROPY + i for i, m in enumerate(METHODS)},
