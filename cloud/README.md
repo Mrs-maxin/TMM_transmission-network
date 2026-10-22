@@ -18,7 +18,7 @@ cloud/
 
 - 云端代理在自己的分支`cloud/<任务名>`上工作，每完成一个阶段即提交并推送该分支，便于及时查看；是否并入`main`由作者决定。
 - 每个结果目录必须有`README.md`（计算内容、主要数值、结论与证据状态）和`run_manifest.json`（入口命令、代码提交号、Python与依赖版本、数据来源与SHA256、关键参数、随机抽样设置）。
-- 单个文件不超过50 MB；大规模Monte Carlo结果按块保存为压缩的`.npz`（电压、功率可用float32），不使用Git LFS。
+- 单个文件不超过50 MB，不使用Git LFS。Monte Carlo场景结果（按块保存的`*_chunk*.npz`）只留在云端工作目录，不提交Git；需要时由计算入口按`run_manifest.json`记录的随机抽样设置重新生成。提交Git的结果只含README、JSON、CSV、PNG与小于5 MB的运行点、误差模型文件。
 - 原始外部数据存入`data/`对应子目录并登记来源与SHA256；`cloud/`只放由其派生的结果。
 - 诊断图可用matplotlib导出PNG，不作为论文正式图。
 - 文字说明使用电力系统概率潮流用语，禁用词见`.cursor/rules/lexicon.md`。

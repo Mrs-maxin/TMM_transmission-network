@@ -1,0 +1,32 @@
+{
+  "file": {
+    "bus": 118,
+    "gen": 54,
+    "branch": 186,
+    "Pd_MW": 4242.0,
+    "Qd_Mvar": 1438.0,
+    "transformer_branches": 11,
+    "reference_bus": 69,
+    "units_Pmax_positive": 19,
+    "total_Pmax_MW": 6515.000000000002
+  },
+  "parsed_network": {
+    "bus": 118,
+    "gen": 54,
+    "branch": 186,
+    "Pd_MW": 4242.0,
+    "Qd_Mvar": 1438.0
+  },
+  "pandapower": {
+    "bus": 118,
+    "gen": 53,
+    "ext_grid": 1,
+    "line": 175,
+    "trafo": 9,
+    "impedance": 2,
+    "load_P_MW": 4242.0,
+    "load_Q_Mvar": 1438.0,
+    "shunt": 14
+  },
+  "Ybus_max_abs_difference_pu": 5.684341886080802e-14
+}

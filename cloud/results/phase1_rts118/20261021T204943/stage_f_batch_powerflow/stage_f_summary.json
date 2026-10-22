@@ -1,0 +1,87 @@
+{
+  "stage_d_result": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo",
+  "scenario_set": "modeling",
+  "OP1": {
+    "scenarios": 5256,
+    "newton_raphson_time_s": 36.18506717681885,
+    "newton_raphson_rerun_max_abs_V_diff_vs_stage_d": 0.0,
+    "full_procedure": {
+      "time_s": 5.756613254547119,
+      "speed_ratio_vs_newton_raphson": 6.2858256368423655,
+      "converged": 5256,
+      "identical_unit_modes": 5256,
+      "max_abs_V_error_pu": 5.421138932654841e-10,
+      "scenarios_V_error_gt_tol": 0,
+      "mode_groups_over_all_rounds": 849,
+      "groups_with_one_scenario": 312,
+      "median_group_size": 2.0,
+      "expansion_points": 849,
+      "newton_point_solutions": 849,
+      "final_method_share": {
+        "batch_correction": 0.8515981735159818,
+        "expansion_point": 0.14840182648401826,
+        "point_newton": 0.0
+      }
+    },
+    "known_final_modes": {
+      "time_s": 4.275790452957153,
+      "speed_ratio_vs_newton_raphson": 8.462778420722913,
+      "converged": 5256,
+      "max_abs_V_error_pu": 4.4077070089689326e-10,
+      "scenarios_V_error_gt_tol": 0,
+      "distinct_final_modes": 689,
+      "modes_with_one_scenario": 248,
+      "largest_mode_share": 0.020167427701674276,
+      "scenarios_in_modes_with_ge_50": 1700,
+      "expansion_points": 689,
+      "newton_point_solutions": 689,
+      "final_method_share": {
+        "batch_correction": 0.8689117199391172,
+        "expansion_point": 0.1310882800608828,
+        "point_newton": 0.0
+      },
+      "batch_correction_share_in_modes_with_ge_50": 0.9870588235294118
+    }
+  },
+  "OP2": {
+    "scenarios": 5256,
+    "newton_raphson_time_s": 42.961055517196655,
+    "newton_raphson_rerun_max_abs_V_diff_vs_stage_d": 0.0,
+    "full_procedure": {
+      "time_s": 22.667422771453857,
+      "speed_ratio_vs_newton_raphson": 1.8952774627426774,
+      "converged": 5256,
+      "identical_unit_modes": 5256,
+      "max_abs_V_error_pu": 5.501138718349623e-10,
+      "scenarios_V_error_gt_tol": 0,
+      "mode_groups_over_all_rounds": 5122,
+      "groups_with_one_scenario": 3814,
+      "median_group_size": 1.0,
+      "expansion_points": 5122,
+      "newton_point_solutions": 5122,
+      "final_method_share": {
+        "batch_correction": 0.335806697108067,
+        "expansion_point": 0.664193302891933,
+        "point_newton": 0.0
+      }
+    },
+    "known_final_modes": {
+      "time_s": 14.17863130569458,
+      "speed_ratio_vs_newton_raphson": 3.029986081938823,
+      "converged": 5256,
+      "max_abs_V_error_pu": 6.061113093060191e-10,
+      "scenarios_V_error_gt_tol": 0,
+      "distinct_final_modes": 3165,
+      "modes_with_one_scenario": 2270,
+      "largest_mode_share": 0.007990867579908675,
+      "scenarios_in_modes_with_ge_50": 0,
+      "expansion_points": 3165,
+      "newton_point_solutions": 3165,
+      "final_method_share": {
+        "batch_correction": 0.3978310502283105,
+        "expansion_point": 0.6021689497716894,
+        "point_newton": 0.0
+      }
+    }
+  }
+}

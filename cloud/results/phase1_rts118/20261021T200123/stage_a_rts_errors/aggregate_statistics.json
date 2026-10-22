@@ -1,0 +1,24 @@
+{
+  "wind_total_capacity_MW": 2507.9,
+  "wind_total_error_std_MW": 462.31609303481514,
+  "wind_total_error_excess_kurtosis": 2.9363038665805625,
+  "pv_total_capacity_MW": 1554.5,
+  "pv_total_error_std_MW_daylight": 139.14332249921668,
+  "pv_total_error_excess_kurtosis_daylight": 1.6225234804811741,
+  "corr_wind_total_pv_total_daylight": 0.07142135136391348,
+  "wind_mean_pairwise_error_corr": 0.40273741326768636,
+  "wind_mean_pairwise_sq_std_error_corr": 0.3146123343386391,
+  "wind_mean_pairwise_sq_condstd_error_corr": 0.2775965957351332,
+  "pv_mean_pairwise_error_corr": 0.33581548931016847,
+  "pv_mean_pairwise_sq_std_error_corr": 0.25633741705764046,
+  "pv_mean_pairwise_sq_condstd_error_corr": 0.23785379506367643,
+  "wind_condstd_excess_kurtosis": {
+    "309_WIND_1": 8.722143107824358,
+    "317_WIND_1": 5.311063877122098,
+    "303_WIND_1": 7.193637569447967,
+    "122_WIND_1": 4.62408189441333
+  },
+  "pv_condstd_excess_kurtosis_median": 4.648113155076773,
+  "hours_total": 8784,
+  "pv_daylight_hours_per_site_median": 4478
+}

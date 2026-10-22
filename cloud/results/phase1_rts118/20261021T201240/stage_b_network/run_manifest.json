@@ -1,0 +1,109 @@
+{
+  "created_utc": "2026-10-21T20:12:56+00:00",
+  "command": "python cloud/tests/run_stage_b_network.py",
+  "git": {
+    "branch": "cursor/phase1-rts118-37d0",
+    "commit": "a879bcb2937af57b113b74ba9452849dc491c901",
+    "dirty": false
+  },
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.18.1",
+      "pandas": "2.3.3",
+      "matplotlib": "3.11.2",
+      "pandapower": "3.5.6",
+      "numba": "0.68.0"
+    }
+  },
+  "data_sources": [
+    {
+      "path": "data/networks/pglib118/pglib_opf_case118_ieee.m",
+      "sha256": "b1af0833849040c04babc3700631cff0d9afa66b79c5d3e13ae79bdf516cec78"
+    },
+    {
+      "path": "data/rts_gmlc/DAY_AHEAD_wind.csv",
+      "sha256": "6a1a8dc7d10a518523b3b319902ecc1ca1c400223832b26c6edb3a6e69d01dbc"
+    },
+    {
+      "path": "data/rts_gmlc/REAL_TIME_wind.csv",
+      "sha256": "fc88ecb030cec9e60a796dae9c6139855640c0fca1aa7cc76e821de24d38efb4"
+    },
+    {
+      "path": "data/rts_gmlc/DAY_AHEAD_pv.csv",
+      "sha256": "bfede6e558df5ea0f244b6326940a4ee0b95138643aa8a062897c67134c9c185"
+    },
+    {
+      "path": "data/rts_gmlc/REAL_TIME_pv.csv",
+      "sha256": "ae45e0114d88302520acae1c7bb278e3fdfd2691a932c13667f60a27145e0836"
+    },
+    {
+      "path": "data/rts_gmlc/DAY_AHEAD_regional_Load.csv",
+      "sha256": "7a9470d32d49068a91334cb36db54cceb2feb5cb1f702b0fa0847af8bac6cf21"
+    },
+    {
+      "path": "data/rts_gmlc/REAL_TIME_regional_Load.csv",
+      "sha256": "462888ae357239ec63bd22b96863900259a9849743df0ca6711ceb5a6d53da57"
+    },
+    {
+      "path": "data/rts_gmlc/gen.csv",
+      "sha256": "988466f29132b73739de60c9204dd4a2a9ceb0adf572e5966c086611272f4068"
+    },
+    {
+      "path": "data/rts_gmlc/bus.csv",
+      "sha256": "cec3f776222812d43eaeaf7ac85b577719dc565f354a04e120c12a647ddb710e"
+    }
+  ],
+  "parameters": {
+    "renewable_share": 0.25,
+    "second_share": 0.2,
+    "pv_groups_per_rts_area": {
+      "1": 2,
+      "2": 1,
+      "3": 3
+    },
+    "host_rule": "PQ bus with positive base load, degree >= 2, connected rateA sum >= 2 x site capacity; sites placed largest first (wind before UPV) on the remaining candidate with largest connected rateA in the mapped region",
+    "load_rule": "bus load x (RTS regional day-ahead load at the hour / RTS regional annual mean), constant power factor",
+    "opf_headroom_fraction_of_Pmax": 0.05,
+    "dispatch": "pandapower runopp (PIPS AC OPF, PGLib quadratic costs, rateA, bus voltage limits, unit P/Q limits); OPF unit P and bus voltage at unit buses used as base schedule and setpoints",
+    "balancing": "all units with Pmax > 0 share the imbalance by alpha = Pmax / sum Pmax, reference bus fixes angle and magnitude",
+    "q_limits": "all violating units switch together, no return to regulation, eps_q = 5e-8 p.u. (5e-6 Mvar), reference unit unlimited",
+    "newton_tolerance_pu": 1e-10,
+    "pandapower_tolerance_mva": 1e-08,
+    "crosscheck_scenarios": 200,
+    "load_cv": 0.01
+  },
+  "random_sampling": {
+    "generator": "numpy default_rng (PCG64)",
+    "seed_value": 2026102101,
+    "use": "cross-check scenarios: historical hourly errors of a random hour (midday hours for OP2), load factor 1 + 0.01 N(0,1) per bus"
+  },
+  "outputs": [
+    "cloud/results/phase1_rts118/20261021T201240/stage_b_network/README.md",
+    "cloud/results/phase1_rts118/20261021T201240/stage_b_network/base_branch_OP1.csv",
+    "cloud/results/phase1_rts118/20261021T201240/stage_b_network/base_branch_OP2.csv",
+    "cloud/results/phase1_rts118/20261021T201240/stage_b_network/base_branch_loading_OP1.png",
+    "cloud/results/phase1_rts118/20261021T201240/stage_b_network/base_branch_loading_OP2.png",
+    "cloud/results/phase1_rts118/20261021T201240/stage_b_network/base_bus_OP1.csv",
+    "cloud/results/phase1_rts118/20261021T201240/stage_b_network/base_bus_OP2.csv",
+    "cloud/results/phase1_rts118/20261021T201240/stage_b_network/base_dispatch_OP1.csv",
+    "cloud/results/phase1_rts118/20261021T201240/stage_b_network/base_dispatch_OP2.csv",
+    "cloud/results/phase1_rts118/20261021T201240/stage_b_network/base_voltage_OP1.png",
+    "cloud/results/phase1_rts118/20261021T201240/stage_b_network/base_voltage_OP2.png",
+    "cloud/results/phase1_rts118/20261021T201240/stage_b_network/crosscheck_OP1.csv",
+    "cloud/results/phase1_rts118/20261021T201240/stage_b_network/crosscheck_OP2.csv",
+    "cloud/results/phase1_rts118/20261021T201240/stage_b_network/host_bus_candidates.csv",
+    "cloud/results/phase1_rts118/20261021T201240/stage_b_network/network_check.json",
+    "cloud/results/phase1_rts118/20261021T201240/stage_b_network/operating_point_OP1.npz",
+    "cloud/results/phase1_rts118/20261021T201240/stage_b_network/operating_point_OP2.npz",
+    "cloud/results/phase1_rts118/20261021T201240/stage_b_network/opf_dispatch_comparison_OP1.csv",
+    "cloud/results/phase1_rts118/20261021T201240/stage_b_network/opf_dispatch_comparison_OP2.csv",
+    "cloud/results/phase1_rts118/20261021T201240/stage_b_network/regions.csv",
+    "cloud/results/phase1_rts118/20261021T201240/stage_b_network/renewable_mapping.csv",
+    "cloud/results/phase1_rts118/20261021T201240/stage_b_network/stage_b_summary.json",
+    "cloud/results/phase1_rts118/20261021T201240/stage_b_network/tie_lines.csv",
+    "cloud/results/phase1_rts118/20261021T201240/stage_b_network/upv_plant_groups.csv"
+  ]
+}

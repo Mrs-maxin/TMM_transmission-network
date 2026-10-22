@@ -1,0 +1,31 @@
+set,violation,depth_threshold,unit,system_count,system_probability,system_ci95_low,system_ci95_high,objects_with_probability_gt_0,objects_with_probability_1e-3_to_1e-2,objects_with_probability_1e-4_to_1e-3
+heavy,overvoltage,0.0,p.u. above Vmax,99838,0.99838,0.9981106904895157,0.9986197017357953,7,0,0
+heavy,overvoltage,0.0025,p.u. above Vmax,0,0.0,0.0,3.68881141579242e-05,0,0,0
+heavy,overvoltage,0.005,p.u. above Vmax,0,0.0,0.0,3.68881141579242e-05,0,0,0
+heavy,overvoltage,0.01,p.u. above Vmax,0,0.0,0.0,3.68881141579242e-05,0,0,0
+heavy,overvoltage,0.02,p.u. above Vmax,0,0.0,0.0,3.68881141579242e-05,0,0,0
+heavy,undervoltage,0.0,p.u. below Vmin,0,0.0,0.0,3.68881141579242e-05,0,0,0
+heavy,undervoltage,0.0025,p.u. below Vmin,0,0.0,0.0,3.68881141579242e-05,0,0,0
+heavy,undervoltage,0.005,p.u. below Vmin,0,0.0,0.0,3.68881141579242e-05,0,0,0
+heavy,undervoltage,0.01,p.u. below Vmin,0,0.0,0.0,3.68881141579242e-05,0,0,0
+heavy,undervoltage,0.02,p.u. below Vmin,0,0.0,0.0,3.68881141579242e-05,0,0,0
+heavy,branch_overload,0.0,loading above rateA (fraction),27745,0.27745,0.27467641288057015,0.2802365002669003,2,0,0
+heavy,branch_overload,0.05,loading above rateA (fraction),17285,0.17285,0.17051095873343503,0.17520803200072294,2,0,0
+heavy,branch_overload,0.1,loading above rateA (fraction),9445,0.09445,0.09264416622746222,0.09627939496786196,2,0,0
+heavy,branch_overload,0.2,loading above rateA (fraction),1897,0.01897,0.0181334552586907,0.019834607123037928,1,0,0
+heavy,branch_overload,0.3,loading above rateA (fraction),30,0.0003,0.000202417605783052,0.00042824118644745957,1,0,1
+light,overvoltage,0.0,p.u. above Vmax,19979,0.99895,0.9983954089177361,0.9993499196513351,6,0,0
+light,overvoltage,0.0025,p.u. above Vmax,0,0.0,0.0,0.0001844269639618992,0,0,0
+light,overvoltage,0.005,p.u. above Vmax,0,0.0,0.0,0.0001844269639618992,0,0,0
+light,overvoltage,0.01,p.u. above Vmax,0,0.0,0.0,0.0001844269639618992,0,0,0
+light,overvoltage,0.02,p.u. above Vmax,0,0.0,0.0,0.0001844269639618992,0,0,0
+light,undervoltage,0.0,p.u. below Vmin,0,0.0,0.0,0.0001844269639618992,0,0,0
+light,undervoltage,0.0025,p.u. below Vmin,0,0.0,0.0,0.0001844269639618992,0,0,0
+light,undervoltage,0.005,p.u. below Vmin,0,0.0,0.0,0.0001844269639618992,0,0,0
+light,undervoltage,0.01,p.u. below Vmin,0,0.0,0.0,0.0001844269639618992,0,0,0
+light,undervoltage,0.02,p.u. below Vmin,0,0.0,0.0,0.0001844269639618992,0,0,0
+light,branch_overload,0.0,loading above rateA (fraction),5678,0.2839,0.27765788526140717,0.2902049875705672,2,0,0
+light,branch_overload,0.05,loading above rateA (fraction),3587,0.17935,0.1740549409263461,0.18473843596537254,2,0,0
+light,branch_overload,0.1,loading above rateA (fraction),1953,0.09765,0.09356976896901631,0.10184761108663778,2,0,0
+light,branch_overload,0.2,loading above rateA (fraction),383,0.01915,0.01729573751478044,0.021145837781283573,1,0,0
+light,branch_overload,0.3,loading above rateA (fraction),3,0.00015,3.0934674445285264e-05,0.00043830045339363695,1,0,1

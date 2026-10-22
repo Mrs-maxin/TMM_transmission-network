@@ -1,0 +1,2 @@
+# Keep raw RTS-GMLC bytes so SOURCE.md SHA256 values hold after checkout.
+*.csv -text

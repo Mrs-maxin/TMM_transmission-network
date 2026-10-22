@@ -1,0 +1,79 @@
+{
+  "created_utc": "2026-10-21T20:01:24+00:00",
+  "command": "python cloud/tests/run_stage_a_rts_errors.py",
+  "git": {
+    "branch": "cursor/phase1-rts118-37d0",
+    "commit": "a9cba4c31baccdd3f21adf6804314d7a02c1335d",
+    "dirty": false
+  },
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.18.1",
+      "pandas": "2.3.3",
+      "matplotlib": "3.11.2",
+      "pandapower": "3.5.6",
+      "numba": "0.68.0"
+    }
+  },
+  "data_sources": [
+    {
+      "path": "data/rts_gmlc/DAY_AHEAD_wind.csv",
+      "sha256": "6a1a8dc7d10a518523b3b319902ecc1ca1c400223832b26c6edb3a6e69d01dbc"
+    },
+    {
+      "path": "data/rts_gmlc/REAL_TIME_wind.csv",
+      "sha256": "fc88ecb030cec9e60a796dae9c6139855640c0fca1aa7cc76e821de24d38efb4"
+    },
+    {
+      "path": "data/rts_gmlc/DAY_AHEAD_pv.csv",
+      "sha256": "bfede6e558df5ea0f244b6326940a4ee0b95138643aa8a062897c67134c9c185"
+    },
+    {
+      "path": "data/rts_gmlc/REAL_TIME_pv.csv",
+      "sha256": "ae45e0114d88302520acae1c7bb278e3fdfd2691a932c13667f60a27145e0836"
+    },
+    {
+      "path": "data/rts_gmlc/DAY_AHEAD_regional_Load.csv",
+      "sha256": "7a9470d32d49068a91334cb36db54cceb2feb5cb1f702b0fa0847af8bac6cf21"
+    },
+    {
+      "path": "data/rts_gmlc/REAL_TIME_regional_Load.csv",
+      "sha256": "462888ae357239ec63bd22b96863900259a9849743df0ca6711ceb5a6d53da57"
+    },
+    {
+      "path": "data/rts_gmlc/gen.csv",
+      "sha256": "988466f29132b73739de60c9204dd4a2a9ceb0adf572e5966c086611272f4068"
+    },
+    {
+      "path": "data/rts_gmlc/bus.csv",
+      "sha256": "cec3f776222812d43eaeaf7ac85b577719dc565f354a04e120c12a647ddb710e"
+    }
+  ],
+  "parameters": {
+    "error_definition": "real-time 5-min values averaged to hourly minus day-ahead hourly forecast",
+    "pv_daylight_rule": "hour kept for a UPV plant when day-ahead forecast > 0 or real-time hourly mean > 0",
+    "squared_error_corr": "Pearson correlation of squared errors standardised by site mean and std; condstd variant standardises within 10 forecast-level bins",
+    "forecast_level_bins": 10
+  },
+  "random_sampling": "not applicable (deterministic statistics)",
+  "outputs": [
+    "cloud/results/phase1_rts118/20261021T200123/stage_a_rts_errors/README.md",
+    "cloud/results/phase1_rts118/20261021T200123/stage_a_rts_errors/aggregate_statistics.json",
+    "cloud/results/phase1_rts118/20261021T200123/stage_a_rts_errors/error_spread_by_forecast_level.csv",
+    "cloud/results/phase1_rts118/20261021T200123/stage_a_rts_errors/load_error_region_statistics.csv",
+    "cloud/results/phase1_rts118/20261021T200123/stage_a_rts_errors/pv_error_corr.csv",
+    "cloud/results/phase1_rts118/20261021T200123/stage_a_rts_errors/pv_error_site_statistics.csv",
+    "cloud/results/phase1_rts118/20261021T200123/stage_a_rts_errors/pv_error_spread_vs_level.png",
+    "cloud/results/phase1_rts118/20261021T200123/stage_a_rts_errors/pv_sq_condstd_error_corr.csv",
+    "cloud/results/phase1_rts118/20261021T200123/stage_a_rts_errors/pv_sq_std_error_corr.csv",
+    "cloud/results/phase1_rts118/20261021T200123/stage_a_rts_errors/wind_error_corr.csv",
+    "cloud/results/phase1_rts118/20261021T200123/stage_a_rts_errors/wind_error_site_statistics.csv",
+    "cloud/results/phase1_rts118/20261021T200123/stage_a_rts_errors/wind_error_spread_vs_level.png",
+    "cloud/results/phase1_rts118/20261021T200123/stage_a_rts_errors/wind_sq_condstd_error_corr.csv",
+    "cloud/results/phase1_rts118/20261021T200123/stage_a_rts_errors/wind_sq_std_error_corr.csv",
+    "cloud/results/phase1_rts118/20261021T200123/stage_a_rts_errors/wind_total_error_hist_log.png"
+  ]
+}
