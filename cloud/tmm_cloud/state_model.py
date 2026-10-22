@@ -10,11 +10,19 @@ from . import montecarlo as mcarlo
 from . import powerflow as pf
 
 
-def scenario_state(paths, net):
-    """Return (x, data) for the stage D chunks in paths. Non-converged scenarios raise: phase-1 sets have none."""
+def scenario_state(paths, net, drop_failed=False):
+    """Return (x, data) for the stage D chunks in paths. Non-converged scenarios raise unless drop_failed, in which
+    case they are removed from x and data and their scenario indices are kept in data['dropped_scenario_index']."""
     d = mcarlo.load_set(sorted(Path(p) for p in paths))
     if not d["converged"].all():
-        raise RuntimeError(f"{int((~d['converged']).sum())} non-converged scenarios in {paths[0]}")
+        if not drop_failed:
+            raise RuntimeError(f"{int((~d['converged']).sum())} non-converged scenarios in {paths[0]}")
+        ok = d["converged"].astype(bool)
+        dropped = d["scenario_index"][~ok]
+        d = {k: v[ok] if getattr(v, "ndim", 0) and len(v) == len(ok) else v for k, v in d.items()}
+        d["dropped_scenario_index"] = dropped
+    else:
+        d["dropped_scenario_index"] = np.zeros(0, int)
     nr = np.setdiff1d(np.arange(net.n), [net.ref])
     V = d["V"].astype(np.complex128)
     x = np.hstack([V.real[:, nr], V.imag[:, nr], d["imbalance_MW"][:, None] / net.baseMVA])
