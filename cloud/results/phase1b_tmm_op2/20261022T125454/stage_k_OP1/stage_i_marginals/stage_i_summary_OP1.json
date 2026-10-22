@@ -1,0 +1,49 @@
+{
+  "operating_point": "OP1",
+  "points_per_model": 1048576,
+  "component_allocation": {
+    "GMM": [
+      230859,
+      314475,
+      268097,
+      235145
+    ],
+    "TMM": [
+      145437,
+      107929,
+      127280,
+      172562,
+      107128,
+      148838,
+      104539,
+      134863
+    ],
+    "block TMM": [
+      232249,
+      317217,
+      265920,
+      233190
+    ]
+  },
+  "propagation_seconds": {
+    "GMM": 196.0324468612671,
+    "TMM": 197.2123773097992,
+    "block TMM": 196.6749358177185
+  },
+  "fixed_objects": 42,
+  "plotted_objects": [
+    "branch 82-96 loading",
+    "branch 94-100 loading",
+    "branch 94-95 P",
+    "system imbalance",
+    "Vm bus7 (TMM KS 0.523)",
+    "Vm bus14 (TMM KS 0.449)",
+    "Vm bus5 (TMM KS 0.448)"
+  ],
+  "models": {
+    "GMM": "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_h_fit/model_GMM_K4_OP1.npz",
+    "TMM": "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_h_fit/model_TMM_K8_OP1.npz",
+    "block TMM": "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_h_fit/model_block_TMM_K4_OP1.npz"
+  },
+  "wall_time_s": 676.6916098594666
+}

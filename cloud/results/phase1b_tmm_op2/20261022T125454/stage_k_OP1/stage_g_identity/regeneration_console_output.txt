@@ -1,0 +1,33 @@
+modeling: 5000/5256 scenarios, 12.6 s
+modeling: 5256/5256 scenarios, 14.5 s
+modeling {'scenarios': 5256, 'converged': 5256, 'failures': {}, 'wall_time_s': 14.544922113418579, 'summed_worker_time_s': 39.62204909324646, 'workers': 4, 'iterations_mean': 6.362823439878234, 'iterations_max': 9, 'rounds_distribution': {2: 4643, 3: 613}, 'storage_precision': 'float64', 'sampling_time_s': 0.015616416931152344, 'input_model': 't', 'disk_MB': 43.52210330963135}
+determination: 1752/1752 scenarios, 10.6 s
+determination {'scenarios': 1752, 'converged': 1752, 'failures': {}, 'wall_time_s': 10.607712507247925, 'summed_worker_time_s': 12.503528356552124, 'workers': 4, 'iterations_mean': 6.382420091324201, 'iterations_max': 9, 'rounds_distribution': {2: 1524, 3: 228}, 'storage_precision': 'float64', 'sampling_time_s': 0.005465269088745117, 'input_model': 't', 'disk_MB': 14.439383506774902}
+check_heavy: 5000/100000 scenarios, 12.7 s
+check_heavy: 10000/100000 scenarios, 25.5 s
+check_heavy: 15000/100000 scenarios, 37.0 s
+check_heavy: 20000/100000 scenarios, 48.4 s
+check_heavy: 25000/100000 scenarios, 59.9 s
+check_heavy: 30000/100000 scenarios, 71.3 s
+check_heavy: 35000/100000 scenarios, 82.7 s
+check_heavy: 40000/100000 scenarios, 95.6 s
+check_heavy: 45000/100000 scenarios, 106.9 s
+check_heavy: 50000/100000 scenarios, 118.2 s
+check_heavy: 55000/100000 scenarios, 130.5 s
+check_heavy: 60000/100000 scenarios, 142.1 s
+check_heavy: 65000/100000 scenarios, 153.4 s
+check_heavy: 70000/100000 scenarios, 165.1 s
+check_heavy: 75000/100000 scenarios, 176.6 s
+check_heavy: 80000/100000 scenarios, 188.5 s
+check_heavy: 85000/100000 scenarios, 200.4 s
+check_heavy: 90000/100000 scenarios, 212.4 s
+check_heavy: 95000/100000 scenarios, 224.0 s
+check_heavy: 100000/100000 scenarios, 235.7 s
+check_heavy {'scenarios': 100000, 'converged': 100000, 'failures': {}, 'wall_time_s': 235.72802186012268, 'summed_worker_time_s': 765.463853597641, 'workers': 4, 'iterations_mean': 6.36827, 'iterations_max': 10, 'rounds_distribution': {1: 4, 2: 88159, 3: 11823, 4: 14}, 'storage_precision': 'float32', 'sampling_time_s': 0.2450554370880127, 'input_model': 't', 'disk_MB': 380.463210105896}
+check_light: 5000/20000 scenarios, 11.5 s
+check_light: 10000/20000 scenarios, 22.9 s
+check_light: 15000/20000 scenarios, 34.0 s
+check_light: 20000/20000 scenarios, 45.1 s
+check_light {'scenarios': 20000, 'converged': 20000, 'failures': {}, 'wall_time_s': 45.0736141204834, 'summed_worker_time_s': 146.61486721038818, 'workers': 4, 'iterations_mean': 6.3715, 'iterations_max': 10, 'rounds_distribution': {1: 2, 2: 17643, 3: 2352, 4: 3}, 'storage_precision': 'float32', 'sampling_time_s': 0.05193614959716797, 'input_model': 'gauss', 'disk_MB': 76.03995895385742}
+cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1 306 s
+identical {'branch_100_103_loading_gt_1.05': 0, 'any_branch_loading_gt_1.00': 27745, 'any_branch_loading_gt_1.05': 17285, 'any_branch_loading_gt_1.30': 30, 'imbalance_below_-325.75MW': 0, 'per_branch_loading_gt_1.30': {'94-100': 30}} 2.8862329193302116e-13

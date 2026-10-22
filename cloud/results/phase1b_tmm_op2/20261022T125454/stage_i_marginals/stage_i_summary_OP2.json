@@ -1,0 +1,53 @@
+{
+  "operating_point": "OP2",
+  "points_per_model": 1048576,
+  "component_allocation": {
+    "GMM": [
+      263545,
+      326192,
+      263727,
+      195112
+    ],
+    "TMM": [
+      120699,
+      127877,
+      124494,
+      202683,
+      64239,
+      138659,
+      130271,
+      139654
+    ],
+    "block TMM": [
+      263737,
+      326192,
+      263737,
+      194910
+    ],
+    "two-strength block TMM": [
+      263539,
+      327191,
+      263135,
+      194711
+    ]
+  },
+  "propagation_seconds": "see metrics_console_output.txt",
+  "fixed_objects": 36,
+  "plotted_objects": [
+    "branch 100-103 loading",
+    "branch 12-14 P",
+    "branch 77-82 loading",
+    "bus 83 Vm",
+    "system imbalance",
+    "Vm bus7 (TMM KS 0.411)",
+    "Vm bus14 (TMM KS 0.287)",
+    "Vm bus5 (TMM KS 0.265)"
+  ],
+  "models": {
+    "GMM": "cloud/results/phase1b_tmm_op2/20261022T125454/stage_h_fit/model_GMM_K4_OP2.npz",
+    "TMM": "cloud/results/phase1b_tmm_op2/20261022T125454/stage_h_fit/model_TMM_K8_OP2.npz",
+    "block TMM": "cloud/results/phase1b_tmm_op2/20261022T125454/stage_h_fit/model_block_TMM_K4_OP2.npz",
+    "two-strength block TMM": "cloud/results/phase1b_tmm_op2/20261022T125454/stage_h_fit/model_two_strength_block_TMM_K4_OP2.npz"
+  },
+  "wall_time_s": 125.31149339675903
+}

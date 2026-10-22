@@ -1,0 +1,125 @@
+{
+  "operating_point": "OP1",
+  "heavy_tailed_model": "t",
+  "nu_groups": [
+    14.906840233102105
+  ],
+  "sets": {
+    "modeling": {
+      "scenarios": 5256,
+      "converged": 5256,
+      "failures": {},
+      "failed_scenario_index": [],
+      "wall_time_s": 13.867714166641235,
+      "summed_worker_time_s": 38.0880925655365,
+      "workers": 4,
+      "iterations_mean": 6.362823439878234,
+      "iterations_max": 9,
+      "rounds_distribution": {
+        "2": 4643,
+        "3": 613
+      },
+      "files": [
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/modeling_chunk000.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/modeling_chunk001.npz"
+      ],
+      "storage_precision": "float64",
+      "sampling_time_s": 0.014209508895874023,
+      "input_model": "t",
+      "disk_MB": 43.52210330963135
+    },
+    "determination": {
+      "scenarios": 1752,
+      "converged": 1752,
+      "failures": {},
+      "failed_scenario_index": [],
+      "wall_time_s": 10.512439966201782,
+      "summed_worker_time_s": 12.409814834594727,
+      "workers": 4,
+      "iterations_mean": 6.382420091324201,
+      "iterations_max": 9,
+      "rounds_distribution": {
+        "2": 1524,
+        "3": 228
+      },
+      "files": [
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/determination_chunk000.npz"
+      ],
+      "storage_precision": "float64",
+      "sampling_time_s": 0.005102872848510742,
+      "input_model": "t",
+      "disk_MB": 14.439383506774902
+    },
+    "check_heavy": {
+      "scenarios": 100000,
+      "converged": 100000,
+      "failures": {},
+      "failed_scenario_index": [],
+      "wall_time_s": 262.06077337265015,
+      "summed_worker_time_s": 872.5664834976196,
+      "workers": 4,
+      "iterations_mean": 6.36827,
+      "iterations_max": 10,
+      "rounds_distribution": {
+        "1": 4,
+        "2": 88159,
+        "3": 11823,
+        "4": 14
+      },
+      "files": [
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk000.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk001.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk002.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk003.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk004.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk005.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk006.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk007.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk008.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk009.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk010.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk011.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk012.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk013.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk014.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk015.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk016.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk017.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk018.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk019.npz"
+      ],
+      "storage_precision": "float32",
+      "sampling_time_s": 0.247086763381958,
+      "input_model": "t",
+      "disk_MB": 380.463210105896
+    },
+    "check_light": {
+      "scenarios": 20000,
+      "converged": 20000,
+      "failures": {},
+      "failed_scenario_index": [],
+      "wall_time_s": 44.908639669418335,
+      "summed_worker_time_s": 145.94921016693115,
+      "workers": 4,
+      "iterations_mean": 6.3715,
+      "iterations_max": 10,
+      "rounds_distribution": {
+        "1": 2,
+        "2": 17643,
+        "3": 2352,
+        "4": 3
+      },
+      "files": [
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_light_chunk000.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_light_chunk001.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_light_chunk002.npz",
+        "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_light_chunk003.npz"
+      ],
+      "storage_precision": "float32",
+      "sampling_time_s": 0.04162120819091797,
+      "input_model": "gauss",
+      "disk_MB": 76.03995895385742
+    }
+  },
+  "total_wall_time_s": 331.6987028121948
+}

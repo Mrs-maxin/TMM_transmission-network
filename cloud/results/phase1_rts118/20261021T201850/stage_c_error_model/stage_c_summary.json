@@ -1,0 +1,469 @@
+{
+  "OP1": {
+    "active_sites": [
+      "309_WIND_1",
+      "317_WIND_1",
+      "303_WIND_1",
+      "122_WIND_1"
+    ],
+    "k": 750,
+    "distance_rule": "Euclidean distance between day-ahead forecast / capacity vectors of all 10 mapped sites",
+    "distance_median": 0.3842945554751605,
+    "distance_max": 0.4961833504017895,
+    "neighbour_hour_of_day_counts": {
+      "0": 63,
+      "1": 68,
+      "2": 71,
+      "3": 68,
+      "4": 62,
+      "5": 41,
+      "6": 17,
+      "16": 20,
+      "17": 29,
+      "18": 45,
+      "19": 44,
+      "20": 44,
+      "21": 53,
+      "22": 56,
+      "23": 69
+    },
+    "neighbour_hours_in_selection_window": 457,
+    "neighbour_months": {
+      "1": 154,
+      "2": 66,
+      "3": 85,
+      "4": 54,
+      "5": 52,
+      "6": 44,
+      "7": 30,
+      "8": 20,
+      "9": 33,
+      "10": 41,
+      "11": 110,
+      "12": 61
+    },
+    "kde_bandwidth_MW": {
+      "309_WIND_1": 2.9699,
+      "317_WIND_1": 8.922,
+      "303_WIND_1": 14.8442,
+      "122_WIND_1": 9.3844
+    },
+    "t_copula_nu": 14.906840233102105,
+    "t_copula_nu_ci95_profile_likelihood": [
+      10.157016452617171,
+      25.095692956600747
+    ],
+    "heavy_tailed_model": "t",
+    "heavy_tailed_nu_by_group": [
+      14.906840233102105
+    ],
+    "groups": {
+      "0": "wind",
+      "1": "photovoltaic"
+    },
+    "loglik_t_copula": 426.9483636313946,
+    "loglik_gauss_copula": 414.2065966417456,
+    "lr_statistic_t_vs_gauss": 25.483533979298045,
+    "aic_gauss": -816.4131932834912,
+    "aic_t": -839.8967272627892,
+    "raw_neighbour_total_error_std_MW": 140.58359772088545,
+    "raw_neighbour_total_error_excess_kurtosis": 0.4040754556643673,
+    "historical_reference_rule": "neighbour errors clipped to [-forecast, capacity - forecast] of the operating point",
+    "bounds": {
+      "t": {
+        "fraction_at_lower_bound": {
+          "309_WIND_1": 0.04413,
+          "317_WIND_1": 0.01734,
+          "303_WIND_1": 0.05848,
+          "122_WIND_1": 0.02986
+        },
+        "fraction_at_upper_bound": {
+          "309_WIND_1": 0.09624,
+          "317_WIND_1": 0.08768,
+          "303_WIND_1": 0.0385,
+          "122_WIND_1": 0.05618
+        }
+      },
+      "gauss": {
+        "fraction_at_lower_bound": {
+          "309_WIND_1": 0.0443,
+          "317_WIND_1": 0.01726,
+          "303_WIND_1": 0.05867,
+          "122_WIND_1": 0.02987
+        },
+        "fraction_at_upper_bound": {
+          "309_WIND_1": 0.09786,
+          "317_WIND_1": 0.08743,
+          "303_WIND_1": 0.03837,
+          "122_WIND_1": 0.05524
+        }
+      }
+    },
+    "mean_pairwise_corr": {
+      "historical": 0.4542174245417859,
+      "t": 0.43586410225017863,
+      "gauss": 0.42632922516420285
+    },
+    "mean_pairwise_sq_corr": {
+      "historical": 0.26396003283870495,
+      "t": 0.22559073708481273,
+      "gauss": 0.18434824357677324
+    },
+    "mean_pairwise_sq_corr_by_pair_type": {
+      "historical": {
+        "wind-wind": 0.264
+      },
+      "t": {
+        "wind-wind": 0.2256
+      },
+      "gauss": {
+        "wind-wind": 0.1843
+      }
+    },
+    "site_excess_kurtosis": {
+      "historical": [
+        -0.832,
+        0.546,
+        -0.703,
+        0.067
+      ],
+      "t": [
+        -0.856,
+        0.469,
+        -0.739,
+        -0.016
+      ],
+      "gauss": [
+        -0.862,
+        0.475,
+        -0.741,
+        -0.024
+      ]
+    },
+    "total_error": {
+      "historical": {
+        "n": 750,
+        "total_std_MW": 129.3169,
+        "total_excess_kurtosis": 0.1134,
+        "total_q005_MW": -429.7411,
+        "total_q01_MW": -397.8031,
+        "total_q99_MW": 168.0354,
+        "total_q995_MW": 180.0368
+      },
+      "t": {
+        "n": 200000,
+        "total_std_MW": 129.7873,
+        "total_excess_kurtosis": -0.0997,
+        "total_q005_MW": -420.6581,
+        "total_q01_MW": -396.0088,
+        "total_q99_MW": 193.2771,
+        "total_q995_MW": 208.1612
+      },
+      "gauss": {
+        "n": 200000,
+        "total_std_MW": 128.9138,
+        "total_excess_kurtosis": -0.1708,
+        "total_q005_MW": -413.2692,
+        "total_q01_MW": -388.8955,
+        "total_q99_MW": 187.2009,
+        "total_q995_MW": 203.182
+      }
+    }
+  },
+  "OP2": {
+    "active_sites": [
+      "309_WIND_1",
+      "317_WIND_1",
+      "303_WIND_1",
+      "122_WIND_1",
+      "UPV_A1_G1",
+      "UPV_A1_G2",
+      "UPV_A2_G1",
+      "UPV_A3_G1",
+      "UPV_A3_G2",
+      "UPV_A3_G3"
+    ],
+    "k": 750,
+    "distance_rule": "Euclidean distance between day-ahead forecast / capacity vectors of all 10 mapped sites",
+    "distance_median": 0.49269989448360296,
+    "distance_max": 0.5604861198733951,
+    "neighbour_hour_of_day_counts": {
+      "7": 9,
+      "8": 57,
+      "9": 105,
+      "10": 135,
+      "11": 150,
+      "12": 126,
+      "13": 107,
+      "14": 54,
+      "15": 7
+    },
+    "neighbour_hours_in_selection_window": 383,
+    "neighbour_months": {
+      "1": 40,
+      "2": 64,
+      "3": 48,
+      "4": 86,
+      "5": 134,
+      "6": 87,
+      "7": 45,
+      "8": 37,
+      "9": 73,
+      "10": 66,
+      "11": 23,
+      "12": 47
+    },
+    "kde_bandwidth_MW": {
+      "309_WIND_1": 0.3413,
+      "317_WIND_1": 5.448,
+      "303_WIND_1": 1.7482,
+      "122_WIND_1": 4.462,
+      "UPV_A1_G1": 0.5178,
+      "UPV_A1_G2": 0.3966,
+      "UPV_A2_G1": 0.4598,
+      "UPV_A3_G1": 0.6719,
+      "UPV_A3_G2": 0.7445,
+      "UPV_A3_G3": 0.6312
+    },
+    "t_copula_nu": 14.245592173377583,
+    "t_copula_nu_ci95_profile_likelihood": [
+      11.673524729352835,
+      17.72187066978441
+    ],
+    "heavy_tailed_model": "grouped_t",
+    "heavy_tailed_nu_by_group": [
+      5.926664849857451,
+      5.8890766788964415
+    ],
+    "groups": {
+      "0": "wind",
+      "1": "photovoltaic"
+    },
+    "loglik_t_copula": 739.1533951537394,
+    "loglik_gauss_copula": 702.3785609865104,
+    "lr_statistic_t_vs_gauss": 73.54966833445815,
+    "aic_gauss": -1314.7571219730207,
+    "aic_t": -1386.3067903074789,
+    "group_nu_from_group_subsets": [
+      5.813086106429683,
+      5.9714468554306475
+    ],
+    "grouped_t_nu": [
+      5.926664849857451,
+      5.8890766788964415
+    ],
+    "loglik_grouped_t_copula": 814.8951548678964,
+    "aic_grouped_t": -1535.7903097357928,
+    "loglik_t_copula_quadrature_check": 739.1533951544773,
+    "raw_neighbour_total_error_std_MW": 89.3121209491355,
+    "raw_neighbour_total_error_excess_kurtosis": 2.015840812185929,
+    "historical_reference_rule": "neighbour errors clipped to [-forecast, capacity - forecast] of the operating point",
+    "bounds": {
+      "t": {
+        "fraction_at_lower_bound": {
+          "309_WIND_1": 0.15065,
+          "317_WIND_1": 0.09433,
+          "303_WIND_1": 0.17468,
+          "122_WIND_1": 0.03285,
+          "UPV_A1_G1": 0.0,
+          "UPV_A1_G2": 0.0,
+          "UPV_A2_G1": 0.0,
+          "UPV_A3_G1": 0.0,
+          "UPV_A3_G2": 0.0,
+          "UPV_A3_G3": 0.0
+        },
+        "fraction_at_upper_bound": {
+          "309_WIND_1": 0.0,
+          "317_WIND_1": 0.00352,
+          "303_WIND_1": 0.0,
+          "122_WIND_1": 0.01252,
+          "UPV_A1_G1": 0.00078,
+          "UPV_A1_G2": 0.00361,
+          "UPV_A2_G1": 0.00134,
+          "UPV_A3_G1": 0.0,
+          "UPV_A3_G2": 0.0027,
+          "UPV_A3_G3": 0.0
+        }
+      },
+      "grouped_t": {
+        "fraction_at_lower_bound": {
+          "309_WIND_1": 0.15112,
+          "317_WIND_1": 0.09317,
+          "303_WIND_1": 0.17517,
+          "122_WIND_1": 0.03282,
+          "UPV_A1_G1": 0.0,
+          "UPV_A1_G2": 0.0,
+          "UPV_A2_G1": 0.0,
+          "UPV_A3_G1": 0.0,
+          "UPV_A3_G2": 0.0,
+          "UPV_A3_G3": 0.0
+        },
+        "fraction_at_upper_bound": {
+          "309_WIND_1": 0.0,
+          "317_WIND_1": 0.00372,
+          "303_WIND_1": 0.0,
+          "122_WIND_1": 0.01258,
+          "UPV_A1_G1": 0.00096,
+          "UPV_A1_G2": 0.00372,
+          "UPV_A2_G1": 0.00142,
+          "UPV_A3_G1": 0.0,
+          "UPV_A3_G2": 0.00282,
+          "UPV_A3_G3": 0.0
+        }
+      },
+      "gauss": {
+        "fraction_at_lower_bound": {
+          "309_WIND_1": 0.15187,
+          "317_WIND_1": 0.09498,
+          "303_WIND_1": 0.1753,
+          "122_WIND_1": 0.03206,
+          "UPV_A1_G1": 0.0,
+          "UPV_A1_G2": 0.0,
+          "UPV_A2_G1": 0.0,
+          "UPV_A3_G1": 0.0,
+          "UPV_A3_G2": 0.0,
+          "UPV_A3_G3": 0.0
+        },
+        "fraction_at_upper_bound": {
+          "309_WIND_1": 0.0,
+          "317_WIND_1": 0.00379,
+          "303_WIND_1": 0.0,
+          "122_WIND_1": 0.01218,
+          "UPV_A1_G1": 0.00087,
+          "UPV_A1_G2": 0.00354,
+          "UPV_A2_G1": 0.00146,
+          "UPV_A3_G1": 0.0,
+          "UPV_A3_G2": 0.00293,
+          "UPV_A3_G3": 0.0
+        }
+      }
+    },
+    "mean_pairwise_corr": {
+      "historical": 0.17789467131634978,
+      "t": 0.1142969241222945,
+      "grouped_t": 0.12400198888804288,
+      "gauss": 0.11457253223327067
+    },
+    "mean_pairwise_sq_corr": {
+      "historical": 0.14779799205003344,
+      "t": 0.08145730102527679,
+      "grouped_t": 0.0935545516140868,
+      "gauss": 0.04273455310259717
+    },
+    "mean_pairwise_sq_corr_by_pair_type": {
+      "historical": {
+        "pv-pv": 0.3418,
+        "wind-pv": 0.0009,
+        "wind-wind": 0.2503
+      },
+      "t": {
+        "pv-pv": 0.122,
+        "wind-pv": 0.0384,
+        "wind-wind": 0.1522
+      },
+      "grouped_t": {
+        "pv-pv": 0.1952,
+        "wind-pv": -0.0014,
+        "wind-wind": 0.2192
+      },
+      "gauss": {
+        "pv-pv": 0.0795,
+        "wind-pv": 0.0018,
+        "wind-wind": 0.1145
+      }
+    },
+    "site_excess_kurtosis": {
+      "historical": [
+        20.269,
+        3.599,
+        10.862,
+        1.425,
+        7.504,
+        10.888,
+        7.706,
+        18.562,
+        13.367,
+        16.334
+      ],
+      "t": [
+        20.229,
+        3.445,
+        10.739,
+        1.382,
+        7.163,
+        10.547,
+        7.464,
+        18.268,
+        13.138,
+        15.653
+      ],
+      "grouped_t": [
+        20.134,
+        3.387,
+        11.037,
+        1.354,
+        7.288,
+        10.617,
+        7.366,
+        18.164,
+        12.993,
+        15.438
+      ],
+      "gauss": [
+        20.126,
+        3.443,
+        10.954,
+        1.36,
+        7.291,
+        10.693,
+        7.477,
+        18.167,
+        12.961,
+        15.842
+      ]
+    },
+    "total_error": {
+      "historical": {
+        "n": 750,
+        "total_std_MW": 79.5457,
+        "total_excess_kurtosis": 2.1363,
+        "total_q005_MW": -178.4773,
+        "total_q01_MW": -163.8698,
+        "total_q99_MW": 258.8848,
+        "total_q995_MW": 276.7201
+      },
+      "t": {
+        "n": 200000,
+        "total_std_MW": 76.7089,
+        "total_excess_kurtosis": 2.0226,
+        "total_q005_MW": -186.6063,
+        "total_q01_MW": -170.6361,
+        "total_q99_MW": 227.2289,
+        "total_q995_MW": 263.7746
+      },
+      "grouped_t": {
+        "n": 200000,
+        "total_std_MW": 77.6061,
+        "total_excess_kurtosis": 2.5634,
+        "total_q005_MW": -179.7582,
+        "total_q01_MW": -165.3407,
+        "total_q99_MW": 238.4859,
+        "total_q995_MW": 278.9059
+      },
+      "gauss": {
+        "n": 200000,
+        "total_std_MW": 76.8002,
+        "total_excess_kurtosis": 1.6017,
+        "total_q005_MW": -180.4222,
+        "total_q01_MW": -166.7368,
+        "total_q99_MW": 222.7543,
+        "total_q995_MW": 254.9929
+      }
+    }
+  },
+  "load_fluctuation": {
+    "rule": "independent Gaussian per bus, P and Q multiplied by the same factor 1 + 0.01 xi (constant power factor)",
+    "cv": 0.01
+  },
+  "elapsed_s": 10.754847526550293
+}

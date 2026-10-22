@@ -1,0 +1,106 @@
+{
+  "created_utc": "2026-10-22T16:00:44+00:00",
+  "command": "python cloud/tests/run_stage_j_violations.py --result-stamp 20261022T125454 --part repeat --replications 10 --workers 4",
+  "git": {
+    "branch": "cursor/phase1b-tmm-op2-37d0",
+    "commit": "0b6bc504086a81a86a0ff8abaa65490a9217c661",
+    "dirty": false
+  },
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.18.1",
+      "pandas": "2.3.3",
+      "matplotlib": "3.11.2",
+      "pandapower": "3.5.6",
+      "numba": "0.68.0"
+    }
+  },
+  "data_sources": [
+    {
+      "path": "data/networks/pglib118/pglib_opf_case118_ieee.m",
+      "sha256": "b1af0833849040c04babc3700631cff0d9afa66b79c5d3e13ae79bdf516cec78"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T201240/stage_b_network/operating_point_OP2.npz",
+      "sha256": "3eb2113d7f7ba6755e37dc45d141a6ce3df7543f098f3d520730481bafcf4729"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T201850/stage_c_error_model/error_model_OP2.npz",
+      "sha256": "7f0529bc1138462663681ad7766ce621583992ed9deb659260161abd9841a4e7"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T201240/stage_b_network/renewable_mapping.csv",
+      "sha256": "bb0e23016552f21b280223e70e36fcf0a8d265f5a02315ff7a52226eef98231f"
+    }
+  ],
+  "parameters": {
+    "replications": 10,
+    "sets_per_replication": {
+      "modeling": 5256,
+      "determination": 1752
+    },
+    "solver": "phase-1 tmm_cloud.powerflow.BatchSolver through montecarlo.run_set, float64 storage",
+    "fitting": "stage H settings, every method with its own K selection by eq. (22)",
+    "events": [
+      "a_branch_100_103_above_1.05",
+      "b_any_unit_below_Pmin",
+      "d_branch_77_82_above_1.00",
+      "f_any_branch_above_1.05",
+      "f_any_branch_above_1.10"
+    ],
+    "points_per_model": 1048576,
+    "reference": "check_heavy (100000) of phase-1 stage D OP2",
+    "counting": "empirical share of the 5256 modeling scenarios, and of the 7008 modeling + determination scenarios (equal power-flow count)"
+  },
+  "random_sampling": {
+    "scenario_entropy": "2026102200 + r, SeedSequence spawn(4), children 0 and 1 for modeling and determination as in stage D",
+    "sobol_entropy": "2026102300 + 10 r + method index"
+  },
+  "outputs": [
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/README.md",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/input_tail_check/README.md",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/input_tail_check/input_tail_check_OP2.csv",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/input_tail_check/input_tail_check_OP2.json",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep01/determination_chunk000.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep01/modeling_chunk000.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep01/modeling_chunk001.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep02/determination_chunk000.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep02/modeling_chunk000.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep02/modeling_chunk001.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep03/determination_chunk000.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep03/modeling_chunk000.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep03/modeling_chunk001.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep04/determination_chunk000.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep04/modeling_chunk000.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep04/modeling_chunk001.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep05/determination_chunk000.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep05/modeling_chunk000.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep05/modeling_chunk001.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep06/determination_chunk000.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep06/modeling_chunk000.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep06/modeling_chunk001.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep07/determination_chunk000.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep07/modeling_chunk000.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep07/modeling_chunk001.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep08/determination_chunk000.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep08/modeling_chunk000.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep08/modeling_chunk001.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep09/determination_chunk000.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep09/modeling_chunk000.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep09/modeling_chunk001.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep10/determination_chunk000.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep10/modeling_chunk000.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/rep10/modeling_chunk001.npz",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/repeatability_a_branch_100_103_above_1.05_OP2.png",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/repeatability_b_any_unit_below_Pmin_OP2.png",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/repeatability_d_branch_77_82_above_1.00_OP2.png",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/repeatability_f_any_branch_above_1.05_OP2.png",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/repeatability_f_any_branch_above_1.10_OP2.png",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/repeatability_summary_OP2.csv",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/replication_info_OP2.json",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_j_repeatability/replication_probabilities_OP2.csv"
+  ]
+}

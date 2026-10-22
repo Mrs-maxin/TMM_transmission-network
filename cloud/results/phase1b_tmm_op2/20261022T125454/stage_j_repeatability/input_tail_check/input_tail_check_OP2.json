@@ -1,0 +1,74 @@
+{
+  "correlation_imbalance_vs_total_error": -0.9975396528199025,
+  "rows": [
+    {
+      "check_quantile_level": 0.99,
+      "threshold_MW": 240.39508035539882,
+      "check_count": 1000,
+      "check_probability": 0.01,
+      "check_ci95": [
+        0.009392556089098503,
+        0.010636111529354269
+      ],
+      "fresh_count": 9653,
+      "fresh_probability": 0.009653,
+      "fresh_ci95": [
+        0.00946228705968652,
+        0.00984656117990943
+      ],
+      "difference_in_standard_errors": 1.0531613640367146
+    },
+    {
+      "check_quantile_level": 0.995,
+      "threshold_MW": 281.98438969719933,
+      "check_count": 500,
+      "check_probability": 0.005,
+      "check_ci95": [
+        0.0045722441500705875,
+        0.005456841177010281
+      ],
+      "fresh_count": 4740,
+      "fresh_probability": 0.00474,
+      "fresh_ci95": [
+        0.004606317360464659,
+        0.004876563606853615
+      ],
+      "difference_in_standard_errors": 1.1140495249012499
+    },
+    {
+      "check_quantile_level": 0.9977,
+      "threshold_MW": 330.94110787947346,
+      "check_count": 230,
+      "check_probability": 0.0023,
+      "check_ci95": [
+        0.0020126181621499227,
+        0.0026168289251277373
+      ],
+      "fresh_count": 2039,
+      "fresh_probability": 0.002039,
+      "fresh_ci95": [
+        0.0019515326864778472,
+        0.00212937137993852
+      ],
+      "difference_in_standard_errors": 1.6513054159809069
+    },
+    {
+      "check_quantile_level": 0.999,
+      "threshold_MW": 373.1203226937041,
+      "check_count": 100,
+      "check_probability": 0.001,
+      "check_ci95": [
+        0.0008137116819701753,
+        0.0012161363956476468
+      ],
+      "fresh_count": 861,
+      "fresh_probability": 0.000861,
+      "fresh_ci95": [
+        0.0008044644505800493,
+        0.0009204580573507891
+      ],
+      "difference_in_standard_errors": 1.3344267956547406
+    }
+  ],
+  "check_imbalance_below_-325.75MW": 228
+}

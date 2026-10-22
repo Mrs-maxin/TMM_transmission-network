@@ -1,0 +1,101 @@
+{
+  "created_utc": "2026-10-21T20:27:33+00:00",
+  "command": "python cloud/tests/run_stage_d_montecarlo.py OP1 --result-stamp 20261021T202200 --workers 4",
+  "git": {
+    "branch": "cursor/phase1-rts118-37d0",
+    "commit": "5b3e299316c066391a343d4f68d1c485ea531463",
+    "dirty": false
+  },
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.18.1",
+      "pandas": "2.3.3",
+      "matplotlib": "3.11.2",
+      "pandapower": "3.5.6",
+      "numba": "0.68.0"
+    }
+  },
+  "data_sources": [
+    {
+      "path": "data/networks/pglib118/pglib_opf_case118_ieee.m",
+      "sha256": "b1af0833849040c04babc3700631cff0d9afa66b79c5d3e13ae79bdf516cec78"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T201240/stage_b_network/operating_point_OP1.npz",
+      "sha256": "1fd80943e543bc732cb7faa8f2123b4b367435e00c3b91c2f9c6158edf70e2af"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T201850/stage_c_error_model/error_model_OP1.npz",
+      "sha256": "421c7b39058bf6d6c0daa26402b3680eb5025c2ff9d2a97afeff9c1084bd663d"
+    }
+  ],
+  "parameters": {
+    "sets": [
+      {
+        "name": "modeling",
+        "scenarios": 5256,
+        "input_model": "heavy"
+      },
+      {
+        "name": "determination",
+        "scenarios": 1752,
+        "input_model": "heavy"
+      },
+      {
+        "name": "check_heavy",
+        "scenarios": 100000,
+        "input_model": "heavy"
+      },
+      {
+        "name": "check_light",
+        "scenarios": 20000,
+        "input_model": "gauss"
+      }
+    ],
+    "renewable_injection": "day-ahead forecast + sampled error, within [0, capacity], unity power factor",
+    "load": "bus P and Q multiplied by 1 + 0.01 xi, xi independent standard normal",
+    "solver": "tmm_cloud.powerflow.BatchSolver: rectangular Newton-Raphson, distributed imbalance by Pmax, Q limits (all violators switch together, no return), tolerance 1e-10 p.u., max 30 iterations per round, max 30 rounds",
+    "storage": "chunks of 5000 scenarios, numpy savez_compressed; check sets: V complex64, unit and branch powers and load factors float32; modeling and determination sets: float64; imbalance and renewable injections float64; NaN for non-converged scenarios",
+    "stage_b_result": "cloud/results/phase1_rts118/20261021T201240/stage_b_network",
+    "stage_c_result": "cloud/results/phase1_rts118/20261021T201850/stage_c_error_model"
+  },
+  "random_sampling": {
+    "generator": "numpy default_rng (PCG64)",
+    "seed_sequence_entropy": 2026102111,
+    "spawn": "SeedSequence(entropy).spawn(4) in order modeling, determination, check_heavy, check_light; per set: copula Gaussian vector, chi-square strengths, then load normals"
+  },
+  "outputs": [
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/README.md",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk000.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk001.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk002.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk003.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk004.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk005.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk006.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk007.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk008.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk009.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk010.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk011.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk012.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk013.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk014.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk015.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk016.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk017.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk018.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_heavy_chunk019.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_light_chunk000.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_light_chunk001.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_light_chunk002.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/check_light_chunk003.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/determination_chunk000.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/modeling_chunk000.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/modeling_chunk001.npz",
+    "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/stage_d_summary_OP1.json"
+  ]
+}

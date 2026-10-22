@@ -1,0 +1,1433 @@
+{
+  "stage_d_result": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo",
+  "OP1": {
+    "n_heavy": 100000,
+    "n_light": 20000,
+    "non_converged_heavy": 0,
+    "non_converged_light": 0,
+    "distinct_modes_heavy": 1130,
+    "top_mode_shares_heavy": [
+      0.0217,
+      0.0203,
+      0.0198,
+      0.0186,
+      0.0174
+    ],
+    "units_at_Q_limit_frequency_heavy": {
+      "1": 0.4827,
+      "25": 0.5192,
+      "31": 0.6265,
+      "34": 0.3621,
+      "46": 0.4216,
+      "65": 0.2259,
+      "66": 0.6613,
+      "74": 0.5929,
+      "76": 0.4712,
+      "92": 0.607,
+      "100": 0.379
+    },
+    "objects": 978,
+    "fixed_objects": 42,
+    "by_quantity": {
+      "Pf": {
+        "objects": 186,
+        "median_excess_kurtosis_heavy": -0.0195203576907792,
+        "median_excess_kurtosis_light": -0.03141330533481068,
+        "max_excess_kurtosis_heavy": 0.6182216501475608,
+        "median_tail_index_heavy": 3.690915580067479,
+        "median_tail_index_light": 3.6396792624112178,
+        "objects_tail_diff_z_gt_3": 18,
+        "objects_tail_diff_z_lt_-3": 0,
+        "objects_kurtosis_diff_z_gt_3": 26,
+        "median_tail_index_diff_z": 0.9932035856956578,
+        "spearman_renewable_share_vs_tail_diff": 0.21761249782039696,
+        "median_renewable_variance_share": 0.976933347134701
+      },
+      "Pt": {
+        "objects": 186,
+        "median_excess_kurtosis_heavy": -0.018512451817743525,
+        "median_excess_kurtosis_light": -0.035109522952703864,
+        "max_excess_kurtosis_heavy": 0.6162356671362326,
+        "median_tail_index_heavy": 3.6922895433359915,
+        "median_tail_index_light": 3.647125164647405,
+        "objects_tail_diff_z_gt_3": 18,
+        "objects_tail_diff_z_lt_-3": 0,
+        "objects_kurtosis_diff_z_gt_3": 26,
+        "median_tail_index_diff_z": 0.9805384382068344,
+        "spearman_renewable_share_vs_tail_diff": 0.23758487638492337,
+        "median_renewable_variance_share": 0.9768681686639098
+      },
+      "Qf": {
+        "objects": 186,
+        "median_excess_kurtosis_heavy": -0.006680223995298551,
+        "median_excess_kurtosis_light": -0.017758793774212744,
+        "max_excess_kurtosis_heavy": 1.8366843583371901,
+        "median_tail_index_heavy": 3.7215920310784365,
+        "median_tail_index_light": 3.6830345600620955,
+        "objects_tail_diff_z_gt_3": 14,
+        "objects_tail_diff_z_lt_-3": 0,
+        "objects_kurtosis_diff_z_gt_3": 21,
+        "median_tail_index_diff_z": 1.0358326889964276,
+        "spearman_renewable_share_vs_tail_diff": 0.203557766500324,
+        "median_renewable_variance_share": 0.939816629064373
+      },
+      "Qt": {
+        "objects": 186,
+        "median_excess_kurtosis_heavy": -0.010572848197720308,
+        "median_excess_kurtosis_light": -0.03210987858125214,
+        "max_excess_kurtosis_heavy": 4.3314455978966775,
+        "median_tail_index_heavy": 3.7160817419866943,
+        "median_tail_index_light": 3.6747558930649866,
+        "objects_tail_diff_z_gt_3": 11,
+        "objects_tail_diff_z_lt_-3": 0,
+        "objects_kurtosis_diff_z_gt_3": 21,
+        "median_tail_index_diff_z": 0.9873718497718615,
+        "spearman_renewable_share_vs_tail_diff": 0.19316178109232846,
+        "median_renewable_variance_share": 0.9463042266936259
+      },
+      "Va": {
+        "objects": 117,
+        "median_excess_kurtosis_heavy": -0.06945190424880421,
+        "median_excess_kurtosis_light": -0.1605493061946368,
+        "max_excess_kurtosis_heavy": 0.42229814356655915,
+        "median_tail_index_heavy": 3.56366938077176,
+        "median_tail_index_light": 3.452501994509514,
+        "objects_tail_diff_z_gt_3": 4,
+        "objects_tail_diff_z_lt_-3": 0,
+        "objects_kurtosis_diff_z_gt_3": 39,
+        "median_tail_index_diff_z": 2.024145821910638,
+        "spearman_renewable_share_vs_tail_diff": -0.2646975078301788,
+        "median_renewable_variance_share": 0.9872247180715953
+      },
+      "Vm": {
+        "objects": 75,
+        "median_excess_kurtosis_heavy": 0.20828247739399952,
+        "median_excess_kurtosis_light": 0.19253383696986504,
+        "max_excess_kurtosis_heavy": 7.275445887193504,
+        "median_tail_index_heavy": 3.824534883722663,
+        "median_tail_index_light": 3.8134153019580097,
+        "objects_tail_diff_z_gt_3": 5,
+        "objects_tail_diff_z_lt_-3": 2,
+        "objects_kurtosis_diff_z_gt_3": 7,
+        "median_tail_index_diff_z": 0.5749259583469097,
+        "spearman_renewable_share_vs_tail_diff": 0.4935419630156472,
+        "median_renewable_variance_share": 0.5644274430719746
+      }
+    },
+    "violations": {
+      "heavy": {
+        "system": [
+          {
+            "object": "any_undervoltage",
+            "count": 0,
+            "n": 100000,
+            "probability": 0.0,
+            "ci95_low": 0.0,
+            "ci95_high": 3.68881141579242e-05
+          },
+          {
+            "object": "any_overvoltage",
+            "count": 99838,
+            "n": 100000,
+            "probability": 0.99838,
+            "ci95_low": 0.9981106904895157,
+            "ci95_high": 0.9986197017357953
+          },
+          {
+            "object": "any_branch_overload",
+            "count": 27745,
+            "n": 100000,
+            "probability": 0.27745,
+            "ci95_low": 0.27467641288057015,
+            "ci95_high": 0.2802365002669003
+          },
+          {
+            "object": "any_unit_outside_P_limits",
+            "count": 3359,
+            "n": 100000,
+            "probability": 0.03359,
+            "ci95_low": 0.03248185123668423,
+            "ci95_high": 0.034725307086067546
+          },
+          {
+            "object": "any_voltage_or_branch_violation",
+            "count": 99838,
+            "n": 100000,
+            "probability": 0.99838,
+            "ci95_low": 0.9981106904895157,
+            "ci95_high": 0.9986197017357953
+          }
+        ],
+        "objects_with_probability_1e-3_to_1e-2": {
+          "undervoltage": [],
+          "overvoltage": [],
+          "branch_overload": []
+        },
+        "max_object_probability": {
+          "undervoltage": {
+            "object": "bus1",
+            "count": 0,
+            "n": 100000,
+            "probability": 0.0,
+            "ci95_low": 0.0,
+            "ci95_high": 3.68881141579242e-05
+          },
+          "overvoltage": {
+            "object": "bus66",
+            "count": 65734,
+            "n": 100000,
+            "probability": 0.65734,
+            "ci95_low": 0.6543889290884504,
+            "ci95_high": 0.6602819427118338
+          },
+          "branch_overload": {
+            "object": "94-100#154",
+            "count": 14103,
+            "n": 100000,
+            "probability": 0.14103,
+            "ci95_low": 0.13887822075120312,
+            "ci95_high": 0.14320262217262147
+          },
+          "unit_above_Pmax": {
+            "object": "unit_bus26",
+            "count": 3359,
+            "n": 100000,
+            "probability": 0.03359,
+            "ci95_low": 0.03248185123668423,
+            "ci95_high": 0.034725307086067546
+          },
+          "unit_below_Pmin": {
+            "object": "unit_bus1",
+            "count": 0,
+            "n": 100000,
+            "probability": 0.0,
+            "ci95_low": 0.0,
+            "ci95_high": 3.68881141579242e-05
+          }
+        },
+        "max_branch_loading_q999": 1.2794107563183452,
+        "imbalance_MW": {
+          "std": 127.43906914576705,
+          "excess_kurtosis": -0.07675737373407276,
+          "q005": -198.72280063366483,
+          "q995": 417.7871334644626,
+          "min": -219.91596734997688,
+          "max": 449.29395649314284
+        }
+      },
+      "light": {
+        "system": [
+          {
+            "object": "any_undervoltage",
+            "count": 0,
+            "n": 20000,
+            "probability": 0.0,
+            "ci95_low": 0.0,
+            "ci95_high": 0.0001844269639618992
+          },
+          {
+            "object": "any_overvoltage",
+            "count": 19979,
+            "n": 20000,
+            "probability": 0.99895,
+            "ci95_low": 0.9983954089177361,
+            "ci95_high": 0.9993499196513351
+          },
+          {
+            "object": "any_branch_overload",
+            "count": 5678,
+            "n": 20000,
+            "probability": 0.2839,
+            "ci95_low": 0.27765788526140717,
+            "ci95_high": 0.2902049875705672
+          },
+          {
+            "object": "any_unit_outside_P_limits",
+            "count": 675,
+            "n": 20000,
+            "probability": 0.03375,
+            "ci95_low": 0.031290237652838136,
+            "ci95_high": 0.036346478503181505
+          },
+          {
+            "object": "any_voltage_or_branch_violation",
+            "count": 19979,
+            "n": 20000,
+            "probability": 0.99895,
+            "ci95_low": 0.9983954089177361,
+            "ci95_high": 0.9993499196513351
+          }
+        ],
+        "objects_with_probability_1e-3_to_1e-2": {
+          "undervoltage": [],
+          "overvoltage": [],
+          "branch_overload": []
+        },
+        "max_object_probability": {
+          "undervoltage": {
+            "object": "bus1",
+            "count": 0,
+            "n": 20000,
+            "probability": 0.0,
+            "ci95_low": 0.0,
+            "ci95_high": 0.0001844269639618992
+          },
+          "overvoltage": {
+            "object": "bus66",
+            "count": 13216,
+            "n": 20000,
+            "probability": 0.6608,
+            "ci95_low": 0.6541905974332047,
+            "ci95_high": 0.6673626306130758
+          },
+          "branch_overload": {
+            "object": "94-100#154",
+            "count": 2915,
+            "n": 20000,
+            "probability": 0.14575,
+            "ci95_low": 0.14088651161095686,
+            "ci95_high": 0.15071670549863725
+          },
+          "unit_above_Pmax": {
+            "object": "unit_bus26",
+            "count": 675,
+            "n": 20000,
+            "probability": 0.03375,
+            "ci95_low": 0.031290237652838136,
+            "ci95_high": 0.036346478503181505
+          },
+          "unit_below_Pmin": {
+            "object": "unit_bus1",
+            "count": 0,
+            "n": 20000,
+            "probability": 0.0,
+            "ci95_low": 0.0,
+            "ci95_high": 0.0001844269639618992
+          }
+        },
+        "max_branch_loading_q999": 1.2764501358622955,
+        "imbalance_MW": {
+          "std": 127.6164259886625,
+          "excess_kurtosis": -0.14400675346193692,
+          "q005": -198.3715697170287,
+          "q995": 413.4497655218625,
+          "min": -213.6278345254088,
+          "max": 446.1490488065419
+        }
+      }
+    },
+    "graded_violations": [
+      {
+        "set": "heavy",
+        "violation": "overvoltage",
+        "depth_threshold": 0.0,
+        "unit": "p.u. above Vmax",
+        "system_count": 99838,
+        "system_probability": 0.99838,
+        "system_ci95_low": 0.9981106904895157,
+        "system_ci95_high": 0.9986197017357953,
+        "objects_with_probability_gt_0": 7,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "overvoltage",
+        "depth_threshold": 0.0025,
+        "unit": "p.u. above Vmax",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 3.68881141579242e-05,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "overvoltage",
+        "depth_threshold": 0.005,
+        "unit": "p.u. above Vmax",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 3.68881141579242e-05,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "overvoltage",
+        "depth_threshold": 0.01,
+        "unit": "p.u. above Vmax",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 3.68881141579242e-05,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "overvoltage",
+        "depth_threshold": 0.02,
+        "unit": "p.u. above Vmax",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 3.68881141579242e-05,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "undervoltage",
+        "depth_threshold": 0.0,
+        "unit": "p.u. below Vmin",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 3.68881141579242e-05,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "undervoltage",
+        "depth_threshold": 0.0025,
+        "unit": "p.u. below Vmin",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 3.68881141579242e-05,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "undervoltage",
+        "depth_threshold": 0.005,
+        "unit": "p.u. below Vmin",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 3.68881141579242e-05,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "undervoltage",
+        "depth_threshold": 0.01,
+        "unit": "p.u. below Vmin",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 3.68881141579242e-05,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "undervoltage",
+        "depth_threshold": 0.02,
+        "unit": "p.u. below Vmin",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 3.68881141579242e-05,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "branch_overload",
+        "depth_threshold": 0.0,
+        "unit": "loading above rateA (fraction)",
+        "system_count": 27745,
+        "system_probability": 0.27745,
+        "system_ci95_low": 0.27467641288057015,
+        "system_ci95_high": 0.2802365002669003,
+        "objects_with_probability_gt_0": 2,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "branch_overload",
+        "depth_threshold": 0.05,
+        "unit": "loading above rateA (fraction)",
+        "system_count": 17285,
+        "system_probability": 0.17285,
+        "system_ci95_low": 0.17051095873343503,
+        "system_ci95_high": 0.17520803200072294,
+        "objects_with_probability_gt_0": 2,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "branch_overload",
+        "depth_threshold": 0.1,
+        "unit": "loading above rateA (fraction)",
+        "system_count": 9445,
+        "system_probability": 0.09445,
+        "system_ci95_low": 0.09264416622746222,
+        "system_ci95_high": 0.09627939496786196,
+        "objects_with_probability_gt_0": 2,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "branch_overload",
+        "depth_threshold": 0.2,
+        "unit": "loading above rateA (fraction)",
+        "system_count": 1897,
+        "system_probability": 0.01897,
+        "system_ci95_low": 0.0181334552586907,
+        "system_ci95_high": 0.019834607123037928,
+        "objects_with_probability_gt_0": 1,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "branch_overload",
+        "depth_threshold": 0.3,
+        "unit": "loading above rateA (fraction)",
+        "system_count": 30,
+        "system_probability": 0.0003,
+        "system_ci95_low": 0.000202417605783052,
+        "system_ci95_high": 0.00042824118644745957,
+        "objects_with_probability_gt_0": 1,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 1
+      },
+      {
+        "set": "light",
+        "violation": "overvoltage",
+        "depth_threshold": 0.0,
+        "unit": "p.u. above Vmax",
+        "system_count": 19979,
+        "system_probability": 0.99895,
+        "system_ci95_low": 0.9983954089177361,
+        "system_ci95_high": 0.9993499196513351,
+        "objects_with_probability_gt_0": 6,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "overvoltage",
+        "depth_threshold": 0.0025,
+        "unit": "p.u. above Vmax",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 0.0001844269639618992,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "overvoltage",
+        "depth_threshold": 0.005,
+        "unit": "p.u. above Vmax",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 0.0001844269639618992,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "overvoltage",
+        "depth_threshold": 0.01,
+        "unit": "p.u. above Vmax",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 0.0001844269639618992,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "overvoltage",
+        "depth_threshold": 0.02,
+        "unit": "p.u. above Vmax",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 0.0001844269639618992,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "undervoltage",
+        "depth_threshold": 0.0,
+        "unit": "p.u. below Vmin",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 0.0001844269639618992,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "undervoltage",
+        "depth_threshold": 0.0025,
+        "unit": "p.u. below Vmin",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 0.0001844269639618992,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "undervoltage",
+        "depth_threshold": 0.005,
+        "unit": "p.u. below Vmin",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 0.0001844269639618992,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "undervoltage",
+        "depth_threshold": 0.01,
+        "unit": "p.u. below Vmin",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 0.0001844269639618992,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "undervoltage",
+        "depth_threshold": 0.02,
+        "unit": "p.u. below Vmin",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 0.0001844269639618992,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "branch_overload",
+        "depth_threshold": 0.0,
+        "unit": "loading above rateA (fraction)",
+        "system_count": 5678,
+        "system_probability": 0.2839,
+        "system_ci95_low": 0.27765788526140717,
+        "system_ci95_high": 0.2902049875705672,
+        "objects_with_probability_gt_0": 2,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "branch_overload",
+        "depth_threshold": 0.05,
+        "unit": "loading above rateA (fraction)",
+        "system_count": 3587,
+        "system_probability": 0.17935,
+        "system_ci95_low": 0.1740549409263461,
+        "system_ci95_high": 0.18473843596537254,
+        "objects_with_probability_gt_0": 2,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "branch_overload",
+        "depth_threshold": 0.1,
+        "unit": "loading above rateA (fraction)",
+        "system_count": 1953,
+        "system_probability": 0.09765,
+        "system_ci95_low": 0.09356976896901631,
+        "system_ci95_high": 0.10184761108663778,
+        "objects_with_probability_gt_0": 2,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "branch_overload",
+        "depth_threshold": 0.2,
+        "unit": "loading above rateA (fraction)",
+        "system_count": 383,
+        "system_probability": 0.01915,
+        "system_ci95_low": 0.01729573751478044,
+        "system_ci95_high": 0.021145837781283573,
+        "objects_with_probability_gt_0": 1,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "branch_overload",
+        "depth_threshold": 0.3,
+        "unit": "loading above rateA (fraction)",
+        "system_count": 3,
+        "system_probability": 0.00015,
+        "system_ci95_low": 3.0934674445285264e-05,
+        "system_ci95_high": 0.00043830045339363695,
+        "objects_with_probability_gt_0": 1,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 1
+      }
+    ],
+    "elapsed_s": 30.120516538619995
+  },
+  "OP2": {
+    "n_heavy": 100000,
+    "n_light": 20000,
+    "non_converged_heavy": 0,
+    "non_converged_light": 0,
+    "distinct_modes_heavy": 14144,
+    "top_mode_shares_heavy": [
+      0.007,
+      0.0068,
+      0.0066,
+      0.0056,
+      0.005
+    ],
+    "units_at_Q_limit_frequency_heavy": {
+      "1": 0.497,
+      "12": 0.0116,
+      "25": 0.3816,
+      "31": 0.5307,
+      "34": 0.5388,
+      "46": 0.4499,
+      "65": 0.038,
+      "66": 0.601,
+      "74": 0.692,
+      "76": 0.6304,
+      "77": 0.6757,
+      "85": 0.672,
+      "87": 0.002,
+      "92": 0.6161,
+      "104": 0.6133,
+      "105": 0.6184,
+      "110": 0.5397
+    },
+    "objects": 978,
+    "fixed_objects": 36,
+    "by_quantity": {
+      "Pf": {
+        "objects": 186,
+        "median_excess_kurtosis_heavy": 1.4525261387431079,
+        "median_excess_kurtosis_light": 1.27665725863791,
+        "max_excess_kurtosis_heavy": 18.750037586725025,
+        "median_tail_index_heavy": 5.9123343250034655,
+        "median_tail_index_light": 5.47121205553864,
+        "objects_tail_diff_z_gt_3": 75,
+        "objects_tail_diff_z_lt_-3": 0,
+        "objects_kurtosis_diff_z_gt_3": 86,
+        "median_tail_index_diff_z": 2.3543032493705898,
+        "spearman_renewable_share_vs_tail_diff": 0.42776072947466665,
+        "median_renewable_variance_share": 0.9663168426775482
+      },
+      "Pt": {
+        "objects": 186,
+        "median_excess_kurtosis_heavy": 1.4535526919644028,
+        "median_excess_kurtosis_light": 1.2695882165129926,
+        "max_excess_kurtosis_heavy": 18.800903295621364,
+        "median_tail_index_heavy": 5.918144602296236,
+        "median_tail_index_light": 5.476633315406904,
+        "objects_tail_diff_z_gt_3": 75,
+        "objects_tail_diff_z_lt_-3": 0,
+        "objects_kurtosis_diff_z_gt_3": 86,
+        "median_tail_index_diff_z": 2.3504731014011706,
+        "spearman_renewable_share_vs_tail_diff": 0.41577054247668144,
+        "median_renewable_variance_share": 0.9653993403173398
+      },
+      "Qf": {
+        "objects": 186,
+        "median_excess_kurtosis_heavy": 1.5776612071940006,
+        "median_excess_kurtosis_light": 1.2808501864304103,
+        "max_excess_kurtosis_heavy": 24.656996549985294,
+        "median_tail_index_heavy": 6.018467603422442,
+        "median_tail_index_light": 5.589673788132502,
+        "objects_tail_diff_z_gt_3": 83,
+        "objects_tail_diff_z_lt_-3": 0,
+        "objects_kurtosis_diff_z_gt_3": 87,
+        "median_tail_index_diff_z": 2.498235487894651,
+        "spearman_renewable_share_vs_tail_diff": 0.1608915345617436,
+        "median_renewable_variance_share": 0.9035987770050504
+      },
+      "Qt": {
+        "objects": 186,
+        "median_excess_kurtosis_heavy": 1.5265621806259828,
+        "median_excess_kurtosis_light": 1.3058802684907755,
+        "max_excess_kurtosis_heavy": 23.384988930742168,
+        "median_tail_index_heavy": 5.869707733910706,
+        "median_tail_index_light": 5.414580677986036,
+        "objects_tail_diff_z_gt_3": 77,
+        "objects_tail_diff_z_lt_-3": 0,
+        "objects_kurtosis_diff_z_gt_3": 85,
+        "median_tail_index_diff_z": 2.40150700913245,
+        "spearman_renewable_share_vs_tail_diff": 0.2246823374295883,
+        "median_renewable_variance_share": 0.899093039380546
+      },
+      "Va": {
+        "objects": 117,
+        "median_excess_kurtosis_heavy": 3.2787966469968817,
+        "median_excess_kurtosis_light": 2.0327275263349396,
+        "max_excess_kurtosis_heavy": 6.095766999667488,
+        "median_tail_index_heavy": 6.318666080797034,
+        "median_tail_index_light": 5.776791706557876,
+        "objects_tail_diff_z_gt_3": 83,
+        "objects_tail_diff_z_lt_-3": 0,
+        "objects_kurtosis_diff_z_gt_3": 100,
+        "median_tail_index_diff_z": 3.5561297146159836,
+        "spearman_renewable_share_vs_tail_diff": -0.20927932383221687,
+        "median_renewable_variance_share": 0.9932136481037236
+      },
+      "Vm": {
+        "objects": 81,
+        "median_excess_kurtosis_heavy": 2.0661008199048547,
+        "median_excess_kurtosis_light": 1.7632471175999749,
+        "max_excess_kurtosis_heavy": 1396.8912843317282,
+        "median_tail_index_heavy": 4.985723556132381,
+        "median_tail_index_light": 4.971490733279853,
+        "objects_tail_diff_z_gt_3": 21,
+        "objects_tail_diff_z_lt_-3": 2,
+        "objects_kurtosis_diff_z_gt_3": 19,
+        "median_tail_index_diff_z": 0.9380026113792286,
+        "spearman_renewable_share_vs_tail_diff": 0.13970932958274732,
+        "median_renewable_variance_share": 0.8064887111572018
+      }
+    },
+    "violations": {
+      "heavy": {
+        "system": [
+          {
+            "object": "any_undervoltage",
+            "count": 0,
+            "n": 100000,
+            "probability": 0.0,
+            "ci95_low": 0.0,
+            "ci95_high": 3.68881141579242e-05
+          },
+          {
+            "object": "any_overvoltage",
+            "count": 99413,
+            "n": 100000,
+            "probability": 0.99413,
+            "ci95_low": 0.993636910728447,
+            "ci95_high": 0.9945940879259251
+          },
+          {
+            "object": "any_branch_overload",
+            "count": 43179,
+            "n": 100000,
+            "probability": 0.43179,
+            "ci95_low": 0.4287170122423212,
+            "ci95_high": 0.43486694464063375
+          },
+          {
+            "object": "any_unit_outside_P_limits",
+            "count": 229,
+            "n": 100000,
+            "probability": 0.00229,
+            "ci95_low": 0.0020032633320876177,
+            "ci95_high": 0.002606185719406278
+          },
+          {
+            "object": "any_voltage_or_branch_violation",
+            "count": 99664,
+            "n": 100000,
+            "probability": 0.99664,
+            "ci95_low": 0.9962615319539392,
+            "ci95_high": 0.9969891922751274
+          }
+        ],
+        "objects_with_probability_1e-3_to_1e-2": {
+          "undervoltage": [],
+          "overvoltage": [
+            "bus83"
+          ],
+          "branch_overload": []
+        },
+        "max_object_probability": {
+          "undervoltage": {
+            "object": "bus1",
+            "count": 0,
+            "n": 100000,
+            "probability": 0.0,
+            "ci95_low": 0.0,
+            "ci95_high": 3.68881141579242e-05
+          },
+          "overvoltage": {
+            "object": "bus66",
+            "count": 59548,
+            "n": 100000,
+            "probability": 0.59548,
+            "ci95_low": 0.5924303194889933,
+            "ci95_high": 0.5985241415770247
+          },
+          "branch_overload": {
+            "object": "100-103#162",
+            "count": 43131,
+            "n": 100000,
+            "probability": 0.43131,
+            "ci95_low": 0.42823743730580227,
+            "ci95_high": 0.4343865474232487
+          },
+          "unit_above_Pmax": {
+            "object": "unit_bus26",
+            "count": 1,
+            "n": 100000,
+            "probability": 1e-05,
+            "ci95_low": 2.531780477933316e-07,
+            "ci95_high": 5.571516034774275e-05
+          },
+          "unit_below_Pmin": {
+            "object": "unit_bus12",
+            "count": 228,
+            "n": 100000,
+            "probability": 0.00228,
+            "ci95_low": 0.001993909922341433,
+            "ci95_high": 0.002595541102381721
+          }
+        },
+        "max_branch_loading_q999": 1.0535907909811582,
+        "imbalance_MW": {
+          "std": 77.68211516975268,
+          "excess_kurtosis": 2.5129851716100857,
+          "q005": -276.40132831065335,
+          "q995": 183.31564961811463,
+          "min": -466.67231802478443,
+          "max": 336.3307001593302
+        }
+      },
+      "light": {
+        "system": [
+          {
+            "object": "any_undervoltage",
+            "count": 0,
+            "n": 20000,
+            "probability": 0.0,
+            "ci95_low": 0.0,
+            "ci95_high": 0.0001844269639618992
+          },
+          {
+            "object": "any_overvoltage",
+            "count": 19894,
+            "n": 20000,
+            "probability": 0.9947,
+            "ci95_low": 0.9935933642311283,
+            "ci95_high": 0.995658814902501
+          },
+          {
+            "object": "any_branch_overload",
+            "count": 8615,
+            "n": 20000,
+            "probability": 0.43075,
+            "ci95_low": 0.4238727483157884,
+            "ci95_high": 0.4376473900248657
+          },
+          {
+            "object": "any_unit_outside_P_limits",
+            "count": 14,
+            "n": 20000,
+            "probability": 0.0007,
+            "ci95_low": 0.00038274767578166,
+            "ci95_high": 0.0011742024203120155
+          },
+          {
+            "object": "any_voltage_or_branch_violation",
+            "count": 19929,
+            "n": 20000,
+            "probability": 0.99645,
+            "ci95_low": 0.9955242365466306,
+            "ci95_high": 0.997226410962211
+          }
+        ],
+        "objects_with_probability_1e-3_to_1e-2": {
+          "undervoltage": [],
+          "overvoltage": [
+            "bus83"
+          ],
+          "branch_overload": []
+        },
+        "max_object_probability": {
+          "undervoltage": {
+            "object": "bus1",
+            "count": 0,
+            "n": 20000,
+            "probability": 0.0,
+            "ci95_low": 0.0,
+            "ci95_high": 0.0001844269639618992
+          },
+          "overvoltage": {
+            "object": "bus66",
+            "count": 11867,
+            "n": 20000,
+            "probability": 0.59335,
+            "ci95_low": 0.5865041564951918,
+            "ci95_high": 0.6001686956786971
+          },
+          "branch_overload": {
+            "object": "100-103#162",
+            "count": 8613,
+            "n": 20000,
+            "probability": 0.43065,
+            "ci95_low": 0.42377295679129445,
+            "ci95_high": 0.4375472106327275
+          },
+          "unit_above_Pmax": {
+            "object": "unit_bus1",
+            "count": 0,
+            "n": 20000,
+            "probability": 0.0,
+            "ci95_low": 0.0,
+            "ci95_high": 0.0001844269639618992
+          },
+          "unit_below_Pmin": {
+            "object": "unit_bus12",
+            "count": 14,
+            "n": 20000,
+            "probability": 0.0007,
+            "ci95_low": 0.00038274767578166,
+            "ci95_high": 0.0011742024203120155
+          }
+        },
+        "max_branch_loading_q999": 1.0455339587315797,
+        "imbalance_MW": {
+          "std": 76.54422188215966,
+          "excess_kurtosis": 1.4457927930469374,
+          "q005": -251.1822141231099,
+          "q995": 183.24159270300967,
+          "min": -392.79121882740213,
+          "max": 280.65869669103085
+        }
+      }
+    },
+    "graded_violations": [
+      {
+        "set": "heavy",
+        "violation": "overvoltage",
+        "depth_threshold": 0.0,
+        "unit": "p.u. above Vmax",
+        "system_count": 99413,
+        "system_probability": 0.99413,
+        "system_ci95_low": 0.993636910728447,
+        "system_ci95_high": 0.9945940879259251,
+        "objects_with_probability_gt_0": 6,
+        "objects_with_probability_1e-3_to_1e-2": 1,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "overvoltage",
+        "depth_threshold": 0.0025,
+        "unit": "p.u. above Vmax",
+        "system_count": 4,
+        "system_probability": 4e-05,
+        "system_ci95_low": 1.0898757827458586e-05,
+        "system_ci95_high": 0.00010241269060279138,
+        "objects_with_probability_gt_0": 1,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "overvoltage",
+        "depth_threshold": 0.005,
+        "unit": "p.u. above Vmax",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 3.68881141579242e-05,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "overvoltage",
+        "depth_threshold": 0.01,
+        "unit": "p.u. above Vmax",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 3.68881141579242e-05,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "overvoltage",
+        "depth_threshold": 0.02,
+        "unit": "p.u. above Vmax",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 3.68881141579242e-05,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "undervoltage",
+        "depth_threshold": 0.0,
+        "unit": "p.u. below Vmin",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 3.68881141579242e-05,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "undervoltage",
+        "depth_threshold": 0.0025,
+        "unit": "p.u. below Vmin",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 3.68881141579242e-05,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "undervoltage",
+        "depth_threshold": 0.005,
+        "unit": "p.u. below Vmin",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 3.68881141579242e-05,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "undervoltage",
+        "depth_threshold": 0.01,
+        "unit": "p.u. below Vmin",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 3.68881141579242e-05,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "undervoltage",
+        "depth_threshold": 0.02,
+        "unit": "p.u. below Vmin",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 3.68881141579242e-05,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "branch_overload",
+        "depth_threshold": 0.0,
+        "unit": "loading above rateA (fraction)",
+        "system_count": 43179,
+        "system_probability": 0.43179,
+        "system_ci95_low": 0.4287170122423212,
+        "system_ci95_high": 0.43486694464063375,
+        "objects_with_probability_gt_0": 2,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 1
+      },
+      {
+        "set": "heavy",
+        "violation": "branch_overload",
+        "depth_threshold": 0.05,
+        "unit": "loading above rateA (fraction)",
+        "system_count": 153,
+        "system_probability": 0.00153,
+        "system_ci95_low": 0.001297316343120149,
+        "system_ci95_high": 0.0017923184529024063,
+        "objects_with_probability_gt_0": 2,
+        "objects_with_probability_1e-3_to_1e-2": 1,
+        "objects_with_probability_1e-4_to_1e-3": 1
+      },
+      {
+        "set": "heavy",
+        "violation": "branch_overload",
+        "depth_threshold": 0.1,
+        "unit": "loading above rateA (fraction)",
+        "system_count": 5,
+        "system_probability": 5e-05,
+        "system_ci95_low": 1.623505681705786e-05,
+        "system_ci95_high": 0.00011667943042027703,
+        "objects_with_probability_gt_0": 1,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "branch_overload",
+        "depth_threshold": 0.2,
+        "unit": "loading above rateA (fraction)",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 3.68881141579242e-05,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "heavy",
+        "violation": "branch_overload",
+        "depth_threshold": 0.3,
+        "unit": "loading above rateA (fraction)",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 3.68881141579242e-05,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "overvoltage",
+        "depth_threshold": 0.0,
+        "unit": "p.u. above Vmax",
+        "system_count": 19894,
+        "system_probability": 0.9947,
+        "system_ci95_low": 0.9935933642311283,
+        "system_ci95_high": 0.995658814902501,
+        "objects_with_probability_gt_0": 6,
+        "objects_with_probability_1e-3_to_1e-2": 1,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "overvoltage",
+        "depth_threshold": 0.0025,
+        "unit": "p.u. above Vmax",
+        "system_count": 1,
+        "system_probability": 5e-05,
+        "system_ci95_low": 1.2658895979755815e-06,
+        "system_ci95_high": 0.0002785503321745113,
+        "objects_with_probability_gt_0": 1,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "overvoltage",
+        "depth_threshold": 0.005,
+        "unit": "p.u. above Vmax",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 0.0001844269639618992,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "overvoltage",
+        "depth_threshold": 0.01,
+        "unit": "p.u. above Vmax",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 0.0001844269639618992,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "overvoltage",
+        "depth_threshold": 0.02,
+        "unit": "p.u. above Vmax",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 0.0001844269639618992,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "undervoltage",
+        "depth_threshold": 0.0,
+        "unit": "p.u. below Vmin",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 0.0001844269639618992,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "undervoltage",
+        "depth_threshold": 0.0025,
+        "unit": "p.u. below Vmin",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 0.0001844269639618992,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "undervoltage",
+        "depth_threshold": 0.005,
+        "unit": "p.u. below Vmin",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 0.0001844269639618992,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "undervoltage",
+        "depth_threshold": 0.01,
+        "unit": "p.u. below Vmin",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 0.0001844269639618992,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "undervoltage",
+        "depth_threshold": 0.02,
+        "unit": "p.u. below Vmin",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 0.0001844269639618992,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "branch_overload",
+        "depth_threshold": 0.0,
+        "unit": "loading above rateA (fraction)",
+        "system_count": 8615,
+        "system_probability": 0.43075,
+        "system_ci95_low": 0.4238727483157884,
+        "system_ci95_high": 0.4376473900248657,
+        "objects_with_probability_gt_0": 2,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 1
+      },
+      {
+        "set": "light",
+        "violation": "branch_overload",
+        "depth_threshold": 0.05,
+        "unit": "loading above rateA (fraction)",
+        "system_count": 7,
+        "system_probability": 0.00035,
+        "system_ci95_low": 0.00014072936111137783,
+        "system_ci95_high": 0.0007209999554352942,
+        "objects_with_probability_gt_0": 2,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 2
+      },
+      {
+        "set": "light",
+        "violation": "branch_overload",
+        "depth_threshold": 0.1,
+        "unit": "loading above rateA (fraction)",
+        "system_count": 1,
+        "system_probability": 5e-05,
+        "system_ci95_low": 1.2658895979755815e-06,
+        "system_ci95_high": 0.0002785503321745113,
+        "objects_with_probability_gt_0": 1,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "branch_overload",
+        "depth_threshold": 0.2,
+        "unit": "loading above rateA (fraction)",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 0.0001844269639618992,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      },
+      {
+        "set": "light",
+        "violation": "branch_overload",
+        "depth_threshold": 0.3,
+        "unit": "loading above rateA (fraction)",
+        "system_count": 0,
+        "system_probability": 0.0,
+        "system_ci95_low": 0.0,
+        "system_ci95_high": 0.0001844269639618992,
+        "objects_with_probability_gt_0": 0,
+        "objects_with_probability_1e-3_to_1e-2": 0,
+        "objects_with_probability_1e-4_to_1e-3": 0
+      }
+    ],
+    "elapsed_s": 29.897477626800537
+  }
+}

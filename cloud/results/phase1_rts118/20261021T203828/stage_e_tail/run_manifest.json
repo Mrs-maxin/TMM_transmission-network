@@ -1,0 +1,94 @@
+{
+  "created_utc": "2026-10-21T20:39:30+00:00",
+  "command": "python cloud/tests/run_stage_e_tail.py",
+  "git": {
+    "branch": "cursor/phase1-rts118-37d0",
+    "commit": "42bfd0658641a348170e796af5aef6013437935a",
+    "dirty": false
+  },
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.18.1",
+      "pandas": "2.3.3",
+      "matplotlib": "3.11.2",
+      "pandapower": "3.5.6",
+      "numba": "0.68.0"
+    }
+  },
+  "data_sources": [
+    {
+      "path": "data/networks/pglib118/pglib_opf_case118_ieee.m",
+      "sha256": "b1af0833849040c04babc3700631cff0d9afa66b79c5d3e13ae79bdf516cec78"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T201240/stage_b_network/operating_point_OP1.npz",
+      "sha256": "1fd80943e543bc732cb7faa8f2123b4b367435e00c3b91c2f9c6158edf70e2af"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T201240/stage_b_network/operating_point_OP2.npz",
+      "sha256": "3eb2113d7f7ba6755e37dc45d141a6ce3df7543f098f3d520730481bafcf4729"
+    }
+  ],
+  "parameters": {
+    "stage_d_result": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo",
+    "voltage_violation_tolerance_pu": 1e-06,
+    "overload": "max(|S_from|, |S_to|) > rateA",
+    "unit_limits": "units with Pmax > 0, Pg outside [Pmin, Pmax] by more than 1e-6 MW",
+    "tail_index": "(q99.5 - q0.5) / (q75 - q25)",
+    "sampling_sd": "sd of the index over 5 disjoint 20000-scenario subsets of the heavy check set",
+    "fixed_object_std_tolerance": {
+      "Vm": 1e-06,
+      "Va": 1e-05,
+      "Pf": 0.001,
+      "Qf": 0.001,
+      "Pt": 0.001,
+      "Qt": 0.001
+    },
+    "binomial_interval": "Clopper-Pearson 95%",
+    "sensitivity": "inverse Jacobian of the distributed-slack power-flow equations at the forecast operating point, most frequent unit mode of the heavy check set"
+  },
+  "random_sampling": "not applicable (analysis of stored stage D scenarios)",
+  "outputs": [
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/README.md",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/graded_violation_probabilities_OP1.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/graded_violation_probabilities_OP2.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/largest_tail_difference_OP1.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/largest_tail_difference_OP2.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/stage_e_summary.json",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/tail_difference_vs_renewable_share_OP1.png",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/tail_difference_vs_renewable_share_OP2.png",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/tail_exceedance_Pf_OP1.png",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/tail_exceedance_Pf_OP2.png",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/tail_exceedance_Vm_OP1.png",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/tail_exceedance_Vm_OP2.png",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/tail_statistics_OP1.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/tail_statistics_OP2.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/violation_branch_overload_OP1_heavy.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/violation_branch_overload_OP1_light.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/violation_branch_overload_OP2_heavy.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/violation_branch_overload_OP2_light.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/violation_overvoltage_OP1_heavy.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/violation_overvoltage_OP1_light.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/violation_overvoltage_OP2_heavy.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/violation_overvoltage_OP2_light.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/violation_system_OP1_heavy.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/violation_system_OP1_light.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/violation_system_OP2_heavy.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/violation_system_OP2_light.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/violation_undervoltage_OP1_heavy.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/violation_undervoltage_OP1_light.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/violation_undervoltage_OP2_heavy.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/violation_undervoltage_OP2_light.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/violation_unit_above_Pmax_OP1_heavy.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/violation_unit_above_Pmax_OP1_light.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/violation_unit_above_Pmax_OP2_heavy.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/violation_unit_above_Pmax_OP2_light.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/violation_unit_below_Pmin_OP1_heavy.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/violation_unit_below_Pmin_OP1_light.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/violation_unit_below_Pmin_OP2_heavy.csv",
+    "cloud/results/phase1_rts118/20261021T203828/stage_e_tail/violation_unit_below_Pmin_OP2_light.csv"
+  ]
+}

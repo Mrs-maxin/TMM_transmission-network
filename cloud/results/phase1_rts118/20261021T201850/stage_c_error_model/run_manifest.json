@@ -1,0 +1,111 @@
+{
+  "created_utc": "2026-10-21T20:19:01+00:00",
+  "command": "python cloud/tests/run_stage_c_error_model.py",
+  "git": {
+    "branch": "cursor/phase1-rts118-37d0",
+    "commit": "1ac7311131c5836d2f436466fa0e6bf155c28833",
+    "dirty": false
+  },
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.18.1",
+      "pandas": "2.3.3",
+      "matplotlib": "3.11.2",
+      "pandapower": "3.5.6",
+      "numba": "0.68.0"
+    }
+  },
+  "data_sources": [
+    {
+      "path": "data/rts_gmlc/DAY_AHEAD_wind.csv",
+      "sha256": "6a1a8dc7d10a518523b3b319902ecc1ca1c400223832b26c6edb3a6e69d01dbc"
+    },
+    {
+      "path": "data/rts_gmlc/REAL_TIME_wind.csv",
+      "sha256": "fc88ecb030cec9e60a796dae9c6139855640c0fca1aa7cc76e821de24d38efb4"
+    },
+    {
+      "path": "data/rts_gmlc/DAY_AHEAD_pv.csv",
+      "sha256": "bfede6e558df5ea0f244b6326940a4ee0b95138643aa8a062897c67134c9c185"
+    },
+    {
+      "path": "data/rts_gmlc/REAL_TIME_pv.csv",
+      "sha256": "ae45e0114d88302520acae1c7bb278e3fdfd2691a932c13667f60a27145e0836"
+    },
+    {
+      "path": "data/rts_gmlc/DAY_AHEAD_regional_Load.csv",
+      "sha256": "7a9470d32d49068a91334cb36db54cceb2feb5cb1f702b0fa0847af8bac6cf21"
+    },
+    {
+      "path": "data/rts_gmlc/REAL_TIME_regional_Load.csv",
+      "sha256": "462888ae357239ec63bd22b96863900259a9849743df0ca6711ceb5a6d53da57"
+    },
+    {
+      "path": "data/rts_gmlc/gen.csv",
+      "sha256": "988466f29132b73739de60c9204dd4a2a9ceb0adf572e5966c086611272f4068"
+    },
+    {
+      "path": "data/rts_gmlc/bus.csv",
+      "sha256": "cec3f776222812d43eaeaf7ac85b577719dc565f354a04e120c12a647ddb710e"
+    },
+    {
+      "path": "data/networks/pglib118/pglib_opf_case118_ieee.m",
+      "sha256": "b1af0833849040c04babc3700631cff0d9afa66b79c5d3e13ae79bdf516cec78"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T201240/stage_b_network/operating_point_OP1.npz",
+      "sha256": "1fd80943e543bc732cb7faa8f2123b4b367435e00c3b91c2f9c6158edf70e2af"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T201240/stage_b_network/operating_point_OP2.npz",
+      "sha256": "3eb2113d7f7ba6755e37dc45d141a6ce3df7543f098f3d520730481bafcf4729"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T201240/stage_b_network/renewable_mapping.csv",
+      "sha256": "bb0e23016552f21b280223e70e36fcf0a8d265f5a02315ff7a52226eef98231f"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T201240/stage_b_network/upv_plant_groups.csv",
+      "sha256": "64031749ae18c9d191f760e2259ab375d50fc4d69a3d8358bf9d52479ecaac0b"
+    }
+  ],
+  "parameters": {
+    "k_neighbours": 750,
+    "marginal": "Gaussian kernel, Silverman bandwidth, values outside [0, capacity] set to the bound",
+    "t_copula": "R from Kendall tau (sin(pi tau / 2), nearest correlation matrix), nu by bounded maximum likelihood on log nu in [2.05, 500]",
+    "gauss_copula": "R = correlation of normal scores of pseudo-observations",
+    "model_check_samples": 200000,
+    "load_cv": 0.01,
+    "stage_b_result": "cloud/results/phase1_rts118/20261021T201240/stage_b_network"
+  },
+  "random_sampling": {
+    "generator": "numpy default_rng (PCG64)",
+    "seed_value": 2026102103,
+    "use": "model check samples only"
+  },
+  "outputs": [
+    "cloud/results/phase1_rts118/20261021T201850/stage_c_error_model/README.md",
+    "cloud/results/phase1_rts118/20261021T201850/stage_c_error_model/error_model_OP1.npz",
+    "cloud/results/phase1_rts118/20261021T201850/stage_c_error_model/error_model_OP2.npz",
+    "cloud/results/phase1_rts118/20261021T201850/stage_c_error_model/gauss_copula_corr_OP1.csv",
+    "cloud/results/phase1_rts118/20261021T201850/stage_c_error_model/gauss_copula_corr_OP2.csv",
+    "cloud/results/phase1_rts118/20261021T201850/stage_c_error_model/model_check_pairs_OP1.csv",
+    "cloud/results/phase1_rts118/20261021T201850/stage_c_error_model/model_check_pairs_OP2.csv",
+    "cloud/results/phase1_rts118/20261021T201850/stage_c_error_model/model_check_sites_OP1.csv",
+    "cloud/results/phase1_rts118/20261021T201850/stage_c_error_model/model_check_sites_OP2.csv",
+    "cloud/results/phase1_rts118/20261021T201850/stage_c_error_model/model_check_total_OP1.csv",
+    "cloud/results/phase1_rts118/20261021T201850/stage_c_error_model/model_check_total_OP2.csv",
+    "cloud/results/phase1_rts118/20261021T201850/stage_c_error_model/neighbour_hours_OP1.csv",
+    "cloud/results/phase1_rts118/20261021T201850/stage_c_error_model/neighbour_hours_OP2.csv",
+    "cloud/results/phase1_rts118/20261021T201850/stage_c_error_model/nu_profile_OP1.png",
+    "cloud/results/phase1_rts118/20261021T201850/stage_c_error_model/nu_profile_OP2.png",
+    "cloud/results/phase1_rts118/20261021T201850/stage_c_error_model/stage_c_summary.json",
+    "cloud/results/phase1_rts118/20261021T201850/stage_c_error_model/t_copula_corr_OP1.csv",
+    "cloud/results/phase1_rts118/20261021T201850/stage_c_error_model/t_copula_corr_OP2.csv",
+    "cloud/results/phase1_rts118/20261021T201850/stage_c_error_model/total_error_density_OP1.png",
+    "cloud/results/phase1_rts118/20261021T201850/stage_c_error_model/total_error_density_OP2.png"
+  ]
+}

@@ -1,0 +1,9 @@
+GMM 236 s
+TMM 198 s
+block TMM 187 s
+two-strength block TMM 198 s
+/workspace/cloud/tests/run_stage_i_marginals.py:154: UserWarning: Creating legend with loc="best" can be slow with large amounts of data.
+  fig.tight_layout()
+/workspace/cloud/tests/run_stage_i_marginals.py:155: UserWarning: Creating legend with loc="best" can be slow with large amounts of data.
+  fig.savefig(out / f"exceedance_{tag}.png", dpi=130)
+STAGE_I_DONE

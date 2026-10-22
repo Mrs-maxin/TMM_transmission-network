@@ -1,0 +1,114 @@
+{
+  "created_utc": "2026-10-22T16:28:19+00:00",
+  "command": "python cloud/tests/run_stage_i_marginals.py --result-stamp 20261022T125454 --op OP1",
+  "git": {
+    "branch": "cursor/phase1b-tmm-op2-37d0",
+    "commit": "353d5bd620ba1ce90162a04b34e029e28feceea3",
+    "dirty": true
+  },
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.18.1",
+      "pandas": "2.3.3",
+      "matplotlib": "3.11.2",
+      "pandapower": "3.5.6",
+      "numba": "0.68.0"
+    }
+  },
+  "data_sources": [
+    {
+      "path": "data/networks/pglib118/pglib_opf_case118_ieee.m",
+      "sha256": "b1af0833849040c04babc3700631cff0d9afa66b79c5d3e13ae79bdf516cec78"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T201240/stage_b_network/operating_point_OP1.npz",
+      "sha256": "1fd80943e543bc732cb7faa8f2123b4b367435e00c3b91c2f9c6158edf70e2af"
+    },
+    {
+      "path": "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_h_fit/coordinates_OP1.npz",
+      "sha256": "4757a11a4297ea22d9eed4acca17bc60b25a1d5e0101e52574d8c96507d957fe"
+    },
+    {
+      "path": "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_h_fit/model_GMM_K4_OP1.npz",
+      "sha256": "94aa9872ac976b897ac10e12c3ad9cc8178fda5aafb0165e2f892e917704a435"
+    },
+    {
+      "path": "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_h_fit/model_TMM_K8_OP1.npz",
+      "sha256": "b1a7811b3c96cb4e9149e506fdfe458a64339bf240f531f80059c3ec7cd72b4b"
+    },
+    {
+      "path": "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_h_fit/model_block_TMM_K4_OP1.npz",
+      "sha256": "6754c4c9814753b3ade07416ad9c65aa160168c09e0946eb39ae2b0ffd30a1fb"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/modeling_chunk000.npz",
+      "sha256": "c6292df5507787ee8174fc7cd74368f601989d5fc5d91f85951db88e7ec84fb7"
+    },
+    {
+      "path": "cloud/results/phase1_rts118/20261021T202200/stage_d_montecarlo/OP1/modeling_chunk001.npz",
+      "sha256": "dc4d4c2b4d69e82582295d9335c29b9df3e41138ac964628d22c8287cc6f4baf"
+    }
+  ],
+  "parameters": {
+    "reference": "check_heavy (100000, float32 storage), phase-1 stage D OP1; chunk SHA256 in stage_g_identity.json",
+    "floor": "empirical distribution of the 5256 modeling scenarios",
+    "points_per_model": 1048576,
+    "quantities": "Vm, Va of 117 non-reference buses; P, Q at both ends of 186 branches; loading max(|Sf|,|St|)/rateA; imbalance (MW); Pg of 19 units with Pmax > 0",
+    "fixed_object_std_tolerance": {
+      "Vm": 1e-06,
+      "Va": 1e-05,
+      "Pf": 0.001,
+      "Qf": 0.001,
+      "Pt": 0.001,
+      "Qt": 0.001,
+      "loading": 1e-06,
+      "lam": 1e-06,
+      "Pg": 1e-06
+    },
+    "quantile_probabilities": [
+      0.001,
+      0.01,
+      0.99,
+      0.999
+    ],
+    "quantile_convention": "model: smallest value with cumulative weight >= p; check: inverted_cdf",
+    "ks": "sup over the check sample points of |F_model - F_check|, both one-sided limits",
+    "exceedance_plot": "curves drawn at the sorted points nearest to 1200 log-spaced tail probabilities (1e-7 to 0.5, both tails); metrics use all points",
+    "reporting_split": "Vm of unit buses (point mass at the setpoint while regulating) summarised apart from Vm of PQ buses; the 3 extra plotted objects are the largest-TMM-KS objects outside Vm of unit buses"
+  },
+  "random_sampling": {
+    "sobol": "scipy.stats.qmc.Sobol(scramble=True): linear matrix scramble with digital random shift; dimension d+1 per component (GMM d)",
+    "entropy": {
+      "GMM": 2026102201,
+      "TMM": 2026102202,
+      "block TMM": 2026102203,
+      "two-strength block TMM": 2026102204
+    },
+    "per_component": "numpy default_rng(SeedSequence(entropy).spawn(K)[k])",
+    "allocation": "N_k = 2^20 pi_k by largest remainder, at least 1"
+  },
+  "outputs": [
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_i_marginals/README.md",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_i_marginals/exceedance_Vm_bus14_(TMM_KS_0.449).png",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_i_marginals/exceedance_Vm_bus5_(TMM_KS_0.448).png",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_i_marginals/exceedance_Vm_bus7_(TMM_KS_0.523).png",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_i_marginals/exceedance_branch_82-96_loading.png",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_i_marginals/exceedance_branch_94-100_loading.png",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_i_marginals/exceedance_branch_94-95_P.png",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_i_marginals/exceedance_system_imbalance.png",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_i_marginals/fixed_objects_OP1.csv",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_i_marginals/marginal_metrics_OP1.csv",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_i_marginals/marginal_summary_OP1.csv",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_i_marginals/pdf_Vm_bus14_(TMM_KS_0.449).png",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_i_marginals/pdf_Vm_bus5_(TMM_KS_0.448).png",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_i_marginals/pdf_Vm_bus7_(TMM_KS_0.523).png",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_i_marginals/pdf_branch_82-96_loading.png",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_i_marginals/pdf_branch_94-100_loading.png",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_i_marginals/pdf_branch_94-95_P.png",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_i_marginals/pdf_system_imbalance.png",
+    "cloud/results/phase1b_tmm_op2/20261022T125454/stage_k_OP1/stage_i_marginals/stage_i_summary_OP1.json"
+  ]
+}
