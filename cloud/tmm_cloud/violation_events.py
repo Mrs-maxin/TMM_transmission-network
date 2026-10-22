@@ -7,8 +7,15 @@ from scipy import stats
 from . import propagation as pg
 
 CURVE_LEVELS = np.round(np.arange(1.00, 1.3001, 0.01), 2)
-EVENTS = ["a_branch_100_103_above_1.05", "b_any_unit_below_Pmin", "c_any_unit_above_Pmax", "d_branch_77_82_above_1.00",
-          "e_bus83_above_Vmax", "f_any_branch_above_1.05", "f_any_branch_above_1.10", "g_any_bus_above_Vmax_plus_0.0025"]
+ANY_BRANCH_LEVELS = (1.05, 1.10)
+
+
+def event_names(any_levels=ANY_BRANCH_LEVELS):
+    return ["a_branch_100_103_above_1.05", "b_any_unit_below_Pmin", "c_any_unit_above_Pmax", "d_branch_77_82_above_1.00",
+            "e_bus83_above_Vmax", *[f"f_any_branch_above_{v:.2f}" for v in any_levels], "g_any_bus_above_Vmax_plus_0.0025"]
+
+
+EVENTS = event_names()
 
 
 def thresholds(net, op):
@@ -29,9 +36,9 @@ def thresholds(net, op):
             "rateA_100_103_MVA": float(net.rateA[br["100-103"]]), "rateA_77_82_MVA": float(net.rateA[br["77-82"]])}
 
 
-def indicators(q, thr):
-    """Boolean (n, events) array in EVENTS order and (n, levels) array of the branch 100-103 curve, from the
-    quantities of OutputMap.evaluate / from_stage_d."""
+def indicators(q, thr, any_levels=ANY_BRANCH_LEVELS):
+    """Boolean (n, events) array in event_names(any_levels) order and (n, levels) array of the branch 100-103
+    curve, from the quantities of OutputMap.evaluate / from_stage_d."""
     L, lam, Vm = q["loading"], q["lam"][:, 0], q["Vm"]
     l100 = L[:, thr["branch_100_103"]]
     Lmax = L.max(axis=1)
@@ -41,8 +48,7 @@ def indicators(q, thr):
         lam > thr["lam_high_MW"],
         L[:, thr["branch_77_82"]] > 1.00,
         Vm[:, thr["bus83_col"]] > thr["Vmax_bus83"] + 1e-6,
-        Lmax > 1.05,
-        Lmax > 1.10,
+        *[Lmax > v for v in any_levels],
         (Vm > thr["Vmax_nonref"][None] + 0.0025).any(axis=1),
     ])
     curve = l100[:, None] > CURVE_LEVELS[None]
@@ -61,22 +67,23 @@ def clopper_pearson(k, n, level=0.95):
     return float(lo), float(hi)
 
 
-def counted(q, thr):
-    ev, curve = indicators(q, thr)
+def counted(q, thr, any_levels=ANY_BRANCH_LEVELS):
+    ev, curve = indicators(q, thr, any_levels)
     return ev.sum(axis=0), curve.sum(axis=0), len(ev)
 
 
-def model_probabilities(model, coords, outmap, thr, count, entropy, chunk=1 << 16):
+def model_probabilities(model, coords, outmap, thr, count, entropy, chunk=1 << 16, any_levels=ANY_BRANCH_LEVELS):
     """Weighted event probabilities of count stratified Sobol points of the model (weights pi_k / N_k^s), and
     per-component probabilities."""
     Z, w, alloc = pg.model_points(model, count, entropy)
     comp = np.repeat(np.arange(model.K), alloc)
-    pe, pc = np.zeros(len(EVENTS)), np.zeros(len(CURVE_LEVELS))
-    hits = np.zeros(len(EVENTS), int)
-    per_comp = np.zeros((model.K, len(EVENTS)))
+    ne = len(event_names(any_levels))
+    pe, pc = np.zeros(ne), np.zeros(len(CURVE_LEVELS))
+    hits = np.zeros(ne, int)
+    per_comp = np.zeros((model.K, ne))
     for s in range(0, len(Z), chunk):
         q = outmap.evaluate(coords.to_x(Z[s:s + chunk]))
-        ev, curve = indicators(q, thr)
+        ev, curve = indicators(q, thr, any_levels)
         ws = w[s:s + chunk]
         pe += ws @ ev
         pc += ws @ curve

@@ -81,13 +81,19 @@ def strength_setup(net, op, mapping, modeling, coords):
     Pren = modeling["Pren_MW"].mean(axis=0) / net.baseMVA
     J, V0, lam0, it = jacobian_at_mode(net, op, mode, op.Pd * k, op.Qd * k, Pren)
     rows, kind = renewable_rows(net, op, mapping)
+    # hosts whose injection does not vary in the modeling scenarios (PV at night) carry no fluctuation strength
+    varies = modeling["Pren_MW"].std(axis=0) > 1e-9
+    rows, kind = rows[varies], kind[varies]
     H = injection_columns(J, rows)
     Qu, Qw, sv = mx.strength_directions(H, coords)
-    Q1, Q2, Qw2 = mx.two_strength_directions(H[:, kind == "wind"], H[:, kind == "pv"], coords)
+    two = (kind == "wind").any() and (kind == "pv").any()
+    Q1, Q2, Qw2 = mx.two_strength_directions(H[:, kind == "wind"], H[:, kind == "pv"], coords) if two else (None, None, None)
     info = {"mode_share": share, "mode_units_at_limit": int((mode != 0).sum()), "newton_iterations": it,
             "imbalance_at_point_MW": lam0 * net.baseMVA, "jacobian_condition": float(np.linalg.cond(J)),
-            "r": int(Qu.shape[1]), "singular_values": sv.tolist(), "r_wind": int(Q1.shape[1]), "r_pv": int(Q2.shape[1]),
-            "host_buses": net.bus_id[rows].tolist(), "host_kind": kind.tolist()}
+            "r": int(Qu.shape[1]), "singular_values": sv.tolist(),
+            "r_wind": int(Q1.shape[1]) if two else None, "r_pv": int(Q2.shape[1]) if two else None,
+            "host_buses": net.bus_id[rows].tolist(), "host_kind": kind.tolist(),
+            "hosts_without_variation": net.bus_id[renewable_rows(net, op, mapping)[0][~varies]].tolist()}
     return {"Qu": Qu, "Qw": Qw, "Q1": Q1, "Q2": Q2, "Qw2": Qw2, "H": H, "J": J, "mode": mode, "V0": V0}, info
 
 

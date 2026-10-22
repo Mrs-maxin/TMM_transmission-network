@@ -2,7 +2,7 @@
 stratified Sobol points of each selected state model (part 'table'), and their repeatability over R new
 independent modeling (5256) + determination (1752) pairs refitted with their own K selection (part 'repeat').
 
-Usage: python cloud/tests/run_stage_j_violations.py --result-stamp YYYYmmddTHHMMSS --part table
+Usage: python cloud/tests/run_stage_j_violations.py --result-stamp YYYYmmddTHHMMSS --part table [--op OP1]
        python cloud/tests/run_stage_j_violations.py --result-stamp YYYYmmddTHHMMSS --part repeat --replications 10
 """
 
@@ -45,28 +45,32 @@ REPEAT_EVENTS = ["a_branch_100_103_above_1.05", "b_any_unit_below_Pmin", "d_bran
 METHODS = ["GMM", "TMM", "block TMM", "two-strength block TMM"]
 LOAD_CV = 0.01
 CHUNK = 5000
-STAGE_D = rr.CLOUD_ROOT / "results" / "phase1_rts118" / "20261021T202200" / "stage_d_montecarlo" / OP
+STAGE_D_ROOT = rr.CLOUD_ROOT / "results" / "phase1_rts118" / "20261021T202200" / "stage_d_montecarlo"
+STAGE_D = STAGE_D_ROOT / OP
+ANY_LEVELS = {"OP2": ve.ANY_BRANCH_LEVELS, "OP1": (1.05, 1.10, 1.20, 1.30)}
 STAGE_B = rr.CLOUD_ROOT / "results" / "phase1_rts118" / "20261021T201240" / "stage_b_network"
 STAGE_C = rr.CLOUD_ROOT / "results" / "phase1_rts118" / "20261021T201850" / "stage_c_error_model"
 
 
 def load_models(hdir):
     sys.path.insert(0, str(Path(__file__).resolve().parent))
-    from run_stage_i_marginals import load_stage_h
-    return load_stage_h(hdir)
+    import run_stage_i_marginals as si
+    si.OP = OP
+    return si.load_stage_h(hdir)
 
 
 def counted_rows(label, q, thr):
-    k, kc, n = ve.counted(q, thr)
+    k, kc, n = ve.counted(q, thr, ANY_LEVELS[OP])
     rows = []
-    for e, ke in zip(ve.EVENTS, k):
+    for e, ke in zip(ve.event_names(ANY_LEVELS[OP]), k):
         lo, hi = ve.clopper_pearson(int(ke), n)
         rows.append({"source": label, "event": e, "scenarios": n, "count": int(ke), "probability": ke / n, "ci95_low": lo, "ci95_high": hi})
     return rows, kc / n
 
 
 def part_table(a, net, op, outmap, thr, hdir):
-    out = rr.stamped_stage_dir(TASK, a.result_stamp, "stage_j_violations")
+    events = ve.event_names(ANY_LEVELS[OP])
+    out = rr.stamped_stage_dir(TASK, a.result_stamp, "stage_j_violations" if OP == "OP2" else f"stage_k_{OP}/stage_j_violations")
     t0 = time.time()
     coords, models = load_models(hdir)
     check_files = sorted(STAGE_D.glob("check_heavy_chunk*.npz"))
@@ -81,7 +85,7 @@ def part_table(a, net, op, outmap, thr, hdir):
 
     # equivalence of the unit-limit events with the imbalance thresholds on the check set
     below, above = ve.unit_limit_check(check, thr)
-    ev, _ = ve.indicators(check, thr)
+    ev, _ = ve.indicators(check, thr, ANY_LEVELS[OP])
     eq = {"below_Pmin_direct": int(below.sum()), "below_Pmin_by_lam": int(ev[:, 1].sum()),
           "below_Pmin_disagreements": int((below != ev[:, 1]).sum()),
           "above_Pmax_direct": int(above.sum()), "above_Pmax_by_lam": int(ev[:, 2].sum()),
@@ -104,11 +108,11 @@ def part_table(a, net, op, outmap, thr, hdir):
         if method not in models:
             continue
         ts = time.time()
-        res = ve.model_probabilities(models[method][0], coords, outmap, thr, N_POINTS, SOBOL_ENTROPY + i)
+        res = ve.model_probabilities(models[method][0], coords, outmap, thr, N_POINTS, SOBOL_ENTROPY + i, any_levels=ANY_LEVELS[OP])
         timing[method] = time.time() - ts
         curves[method] = res["curve"]
         comp[method] = {"allocation": res["allocation"].tolist(), "per_component": res["per_component"].tolist()}
-        for e, p, h in zip(ve.EVENTS, res["events"], res["point_hits"]):
+        for e, p, h in zip(events, res["events"], res["point_hits"]):
             rows.append({"source": method, "event": e, "scenarios": N_POINTS, "count": int(h), "probability": float(p),
                          "ci95_low": np.nan, "ci95_high": np.nan})
         print(method, f"{timing[method]:.0f} s", flush=True)
@@ -119,7 +123,7 @@ def part_table(a, net, op, outmap, thr, hdir):
     df["inside_check_ci95"] = (df.probability >= df.event.map({e: x["ci95_low"] for e, x in ref.items()})) & \
                               (df.probability <= df.event.map({e: x["ci95_high"] for e, x in ref.items()}))
     df.to_csv(out / f"violation_probabilities_{OP}.csv", index=False)
-    wide = df.pivot(index="event", columns="source", values="probability").reindex(ve.EVENTS)
+    wide = df.pivot(index="event", columns="source", values="probability").reindex(events)
     wide.to_csv(out / f"violation_probabilities_wide_{OP}.csv")
     cdf = pd.DataFrame({"loading_threshold": ve.CURVE_LEVELS, **{k: v for k, v in curves.items()}})
     cdf.to_csv(out / f"branch_100_103_exceedance_curve_{OP}.csv", index=False)
@@ -146,12 +150,12 @@ def part_table(a, net, op, outmap, thr, hdir):
                                                      "model_components": comp, "propagation_seconds": timing, "wall_time_s": time.time() - t0})
     rr.write_manifest(
         out,
-        command=f"python cloud/tests/run_stage_j_violations.py --result-stamp {a.result_stamp} --part table",
+        command=f"python cloud/tests/run_stage_j_violations.py --result-stamp {a.result_stamp} --part table" + (f" --op {OP}" if OP != "OP2" else ""),
         data_files=[mc.PGLIB118, STAGE_B / f"operating_point_{OP}.npz", hdir / f"coordinates_{OP}.npz", *[p for _, p in models.values()], *mod_files],
-        parameters={"events": ve.EVENTS, "loading": "max(|S_from|, |S_to|)/rateA", "curve_levels": ve.CURVE_LEVELS.tolist(),
+        parameters={"events": events, "loading": "max(|S_from|, |S_to|)/rateA", "curve_levels": ve.CURVE_LEVELS.tolist(),
                     "unit_limits": "units with alpha > 0; below Pmin iff lam < max_i (Pmin_i - Pg0_i)/alpha_i, above Pmax iff lam > min_i (Pmax_i - Pg0_i)/alpha_i",
                     "voltage_events": "non-reference buses (reference bus voltage fixed at its setpoint)",
-                    "check_sets": "check_heavy 100000 and check_light 20000 of phase-1 stage D OP2, chunk SHA256 in stage_g_identity.json",
+                    "check_sets": f"check_heavy 100000 and check_light 20000 of phase-1 stage D {OP}, chunk SHA256 in stage_g_identity.json",
                     "interval": "Clopper-Pearson 95%", "points_per_model": N_POINTS},
         random_settings={"sobol": "same points as stage I", "entropy": {m: SOBOL_ENTROPY + i for i, m in enumerate(METHODS)}},
     )
@@ -275,12 +279,17 @@ def main():
     ap.add_argument("--part", choices=["table", "repeat"], required=True)
     ap.add_argument("--replications", type=int, default=10)
     ap.add_argument("--workers", type=int, default=4)
+    ap.add_argument("--op", default="OP2", choices=["OP1", "OP2"])
     a = ap.parse_args()
+    global OP, STAGE_D
+    OP, STAGE_D = a.op, STAGE_D_ROOT / a.op
+    if a.part == "repeat" and OP != "OP2":
+        raise SystemExit("the repeatability study is defined for OP2 only")
     net = nw.from_matpower(mc.PGLIB118)
     op = mcarlo.load_operating_point(STAGE_B / f"operating_point_{OP}.npz")
     outmap = sm.OutputMap(net, op)
     thr = ve.thresholds(net, op)
-    hdir = rr.CLOUD_ROOT / "results" / TASK / a.result_stamp / "stage_h_fit"
+    hdir = rr.CLOUD_ROOT / "results" / TASK / a.result_stamp / ("stage_h_fit" if OP == "OP2" else f"stage_k_{OP}/stage_h_fit")
     if a.part == "table":
         part_table(a, net, op, outmap, thr, hdir)
     else:

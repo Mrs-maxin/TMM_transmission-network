@@ -1,7 +1,8 @@
 """Stage I: marginal accuracy of the selected GMM, standard TMM and block TMM against the 100000 heavy-tailed
 AC Monte Carlo check scenarios of OP2 (derivation.md Sections 4.1-4.3 and eq. (29)).
 
-Usage: python cloud/tests/run_stage_i_marginals.py --result-stamp YYYYmmddTHHMMSS
+Usage: python cloud/tests/run_stage_i_marginals.py --result-stamp YYYYmmddTHHMMSS [--plots-only] [--op OP1]
+(OP1 is stage K and reads stage_k_OP1/stage_h_fit.)
 """
 
 import argparse
@@ -35,7 +36,8 @@ GROUPS = [["Vm", "Va", "lam", "Pg"], ["Pf", "Qf"], ["Pt", "Qt"], ["loading"]]
 FIXED_TOL = {"Vm": 1e-6, "Va": 1e-5, "Pf": 1e-3, "Qf": 1e-3, "Pt": 1e-3, "Qt": 1e-3, "loading": 1e-6, "lam": 1e-6, "Pg": 1e-6}
 UNITS = {"Vm": "p.u.", "Va": "deg", "Pf": "MW", "Qf": "Mvar", "Pt": "MW", "Qt": "Mvar", "loading": "fraction of rateA", "lam": "MW", "Pg": "MW"}
 COL_BLOCK = 24
-STAGE_D = rr.CLOUD_ROOT / "results" / "phase1_rts118" / "20261021T202200" / "stage_d_montecarlo" / OP
+STAGE_D_ROOT = rr.CLOUD_ROOT / "results" / "phase1_rts118" / "20261021T202200" / "stage_d_montecarlo"
+STAGE_D = STAGE_D_ROOT / OP
 STAGE_B = rr.CLOUD_ROOT / "results" / "phase1_rts118" / "20261021T201240" / "stage_b_network"
 
 
@@ -177,11 +179,15 @@ def plot_object(key, col, label, vals, R, Ymod, out):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--result-stamp", required=True)
-    ap.add_argument("--plots-only", action="store_true", help="reuse marginal_metrics_OP2.csv of an earlier run of the same settings")
+    ap.add_argument("--plots-only", action="store_true", help="reuse marginal_metrics_<OP>.csv of an earlier run of the same settings")
+    ap.add_argument("--op", default="OP2", choices=["OP1", "OP2"])
     a = ap.parse_args()
+    global OP, STAGE_D
+    OP, STAGE_D = a.op, STAGE_D_ROOT / a.op
     t0 = time.time()
-    out = rr.stamped_stage_dir(TASK, a.result_stamp, "stage_i_marginals")
-    hdir = rr.CLOUD_ROOT / "results" / TASK / a.result_stamp / "stage_h_fit"
+    sub = "" if OP == "OP2" else f"stage_k_{OP}/"
+    out = rr.stamped_stage_dir(TASK, a.result_stamp, f"{sub}stage_i_marginals")
+    hdir = rr.CLOUD_ROOT / "results" / TASK / a.result_stamp / f"{sub}stage_h_fit"
     net = nw.from_matpower(mc.PGLIB118)
     op = mcarlo.load_operating_point(STAGE_B / f"operating_point_{OP}.npz")
     outmap = sm.OutputMap(net, op)
@@ -233,9 +239,13 @@ def main():
 
     br = {f"{net.bus_id[f]}-{net.bus_id[t]}": j for j, (f, t) in enumerate(zip(net.f, net.t))}
     nr = list(nr)
-    plots = [("loading", br["100-103"], "branch 100-103 loading"), ("Pf", br["12-14"], "branch 12-14 P"),
-             ("loading", br["77-82"], "branch 77-82 loading"), ("Vm", nr.index(int(net.idx([83])[0])), "bus 83 Vm"),
-             ("lam", 0, "system imbalance")]
+    if OP == "OP2":
+        plots = [("loading", br["100-103"], "branch 100-103 loading"), ("Pf", br["12-14"], "branch 12-14 P"),
+                 ("loading", br["77-82"], "branch 77-82 loading"), ("Vm", nr.index(int(net.idx([83])[0])), "bus 83 Vm"),
+                 ("lam", 0, "system imbalance")]
+    else:
+        plots = [("loading", br["82-96"], "branch 82-96 loading"), ("loading", br["94-100"], "branch 94-100 loading"),
+                 ("Pf", br["94-95"], "branch 94-95 P"), ("lam", 0, "system imbalance")]
     top = df[df.method == "TMM"].sort_values("ks", ascending=False)
     top = top[~((top.quantity == "Vm") & (top.unit_bus == True))]
     chosen = {(k, names[k][c]) for k, c, _ in plots}
@@ -254,10 +264,10 @@ def main():
     rr.write_json(out / f"stage_i_summary_{OP}.json", summary)
     rr.write_manifest(
         out,
-        command=f"python cloud/tests/run_stage_i_marginals.py --result-stamp {a.result_stamp}" + (" --plots-only" if a.plots_only else ""),
+        command=f"python cloud/tests/run_stage_i_marginals.py --result-stamp {a.result_stamp}" + (" --plots-only" if a.plots_only else "") + (f" --op {OP}" if OP != "OP2" else ""),
         data_files=[mc.PGLIB118, STAGE_B / f"operating_point_{OP}.npz", hdir / f"coordinates_{OP}.npz",
                     *[p for _, p in models.values()], *sorted(STAGE_D.glob("modeling_chunk*.npz"))],
-        parameters={"reference": "check_heavy (100000, float32 storage), phase-1 stage D OP2; chunk SHA256 in stage_g_identity.json",
+        parameters={"reference": f"check_heavy (100000, float32 storage), phase-1 stage D {OP}; chunk SHA256 in stage_g_identity.json",
                     "floor": "empirical distribution of the 5256 modeling scenarios", "points_per_model": N_POINTS,
                     "quantities": "Vm, Va of 117 non-reference buses; P, Q at both ends of 186 branches; loading max(|Sf|,|St|)/rateA; imbalance (MW); Pg of 19 units with Pmax > 0",
                     "fixed_object_std_tolerance": FIXED_TOL, "quantile_probabilities": pg.PROBS,
